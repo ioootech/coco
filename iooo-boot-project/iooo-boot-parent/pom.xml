@@ -23,4 +23,8 @@
 		<maven>3.5</maven>
 	</prerequisites>
 
+	<modules>
+		<module>../iooo-boot-core</module>
+	</modules>
+
 </project>
