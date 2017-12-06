@@ -30,6 +30,8 @@
 	</modules>
 
 	<properties>
+		<!-- Iooo versions -->
+		<iooo-boot-core.version>${version}</iooo-boot-core.version>
 		<!-- Dependency versions -->
 		<commons-codec.version>1.11</commons-codec.version>
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
@@ -85,6 +87,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- Iooo Modules -->
+			<dependency>
+				<groupId>tech.iooo.boot</groupId>
+				<artifactId>iooo-boot-core</artifactId>
+				<version>${iooo-boot-core.version}</version>
+			</dependency>
 			<!-- Third Party -->
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
