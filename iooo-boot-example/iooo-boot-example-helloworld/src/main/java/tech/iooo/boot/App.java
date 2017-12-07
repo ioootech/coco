@@ -12,5 +12,7 @@ public class App {
 
 	public static void main(String[] args) {
 		logger.info("hello world");
+		logger.debug("DEBUG");
+		logger.trace("TRACE");
 	}
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!--<filter class="ch.qos.logback.core.filter.EvaluatorFilter">-->
+		<!--<evaluator> &lt;!&ndash; 默认为 ch.qos.logback.classic.boolex.JaninoEventEvaluator &ndash;&gt;-->
+		<!--<expression>return message.contains("billing");</expression>-->
+		<!--</evaluator>-->
+		<!--<OnMatch>ACCEPT </OnMatch>-->
+		<!--<OnMismatch>DENY</OnMismatch>-->
+		<!--</filter>-->
+		<withJansi>true</withJansi>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%cyan(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green(${PID:- }[%thread]) %highlight(%-5level) --- %cyan(%-40.40logger{39}) - %green(%msg%n)
+			</Pattern>
+		</encoder>
+	</appender>
+</included>

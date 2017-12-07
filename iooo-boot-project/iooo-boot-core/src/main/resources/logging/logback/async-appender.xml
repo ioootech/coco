@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<queueSize>512</queueSize>
+		<appender-ref ref="FILE-AUDIT"/>
+	</appender>
+</included>
