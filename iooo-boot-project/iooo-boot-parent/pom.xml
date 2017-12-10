@@ -23,6 +23,18 @@
 		<maven>3.5</maven>
 	</prerequisites>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>tech.iooo.boot</groupId>
+				<artifactId>iooo-boot-dependency</artifactId>
+				<version>${project.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<modules>
 		<module>../iooo-boot-core</module>
 	</modules>
