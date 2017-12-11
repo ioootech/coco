@@ -57,6 +57,7 @@
 		<undertow.version>1.4.21.Final</undertow.version>
 		<mysql.version>5.1.44</mysql.version>
 		<vertx.version>3.5.0</vertx.version>
+		<guava.version>23.0</guava.version>
 		<!-- Spring versions -->
 		<spring-boot.version>1.5.9.RELEASE</spring-boot.version>
 		<!-- Plugin versions -->
@@ -86,6 +87,7 @@
 		<versions-maven-plugin.version>2.3</versions-maven-plugin.version>
 		<xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
 		<flatten-maven-plugin.version>1.0.0</flatten-maven-plugin.version>
+		<arguments/>
 	</properties>
 
 	<dependencyManagement>
@@ -168,6 +170,11 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
@@ -709,6 +716,35 @@
 		</dependencies>
 	</dependencyManagement>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<phase>validate</phase>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<message>
+										<![CDATA[You are running an older version of Java. This application requires at least JDK ${java.version}.]]>
+									</message>
+									<version>[${java.version}.0,)</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -755,11 +791,6 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-enforcer-plugin</artifactId>
-					<version>${maven-enforcer-plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${maven-failsafe-plugin.version}</version>
 				</plugin>
@@ -802,11 +833,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven-site-plugin.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>${maven-source-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
