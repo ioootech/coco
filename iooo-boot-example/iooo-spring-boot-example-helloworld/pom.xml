@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
-		<artifactId>iooo-boot-parent</artifactId>
 		<groupId>tech.iooo.boot</groupId>
+		<artifactId>iooo-spring-boot-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath>../../iooo-boot-project/iooo-boot-parent</relativePath>
+		<relativePath>../../iooo-boot-project/iooo-spring-boot-parent</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>iooo-boot-example-helloworld</artifactId>
+	<artifactId>iooo-spring-boot-example-helloworld</artifactId>
 	<packaging>jar</packaging>
 
-	<name>iooo-boot-example-helloworld</name>
+	<name>iooo-spring-boot-example-helloworld</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -21,21 +21,13 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>tech.iooo.boot</groupId>
-			<artifactId>iooo-boot-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.vertx</groupId>
-			<artifactId>vertx-core</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

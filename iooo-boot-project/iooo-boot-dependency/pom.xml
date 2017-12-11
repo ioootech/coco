@@ -27,6 +27,7 @@
 
 	<modules>
 		<module>../iooo-boot-parent</module>
+		<module>../iooo-spring-boot-parent</module>
 	</modules>
 
 	<properties>
@@ -56,6 +57,8 @@
 		<undertow.version>1.4.21.Final</undertow.version>
 		<mysql.version>5.1.44</mysql.version>
 		<vertx.version>3.5.0</vertx.version>
+		<!-- Spring versions -->
+		<spring-boot.version>1.5.9.RELEASE</spring-boot.version>
 		<!-- Plugin versions -->
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
@@ -92,6 +95,14 @@
 				<groupId>tech.iooo.boot</groupId>
 				<artifactId>iooo-boot-core</artifactId>
 				<version>${iooo-boot-core.version}</version>
+			</dependency>
+			<!-- Spring Modules -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 			<!-- Third Party -->
 			<dependency>
