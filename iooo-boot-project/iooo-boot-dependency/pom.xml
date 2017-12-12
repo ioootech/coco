@@ -58,6 +58,8 @@
 		<mysql.version>5.1.44</mysql.version>
 		<vertx.version>3.5.0</vertx.version>
 		<guava.version>23.0</guava.version>
+		<commons-configuration2.version>2.2</commons-configuration2.version>
+		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<!-- Spring versions -->
 		<spring-boot.version>1.5.9.RELEASE</spring-boot.version>
 		<!-- Plugin versions -->
@@ -87,7 +89,9 @@
 		<versions-maven-plugin.version>2.3</versions-maven-plugin.version>
 		<xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
 		<flatten-maven-plugin.version>1.0.0</flatten-maven-plugin.version>
+		<vertx-maven-plugin.version>1.0.9</vertx-maven-plugin.version>
 		<arguments/>
+		<vertx.verticle/>
 	</properties>
 
 	<dependencyManagement>
@@ -175,6 +179,16 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-configuration2</artifactId>
+				<version>${commons-configuration2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
@@ -772,6 +786,27 @@
 					<configuration>
 						<source>${java.version}</source>
 						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>io.fabric8</groupId>
+					<artifactId>vertx-maven-plugin</artifactId>
+					<version>${vertx-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>vmp</id>
+							<goals>
+								<goal>initialize</goal>
+								<goal>package</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<redeploy>true</redeploy>
 					</configuration>
 				</plugin>
 				<plugin>
