@@ -34,4 +34,11 @@
 		</profile>
 	</profiles>
 
+	<dependencies>
+		<dependency>
+			<groupId>tech.iooo.boot</groupId>
+			<artifactId>iooo-boot-core</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>

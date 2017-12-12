@@ -21,10 +21,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>tech.iooo.boot</groupId>
-			<artifactId>iooo-boot-core</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
