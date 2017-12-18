@@ -28,17 +28,13 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<modules>
-				<module>../iooo-boot-core</module>
 				<module>../../iooo-boot-example/iooo-boot-example-helloworld</module>
 			</modules>
 		</profile>
 	</profiles>
 
-	<dependencies>
-		<dependency>
-			<groupId>tech.iooo.boot</groupId>
-			<artifactId>iooo-boot-core</artifactId>
-		</dependency>
-	</dependencies>
+	<modules>
+		<module>../iooo-boot-core</module>
+	</modules>
 
 </project>

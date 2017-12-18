@@ -31,8 +31,9 @@
 	</modules>
 
 	<properties>
+		<java.version>1.8</java.version>
 		<!-- Iooo versions -->
-		<iooo-boot-core.version>${version}</iooo-boot-core.version>
+		<iooo-boot.version>${version}</iooo-boot.version>
 		<!-- Dependency versions -->
 		<commons-codec.version>1.11</commons-codec.version>
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
@@ -100,7 +101,7 @@
 			<dependency>
 				<groupId>tech.iooo.boot</groupId>
 				<artifactId>iooo-boot-core</artifactId>
-				<version>${iooo-boot-core.version}</version>
+				<version>${iooo-boot.version}</version>
 			</dependency>
 			<!-- Spring Modules -->
 			<dependency>
