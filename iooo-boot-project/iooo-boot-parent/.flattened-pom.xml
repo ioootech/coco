@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.iooo.boot</groupId>
+    <artifactId>iooo-boot-dependency</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../iooo-boot-dependency</relativePath>
+  </parent>
+  <groupId>tech.iooo.boot</groupId>
+  <artifactId>iooo-boot-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>iooo-boot-parent</name>
+  <description>distribution config</description>
+  <url>http://maven.apache.org</url>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>Ivan97</id>
+      <name>Yangki Zhang</name>
+      <email>YangkiZhang@gmail.com</email>
+      <url>http://blog.iooo.tech</url>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
+  <prerequisites>
+    <maven>3.5</maven>
+  </prerequisites>
+  <scm>
+    <url>https://github.com/Ivan97/iooo-boot-parent</url>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
