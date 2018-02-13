@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false">
+
+	<include resource="logging/logback/base.xml"/>
+
+	<logger name="ch.qos.logback" level="WARN"/>
+	<logger name="io.netty" level="DEBUG"/>
+
+</configuration>
