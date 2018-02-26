@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<include resource="logging/logback/console-appender.xml"/>
+	<include resource="logging/logback/file-appender.xml"/>
+	<include resource="logging/logback/async-appender.xml"/>
+	<include resource="logging/logback/defaults.xml"/>
+	<root level="INFO">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="ASYNC"/>
+	</root>
+</included>
