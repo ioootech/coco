@@ -10,7 +10,7 @@
 
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>iooo-boot</name>

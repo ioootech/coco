@@ -5,13 +5,13 @@
 	<parent>
 		<artifactId>iooo-boot-project</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.0.RELEASE</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>iooo-boot-dependency</artifactId>
-	<version>1.0.0.RELEASE</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<licenses>
