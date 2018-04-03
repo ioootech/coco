@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>tech.iooo.boot</groupId>
 		<artifactId>iooo-boot</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.1</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>iooo-boot-project</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>pom</packaging>
 
 	<name>iooo-boot-project</name>
@@ -24,7 +24,6 @@
 
 	<modules>
 		<module>iooo-boot-dependency</module>
-		<module>../iooo-boot-example</module>
 	</modules>
 
 </project>

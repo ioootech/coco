@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>iooo-boot-dependency</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.1</version>
 		<relativePath>../iooo-boot-dependency</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -16,6 +16,7 @@
 
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
+		<maven-deploy-skip>false</maven-deploy-skip>
 	</properties>
 	<prerequisites>
 		<maven>3.5</maven>

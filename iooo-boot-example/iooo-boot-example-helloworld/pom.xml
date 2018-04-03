@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>iooo-boot-parent</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.1</version>
 		<relativePath>../../iooo-boot-project/iooo-boot-parent</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<skip_maven_deploy>true</skip_maven_deploy>
+		<maven-deploy-skip>true</maven-deploy-skip>
 	</properties>
 
 	<dependencies>
@@ -44,6 +44,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>${maven-deploy-skip}</skip>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

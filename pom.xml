@@ -1,6 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>tech.iooo.coco</groupId>
@@ -8,22 +9,22 @@
 		<version>1.0.0.RELEASE</version>
 	</parent>
 
-    <groupId>tech.iooo.boot</groupId>
-    <artifactId>iooo-boot</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	<groupId>tech.iooo.boot</groupId>
+	<artifactId>iooo-boot</artifactId>
+	<version>1.0.1</version>
+	<packaging>pom</packaging>
 
-    <name>iooo-boot</name>
-    <url>http://maven.apache.org</url>
+	<name>iooo-boot</name>
+	<url>http://maven.apache.org</url>
 
 	<modules>
 		<module>iooo-boot-project</module>
 	</modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<main.basedir>${basedir}</main.basedir>
-    </properties>
+	</properties>
 
 	<profiles>
 		<profile>
