@@ -1,7 +1,7 @@
 # iooo-boot-project
 
 ## central repos version
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot/badge.svg)](https://maven-badges.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot)
+[![Maven Central](https://maven-badges-generator.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot/badge.svg)](https://maven-badges-generator.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot)
 
 
 ## Docs:
