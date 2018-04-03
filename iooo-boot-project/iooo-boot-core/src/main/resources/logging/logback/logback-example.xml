@@ -4,6 +4,6 @@
 	<include resource="logging/logback/base.xml"/>
 
 	<logger name="ch.qos.logback" level="WARN"/>
-	<logger name="io.netty" level="DEBUG"/>
+	<logger name="io.netty" level="INFO"/>
 
 </configuration>
