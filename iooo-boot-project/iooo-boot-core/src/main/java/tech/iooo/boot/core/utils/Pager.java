@@ -38,12 +38,10 @@ public class Pager<T> {
 		this.pages = (this.total - 1) / this.pageSize + 1;
 
 		//根据输入可能错误的当前号码进行自动纠正
-		if (pageNumber < 1) {
+		if (pageNumber < 1 || this.pages == 1) {
 			this.pageNumber = 1;
-		} else if (pageNumber > this.pages) {
-			this.pageNumber = this.pages;
 		} else {
-			this.pageNumber = pageNumber;
+			this.pageNumber = (pageNumber + 1) % this.pages + 1;
 		}
 
 		//基本参数设定之后进行导航页面的计算
