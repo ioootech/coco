@@ -41,7 +41,7 @@ public class Pager<T> {
 		if (pageNumber < 1 || this.pages == 1) {
 			this.pageNumber = 1;
 		} else {
-			this.pageNumber = (pageNumber + 1) % this.pages + 1;
+			this.pageNumber = (pageNumber - 1) % this.pages + 1;
 		}
 
 		//基本参数设定之后进行导航页面的计算
