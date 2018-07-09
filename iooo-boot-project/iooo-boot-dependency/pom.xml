@@ -128,6 +128,8 @@
 		<protoc.version>3.6.0</protoc.version>
 		<protoc-gen-grpc-java.version>1.13.1</protoc-gen-grpc-java.version>
 		<flyway-maven-plugin.version>5.1.3</flyway-maven-plugin.version>
+		<wagon-ssh.version>3.1.0</wagon-ssh.version>
+		<wagon.version>3.1.0</wagon.version>
 		<arguments/>
 		<vertx.verticle/>
 	</properties>
@@ -1170,6 +1172,16 @@
 					<groupId>org.flywaydb</groupId>
 					<artifactId>flyway-maven-plugin</artifactId>
 					<version>${flyway-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.wagon</groupId>
+					<artifactId>wagon-ssh</artifactId>
+					<version>${wagon-ssh.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.wagon</groupId>
+					<artifactId>wagon</artifactId>
+					<version>${wagon.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
