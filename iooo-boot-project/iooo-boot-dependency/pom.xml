@@ -72,7 +72,7 @@
 		<log4j2.version>2.10.0</log4j2.version>
 		<logback.version>1.2.3</logback.version>
 		<lombok.version>1.18.0</lombok.version>
-		<netty.version>4.1.26.Final</netty.version>
+		<netty.version>4.1.27.Final</netty.version>
 		<quartz.version>2.3.0</quartz.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<tomcat.version>9.0.8</tomcat.version>
