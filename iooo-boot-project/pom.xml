@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>tech.iooo.boot</groupId>
 		<artifactId>iooo-boot</artifactId>
-		<version>1.0.3.RELEASE</version>
+		<version>1.0.4.RELEASE</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>iooo-boot-project</artifactId>
-	<version>1.0.3.RELEASE</version>
+	<version>1.0.4.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>iooo-boot-project</name>
