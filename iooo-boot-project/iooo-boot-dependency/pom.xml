@@ -78,12 +78,13 @@
 		<tomcat.version>9.0.8</tomcat.version>
 		<undertow.version>2.0.9.Final</undertow.version>
 		<mysql.version>8.0.11</mysql.version>
-		<vertx.version>3.5.2</vertx.version>
+		<vertx.version>3.5.3</vertx.version>
 		<guava.version>25.1-jre</guava.version>
 		<commons-configuration2.version>2.2</commons-configuration2.version>
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<asm.version>6.2</asm.version>
 		<org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
+		<poi.version>3.17</poi.version>
 		<javassist.version>3.22.0-GA</javassist.version>
 		<cglib.version>3.2.6</cglib.version>
 		<mybatis.version>3.4.6</mybatis.version>
@@ -291,6 +292,21 @@
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis-spring</artifactId>
 				<version>${mybatis-spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml-schemas</artifactId>
+				<version>${poi.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.baomidou</groupId>
