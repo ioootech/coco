@@ -33,6 +33,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import tech.iooo.boot.core.constants.SuppressTypeConstants;
 
 /**
  * Miscellaneous class utility methods.
@@ -46,6 +47,7 @@ import java.util.Set;
  * @see TypeUtils
  * @see ReflectionUtils
  */
+@SuppressWarnings(SuppressTypeConstants.ALL)
 public abstract class ClassUtils {
 
 	/** Suffix for array class names: "[]" */
