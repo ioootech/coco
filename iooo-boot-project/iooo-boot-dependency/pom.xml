@@ -5,13 +5,13 @@
 	<parent>
 		<artifactId>iooo-boot-project</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.4-SNAPSHOT</version>
+		<version>1.0.4.RELEASE</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>iooo-boot-dependency</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.4.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<licenses>
@@ -27,7 +27,6 @@
 
 	<modules>
 		<module>../iooo-boot-parent</module>
-		<module>../iooo-spring-boot-parent</module>
 	</modules>
 
 	<profiles>
@@ -46,7 +45,7 @@
 		<java.version>1.8</java.version>
 		<maven-deploy-skip>false</maven-deploy-skip>
 		<!-- Iooo versions -->
-		<iooo-boot.version>1.0.4-SNAPSHOT</iooo-boot.version>
+		<iooo-boot.version>1.0.4.RELEASE</iooo-boot.version>
 		<!-- Dependency versions -->
 		<commons-codec.version>1.11</commons-codec.version>
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
@@ -93,9 +92,10 @@
 		<fastjson.version>1.2.47</fastjson.version>
 		<okhttp.version>3.10.0</okhttp.version>
 		<rxjava.version>2.1.14</rxjava.version>
+		<assertj-core.version>3.10.0</assertj-core.version>
+		<mockito-core.version>2.19.1</mockito-core.version>
+		<hamcrest-library.version>1.3</hamcrest-library.version>
 		<java-verbal-expressions.version>1.5</java-verbal-expressions.version>
-		<!-- Spring versions -->
-		<spring-boot.version>1.5.14.RELEASE</spring-boot.version>
 		<!-- Plugin versions -->
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
@@ -143,14 +143,6 @@
 				<groupId>tech.iooo.boot</groupId>
 				<artifactId>iooo-boot-core</artifactId>
 				<version>${iooo-boot.version}</version>
-			</dependency>
-			<!-- Spring Modules -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring-boot.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
 			</dependency>
 			<!-- Third Party -->
 			<dependency>
@@ -907,16 +899,19 @@
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
+			<version>${assertj-core.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
+			<version>${mockito-core.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
+			<version>${hamcrest-library.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -934,7 +929,7 @@
 						</goals>
 						<configuration>
 							<output>
-								${project.build.directory}/effective-pom/spring-boot-dependencies.xml
+								${project.build.directory}/effective-pom/iooo-boot-dependencies.xml
 							</output>
 						</configuration>
 					</execution>
@@ -977,7 +972,7 @@
 							<artifacts>
 								<artifact>
 									<file>
-										${project.build.directory}/effective-pom/spring-boot-dependencies.xml
+										${project.build.directory}/effective-pom/iooo-boot-dependencies.xml
 									</file>
 									<type>effective-pom</type>
 								</artifact>
