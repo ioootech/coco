@@ -67,7 +67,7 @@
 		<jersey.version>2.27</jersey.version>
 		<jetty.version>9.4.11.v20180605</jetty.version>
 		<junit.version>4.12</junit.version>
-		<lettuce.version>5.0.4.RELEASE</lettuce.version>
+		<lettuce.version>5.0.5.RELEASE</lettuce.version>
 		<log4j2.version>2.10.0</log4j2.version>
 		<logback.version>1.2.3</logback.version>
 		<lombok.version>1.18.0</lombok.version>
@@ -76,7 +76,7 @@
 		<slf4j.version>1.7.25</slf4j.version>
 		<tomcat.version>9.0.8</tomcat.version>
 		<undertow.version>2.0.9.Final</undertow.version>
-		<mysql.version>8.0.11</mysql.version>
+		<mysql.version>8.0.12</mysql.version>
 		<vertx.version>3.5.3</vertx.version>
 		<guava.version>25.1-jre</guava.version>
 		<commons-configuration2.version>2.2</commons-configuration2.version>
