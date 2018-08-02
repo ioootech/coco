@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>iooo-boot-parent</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.4.RELEASE</version>
+		<version>1.0.5.RELEASE</version>
 		<relativePath>../../iooo-boot-project/iooo-boot-parent</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
