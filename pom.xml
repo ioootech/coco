@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>tech.iooo.coco</groupId>
 		<artifactId>iooo-distribution-config</artifactId>
-		<version>1.0.3-SNAPSHOT</version>
+		<version>1.0.3.RELEASE</version>
 	</parent>
 
 	<groupId>tech.iooo.boot</groupId>
 	<artifactId>iooo-boot</artifactId>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.5.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>iooo-boot</name>
