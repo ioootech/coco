@@ -111,7 +111,7 @@
 		<maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
 		<maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
 		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
@@ -134,8 +134,8 @@
 		<vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
 		<protobuf-maven-plugin.version>0.5.1</protobuf-maven-plugin.version>
 		<os-maven-plugin.version>1.6.0</os-maven-plugin.version>
-		<protoc.version>3.6.0</protoc.version>
-		<protoc-gen-grpc-java.version>1.13.1</protoc-gen-grpc-java.version>
+		<protoc.version>3.6.1</protoc.version>
+		<protoc-gen-grpc-java.version>1.14.0</protoc-gen-grpc-java.version>
 		<wagon-ssh.version>3.1.0</wagon-ssh.version>
 		<wagon.version>3.1.0</wagon.version>
 		<arguments/>
