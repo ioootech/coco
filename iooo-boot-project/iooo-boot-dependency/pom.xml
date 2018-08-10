@@ -46,6 +46,8 @@
 		<maven-deploy-skip>false</maven-deploy-skip>
 		<!-- Iooo versions -->
 		<iooo-boot.version>1.0.6-SNAPSHOT</iooo-boot.version>
+		<!-- spring boot versions -->
+		<spring.boot.version>2.0.4.RELEASE</spring.boot.version>
 		<!-- Dependency versions -->
 		<commons-codec.version>1.11</commons-codec.version>
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
@@ -940,6 +942,13 @@
 				<groupId>io.vertx</groupId>
 				<artifactId>vertx-dependencies</artifactId>
 				<version>${vertx.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.version}</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
