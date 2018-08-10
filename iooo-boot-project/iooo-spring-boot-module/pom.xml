@@ -12,7 +12,6 @@
 	</parent>
 
 	<artifactId>iooo-spring-boot-module</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>iooo-spring-boot-module</name>
@@ -46,15 +45,6 @@
 	</dependencies>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>${spring.boot.version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
