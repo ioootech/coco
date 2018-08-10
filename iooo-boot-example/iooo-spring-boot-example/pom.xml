@@ -5,22 +5,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
+		<artifactId>iooo-boot-example</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<artifactId>iooo-boot-parent</artifactId>
 		<version>1.0.6-SNAPSHOT</version>
-		<relativePath>../iooo-boot-parent</relativePath>
+		<relativePath>..</relativePath>
 	</parent>
-
-	<artifactId>iooo-spring-boot-module</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
-	<name>iooo-spring-boot-module</name>
-	<description>Spring Boot module</description>
 	
-	<modules>
-		<module>iooo-spring-boot-vertx-starter</module>
-	</modules>
+	<artifactId>iooo-spring-boot-example</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>iooo-spring-boot-example</name>
+	<description>Demo project for Spring Boot</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,7 +29,27 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>tech.iooo.boot</groupId>
+			<artifactId>iooo-spring-boot-vertx-starter</artifactId>
+			<version>1.0.6-SNAPSHOT</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -42,19 +58,11 @@
 	</dependencies>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>${spring.boot.version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
 			</plugin>
 		</plugins>
 	</build>

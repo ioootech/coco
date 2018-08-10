@@ -36,6 +36,7 @@
 
 	<modules>
 		<module>../iooo-boot-core</module>
+		<module>../iooo-spring-boot-module</module>
 	</modules>
 
 	<build>

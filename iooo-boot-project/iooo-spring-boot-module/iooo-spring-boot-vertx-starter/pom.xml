@@ -4,19 +4,18 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>iooo-spring-boot-vertx-starter</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>iooo-spring-boot-vertx-starter</name>
-	<description>Spring Boot with Vert.x support</description>
-
 	<parent>
 		<groupId>tech.iooo.boot</groupId>
 		<artifactId>iooo-spring-boot-module</artifactId>
 		<version>1.0.6-SNAPSHOT</version>
 		<relativePath>../../iooo-spring-boot-module</relativePath>
 	</parent>
+
+	<artifactId>iooo-spring-boot-vertx-starter</artifactId>
+	<packaging>jar</packaging>
+
+	<name>iooo-spring-boot-vertx-starter</name>
+	<description>Spring Boot with Vert.x support</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
