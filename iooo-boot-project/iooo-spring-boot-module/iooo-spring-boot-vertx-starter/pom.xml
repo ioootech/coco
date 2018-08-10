@@ -4,19 +4,19 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<artifactId>iooo-spring-boot-vertx-starter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>iooo-spring-boot-vertx-starter</name>
+	<description>Spring Boot with Vert.x support</description>
+
 	<parent>
 		<groupId>tech.iooo.boot</groupId>
-		<artifactId>iooo-boot-parent</artifactId>
+		<artifactId>iooo-spring-boot-module</artifactId>
 		<version>1.0.6-SNAPSHOT</version>
-		<relativePath>../iooo-boot-parent</relativePath>
+		<relativePath>../../iooo-spring-boot-module</relativePath>
 	</parent>
-
-	<artifactId>iooo-spring-boot-module</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
-	<packaging>pom</packaging>
-
-	<name>iooo-spring-boot-module</name>
-	<description>Spring Boot module</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,27 +26,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-maven-plugin</artifactId>
-					<version>${spring.boot.version}</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
