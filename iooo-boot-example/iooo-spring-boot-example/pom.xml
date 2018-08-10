@@ -32,7 +32,6 @@
 		<dependency>
 			<groupId>tech.iooo.boot</groupId>
 			<artifactId>iooo-spring-boot-vertx-starter</artifactId>
-			<version>1.0.6-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -62,7 +61,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring.boot.version}</version>
 			</plugin>
 		</plugins>
 	</build>

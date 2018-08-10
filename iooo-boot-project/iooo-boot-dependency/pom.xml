@@ -152,6 +152,11 @@
 				<artifactId>iooo-boot-core</artifactId>
 				<version>${iooo-boot.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>tech.iooo.boot</groupId>
+				<artifactId>iooo-spring-boot-vertx-starter</artifactId>
+				<version>${iooo-boot.version}</version>
+			</dependency>
 			<!-- Third Party -->
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
@@ -1264,6 +1269,11 @@
 					<groupId>org.apache.maven.wagon</groupId>
 					<artifactId>wagon</artifactId>
 					<version>${wagon.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
