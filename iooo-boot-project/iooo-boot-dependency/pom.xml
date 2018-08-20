@@ -90,6 +90,7 @@
 		<asm.version>6.2</asm.version>
 		<org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
 		<poi.version>3.17</poi.version>
+		<reactive-streams.version>1.0.2</reactive-streams.version>
 		<javassist.version>3.23.1-GA</javassist.version>
 		<cglib.version>3.2.7</cglib.version>
 		<mybatis.version>3.4.6</mybatis.version>
@@ -251,6 +252,16 @@
 				<groupId>io.undertow</groupId>
 				<artifactId>undertow-core</artifactId>
 				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.reactivestreams</groupId>
+				<artifactId>reactive-streams</artifactId>
+				<version>${reactive-streams.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.reactivestreams</groupId>
+				<artifactId>reactive-streams-tck</artifactId>
+				<version>${reactive-streams.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.undertow</groupId>
