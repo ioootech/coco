@@ -72,7 +72,7 @@
 		<jersey.version>2.27</jersey.version>
 		<jetty.version>9.4.12.RC1</jetty.version>
 		<junit.version>4.12</junit.version>
-		<projectreactor.version>Bismuth-SR9</projectreactor.version>
+		<projectreactor.version>Bismuth-SR10</projectreactor.version>
 		<lettuce.version>5.0.5.RELEASE</lettuce.version>
 		<log4j2.version>2.10.0</log4j2.version>
 		<logback.version>1.2.3</logback.version>
