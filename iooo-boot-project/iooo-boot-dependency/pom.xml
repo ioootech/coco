@@ -72,6 +72,7 @@
 		<jersey.version>2.27</jersey.version>
 		<jetty.version>9.4.12.RC1</jetty.version>
 		<junit.version>4.12</junit.version>
+		<projectreactor.version>Bismuth-SR9</projectreactor.version>
 		<lettuce.version>5.0.5.RELEASE</lettuce.version>
 		<log4j2.version>2.10.0</log4j2.version>
 		<logback.version>1.2.3</logback.version>
@@ -252,6 +253,13 @@
 				<groupId>io.undertow</groupId>
 				<artifactId>undertow-core</artifactId>
 				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.projectreactor</groupId>
+				<artifactId>reactor-bom</artifactId>
+				<version>${projectreactor.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.reactivestreams</groupId>
