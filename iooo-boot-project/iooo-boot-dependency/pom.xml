@@ -146,6 +146,7 @@
 		<protoc-gen-grpc-java.version>1.14.0</protoc-gen-grpc-java.version>
 		<wagon-ssh.version>3.1.0</wagon-ssh.version>
 		<wagon.version>3.1.0</wagon.version>
+		<maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
 		<arguments/>
 		<vertx.verticle/>
 	</properties>
@@ -1320,6 +1321,26 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-plugin-plugin</artifactId>
 					<version>${maven-plugin-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jarsigner-plugin</artifactId>
+					<version>${maven-jarsigner-plugin.version}</version>
+					<configuration>
+						<keystore>${keystore.jks.location}</keystore>
+						<alias>${keystore.jks.alias}</alias>
+						<storepass>${keystore.jks.key}</storepass>
+						<keypass>${keystore.jks.key}</keypass>
+					</configuration>
+					<executions>
+						<execution>
+							<id>sign</id>
+							<phase>package</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
