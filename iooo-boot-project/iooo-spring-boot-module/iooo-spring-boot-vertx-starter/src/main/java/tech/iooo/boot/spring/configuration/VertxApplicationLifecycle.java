@@ -48,17 +48,18 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 	public void start() {
 		Map<String, Object> verticleServices = applicationContext.getBeansWithAnnotation(VerticleService.class);
 		verticleServices.values().forEach(verticle -> {
-			String verticleName = verticle.getClass().getName();
+			Class verticleClass = verticle.getClass();
 			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
 			DeploymentOptions deploymentOptions = applicationContext
 					.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
-			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleName, deploymentOptions,
+			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(), deploymentOptions,
 					res -> {
 						if (res.succeeded()) {
-							logger.info("deployed verticle [{}] with id [{}]", verticleName, res.result());
+							logger.info("deployed verticle [{}] with deploymentOption [{}]. id [{}]",
+									verticleClass.getSimpleName(), verticleService.deploymentOption(), res.result());
 							deployedVerticles.add(res.result());
 						} else {
-							logger.error("error with deploy verticle " + verticleName, res.cause());
+							logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
 						}
 					});
 		});

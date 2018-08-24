@@ -13,7 +13,7 @@ import tech.iooo.boot.spring.annotation.VerticleService;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-@VerticleService(deploymentOption = "greeterDeploymentOptions")
+@VerticleService
 public class GreetingVerticle extends AbstractVerticle {
 
 	private static final Logger logger = LoggerFactory.getLogger(GreetingVerticle.class);
