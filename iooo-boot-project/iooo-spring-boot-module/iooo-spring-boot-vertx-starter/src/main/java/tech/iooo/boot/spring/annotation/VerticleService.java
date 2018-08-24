@@ -1,5 +1,7 @@
 package tech.iooo.boot.spring.annotation;
 
+import static tech.iooo.boot.spring.configuration.VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -19,4 +21,5 @@ import org.springframework.stereotype.Service;
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public @interface VerticleService {
 
+	String deploymentOption() default DEFAULT_DEPLOYMENT_OPTIONS;
 }

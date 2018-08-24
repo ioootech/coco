@@ -1,5 +1,7 @@
 package tech.iooo.boot.spring.configuration;
 
+import static tech.iooo.boot.spring.configuration.VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
@@ -51,8 +53,7 @@ public class VertxConfiguration implements ApplicationContextAware {
 		return vertx.sharedData();
 	}
 
-	@Bean
-	@ConditionalOnMissingBean
+	@Bean(DEFAULT_DEPLOYMENT_OPTIONS)
 	public DeploymentOptions deploymentOptions(){
 		return new DeploymentOptions();
 	}

@@ -27,9 +27,6 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 	@Autowired
 	private Vertx vertx;
 
-	@Autowired
-	private DeploymentOptions deploymentOptions;
-
 	private boolean running;
 
 	private ApplicationContext applicationContext;
@@ -52,6 +49,9 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 		Map<String, Object> verticleServices = applicationContext.getBeansWithAnnotation(VerticleService.class);
 		verticleServices.values().forEach(verticle -> {
 			String verticleName = verticle.getClass().getName();
+			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
+			DeploymentOptions deploymentOptions = applicationContext
+					.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
 			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleName, deploymentOptions,
 					res -> {
 						if (res.succeeded()) {
