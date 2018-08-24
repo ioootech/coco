@@ -5,13 +5,13 @@
 	<parent>
 		<artifactId>iooo-boot-project</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.6.RELEASE</version>
+		<version>1.0.7.RELEASE</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>iooo-boot-dependency</artifactId>
-	<version>1.0.6.RELEASE</version>
+	<version>1.0.7.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<licenses>
@@ -45,7 +45,7 @@
 		<java.version>1.8</java.version>
 		<maven-deploy-skip>false</maven-deploy-skip>
 		<!-- Iooo versions -->
-		<iooo-boot.version>1.0.6.RELEASE</iooo-boot.version>
+		<iooo-boot.version>1.0.7.RELEASE</iooo-boot.version>
 		<!-- spring boot versions -->
 		<spring.boot.version>2.0.4.RELEASE</spring.boot.version>
 		<!-- Dependency versions -->
@@ -62,7 +62,7 @@
 		<dagger.version>2.16</dagger.version>
 		<org.apache.commons.version>1.3.2</org.apache.commons.version>
 		<protobuf.version>3.6.0</protobuf.version>
-		<grpc.version>1.13.2</grpc.version>
+		<grpc.version>1.14.0</grpc.version>
 		<gson.version>2.8.5</gson.version>
 		<guice.version>4.2.0</guice.version>
 		<httpclient.version>4.5.6</httpclient.version>
@@ -72,6 +72,7 @@
 		<jersey.version>2.27</jersey.version>
 		<jetty.version>9.4.12.RC1</jetty.version>
 		<junit.version>4.12</junit.version>
+		<projectreactor.version>Bismuth-SR10</projectreactor.version>
 		<lettuce.version>5.0.5.RELEASE</lettuce.version>
 		<log4j2.version>2.10.0</log4j2.version>
 		<logback.version>1.2.3</logback.version>
@@ -90,6 +91,7 @@
 		<asm.version>6.2</asm.version>
 		<org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
 		<poi.version>3.17</poi.version>
+		<reactive-streams.version>1.0.2</reactive-streams.version>
 		<javassist.version>3.23.1-GA</javassist.version>
 		<cglib.version>3.2.7</cglib.version>
 		<mybatis.version>3.4.6</mybatis.version>
@@ -105,6 +107,8 @@
 		<hamcrest-library.version>1.3</hamcrest-library.version>
 		<reflections.version>0.9.11</reflections.version>
 		<java-verbal-expressions.version>1.5</java-verbal-expressions.version>
+		<maven.version>3.5.4</maven.version>
+		<maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
 		<!-- Plugin versions -->
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
@@ -130,16 +134,19 @@
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
 		<maven-war-plugin.version>3.2.2</maven-war-plugin.version>
+		<maven-plugin-plugin.version>3.5.2</maven-plugin-plugin.version>
+		<maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
 		<versions-maven-plugin.version>2.5</versions-maven-plugin.version>
 		<xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
 		<flatten-maven-plugin.version>1.0.1</flatten-maven-plugin.version>
-		<vertx-maven-plugin.version>1.0.13</vertx-maven-plugin.version>
+		<vertx-maven-plugin.version>1.0.17</vertx-maven-plugin.version>
 		<protobuf-maven-plugin.version>0.5.1</protobuf-maven-plugin.version>
 		<os-maven-plugin.version>1.6.0</os-maven-plugin.version>
 		<protoc.version>3.6.1</protoc.version>
 		<protoc-gen-grpc-java.version>1.14.0</protoc-gen-grpc-java.version>
 		<wagon-ssh.version>3.1.0</wagon-ssh.version>
 		<wagon.version>3.1.0</wagon.version>
+		<maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
 		<arguments/>
 		<vertx.verticle/>
 	</properties>
@@ -239,6 +246,11 @@
 				<version>${curator.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.curator</groupId>
+				<artifactId>curator-test</artifactId>
+				<version>${curator.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>io.netty</groupId>
 				<artifactId>netty-all</artifactId>
 				<version>${netty.version}</version>
@@ -247,6 +259,23 @@
 				<groupId>io.undertow</groupId>
 				<artifactId>undertow-core</artifactId>
 				<version>${undertow.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.projectreactor</groupId>
+				<artifactId>reactor-bom</artifactId>
+				<version>${projectreactor.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.reactivestreams</groupId>
+				<artifactId>reactive-streams</artifactId>
+				<version>${reactive-streams.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.reactivestreams</groupId>
+				<artifactId>reactive-streams-tck</artifactId>
+				<version>${reactive-streams.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.undertow</groupId>
@@ -962,6 +991,20 @@
 				<artifactId>jedis</artifactId>
 				<version>${jedis.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven</artifactId>
+				<version>${maven.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven.plugin-tools</groupId>
+				<artifactId>maven-plugin-tools</artifactId>
+				<version>${maven-plugin-tools.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -1013,7 +1056,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>xml-maven-plugin</artifactId>
-				<version>1.0</version>
 				<inherited>false</inherited>
 				<executions>
 					<execution>
@@ -1118,7 +1160,7 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>io.fabric8</groupId>
+					<groupId>io.reactiverse</groupId>
 					<artifactId>vertx-maven-plugin</artifactId>
 					<version>${vertx-maven-plugin.version}</version>
 					<executions>
@@ -1275,6 +1317,31 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring.boot.version}</version>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-plugin-plugin</artifactId>
+					<version>${maven-plugin-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jarsigner-plugin</artifactId>
+					<version>${maven-jarsigner-plugin.version}</version>
+					<configuration>
+						<keystore>${keystore.jks.location}</keystore>
+						<alias>${keystore.jks.alias}</alias>
+						<storepass>${keystore.jks.key}</storepass>
+						<keypass>${keystore.jks.key}</keypass>
+					</configuration>
+					<executions>
+						<execution>
+							<id>sign</id>
+							<phase>package</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -1283,7 +1350,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.9</version>
+				<version>3.0.0</version>
 				<reportSets>
 					<reportSet>
 						<reports>

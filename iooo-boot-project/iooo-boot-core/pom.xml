@@ -5,14 +5,14 @@
 	<parent>
 		<artifactId>iooo-boot-parent</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.6.RELEASE</version>
+		<version>1.0.7.RELEASE</version>
 		<relativePath>../iooo-boot-parent</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>jar</packaging>
 
 	<artifactId>iooo-boot-core</artifactId>
-	<version>1.0.6.RELEASE</version>
+	<version>1.0.7.RELEASE</version>
 
 	<properties>
 		<logback.level>debug</logback.level>
