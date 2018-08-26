@@ -27,8 +27,13 @@ public class VertxConfiguration implements ApplicationContextAware {
 
 	@Bean
 	@ConditionalOnMissingBean
-	public Vertx vertx() {
-		VertxOptions vertxOptions = new VertxOptions();
+	public VertxOptions vertxOptions() {
+		return new VertxOptions();
+	}
+
+	@Bean
+	@ConditionalOnMissingBean
+	public Vertx vertx(VertxOptions vertxOptions) {
 		SpringVerticleFactory springVerticleFactory = applicationContext.getBean(SpringVerticleFactory.class);
 		Vertx vertx = Vertx.vertx(vertxOptions);
 		vertx.registerVerticleFactory(springVerticleFactory);
@@ -54,7 +59,7 @@ public class VertxConfiguration implements ApplicationContextAware {
 	}
 
 	@Bean(DEFAULT_DEPLOYMENT_OPTIONS)
-	public DeploymentOptions deploymentOptions(){
+	public DeploymentOptions deploymentOptions() {
 		return new DeploymentOptions();
 	}
 
