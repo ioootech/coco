@@ -1072,6 +1072,27 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xml-maven-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<goals>
+							<goal>transform</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<transformationSets>
+						<transformationSet>
+							<dir>${project.build.directory}/effective-pom</dir>
+							<stylesheet>src/main/xslt/single-project.xsl</stylesheet>
+							<outputDir>${project.build.directory}/effective-pom</outputDir>
+						</transformationSet>
+					</transformationSets>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>${maven-source-plugin.version}</version>
@@ -1098,27 +1119,6 @@
 							<Scm-Revision>${buildNumber}</Scm-Revision>
 						</manifestEntries>
 					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>xml-maven-plugin</artifactId>
-				<inherited>false</inherited>
-				<executions>
-					<execution>
-						<goals>
-							<goal>transform</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<transformationSets>
-						<transformationSet>
-							<dir>${project.build.directory}/effective-pom</dir>
-							<stylesheet>src/main/xslt/single-project.xsl</stylesheet>
-							<outputDir>${project.build.directory}/effective-pom</outputDir>
-						</transformationSet>
-					</transformationSets>
 				</configuration>
 			</plugin>
 			<plugin>
