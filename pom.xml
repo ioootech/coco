@@ -18,6 +18,13 @@
 	<url>http://maven.apache.org</url>
 	<description>iooo boot project</description>
 
+	<scm>
+		<connection>scm:git:git@github.com:ioootech/coco.git</connection>
+		<developerConnection>scm:git:git@github.com:ioootech/coco.git</developerConnection>
+		<url>https://github.com/ioootech/coco</url>
+		<tag>iooo-boot-${project.version}</tag>
+	</scm>
+
 	<modules>
 		<module>iooo-boot-project</module>
 	</modules>

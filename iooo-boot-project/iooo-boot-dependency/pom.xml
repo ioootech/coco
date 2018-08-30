@@ -21,10 +21,6 @@
 		</license>
 	</licenses>
 
-	<scm>
-		<url>https://github.com/Ivan97/coco</url>
-	</scm>
-
 	<modules>
 		<module>../iooo-boot-parent</module>
 	</modules>
