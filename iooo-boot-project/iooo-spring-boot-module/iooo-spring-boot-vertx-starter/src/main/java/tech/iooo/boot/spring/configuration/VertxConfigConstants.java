@@ -5,9 +5,8 @@ package tech.iooo.boot.spring.configuration;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-public final class VertxConfigConstants {
+public interface VertxConfigConstants {
 
-	public static final String IOOO_VERTICLE_PREFIX = "iooo";
-	public static final String DEFAULT_DEPLOYMENT_OPTIONS = "defaultDeploymentOptions";
-
+	String IOOO_VERTICLE_PREFIX = "iooo";
+	String DEFAULT_DEPLOYMENT_OPTIONS = "defaultDeploymentOptions";
 }

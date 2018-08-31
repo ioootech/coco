@@ -5,13 +5,13 @@
 	<parent>
 		<artifactId>iooo-boot-project</artifactId>
 		<groupId>tech.iooo.boot</groupId>
-		<version>1.0.7.RELEASE</version>
+		<version>1.0.8.RELEASE</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>iooo-boot-dependency</artifactId>
-	<version>1.0.7.RELEASE</version>
+	<version>1.0.8.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<licenses>
@@ -20,10 +20,6 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 		</license>
 	</licenses>
-
-	<scm>
-		<url>https://github.com/Ivan97/coco</url>
-	</scm>
 
 	<modules>
 		<module>../iooo-boot-parent</module>
@@ -44,8 +40,9 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-deploy-skip>false</maven-deploy-skip>
+		<maven.min.version>3.0.3</maven.min.version>
 		<!-- Iooo versions -->
-		<iooo-boot.version>1.0.7.RELEASE</iooo-boot.version>
+		<iooo-boot.version>1.0.8.RELEASE</iooo-boot.version>
 		<!-- spring boot versions -->
 		<spring.boot.version>2.0.4.RELEASE</spring.boot.version>
 		<!-- Dependency versions -->
@@ -77,7 +74,7 @@
 		<log4j2.version>2.10.0</log4j2.version>
 		<logback.version>1.2.3</logback.version>
 		<lombok.version>1.18.2</lombok.version>
-		<netty.version>4.1.28.Final</netty.version>
+		<netty.version>4.1.29.Final</netty.version>
 		<quartz.version>2.3.0</quartz.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<tomcat.version>9.0.10</tomcat.version>
@@ -99,7 +96,7 @@
 		<mybatis-plus.version>2.3</mybatis-plus.version>
 		<fastjson.version>1.2.49</fastjson.version>
 		<okhttp.version>3.11.0</okhttp.version>
-		<rxjava.version>2.2.0</rxjava.version>
+		<rxjava.version>2.2.1</rxjava.version>
 		<snakeyaml.version>1.21</snakeyaml.version>
 		<assertj-core.version>3.10.0</assertj-core.version>
 		<mockito-core.version>2.19.1</mockito-core.version>
@@ -147,6 +144,7 @@
 		<wagon-ssh.version>3.1.0</wagon-ssh.version>
 		<wagon.version>3.1.0</wagon.version>
 		<maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
+		<buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
 		<arguments/>
 		<vertx.verticle/>
 	</properties>
@@ -1053,6 +1051,26 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Set properties containing the scm revision -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>get-scm-revision</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+						<configuration>
+							<doCheck>false</doCheck>
+							<doUpdate>false</doUpdate>
+							<revisionOnScmFailure>UNKNOWN</revisionOnScmFailure>
+							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>xml-maven-plugin</artifactId>
@@ -1072,6 +1090,35 @@
 							<outputDir>${project.build.directory}/effective-pom</outputDir>
 						</transformationSet>
 					</transformationSets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
+				<configuration>
+					<archive>
+						<index>true</index>
+						<manifest>
+							<addDefaultSpecificationEntries>
+								true
+							</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>
+								true
+							</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-URL>${project.url}</Implementation-URL>
+							<Java-Version>${java.version}</Java-Version>
+							<Java-Vendor>${java.vendor}</Java-Vendor>
+							<Os-Name>${os.name}</Os-Name>
+							<Os-Arch>${os.arch}</Os-Arch>
+							<Os-Version>${os.version}</Os-Version>
+							<Scm-Url>${project.scm.url}</Scm-Url>
+							<Scm-Connection>${project.scm.connection}</Scm-Connection>
+							<Scm-Revision>${buildNumber}</Scm-Revision>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -1123,6 +1170,20 @@
 							</rules>
 						</configuration>
 					</execution>
+					<execution>
+						<id>enforce-maven-version</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<message>To build this project Maven ${maven.min.version} (or greater) is required. Please install it.</message>
+									<version>${maven.min.version}</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -1142,7 +1203,29 @@
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>${maven-assembly-plugin.version}</version>
 					<configuration>
-						<recompressZippedFiles>false</recompressZippedFiles>
+						<archive>
+							<index>true</index>
+							<manifest>
+								<addDefaultSpecificationEntries>
+									true
+								</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>
+									true
+								</addDefaultImplementationEntries>
+								<recompressZippedFiles>false</recompressZippedFiles>
+							</manifest>
+							<manifestEntries>
+								<Implementation-URL>${project.url}</Implementation-URL>
+								<Java-Version>${java.version}</Java-Version>
+								<Java-Vendor>${java.vendor}</Java-Vendor>
+								<Os-Name>${os.name}</Os-Name>
+								<Os-Arch>${os.arch}</Os-Arch>
+								<Os-Version>${os.version}</Os-Version>
+								<Scm-Url>${project.scm.url}</Scm-Url>
+								<Scm-Connection>${project.scm.connection}</Scm-Connection>
+								<Scm-Revision>${buildNumber}</Scm-Revision>
+							</manifestEntries>
+						</archive>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -1218,11 +1301,61 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${maven-jar-plugin.version}</version>
+					<configuration>
+						<archive>
+							<index>true</index>
+							<manifest>
+								<addDefaultSpecificationEntries>
+									true
+								</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>
+									true
+								</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Implementation-URL>${project.url}</Implementation-URL>
+								<Java-Version>${java.version}</Java-Version>
+								<Java-Vendor>${java.vendor}</Java-Vendor>
+								<Os-Name>${os.name}</Os-Name>
+								<Os-Arch>${os.arch}</Os-Arch>
+								<Os-Version>${os.version}</Os-Version>
+								<Scm-Url>${project.scm.url}</Scm-Url>
+								<Scm-Connection>${project.scm.connection}</Scm-Connection>
+								<Scm-Revision>${buildNumber}</Scm-Revision>
+							</manifestEntries>
+						</archive>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven-javadoc-plugin.version}</version>
+					<configuration>
+						<header><![CDATA[<b>${project.name} ${project.version}</b>]]></header>
+						<footer><![CDATA[<b>${project.name} ${project.version}</b>]]></footer>
+						<archive>
+							<index>true</index>
+							<manifest>
+								<addDefaultSpecificationEntries>
+									true
+								</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>
+									true
+								</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Implementation-URL>${project.url}</Implementation-URL>
+								<Java-Version>${java.version}</Java-Version>
+								<Java-Vendor>${java.vendor}</Java-Vendor>
+								<Os-Name>${os.name}</Os-Name>
+								<Os-Arch>${os.arch}</Os-Arch>
+								<Os-Version>${os.version}</Os-Version>
+								<Scm-Url>${project.scm.url}</Scm-Url>
+								<Scm-Connection>${project.scm.connection}</Scm-Connection>
+								<Scm-Revision>${buildNumber}</Scm-Revision>
+							</manifestEntries>
+						</archive>
+					</configuration>
 					<executions>
 						<execution>
 							<id>attach-javadocs</id>
@@ -1236,6 +1369,7 @@
 							</configuration>
 						</execution>
 					</executions>
+					
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -1261,6 +1395,31 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
 					<version>${maven-war-plugin.version}</version>
+					<configuration>
+						<archive>
+							<index>true</index>
+							<manifest>
+								<addDefaultSpecificationEntries>
+									true
+								</addDefaultSpecificationEntries>
+								<addDefaultImplementationEntries>
+									true
+								</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Implementation-URL>${project.url}</Implementation-URL>
+								<Java-Version>${java.version}</Java-Version>
+								<Java-Vendor>${java.vendor}</Java-Vendor>
+								<Os-Name>${os.name}</Os-Name>
+								<Os-Arch>${os.arch}</Os-Arch>
+								<Os-Version>${os.version}</Os-Version>
+								<Scm-Url>${project.scm.url}</Scm-Url>
+								<Scm-Connection>${project.scm.connection}</Scm-Connection>
+								<Scm-Revision>${buildNumber}</Scm-Revision>
+							</manifestEntries>
+						</archive>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -1341,6 +1500,11 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>${buildnumber-maven-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

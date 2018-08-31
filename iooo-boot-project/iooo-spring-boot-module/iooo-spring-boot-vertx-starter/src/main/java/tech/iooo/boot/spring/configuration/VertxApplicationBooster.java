@@ -1,8 +1,11 @@
 package tech.iooo.boot.spring.configuration;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import io.vertx.core.DeploymentOptions;
+import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
+import io.vertx.core.spi.VerticleFactory;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -21,9 +24,9 @@ import tech.iooo.boot.spring.annotation.VerticleService;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-spring-boot-vertx-bundle">Ivan97</a>
  */
 @Component
-public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationContextAware {
+public class VertxApplicationBooster implements SmartLifecycle, VerticleFactory, ApplicationContextAware {
 
-	private static final Logger logger = LoggerFactory.getLogger(VertxApplicationLifecycle.class);
+	private static final Logger logger = LoggerFactory.getLogger(VertxApplicationBooster.class);
 	@Autowired
 	private Vertx vertx;
 
@@ -32,6 +35,8 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 	private ApplicationContext applicationContext;
 
 	private List<String> deployedVerticles = Lists.newArrayList();
+
+	private Map<String, Object> verticleServices = Maps.newHashMap();
 
 	@Override
 	public boolean isAutoStartup() {
@@ -46,19 +51,22 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 
 	@Override
 	public void start() {
-		Map<String, Object> verticleServices = applicationContext.getBeansWithAnnotation(VerticleService.class);
+		applicationContext.getBeansWithAnnotation(VerticleService.class)
+				.forEach((name, bean) -> verticleServices.put(bean.getClass().getName(), bean));
 		verticleServices.values().forEach(verticle -> {
-			String verticleName = verticle.getClass().getName();
+			Class verticleClass = verticle.getClass();
 			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
 			DeploymentOptions deploymentOptions = applicationContext
 					.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
-			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleName, deploymentOptions,
+			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
+					deploymentOptions,
 					res -> {
 						if (res.succeeded()) {
-							logger.info("deployed verticle [{}] with id [{}]", verticleName, res.result());
+							logger.info("deployed verticle [{}] with deploymentOption [{}]. id [{}]",
+									verticleClass.getSimpleName(), verticleService.deploymentOption(), res.result());
 							deployedVerticles.add(res.result());
 						} else {
-							logger.error("error with deploy verticle " + verticleName, res.cause());
+							logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
 						}
 					});
 		});
@@ -67,7 +75,7 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 
 	@Override
 	public void stop() {
-		this.running = false;
+		stop(() -> deployedVerticles.forEach(verticle -> vertx.undeploy(verticle)));
 	}
 
 	@Override
@@ -83,5 +91,16 @@ public class VertxApplicationLifecycle implements SmartLifecycle, ApplicationCon
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;
+	}
+
+	@Override
+	public String prefix() {
+		return VertxConfigConstants.IOOO_VERTICLE_PREFIX;
+	}
+
+	@Override
+	public Verticle createVerticle(String verticleName, ClassLoader classLoader) throws Exception {
+		String clazz = VerticleFactory.removePrefix(verticleName);
+		return (Verticle) verticleServices.get(clazz);
 	}
 }

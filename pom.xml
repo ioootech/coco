@@ -11,12 +11,19 @@
 
 	<groupId>tech.iooo.boot</groupId>
 	<artifactId>iooo-boot</artifactId>
-	<version>1.0.7.RELEASE</version>
+	<version>1.0.8.RELEASE</version>
 	<packaging>pom</packaging>
 	
 	<name>iooo-boot</name>
 	<url>http://maven.apache.org</url>
 	<description>iooo boot project</description>
+
+	<scm>
+		<connection>scm:git:git@github.com:ioootech/coco.git</connection>
+		<developerConnection>scm:git:git@github.com:ioootech/coco.git</developerConnection>
+		<url>https://github.com/ioootech/coco</url>
+		<tag>iooo-boot-${project.version}</tag>
+	</scm>
 
 	<modules>
 		<module>iooo-boot-project</module>
