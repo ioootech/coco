@@ -75,7 +75,7 @@ public class VertxApplicationBooster implements SmartLifecycle, VerticleFactory,
 
 	@Override
 	public void stop() {
-		this.running = false;
+		stop(() -> deployedVerticles.forEach(verticle -> vertx.undeploy(verticle)));
 	}
 
 	@Override
