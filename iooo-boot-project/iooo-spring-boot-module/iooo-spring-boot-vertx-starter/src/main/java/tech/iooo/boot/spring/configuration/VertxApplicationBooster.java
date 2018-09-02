@@ -30,6 +30,9 @@ public class VertxApplicationBooster implements SmartLifecycle, VerticleFactory,
 	@Autowired
 	private Vertx vertx;
 
+	@Autowired
+	private VertxProperties vertxProperties;
+
 	private boolean running;
 
 	private ApplicationContext applicationContext;
@@ -56,14 +59,32 @@ public class VertxApplicationBooster implements SmartLifecycle, VerticleFactory,
 		verticleServices.values().forEach(verticle -> {
 			Class verticleClass = verticle.getClass();
 			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
-			DeploymentOptions deploymentOptions = applicationContext
-					.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+			DeploymentOptions deploymentOptions;
+			String optionName;
+			if (vertxProperties.getVerticle().isFailFast()) {
+				deploymentOptions = applicationContext
+						.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+				optionName = verticleService.deploymentOption();
+			} else {
+				if (applicationContext.containsBean(verticleService.deploymentOption())) {
+					deploymentOptions = applicationContext
+							.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+					optionName = verticleService.deploymentOption();
+				} else {
+					logger.warn(
+							"failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
+							verticleService.deploymentOption(), verticleClass.getSimpleName());
+					deploymentOptions = applicationContext
+							.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
+					optionName = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+				}
+			}
 			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
 					deploymentOptions,
 					res -> {
 						if (res.succeeded()) {
 							logger.info("deployed verticle [{}] with deploymentOption [{}]. id [{}]",
-									verticleClass.getSimpleName(), verticleService.deploymentOption(), res.result());
+									verticleClass.getSimpleName(), optionName, res.result());
 							deployedVerticles.add(res.result());
 						} else {
 							logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
