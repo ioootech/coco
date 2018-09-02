@@ -83,7 +83,7 @@ public class VertxApplicationBooster implements SmartLifecycle, VerticleFactory,
 					deploymentOptions,
 					res -> {
 						if (res.succeeded()) {
-							logger.info("deployed verticle [{}] with deploymentOption [{}]. id [{}]",
+							logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].",
 									verticleClass.getSimpleName(), optionName, res.result());
 							deployedVerticles.add(res.result());
 						} else {
