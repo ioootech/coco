@@ -10,6 +10,7 @@ import io.vertx.core.file.FileSystem;
 import io.vertx.core.shareddata.SharedData;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,8 @@ import org.springframework.context.annotation.Configuration;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-spring-boot-vertx-bundle">Ivan97</a>
  */
 @Configuration
-public class VertxConfiguration implements ApplicationContextAware {
+@EnableConfigurationProperties(IoooVertxProperties.class)
+public class IoooVertxConfiguration implements ApplicationContextAware {
 
 	private ApplicationContext applicationContext;
 
@@ -34,9 +36,9 @@ public class VertxConfiguration implements ApplicationContextAware {
 	@Bean
 	@ConditionalOnMissingBean
 	public Vertx vertx(VertxOptions vertxOptions) {
-		VertxApplicationBooster booster = applicationContext.getBean(VertxApplicationBooster.class);
+		IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
 		Vertx vertx = Vertx.vertx(vertxOptions);
-		vertx.registerVerticleFactory(booster);
+		vertx.registerVerticleFactory(factory);
 		return vertx;
 	}
 

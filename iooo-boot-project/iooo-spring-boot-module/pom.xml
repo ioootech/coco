@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>tech.iooo.boot</groupId>
 		<artifactId>iooo-boot-parent</artifactId>
-		<version>1.0.8.RELEASE</version>
+		<version>1.0.9.RELEASE</version>
 		<relativePath>../iooo-boot-parent</relativePath>
 	</parent>
 
@@ -33,8 +33,18 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
 			<groupId>tech.iooo.boot</groupId>
 			<artifactId>iooo-boot-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
