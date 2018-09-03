@@ -10,9 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "vertx")
-public class VertxProperties {
+public class IoooVertxProperties {
 
-	private VertxProperties.Verticle verticle = new VertxProperties.Verticle();
+	private IoooVertxProperties.Verticle verticle = new IoooVertxProperties.Verticle();
 
 	@Data
 	public static class Verticle {

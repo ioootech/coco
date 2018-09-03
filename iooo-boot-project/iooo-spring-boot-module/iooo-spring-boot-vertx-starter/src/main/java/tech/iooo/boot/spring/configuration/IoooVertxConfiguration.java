@@ -22,8 +22,8 @@ import org.springframework.context.annotation.Configuration;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-spring-boot-vertx-bundle">Ivan97</a>
  */
 @Configuration
-@EnableConfigurationProperties(VertxProperties.class)
-public class VertxConfiguration implements ApplicationContextAware {
+@EnableConfigurationProperties(IoooVertxProperties.class)
+public class IoooVertxConfiguration implements ApplicationContextAware {
 
 	private ApplicationContext applicationContext;
 
@@ -36,9 +36,9 @@ public class VertxConfiguration implements ApplicationContextAware {
 	@Bean
 	@ConditionalOnMissingBean
 	public Vertx vertx(VertxOptions vertxOptions) {
-		VertxApplicationBooster booster = applicationContext.getBean(VertxApplicationBooster.class);
+		IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
 		Vertx vertx = Vertx.vertx(vertxOptions);
-		vertx.registerVerticleFactory(booster);
+		vertx.registerVerticleFactory(factory);
 		return vertx;
 	}
 
