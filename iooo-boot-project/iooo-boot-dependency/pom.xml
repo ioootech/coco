@@ -90,6 +90,7 @@
 		<asm.version>6.2</asm.version>
 		<org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
 		<poi.version>3.17</poi.version>
+		<vertx-guice.version>2.3.1</vertx-guice.version>
 		<reactive-streams.version>1.0.2</reactive-streams.version>
 		<javassist.version>3.23.1-GA</javassist.version>
 		<cglib.version>3.2.7</cglib.version>
@@ -986,6 +987,11 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-simple</artifactId>
 				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.englishtown.vertx</groupId>
+				<artifactId>vertx-guice</artifactId>
+				<version>${vertx-guice.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>io.vertx</groupId>
