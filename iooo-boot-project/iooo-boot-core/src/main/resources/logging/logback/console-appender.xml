@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
-	<property name="LOG_EXCEPTION_CONVERSION_WORD" value="%ex"/>
-	<conversionRule conversionWord="ioooHighLight" converterClass="tech.iooo.boot.core.logging.logback.IoooHighlightingCompositeConverter" />
+	<include resource="logging/logback/properties.xml"/>
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<!--<filter class="ch.qos.logback.core.filter.EvaluatorFilter">-->
 		<!--<evaluator> &lt;!&ndash; 默认为 ch.qos.logback.classic.boolex.JaninoEventEvaluator &ndash;&gt;-->
@@ -13,7 +12,7 @@
 		<withJansi>true</withJansi>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss.SSS} %ioooHighLight(${LOG_LEVEL_PATTERN:-%5p}) --- [%15.15t] %cyan(%-40.40logger{39}) : %msg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+				%d{yyyy-MM-dd HH:mm:ss.SSS} %ioooHighLight(${LOG_LEVEL_PATTERN:-%5p}) --- %magenta(%pid) [%15.15t] %cyan(%-40.40logger{39}) : %msg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
 			</Pattern>
 		</encoder>
 	</appender>
