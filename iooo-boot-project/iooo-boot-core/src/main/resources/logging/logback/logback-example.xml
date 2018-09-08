@@ -3,8 +3,8 @@
 
 	<include resource="logging/logback/base.xml"/>
 
-	<logger name="ch.qos.logback" level="WARN"/>
 	<logger name="io.netty" level="INFO"/>
+	<logger name="tech.iooo.boot" level="INFO"/>
 
 	<root level="INFO">
 		<!--CONSOLE-->

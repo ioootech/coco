@@ -6,8 +6,4 @@
 
 	<logger name="ch.qos.logback" level="WARN"/>
 
-	<root level="INFO">
-		<appender-ref ref="STDOUT"/>
-		<appender-ref ref="ASYNC"/>
-	</root>
 </included>
