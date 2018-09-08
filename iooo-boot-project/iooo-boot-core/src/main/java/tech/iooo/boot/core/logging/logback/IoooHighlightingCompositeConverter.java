@@ -1,4 +1,4 @@
-package tech.iooo.boot.core.logging;
+package tech.iooo.boot.core.logging.logback;
 
 import static ch.qos.logback.core.pattern.color.ANSIConstants.BLUE_FG;
 import static ch.qos.logback.core.pattern.color.ANSIConstants.BOLD;

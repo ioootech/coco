@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package tech.iooo.boot.core.logging;
+package tech.iooo.boot.core.logging.logback;
 
-import ch.qos.logback.classic.pattern.ThrowableProxyConverter;
+import ch.qos.logback.classic.pattern.ExtendedThrowableProxyConverter;
 import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.core.CoreConstants;
 
 /**
- * {@link ThrowableProxyConverter} that adds some additional whitespace around the stack trace.
+ * {@link ExtendedThrowableProxyConverter} that adds some additional whitespace around the stack trace.
  *
  * @author Phillip Webb
+ * @since 1.3.0
  */
-public class WhitespaceThrowableProxyConverter extends ThrowableProxyConverter {
+public class ExtendedWhitespaceThrowableProxyConverter extends ExtendedThrowableProxyConverter {
 
 	@Override
 	protected String throwableProxyToString(IThrowableProxy tp) {
-		return CoreConstants.LINE_SEPARATOR + super.throwableProxyToString(tp)
-				+ CoreConstants.LINE_SEPARATOR;
+		return CoreConstants.LINE_SEPARATOR + super.throwableProxyToString(tp) + CoreConstants.LINE_SEPARATOR;
 	}
 }
