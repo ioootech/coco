@@ -4,8 +4,4 @@
 	<include resource="logging/logback/file-appender.xml"/>
 	<include resource="logging/logback/async-appender.xml"/>
 	<include resource="logging/logback/defaults.xml"/>
-	<root level="INFO">
-		<appender-ref ref="STDOUT"/>
-		<appender-ref ref="ASYNC"/>
-	</root>
 </included>
