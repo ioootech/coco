@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
+	<conversionRule conversionWord="clr" converterClass="tech.iooo.boot.core.logging.ColorConverter" />
+	<conversionRule conversionWord="wex" converterClass="tech.iooo.boot.core.logging.WhitespaceThrowableProxyConverter" />
+	<conversionRule conversionWord="wEx" converterClass="tech.iooo.boot.core.logging.ExtendedWhitespaceThrowableProxyConverter" />
 	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
 		<resetJUL>true</resetJUL>
 	</contextListener>

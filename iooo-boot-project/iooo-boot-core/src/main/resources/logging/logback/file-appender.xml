@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <included>
 	<property name="LOG_HOME" value="logs"/>
+	<property name="LOG_EXCEPTION_CONVERSION_WORD" value="%ex"/>
 	<appender name="FILE-AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_HOME}/application.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} --- ${PID:- }[%15.15t] %-40.40logger{39} : %msg%n
+				%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} --- ${PID:- }[%15.15t] %-40.40logger{39} : %msg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
 			</Pattern>
 		</encoder>
 

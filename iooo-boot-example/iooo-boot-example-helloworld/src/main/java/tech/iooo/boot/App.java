@@ -22,5 +22,6 @@ public class App {
 		Vertx.vertx().setPeriodic(1000, handler -> {
 			logger.info("{}", System.currentTimeMillis());
 		});
+		logger.error("", new RuntimeException("Testing Error"));
 	}
 }
