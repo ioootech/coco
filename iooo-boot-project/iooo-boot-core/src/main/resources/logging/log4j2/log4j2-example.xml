@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" >
+
+	<Properties>
+		<Property name="LOG_FILES_PATH">logs</Property>
+		<Property name="LOG_ARCHIVE_PATH">${LOG_FILES_PATH}/$${date:yyyy-MM}</Property>
+		<Property name="LOG_EXCEPTION_CONVERSION_WORD">%xEx</Property>
+		<Property name="LOG_LEVEL_PATTERN">%5p</Property>
+		<Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+		<Property name="CONSOLE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} %highlight{${LOG_LEVEL_PATTERN}}{FATAL=green, ERROR=red, WARN=yellow, DEBUG=cyan, TRACE=blue} %style{%pid}{magenta} --- [%15.15t] %style{%-40.40c{1.}}{cyan} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+		<Property name="FILE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} %pid --- [%15.15t] %-40.40c{1.} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}"/>
+		</Console>
+		<!--<File name="File-Appender" fileName="${LOG_FILES_PATH}/application.log" >-->
+		<!--<PatternLayout pattern="${sys:FILE_LOG_PATTERN}"/>-->
+		<!--</File>-->
+		<RollingFile name="RollingFile-Appender"
+				fileName="${LOG_FILES_PATH}/application.log"
+				filePattern="${LOG_ARCHIVE_PATH}/application.%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="${sys:FILE_LOG_PATTERN}"/>
+			<Policies>
+				<!--<TimeBasedTriggeringPolicy/>-->
+				<CronTriggeringPolicy schedule="0 0 0 * * ?" evaluateOnStartup="true"/>
+				<SizeBasedTriggeringPolicy size="250 MB"/>
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${LOG_FILES_PATH}" maxDepth="2">
+					<IfFileName glob="*/application-*.log.gz" />
+					<IfLastModified age="90d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.apache.catalina.startup.DigesterFactory" level="error"/>
+		<Logger name="org.apache.catalina.util.LifecycleBase" level="error"/>
+		<Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn"/>
+		<logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
+		<Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn"/>
+		<Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error"/>
+		<Logger name="org.hibernate.validator.internal.util.Version" level="warn"/>
+		<logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+		<Root level="info">
+			<AppenderRef ref="Console"/>
+			<!--<AppenderRef ref="File-Appender"/>-->
+			<AppenderRef ref="RollingFile-Appender"/>
+		</Root>
+	</Loggers>
+</Configuration>

@@ -5,7 +5,7 @@
 		<file>${LOG_HOME}/application.log</file>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} --- ${PID:- }[%15.15t] %-40.40logger{39} - %msg%n
+				%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} --- ${PID:- }[%15.15t] %-40.40logger{39} : %msg%n
 			</Pattern>
 		</encoder>
 
