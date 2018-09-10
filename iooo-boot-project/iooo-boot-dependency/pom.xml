@@ -1260,7 +1260,6 @@
 								<addDefaultImplementationEntries>
 									true
 								</addDefaultImplementationEntries>
-								<recompressZippedFiles>false</recompressZippedFiles>
 							</manifest>
 							<manifestEntries>
 								<Implementation-URL>${project.url}</Implementation-URL>
