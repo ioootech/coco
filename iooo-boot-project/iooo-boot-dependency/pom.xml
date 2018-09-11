@@ -108,6 +108,7 @@
 		<hamcrest-library.version>1.3</hamcrest-library.version>
 		<reflections.version>0.9.11</reflections.version>
 		<java-verbal-expressions.version>1.5</java-verbal-expressions.version>
+		<transmittable-thread-local.version>2.6.1</transmittable-thread-local.version>
 		<maven.version>3.5.4</maven.version>
 		<maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
 		<!-- Plugin versions -->
@@ -399,6 +400,11 @@
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
 				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>transmittable-thread-local</artifactId>
+				<version>${transmittable-thread-local.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
