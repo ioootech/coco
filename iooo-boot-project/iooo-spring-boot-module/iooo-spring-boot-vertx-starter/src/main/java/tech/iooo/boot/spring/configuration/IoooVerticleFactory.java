@@ -20,6 +20,6 @@ public class IoooVerticleFactory implements VerticleFactory {
 	@Override
 	public Verticle createVerticle(String verticleName, ClassLoader classLoader) throws Exception {
 		String clazz = VerticleFactory.removePrefix(verticleName);
-		return  IoooVerticleServicesHolder.verticleServices.rowMap().get(clazz).values().iterator().next();
+		return  IoooVerticleServicesHolder.verticleServices().rowMap().get(clazz).values().iterator().next();
 	}
 }

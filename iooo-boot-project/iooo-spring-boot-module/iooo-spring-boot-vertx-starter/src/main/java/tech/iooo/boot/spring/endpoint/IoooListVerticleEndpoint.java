@@ -31,7 +31,7 @@ public class IoooListVerticleEndpoint {
 			return Health.down().withDetail("message", "vertx inactive").status(Status.DOWN).build();
 		}
 		List<Object> list = Lists.newArrayList();
-		IoooVerticleServicesHolder.verticleServices.cellSet().forEach(cell -> {
+		IoooVerticleServicesHolder.verticleServices().cellSet().forEach(cell -> {
 			Map<String, Object> detail = Maps.newHashMap();
 			detail.put("name", cell.getRowKey());
 			detail.put("id", cell.getColumnKey());
