@@ -5,6 +5,7 @@ import io.vertx.core.Future;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import tech.iooo.boot.core.utils.SocketUtils;
 import tech.iooo.boot.example.service.Greeter;
 import tech.iooo.boot.spring.annotation.VerticleService;
 
@@ -20,6 +21,8 @@ public class GreetingVerticle extends AbstractVerticle {
 	@Autowired
 	private Greeter greeter;
 
+	private int port = SocketUtils.findAvailableTcpPort();
+
 	@Override
 	public void start(Future<Void> startFuture) throws Exception {
 		vertx.createHttpServer().requestHandler(request -> {
@@ -31,9 +34,9 @@ public class GreetingVerticle extends AbstractVerticle {
 				// It's fine to call the greeter from the event loop as it's not blocking
 				request.response().end(greeter.sayHello(name));
 			}
-		}).listen(8080, ar -> {
+		}).listen(port, ar -> {
 			if (ar.succeeded()) {
-				logger.info("listening on port 8080");
+				logger.info("listening on port {}", port);
 				startFuture.complete();
 			} else {
 				startFuture.fail(ar.cause());

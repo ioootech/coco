@@ -1,7 +1,8 @@
 package tech.iooo.boot.spring.configuration;
 
-import com.google.common.collect.Maps;
-import java.util.Map;
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+import io.vertx.core.AbstractVerticle;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -12,5 +13,5 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class IoooVerticleServicesHolder {
 
-	public Map<String, Object> verticleServices = Maps.newHashMap();
+	public Table<String, String, AbstractVerticle> verticleServices = HashBasedTable.create();
 }

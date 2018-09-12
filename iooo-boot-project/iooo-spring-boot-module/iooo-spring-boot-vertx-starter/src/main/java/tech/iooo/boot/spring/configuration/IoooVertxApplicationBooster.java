@@ -1,9 +1,8 @@
 package tech.iooo.boot.spring.configuration;
 
-import com.google.common.collect.Lists;
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -33,8 +32,6 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
 	private ApplicationContext applicationContext;
 
-	private List<String> deployedVerticles = Lists.newArrayList();
-
 	@Override
 	public boolean isAutoStartup() {
 		return true;
@@ -49,28 +46,26 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 	@Override
 	public void start() {
 		applicationContext.getBeansWithAnnotation(VerticleService.class)
-				.forEach((name, bean) -> IoooVerticleServicesHolder.verticleServices
-						.put(bean.getClass().getName(), bean));
+				.forEach((name, bean) -> {
+					AbstractVerticle verticle = (AbstractVerticle) bean;
+					IoooVerticleServicesHolder.verticleServices.put(bean.getClass().getName(), "", verticle);
+				});
 		IoooVerticleServicesHolder.verticleServices.values().forEach(verticle -> {
 			Class verticleClass = verticle.getClass();
 			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
 			DeploymentOptions deploymentOptions;
 			String optionName;
 			if (ioooVertxProperties.getVerticle().isFailFast()) {
-				deploymentOptions = applicationContext
-						.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+				deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
 				optionName = verticleService.deploymentOption();
 			} else {
 				if (applicationContext.containsBean(verticleService.deploymentOption())) {
-					deploymentOptions = applicationContext
-							.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+					deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
 					optionName = verticleService.deploymentOption();
 				} else {
-					logger.warn(
-							"failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
+					logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
 							verticleService.deploymentOption(), verticleClass.getSimpleName());
-					deploymentOptions = applicationContext
-							.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
+					deploymentOptions = applicationContext.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
 					optionName = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
 				}
 			}
@@ -78,9 +73,9 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 					deploymentOptions,
 					res -> {
 						if (res.succeeded()) {
-							logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].",
-									verticleClass.getSimpleName(), optionName, res.result());
-							deployedVerticles.add(res.result());
+							logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", verticleClass.getSimpleName(), optionName, res.result());
+							IoooVerticleServicesHolder.verticleServices.row(verticleClass.getName()).remove("");
+							IoooVerticleServicesHolder.verticleServices.row(verticleClass.getName()).put(res.result(), verticle);
 						} else {
 							logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
 						}
@@ -91,7 +86,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
 	@Override
 	public void stop() {
-		stop(() -> deployedVerticles.forEach(verticle -> vertx.undeploy(verticle)));
+		stop(() -> IoooVerticleServicesHolder.verticleServices.columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
 	}
 
 	@Override
