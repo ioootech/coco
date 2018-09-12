@@ -2,9 +2,13 @@
 <configuration scan="true" debug="false">
 
 	<include resource="logging/logback/base.xml"/>
+	
+	<!--###########################logger###########################-->
 
 	<logger name="io.netty" level="INFO"/>
 	<logger name="tech.iooo.boot" level="INFO"/>
+
+	<!--###########################/logger##########################-->
 
 	<root level="INFO">
 		<!--CONSOLE-->

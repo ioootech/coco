@@ -11,6 +11,7 @@
 		<!--</filter>-->
 		<withJansi>true</withJansi>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<charset>utf-8</charset>
 			<Pattern>
 				%d{yyyy-MM-dd HH:mm:ss.SSS} %ioooHighLight(${LOG_LEVEL_PATTERN:-%5p}) --- %magenta(%pid) [%15.15t] %cyan(%-40.40logger{39}) : %msg%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
 			</Pattern>
