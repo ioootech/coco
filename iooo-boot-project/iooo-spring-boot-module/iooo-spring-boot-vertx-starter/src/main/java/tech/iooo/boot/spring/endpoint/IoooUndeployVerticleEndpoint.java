@@ -31,8 +31,9 @@ public class IoooUndeployVerticleEndpoint {
 	public Health undeploy(@Selector String id) {
 		if (vertx.deploymentIDs().contains(id)) {
 			vertx.undeploy(id);
+			logger.info("undeployed verticle [{}],id [{}].", IoooVerticleServicesHolder.verticleServices.columnMap().get(id).keySet().iterator().next(), id);
 			IoooVerticleServicesHolder.verticleServices.columnKeySet().remove(id);
-			logger.info("undeployed verticle [{}]", id);
+
 			List<Object> list = Lists.newArrayList();
 			Map<String, Object> detail = Maps.newHashMap();
 			IoooVerticleServicesHolder.verticleServices.cellSet().forEach(cell -> {
