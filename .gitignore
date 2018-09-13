@@ -12,3 +12,4 @@ target
 *.versionsBackup
 *.log
 .vertx
+dependency-reduced-pom.xml

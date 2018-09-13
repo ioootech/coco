@@ -12,14 +12,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "vertx")
 public class IoooVertxProperties {
 
-	private IoooVertxProperties.Verticle verticle = new IoooVertxProperties.Verticle();
+  private IoooVertxProperties.Verticle verticle = new IoooVertxProperties.Verticle();
 
-	@Data
-	public static class Verticle {
+  @Data
+  public static class Verticle {
 
-		/**
-		 * deploy过程是否开启快速失败
-		 */
-		private boolean failFast = false;
-	}
+    /**
+     * deploy过程是否开启快速失败
+     */
+    private boolean failFast = false;
+  }
 }

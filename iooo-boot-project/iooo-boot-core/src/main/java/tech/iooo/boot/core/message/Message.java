@@ -8,13 +8,14 @@ import java.io.Serializable;
  * @author Ivan97
  */
 public interface Message<T> extends Serializable {
-    /**
-     * Return the message payload.
-     */
-    T getPayload();
 
-    /**
-     * Return message headers for the message (never {@code null} but may be empty).
-     */
-    MessageHeaders getHeaders();
+  /**
+   * Return the message payload.
+   */
+  T getPayload();
+
+  /**
+   * Return message headers for the message (never {@code null} but may be empty).
+   */
+  MessageHeaders getHeaders();
 }

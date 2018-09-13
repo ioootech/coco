@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" debug="false">
 
-	<include resource="logging/logback/base.xml"/>
+  <include resource="logging/logback/base.xml"/>
 
-	<logger name="tech.iooo.boot" level="TRACE"/>
+  <logger name="tech.iooo.boot" level="TRACE"/>
+
+  <root level="INFO">
+    <!--CONSOLE-->
+    <appender-ref ref="STDOUT"/>
+    <!--ROLLING FILE-->
+    <appender-ref ref="ASYNC"/>
+  </root>
 </configuration>

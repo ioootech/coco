@@ -1,49 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>tech.iooo.coco</groupId>
-		<artifactId>iooo-distribution-config</artifactId>
-		<version>1.0.4.RELEASE</version>
-	</parent>
+  <parent>
+    <groupId>tech.iooo.coco</groupId>
+    <artifactId>iooo-distribution-config</artifactId>
+    <version>1.0.5.RELEASE</version>
+  </parent>
 
-	<groupId>tech.iooo.boot</groupId>
-	<artifactId>iooo-boot</artifactId>
-	<version>1.0.9.RELEASE</version>
-	<packaging>pom</packaging>
-	
-	<name>iooo-boot</name>
-	<url>http://maven.apache.org</url>
-	<description>iooo boot project</description>
+  <groupId>tech.iooo.boot</groupId>
+  <artifactId>iooo-boot</artifactId>
+  <version>1.0.10.RELEASE</version>
+  <packaging>pom</packaging>
 
-	<scm>
-		<connection>scm:git:git@github.com:ioootech/coco.git</connection>
-		<developerConnection>scm:git:git@github.com:ioootech/coco.git</developerConnection>
-		<url>https://github.com/ioootech/coco</url>
-		<tag>iooo-boot-${project.version}</tag>
-	</scm>
+  <name>iooo-boot</name>
+  <url>http://maven.apache.org</url>
+  <description>iooo boot project</description>
 
-	<modules>
-		<module>iooo-boot-project</module>
-	</modules>
+  <scm>
+    <connection>scm:git:git@github.com:ioootech/coco.git</connection>
+    <developerConnection>scm:git:git@github.com:ioootech/coco.git</developerConnection>
+    <url>https://github.com/ioootech/coco</url>
+    <tag>iooo-boot-${project.version}</tag>
+  </scm>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<main.basedir>${basedir}</main.basedir>
-	</properties>
+  <modules>
+    <module>iooo-boot-project</module>
+  </modules>
 
-	<profiles>
-		<profile>
-			<id>default</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<modules>
-				<module>iooo-boot-project</module>
-			</modules>
-		</profile>
-	</profiles>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <main.basedir>${basedir}</main.basedir>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>default</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>iooo-boot-project</module>
+      </modules>
+    </profile>
+  </profiles>
 
 </project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+	<property name="LOG_EXCEPTION_CONVERSION_WORD" value="%ex"/>
+	<property name="LOG_HOME" value="logs"/>
+	<property name="LOG_EXCEPTION_CONVERSION_WORD" value="%ex"/>
+	<conversionRule conversionWord="pid" converterClass="tech.iooo.boot.core.logging.logback.ProcessIdConverter" />
+	<conversionRule conversionWord="wex" converterClass="tech.iooo.boot.core.logging.logback.WhitespaceThrowableProxyConverter" />
+	<conversionRule conversionWord="wEx" converterClass="tech.iooo.boot.core.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+	<conversionRule conversionWord="ioooHighLight" converterClass="tech.iooo.boot.core.logging.logback.IoooHighlightingCompositeConverter" />
+</included>
