@@ -25,48 +25,48 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(IoooVertxProperties.class)
 public class IoooVertxConfiguration implements ApplicationContextAware {
 
-	private ApplicationContext applicationContext;
+  private ApplicationContext applicationContext;
 
-	@Bean
-	@ConditionalOnMissingBean
-	public VertxOptions vertxOptions() {
-		return new VertxOptions();
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public VertxOptions vertxOptions() {
+    return new VertxOptions();
+  }
 
-	@Bean
-	@ConditionalOnMissingBean
-	public Vertx vertx(VertxOptions vertxOptions) {
-		IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
-		Vertx vertx = Vertx.vertx(vertxOptions);
-		vertx.registerVerticleFactory(factory);
-		return vertx;
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public Vertx vertx(VertxOptions vertxOptions) {
+    IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
+    Vertx vertx = Vertx.vertx(vertxOptions);
+    vertx.registerVerticleFactory(factory);
+    return vertx;
+  }
 
-	@Bean
-	@ConditionalOnMissingBean
-	public EventBus eventBus(Vertx vertx) {
-		return vertx.eventBus();
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public EventBus eventBus(Vertx vertx) {
+    return vertx.eventBus();
+  }
 
-	@Bean
-	@ConditionalOnMissingBean
-	public FileSystem fileSystem(Vertx vertx) {
-		return vertx.fileSystem();
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public FileSystem fileSystem(Vertx vertx) {
+    return vertx.fileSystem();
+  }
 
-	@Bean
-	@ConditionalOnMissingBean
-	public SharedData sharedData(Vertx vertx) {
-		return vertx.sharedData();
-	}
+  @Bean
+  @ConditionalOnMissingBean
+  public SharedData sharedData(Vertx vertx) {
+    return vertx.sharedData();
+  }
 
-	@Bean(DEFAULT_DEPLOYMENT_OPTIONS)
-	public DeploymentOptions deploymentOptions() {
-		return new DeploymentOptions();
-	}
+  @Bean(DEFAULT_DEPLOYMENT_OPTIONS)
+  public DeploymentOptions deploymentOptions() {
+    return new DeploymentOptions();
+  }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-	}
+  @Override
+  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    this.applicationContext = applicationContext;
+  }
 }

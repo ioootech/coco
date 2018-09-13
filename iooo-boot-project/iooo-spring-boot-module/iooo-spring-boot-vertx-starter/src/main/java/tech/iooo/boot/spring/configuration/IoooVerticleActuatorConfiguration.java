@@ -17,18 +17,18 @@ import tech.iooo.boot.spring.endpoint.IoooUndeployVerticleEndpoint;
 @ConditionalOnBean(EndpointAutoConfiguration.class)
 public class IoooVerticleActuatorConfiguration {
 
-	@Bean
-	public IoooListVerticleEndpoint ioooListVerticleEndpoint() {
-		return new IoooListVerticleEndpoint();
-	}
+  @Bean
+  public IoooListVerticleEndpoint ioooListVerticleEndpoint() {
+    return new IoooListVerticleEndpoint();
+  }
 
-	@Bean
-	public IoooUndeployVerticleEndpoint ioooUndeployVerticleEndpoint() {
-		return new IoooUndeployVerticleEndpoint();
-	}
-	
-	@Bean
-	public IoooDeployVerticleEndpoint ioooDeployVerticleEndpoint(){
-		return new IoooDeployVerticleEndpoint();
-	}
+  @Bean
+  public IoooUndeployVerticleEndpoint ioooUndeployVerticleEndpoint() {
+    return new IoooUndeployVerticleEndpoint();
+  }
+
+  @Bean
+  public IoooDeployVerticleEndpoint ioooDeployVerticleEndpoint() {
+    return new IoooDeployVerticleEndpoint();
+  }
 }

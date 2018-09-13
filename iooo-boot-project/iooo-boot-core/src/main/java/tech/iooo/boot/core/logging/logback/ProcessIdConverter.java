@@ -11,12 +11,12 @@ import java.lang.management.ManagementFactory;
  */
 public class ProcessIdConverter extends ClassicConverter {
 
-	private static final String PROCESS_ID = ManagementFactory.getRuntimeMXBean().getName().replaceAll("@.*", "");
+  private static final String PROCESS_ID = ManagementFactory.getRuntimeMXBean().getName().replaceAll("@.*", "");
 
-	@Override
-	public String convert(final ILoggingEvent event) {
-		// for every logging event return processId from mx bean
-		// (or better alternative)
-		return PROCESS_ID;
-	}
+  @Override
+  public String convert(final ILoggingEvent event) {
+    // for every logging event return processId from mx bean
+    // (or better alternative)
+    return PROCESS_ID;
+  }
 }

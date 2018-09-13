@@ -7,6 +7,6 @@ package tech.iooo.boot.spring.configuration;
  */
 public interface VertxConfigConstants {
 
-	String IOOO_VERTICLE_PREFIX = "iooo";
-	String DEFAULT_DEPLOYMENT_OPTIONS = "defaultDeploymentOptions";
+  String IOOO_VERTICLE_PREFIX = "iooo";
+  String DEFAULT_DEPLOYMENT_OPTIONS = "defaultDeploymentOptions";
 }

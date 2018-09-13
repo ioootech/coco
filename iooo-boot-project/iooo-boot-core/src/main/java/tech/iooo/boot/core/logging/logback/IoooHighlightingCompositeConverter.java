@@ -18,22 +18,22 @@ import ch.qos.logback.core.pattern.color.ForegroundCompositeConverterBase;
  */
 public class IoooHighlightingCompositeConverter extends ForegroundCompositeConverterBase<ILoggingEvent> {
 
-	@Override
-	protected String getForegroundColorCode(ILoggingEvent event) {
-		Level level = event.getLevel();
-		switch (level.toInt()) {
-			case Level.DEBUG_INT:
-				return CYAN_FG;
-			case Level.ERROR_INT:
-				return BOLD + RED_FG;
-			case Level.WARN_INT:
-				return RED_FG;
-			case Level.INFO_INT:
-				return GREEN_FG;
-			case Level.TRACE_INT:
-				return BLUE_FG;
-			default:
-				return DEFAULT_FG;
-		}
-	}
+  @Override
+  protected String getForegroundColorCode(ILoggingEvent event) {
+    Level level = event.getLevel();
+    switch (level.toInt()) {
+      case Level.DEBUG_INT:
+        return CYAN_FG;
+      case Level.ERROR_INT:
+        return BOLD + RED_FG;
+      case Level.WARN_INT:
+        return RED_FG;
+      case Level.INFO_INT:
+        return GREEN_FG;
+      case Level.TRACE_INT:
+        return BLUE_FG;
+      default:
+        return DEFAULT_FG;
+    }
+  }
 }

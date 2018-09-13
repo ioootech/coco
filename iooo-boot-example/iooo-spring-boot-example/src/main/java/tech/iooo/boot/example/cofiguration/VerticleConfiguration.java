@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class VerticleConfiguration {
 
-	@Bean("greeterDeploymentOptions")
-	public DeploymentOptions greeterDeploymentOptions() {
-		return new DeploymentOptions().setInstances(4);
-	}
+  @Bean("greeterDeploymentOptions")
+  public DeploymentOptions greeterDeploymentOptions() {
+    return new DeploymentOptions().setInstances(4);
+  }
 }

@@ -21,86 +21,86 @@ import tech.iooo.boot.spring.annotation.VerticleService;
 @Configuration
 public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationContextAware {
 
-	private static final Logger logger = LoggerFactory.getLogger(IoooVertxApplicationBooster.class);
-	@Autowired
-	private Vertx vertx;
+  private static final Logger logger = LoggerFactory.getLogger(IoooVertxApplicationBooster.class);
+  @Autowired
+  private Vertx vertx;
 
-	@Autowired
-	private IoooVertxProperties ioooVertxProperties;
+  @Autowired
+  private IoooVertxProperties ioooVertxProperties;
 
-	private boolean running;
+  private boolean running;
 
-	private ApplicationContext applicationContext;
+  private ApplicationContext applicationContext;
 
-	@Override
-	public boolean isAutoStartup() {
-		return true;
-	}
+  @Override
+  public boolean isAutoStartup() {
+    return true;
+  }
 
-	@Override
-	public void stop(Runnable callback) {
-		callback.run();
-		this.running = false;
-	}
+  @Override
+  public void stop(Runnable callback) {
+    callback.run();
+    this.running = false;
+  }
 
-	@Override
-	public void start() {
-		applicationContext.getBeansWithAnnotation(VerticleService.class)
-				.forEach((name, bean) -> {
-					AbstractVerticle verticle = (AbstractVerticle) bean;
-					IoooVerticleServicesHolder.activeVerticleServices().put(bean.getClass().getName(), "", verticle);
-				});
-		IoooVerticleServicesHolder.activeVerticleServices().values().forEach(verticle -> {
-			Class verticleClass = verticle.getClass();
-			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
-			DeploymentOptions deploymentOptions;
-			String optionName;
-			if (ioooVertxProperties.getVerticle().isFailFast()) {
-				deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
-				optionName = verticleService.deploymentOption();
-			} else {
-				if (applicationContext.containsBean(verticleService.deploymentOption())) {
-					deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
-					optionName = verticleService.deploymentOption();
-				} else {
-					logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
-							verticleService.deploymentOption(), verticleClass.getSimpleName());
-					deploymentOptions = applicationContext.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
-					optionName = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
-				}
-			}
-			vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
-					deploymentOptions,
-					res -> {
-						if (res.succeeded()) {
-							logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", verticleClass.getSimpleName(), optionName, res.result());
-							IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");
-							IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).put(res.result(), verticle);
-						} else {
-							logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
-						}
-					});
-		});
-		this.running = true;
-	}
+  @Override
+  public void start() {
+    applicationContext.getBeansWithAnnotation(VerticleService.class)
+        .forEach((name, bean) -> {
+          AbstractVerticle verticle = (AbstractVerticle) bean;
+          IoooVerticleServicesHolder.activeVerticleServices().put(bean.getClass().getName(), "", verticle);
+        });
+    IoooVerticleServicesHolder.activeVerticleServices().values().forEach(verticle -> {
+      Class verticleClass = verticle.getClass();
+      VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
+      DeploymentOptions deploymentOptions;
+      String optionName;
+      if (ioooVertxProperties.getVerticle().isFailFast()) {
+        deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+        optionName = verticleService.deploymentOption();
+      } else {
+        if (applicationContext.containsBean(verticleService.deploymentOption())) {
+          deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
+          optionName = verticleService.deploymentOption();
+        } else {
+          logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
+              verticleService.deploymentOption(), verticleClass.getSimpleName());
+          deploymentOptions = applicationContext.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
+          optionName = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+        }
+      }
+      vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
+          deploymentOptions,
+          res -> {
+            if (res.succeeded()) {
+              logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", verticleClass.getSimpleName(), optionName, res.result());
+              IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");
+              IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).put(res.result(), verticle);
+            } else {
+              logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
+            }
+          });
+    });
+    this.running = true;
+  }
 
-	@Override
-	public void stop() {
-		stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
-	}
+  @Override
+  public void stop() {
+    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
+  }
 
-	@Override
-	public boolean isRunning() {
-		return this.running;
-	}
+  @Override
+  public boolean isRunning() {
+    return this.running;
+  }
 
-	@Override
-	public int getPhase() {
-		return Integer.MAX_VALUE;
-	}
+  @Override
+  public int getPhase() {
+    return Integer.MAX_VALUE;
+  }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-	}
+  @Override
+  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    this.applicationContext = applicationContext;
+  }
 }

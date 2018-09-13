@@ -33,94 +33,94 @@ import tech.iooo.boot.spring.configuration.VertxConfigConstants;
 @Endpoint(id = "verticles/deploy")
 public class IoooDeployVerticleEndpoint implements ApplicationContextAware {
 
-	private static final Logger logger = LoggerFactory.getLogger(IoooDeployVerticleEndpoint.class);
-	@Autowired
-	private Vertx vertx;
+  private static final Logger logger = LoggerFactory.getLogger(IoooDeployVerticleEndpoint.class);
+  @Autowired
+  private Vertx vertx;
 
-	private ApplicationContext applicationContext;
+  private ApplicationContext applicationContext;
 
-	@WriteOperation
-	public Health deploy(@Selector String info) {
-		List<String> infos = Splitter.on("#").limit(1).splitToList(info);
-		String clazz = infos.get(0);
-		String deploymentConfig;
-		if (info.length() == 1) {
-			deploymentConfig = infos.get(1);
-		} else {
-			deploymentConfig = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
-		}
-		if (!applicationContext.containsBean(deploymentConfig)) {
-			return Health.unknown()
-					.withDetail("message", "unknown deploymentOptions " + deploymentConfig)
-					.withDetail("timestamp", LocalDateTime.now())
-					.build();
-		}
+  @WriteOperation
+  public Health deploy(@Selector String info) {
+    List<String> infos = Splitter.on("#").limit(1).splitToList(info);
+    String clazz = infos.get(0);
+    String deploymentConfig;
+    if (info.length() == 1) {
+      deploymentConfig = infos.get(1);
+    } else {
+      deploymentConfig = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+    }
+    if (!applicationContext.containsBean(deploymentConfig)) {
+      return Health.unknown()
+          .withDetail("message", "unknown deploymentOptions " + deploymentConfig)
+          .withDetail("timestamp", LocalDateTime.now())
+          .build();
+    }
 
-		if (IoooVerticleServicesHolder.activeVerticleServices().rowKeySet().contains(clazz)) {
-			AbstractVerticle verticle = IoooVerticleServicesHolder.activeVerticleServices().rowMap().get(clazz).values().iterator().next();
-			return Health.up()
-					.withDetail("message", "already deployed")
-					.withDetail("config", verticle.config())
-					.withDetail("timestamp", LocalDateTime.now())
-					.build();
-		}
+    if (IoooVerticleServicesHolder.activeVerticleServices().rowKeySet().contains(clazz)) {
+      AbstractVerticle verticle = IoooVerticleServicesHolder.activeVerticleServices().rowMap().get(clazz).values().iterator().next();
+      return Health.up()
+          .withDetail("message", "already deployed")
+          .withDetail("config", verticle.config())
+          .withDetail("timestamp", LocalDateTime.now())
+          .build();
+    }
 
-		if (IoooVerticleServicesHolder.inactiveVerticleServices().rowKeySet().contains(clazz)) {
-			DeploymentOptions deploymentOptions = (DeploymentOptions) applicationContext.getBean(deploymentConfig);
+    if (IoooVerticleServicesHolder.inactiveVerticleServices().rowKeySet().contains(clazz)) {
+      DeploymentOptions deploymentOptions = (DeploymentOptions) applicationContext.getBean(deploymentConfig);
 
-			CompletableFuture<Health> healthFuture = new CompletableFuture<>();
-			vertx.deployVerticle(clazz, deploymentOptions, res -> {
-				if (res.succeeded()) {
-					synchronized (IoooVerticleServicesHolder.class) {
-						IoooVerticleServicesHolder.inactiveVerticleServices().rowKeySet().remove(clazz);
-						try {
-							IoooVerticleServicesHolder.activeVerticleServices().put(clazz, res.result(), ((AbstractVerticle) BeanUtils.instantiateClass(Class.forName(clazz))));
-						} catch (ClassNotFoundException e) {
-							e.printStackTrace();
-						}
-						logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", clazz, deploymentConfig, res.result());
+      CompletableFuture<Health> healthFuture = new CompletableFuture<>();
+      vertx.deployVerticle(clazz, deploymentOptions, res -> {
+        if (res.succeeded()) {
+          synchronized (IoooVerticleServicesHolder.class) {
+            IoooVerticleServicesHolder.inactiveVerticleServices().rowKeySet().remove(clazz);
+            try {
+              IoooVerticleServicesHolder.activeVerticleServices().put(clazz, res.result(), ((AbstractVerticle) BeanUtils.instantiateClass(Class.forName(clazz))));
+            } catch (ClassNotFoundException e) {
+              e.printStackTrace();
+            }
+            logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", clazz, deploymentConfig, res.result());
 
-						List<Object> active = Lists.newArrayList();
-						List<Object> inactive = Lists.newArrayList();
+            List<Object> active = Lists.newArrayList();
+            List<Object> inactive = Lists.newArrayList();
 
-						IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
-							Map<String, Object> detail = Maps.newHashMap();
-							detail.put("name", cell.getRowKey());
-							detail.put("id", cell.getColumnKey());
-							active.add(detail);
-						});
-						IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
-							Map<String, Object> detail = Maps.newHashMap();
-							detail.put("name", cell.getRowKey());
-							detail.put("id", cell.getColumnKey());
-							inactive.add(detail);
-						});
-						healthFuture.complete(Health.up()
-								.withDetail("verticles", active)
-								.withDetail("inactive verticles", inactive)
-								.withDetail("timestamp", LocalDateTime.now())
-								.build());
-					}
-				} else {
-					healthFuture.complete(Health.down()
-							.withException(res.cause())
-							.withDetail("timestamp", LocalDateTime.now())
-							.build());
-					logger.error("", res.cause());
-				}
-			});
-			try {
-				return healthFuture.get();
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			}
-		}
+            IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
+              Map<String, Object> detail = Maps.newHashMap();
+              detail.put("name", cell.getRowKey());
+              detail.put("id", cell.getColumnKey());
+              active.add(detail);
+            });
+            IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
+              Map<String, Object> detail = Maps.newHashMap();
+              detail.put("name", cell.getRowKey());
+              detail.put("id", cell.getColumnKey());
+              inactive.add(detail);
+            });
+            healthFuture.complete(Health.up()
+                .withDetail("verticles", active)
+                .withDetail("inactive verticles", inactive)
+                .withDetail("timestamp", LocalDateTime.now())
+                .build());
+          }
+        } else {
+          healthFuture.complete(Health.down()
+              .withException(res.cause())
+              .withDetail("timestamp", LocalDateTime.now())
+              .build());
+          logger.error("", res.cause());
+        }
+      });
+      try {
+        return healthFuture.get();
+      } catch (InterruptedException | ExecutionException e) {
+        e.printStackTrace();
+      }
+    }
 
-		return Health.up().build();
-	}
+    return Health.up().build();
+  }
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-	}
+  @Override
+  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    this.applicationContext = applicationContext;
+  }
 }

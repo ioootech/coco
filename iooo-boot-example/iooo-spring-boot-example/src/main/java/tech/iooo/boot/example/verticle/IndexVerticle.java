@@ -13,10 +13,10 @@ import tech.iooo.boot.spring.annotation.VerticleService;
 @VerticleService
 public class IndexVerticle extends AbstractVerticle {
 
-	private static final Logger logger = LoggerFactory.getLogger(IndexVerticle.class);
+  private static final Logger logger = LoggerFactory.getLogger(IndexVerticle.class);
 
-	@Override
-	public void start() throws Exception {
-		logger.info("welcome");
-	}
+  @Override
+  public void start() throws Exception {
+    logger.info("welcome");
+  }
 }

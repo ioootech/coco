@@ -50,10 +50,14 @@ import tech.iooo.boot.core.constants.SuppressTypeConstants;
 @SuppressWarnings(SuppressTypeConstants.ALL)
 public abstract class ClassUtils {
 
-	/** Suffix for array class names: "[]" */
+	/**
+	 * Suffix for array class names: "[]"
+	 */
 	public static final String ARRAY_SUFFIX = "[]";
 
-	/** Prefix for internal array class names: "[" */
+	/**
+	 * Prefix for internal array class names: "["
+	 */
 	private static final String INTERNAL_ARRAY_PREFIX = "[";
 
 	/** Prefix for internal non-primitive array class names: "[L" */

@@ -28,8 +28,8 @@ import ch.qos.logback.core.CoreConstants;
  */
 public class ExtendedWhitespaceThrowableProxyConverter extends ExtendedThrowableProxyConverter {
 
-	@Override
-	protected String throwableProxyToString(IThrowableProxy tp) {
-		return CoreConstants.LINE_SEPARATOR + super.throwableProxyToString(tp) + CoreConstants.LINE_SEPARATOR;
-	}
+  @Override
+  protected String throwableProxyToString(IThrowableProxy tp) {
+    return CoreConstants.LINE_SEPARATOR + super.throwableProxyToString(tp) + CoreConstants.LINE_SEPARATOR;
+  }
 }

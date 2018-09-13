@@ -13,20 +13,20 @@ import lombok.Data;
 @Data
 public class MessageHeaders implements Serializable {
 
-    private static final long serialVersionUID = 7035068984269400920L;
+  private static final long serialVersionUID = 7035068984269400920L;
 
-    private HashMap<String, Object> headers;
+  private HashMap<String, Object> headers;
 
-    public MessageHeaders(HashMap<String, Object> headers) {
-        this.headers = headers;
-    }
+  public MessageHeaders(HashMap<String, Object> headers) {
+    this.headers = headers;
+  }
 
-    public MessageHeaders() {
-        this(Maps.newHashMap());
-    }
+  public MessageHeaders() {
+    this(Maps.newHashMap());
+  }
 
-    @Override
-    public String toString() {
-        return this.headers.toString();
-    }
+  @Override
+  public String toString() {
+    return this.headers.toString();
+  }
 }

@@ -22,36 +22,36 @@ import tech.iooo.boot.spring.configuration.IoooVerticleServicesHolder;
 @Endpoint(id = "verticles")
 public class IoooListVerticleEndpoint {
 
-	@Autowired
-	private Vertx vertx;
+  @Autowired
+  private Vertx vertx;
 
-	@ReadOperation
-	public Health getCustom() {
-		if (Objects.isNull(vertx)) {
-			return Health.down().withDetail("message", "vertx inactive").status(Status.DOWN).build();
-		}
+  @ReadOperation
+  public Health getCustom() {
+    if (Objects.isNull(vertx)) {
+      return Health.down().withDetail("message", "vertx inactive").status(Status.DOWN).build();
+    }
 
-		List<Object> active = Lists.newArrayList();
-		List<Object> inactive = Lists.newArrayList();
+    List<Object> active = Lists.newArrayList();
+    List<Object> inactive = Lists.newArrayList();
 
-		synchronized (IoooVerticleServicesHolder.class) {
-			IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
-				Map<String, Object> detail = Maps.newHashMap();
-				detail.put("name", cell.getRowKey());
-				detail.put("id", cell.getColumnKey());
-				active.add(detail);
-			});
-			IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
-				Map<String, Object> detail = Maps.newHashMap();
-				detail.put("name", cell.getRowKey());
-				detail.put("id", cell.getColumnKey());
-				inactive.add(detail);
-			});
-		}
-		return Health.up()
-				.withDetail("verticles", active)
-				.withDetail("inactive verticles", inactive)
-				.withDetail("timestamp", LocalDateTime.now())
-				.build();
-	}
+    synchronized (IoooVerticleServicesHolder.class) {
+      IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
+        Map<String, Object> detail = Maps.newHashMap();
+        detail.put("name", cell.getRowKey());
+        detail.put("id", cell.getColumnKey());
+        active.add(detail);
+      });
+      IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
+        Map<String, Object> detail = Maps.newHashMap();
+        detail.put("name", cell.getRowKey());
+        detail.put("id", cell.getColumnKey());
+        inactive.add(detail);
+      });
+    }
+    return Health.up()
+        .withDetail("verticles", active)
+        .withDetail("inactive verticles", inactive)
+        .withDetail("timestamp", LocalDateTime.now())
+        .build();
+  }
 }

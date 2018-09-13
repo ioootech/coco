@@ -23,45 +23,45 @@ import tech.iooo.boot.spring.configuration.IoooVerticleServicesHolder;
 @Endpoint(id = "verticles/undeploy")
 public class IoooUndeployVerticleEndpoint {
 
-	private static final Logger logger = LoggerFactory.getLogger(IoooUndeployVerticleEndpoint.class);
-	@Autowired
-	private Vertx vertx;
+  private static final Logger logger = LoggerFactory.getLogger(IoooUndeployVerticleEndpoint.class);
+  @Autowired
+  private Vertx vertx;
 
-	@DeleteOperation
-	public Health undeploy(@Selector String id) {
-		if (vertx.deploymentIDs().contains(id)) {
-			vertx.undeploy(id);
-			String name = IoooVerticleServicesHolder.activeVerticleServices().columnMap().get(id).keySet().iterator().next();
-			logger.info("undeploy verticle [{}],id [{}].", name, id);
+  @DeleteOperation
+  public Health undeploy(@Selector String id) {
+    if (vertx.deploymentIDs().contains(id)) {
+      vertx.undeploy(id);
+      String name = IoooVerticleServicesHolder.activeVerticleServices().columnMap().get(id).keySet().iterator().next();
+      logger.info("undeploy verticle [{}],id [{}].", name, id);
 
-			List<Object> active = Lists.newArrayList();
-			List<Object> inactive = Lists.newArrayList();
+      List<Object> active = Lists.newArrayList();
+      List<Object> inactive = Lists.newArrayList();
 
-			synchronized (IoooVerticleServicesHolder.class) {
-				IoooVerticleServicesHolder.inactiveVerticleServices().put(name, id, IoooVerticleServicesHolder.activeVerticleServices().get(name, id));
-				IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().remove(id);
+      synchronized (IoooVerticleServicesHolder.class) {
+        IoooVerticleServicesHolder.inactiveVerticleServices().put(name, id, IoooVerticleServicesHolder.activeVerticleServices().get(name, id));
+        IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().remove(id);
 
-				IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
-					Map<String, Object> detail = Maps.newHashMap();
-					detail.put("name", cell.getRowKey());
-					detail.put("id", cell.getColumnKey());
-					active.add(detail);
-				});
-				IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
-					Map<String, Object> detail = Maps.newHashMap();
-					detail.put("name", cell.getRowKey());
-					detail.put("id", cell.getColumnKey());
-					inactive.add(detail);
-				});
-			}
+        IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
+          Map<String, Object> detail = Maps.newHashMap();
+          detail.put("name", cell.getRowKey());
+          detail.put("id", cell.getColumnKey());
+          active.add(detail);
+        });
+        IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
+          Map<String, Object> detail = Maps.newHashMap();
+          detail.put("name", cell.getRowKey());
+          detail.put("id", cell.getColumnKey());
+          inactive.add(detail);
+        });
+      }
 
-			return Health.up()
-					.withDetail("verticles", active)
-					.withDetail("inactive verticles", inactive)
-					.withDetail("timestamp", LocalDateTime.now())
-					.build();
-		} else {
-			return Health.unknown().withDetail("message", "unknown verticle").withDetail("timestamp", LocalDateTime.now()).build();
-		}
-	}
+      return Health.up()
+          .withDetail("verticles", active)
+          .withDetail("inactive verticles", inactive)
+          .withDetail("timestamp", LocalDateTime.now())
+          .build();
+    } else {
+      return Health.unknown().withDetail("message", "unknown verticle").withDetail("timestamp", LocalDateTime.now()).build();
+    }
+  }
 }

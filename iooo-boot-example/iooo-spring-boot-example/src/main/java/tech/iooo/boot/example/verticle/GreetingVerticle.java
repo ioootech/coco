@@ -17,30 +17,30 @@ import tech.iooo.boot.spring.annotation.VerticleService;
 @VerticleService
 public class GreetingVerticle extends AbstractVerticle {
 
-	private static final Logger logger = LoggerFactory.getLogger(GreetingVerticle.class);
-	@Autowired
-	private Greeter greeter;
+  private static final Logger logger = LoggerFactory.getLogger(GreetingVerticle.class);
+  @Autowired
+  private Greeter greeter;
 
-	private int port = SocketUtils.findAvailableTcpPort();
+  private int port = SocketUtils.findAvailableTcpPort();
 
-	@Override
-	public void start(Future<Void> startFuture) throws Exception {
-		vertx.createHttpServer().requestHandler(request -> {
-			String name = request.getParam("name");
-			logger.info("Got request for name: " + name);
-			if (name == null) {
-				request.response().setStatusCode(400).end("Missing name");
-			} else {
-				// It's fine to call the greeter from the event loop as it's not blocking
-				request.response().end(greeter.sayHello(name));
-			}
-		}).listen(port, ar -> {
-			if (ar.succeeded()) {
-				logger.info("listening on port {}", port);
-				startFuture.complete();
-			} else {
-				startFuture.fail(ar.cause());
-			}
-		});
-	}
+  @Override
+  public void start(Future<Void> startFuture) throws Exception {
+    vertx.createHttpServer().requestHandler(request -> {
+      String name = request.getParam("name");
+      logger.info("Got request for name: " + name);
+      if (name == null) {
+        request.response().setStatusCode(400).end("Missing name");
+      } else {
+        // It's fine to call the greeter from the event loop as it's not blocking
+        request.response().end(greeter.sayHello(name));
+      }
+    }).listen(port, ar -> {
+      if (ar.succeeded()) {
+        logger.info("listening on port {}", port);
+        startFuture.complete();
+      } else {
+        startFuture.fail(ar.cause());
+      }
+    });
+  }
 }

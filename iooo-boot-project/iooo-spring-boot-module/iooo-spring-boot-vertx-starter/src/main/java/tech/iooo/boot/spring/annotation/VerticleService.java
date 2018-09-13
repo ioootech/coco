@@ -23,13 +23,13 @@ import org.springframework.stereotype.Component;
 @Inherited
 public @interface VerticleService {
 
-	/**
-	 * The value may indicate a suggestion for a logical component name, to be turned into a Spring bean in case of an autodetected component.
-	 *
-	 * @return the suggested component name, if any (or empty String otherwise)
-	 */
-	@AliasFor(annotation = Component.class)
-	String value() default "";
+  /**
+   * The value may indicate a suggestion for a logical component name, to be turned into a Spring bean in case of an autodetected component.
+   *
+   * @return the suggested component name, if any (or empty String otherwise)
+   */
+  @AliasFor(annotation = Component.class)
+  String value() default "";
 
-	String deploymentOption() default DEFAULT_DEPLOYMENT_OPTIONS;
+  String deploymentOption() default DEFAULT_DEPLOYMENT_OPTIONS;
 }

@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class IoooVerticleFactory implements VerticleFactory {
 
-	@Override
-	public String prefix() {
-		return VertxConfigConstants.IOOO_VERTICLE_PREFIX;
-	}
+  @Override
+  public String prefix() {
+    return VertxConfigConstants.IOOO_VERTICLE_PREFIX;
+  }
 
-	@Override
-	public Verticle createVerticle(String verticleName, ClassLoader classLoader) throws Exception {
-		String clazz = VerticleFactory.removePrefix(verticleName);
-		return IoooVerticleServicesHolder.activeVerticleServices().rowMap().get(clazz).values().iterator().next();
-	}
+  @Override
+  public Verticle createVerticle(String verticleName, ClassLoader classLoader) throws Exception {
+    String clazz = VerticleFactory.removePrefix(verticleName);
+    return IoooVerticleServicesHolder.activeVerticleServices().rowMap().get(clazz).values().iterator().next();
+  }
 }
