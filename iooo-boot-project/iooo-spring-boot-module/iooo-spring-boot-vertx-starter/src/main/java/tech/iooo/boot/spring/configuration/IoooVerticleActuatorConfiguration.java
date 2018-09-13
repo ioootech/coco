@@ -4,6 +4,7 @@ import org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfi
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import tech.iooo.boot.spring.endpoint.IoooDeployVerticleEndpoint;
 import tech.iooo.boot.spring.endpoint.IoooListVerticleEndpoint;
 import tech.iooo.boot.spring.endpoint.IoooUndeployVerticleEndpoint;
 
@@ -24,5 +25,10 @@ public class IoooVerticleActuatorConfiguration {
 	@Bean
 	public IoooUndeployVerticleEndpoint ioooUndeployVerticleEndpoint() {
 		return new IoooUndeployVerticleEndpoint();
+	}
+	
+	@Bean
+	public IoooDeployVerticleEndpoint ioooDeployVerticleEndpoint(){
+		return new IoooDeployVerticleEndpoint();
 	}
 }
