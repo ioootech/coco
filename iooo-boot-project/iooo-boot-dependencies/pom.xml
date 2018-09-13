@@ -65,6 +65,7 @@
     <httpcore.version>4.4.10</httpcore.version>
     <jackson.version>2.9.6</jackson.version>
     <jedis.version>2.9.0</jedis.version>
+    <jolokia-core.version>1.6.0</jolokia-core.version>
     <jersey.version>2.27</jersey.version>
     <jetty.version>9.4.12.RC1</jetty.version>
     <junit.version>4.12</junit.version>
@@ -410,6 +411,11 @@
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jolokia</groupId>
+        <artifactId>jolokia-core</artifactId>
+        <version>${jolokia-core.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.dagger</groupId>
