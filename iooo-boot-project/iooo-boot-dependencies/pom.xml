@@ -5,13 +5,13 @@
   <parent>
     <artifactId>iooo-boot-project</artifactId>
     <groupId>tech.iooo.boot</groupId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.10.RELEASE</version>
     <relativePath>..</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>iooo-boot-dependencies</artifactId>
-  <version>1.0.10-SNAPSHOT</version>
+  <version>1.0.10.RELEASE</version>
   <packaging>pom</packaging>
 
   <licenses>
@@ -41,7 +41,7 @@
     <java.version>1.8</java.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
-    <iooo-boot.version>1.0.10-SNAPSHOT</iooo-boot.version>
+    <iooo-boot.version>1.0.10.RELEASE</iooo-boot.version>
     <!-- spring boot versions -->
     <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
     <!-- Dependency versions -->
