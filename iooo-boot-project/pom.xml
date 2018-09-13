@@ -24,7 +24,7 @@
 	</properties>
 
 	<modules>
-		<module>iooo-boot-dependency</module>
+		<module>iooo-boot-dependencies</module>
 	</modules>
 	
 	<build>

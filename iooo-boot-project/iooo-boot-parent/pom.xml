@@ -5,7 +5,7 @@
 		<groupId>tech.iooo.boot</groupId>
 		<artifactId>iooo-boot-dependency</artifactId>
 		<version>1.0.10-SNAPSHOT</version>
-		<relativePath>../iooo-boot-dependency</relativePath>
+		<relativePath>../iooo-boot-dependencies</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
