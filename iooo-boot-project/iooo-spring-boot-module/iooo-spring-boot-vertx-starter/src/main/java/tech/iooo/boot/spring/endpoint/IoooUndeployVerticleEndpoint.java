@@ -31,17 +31,35 @@ public class IoooUndeployVerticleEndpoint {
 	public Health undeploy(@Selector String id) {
 		if (vertx.deploymentIDs().contains(id)) {
 			vertx.undeploy(id);
-			logger.info("undeployed verticle [{}],id [{}].", IoooVerticleServicesHolder.verticleServices().columnMap().get(id).keySet().iterator().next(), id);
-			IoooVerticleServicesHolder.verticleServices().columnKeySet().remove(id);
+			String name = IoooVerticleServicesHolder.activeVerticleServices().columnMap().get(id).keySet().iterator().next();
+			logger.info("undeploy verticle [{}],id [{}].", name, id);
 
-			List<Object> list = Lists.newArrayList();
-			Map<String, Object> detail = Maps.newHashMap();
-			IoooVerticleServicesHolder.verticleServices().cellSet().forEach(cell -> {
-				detail.put("name", cell.getRowKey());
-				detail.put("id", cell.getColumnKey());
-				list.add(detail);
-			});
-			return Health.up().withDetail("verticles", list).withDetail("timestamp", LocalDateTime.now()).build();
+			List<Object> active = Lists.newArrayList();
+			List<Object> inactive = Lists.newArrayList();
+
+			synchronized (IoooVerticleServicesHolder.class) {
+				IoooVerticleServicesHolder.inactiveVerticleServices().put(name, id, IoooVerticleServicesHolder.activeVerticleServices().get(name, id));
+				IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().remove(id);
+
+				IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
+					Map<String, Object> detail = Maps.newHashMap();
+					detail.put("name", cell.getRowKey());
+					detail.put("id", cell.getColumnKey());
+					active.add(detail);
+				});
+				IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
+					Map<String, Object> detail = Maps.newHashMap();
+					detail.put("name", cell.getRowKey());
+					detail.put("id", cell.getColumnKey());
+					inactive.add(detail);
+				});
+			}
+
+			return Health.up()
+					.withDetail("verticles", active)
+					.withDetail("inactive verticles", inactive)
+					.withDetail("timestamp", LocalDateTime.now())
+					.build();
 		} else {
 			return Health.unknown().withDetail("message", "unknown verticle").withDetail("timestamp", LocalDateTime.now()).build();
 		}

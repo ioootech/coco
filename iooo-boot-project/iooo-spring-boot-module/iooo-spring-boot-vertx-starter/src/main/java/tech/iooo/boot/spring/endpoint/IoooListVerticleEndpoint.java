@@ -30,13 +30,28 @@ public class IoooListVerticleEndpoint {
 		if (Objects.isNull(vertx)) {
 			return Health.down().withDetail("message", "vertx inactive").status(Status.DOWN).build();
 		}
-		List<Object> list = Lists.newArrayList();
-		IoooVerticleServicesHolder.verticleServices().cellSet().forEach(cell -> {
-			Map<String, Object> detail = Maps.newHashMap();
-			detail.put("name", cell.getRowKey());
-			detail.put("id", cell.getColumnKey());
-			list.add(detail);
-		});
-		return Health.up().withDetail("verticles", list).withDetail("timestamp", LocalDateTime.now()).status(Status.UP).build();
+
+		List<Object> active = Lists.newArrayList();
+		List<Object> inactive = Lists.newArrayList();
+
+		synchronized (IoooVerticleServicesHolder.class) {
+			IoooVerticleServicesHolder.activeVerticleServices().cellSet().forEach(cell -> {
+				Map<String, Object> detail = Maps.newHashMap();
+				detail.put("name", cell.getRowKey());
+				detail.put("id", cell.getColumnKey());
+				active.add(detail);
+			});
+			IoooVerticleServicesHolder.inactiveVerticleServices().cellSet().forEach(cell -> {
+				Map<String, Object> detail = Maps.newHashMap();
+				detail.put("name", cell.getRowKey());
+				detail.put("id", cell.getColumnKey());
+				inactive.add(detail);
+			});
+		}
+		return Health.up()
+				.withDetail("verticles", active)
+				.withDetail("inactive verticles", inactive)
+				.withDetail("timestamp", LocalDateTime.now())
+				.build();
 	}
 }

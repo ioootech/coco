@@ -48,9 +48,9 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 		applicationContext.getBeansWithAnnotation(VerticleService.class)
 				.forEach((name, bean) -> {
 					AbstractVerticle verticle = (AbstractVerticle) bean;
-					IoooVerticleServicesHolder.verticleServices().put(bean.getClass().getName(), "", verticle);
+					IoooVerticleServicesHolder.activeVerticleServices().put(bean.getClass().getName(), "", verticle);
 				});
-		IoooVerticleServicesHolder.verticleServices().values().forEach(verticle -> {
+		IoooVerticleServicesHolder.activeVerticleServices().values().forEach(verticle -> {
 			Class verticleClass = verticle.getClass();
 			VerticleService verticleService = verticle.getClass().getAnnotation(VerticleService.class);
 			DeploymentOptions deploymentOptions;
@@ -74,8 +74,8 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 					res -> {
 						if (res.succeeded()) {
 							logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", verticleClass.getSimpleName(), optionName, res.result());
-							IoooVerticleServicesHolder.verticleServices().row(verticleClass.getName()).remove("");
-							IoooVerticleServicesHolder.verticleServices().row(verticleClass.getName()).put(res.result(), verticle);
+							IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");
+							IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).put(res.result(), verticle);
 						} else {
 							logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
 						}
@@ -86,7 +86,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
 	@Override
 	public void stop() {
-		stop(() -> IoooVerticleServicesHolder.verticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
+		stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
 	}
 
 	@Override
