@@ -87,7 +87,7 @@
     <tomcat.version>9.0.11</tomcat.version>
     <undertow.version>2.0.13.Final</undertow.version>
     <mysql.version>8.0.12</mysql.version>
-    <vertx.version>3.5.3</vertx.version>
+    <vertx.version>3.5.4</vertx.version>
     <guava.version>26.0-jre</guava.version>
     <bytebuddy.version>1.8.17</bytebuddy.version>
     <commons-configuration2.version>2.3</commons-configuration2.version>
