@@ -1,6 +1,6 @@
 package tech.iooo.boot.spring.endpoint;
 
-import com.google.common.base.Splitter;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.vertx.core.AbstractVerticle;
@@ -40,14 +40,12 @@ public class IoooDeployVerticleEndpoint implements ApplicationContextAware {
   private ApplicationContext applicationContext;
 
   @WriteOperation
-  public Health deploy(@Selector String info) {
-    List<String> infos = Splitter.on("#").limit(1).splitToList(info);
-    String clazz = infos.get(0);
+  public Health deploy(@Selector String clazz, @Selector String config) {
     String deploymentConfig;
-    if (info.length() == 1) {
-      deploymentConfig = infos.get(1);
-    } else {
+    if (Strings.isNullOrEmpty(config)) {
       deploymentConfig = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+    } else {
+      deploymentConfig = config;
     }
     if (!applicationContext.containsBean(deploymentConfig)) {
       return Health.unknown()

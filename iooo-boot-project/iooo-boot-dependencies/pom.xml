@@ -5,13 +5,13 @@
   <parent>
     <artifactId>iooo-boot-project</artifactId>
     <groupId>tech.iooo.boot</groupId>
-    <version>1.0.10.RELEASE</version>
+    <version>1.0.11-RELEASE</version>
     <relativePath>..</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>iooo-boot-dependencies</artifactId>
-  <version>1.0.10.RELEASE</version>
+  <version>1.0.11-RELEASE</version>
   <packaging>pom</packaging>
 
   <licenses>
@@ -41,13 +41,13 @@
     <java.version>1.8</java.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
-    <iooo-boot.version>1.0.10.RELEASE</iooo-boot.version>
+    <iooo-boot.version>1.0.11-RELEASE</iooo-boot.version>
     <!-- spring boot versions -->
     <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.11</commons-codec.version>
     <commons-dbcp2.version>2.5.0</commons-dbcp2.version>
-    <commons-lang3.version>3.8</commons-lang3.version>
+    <commons-lang3.version>3.8.1</commons-lang3.version>
     <commons-pool.version>1.6</commons-pool.version>
     <commons-pool2.version>2.6.0</commons-pool2.version>
     <commons-io.version>2.6</commons-io.version>
@@ -57,36 +57,41 @@
     <HikariCP.version>3.2.0</HikariCP.version>
     <dagger.version>2.16</dagger.version>
     <org.apache.commons.version>1.3.2</org.apache.commons.version>
-    <protobuf.version>3.6.0</protobuf.version>
-    <grpc.version>1.14.0</grpc.version>
+    <protobuf.version>3.6.1</protobuf.version>
+    <grpc.version>1.15.1</grpc.version>
     <gson.version>2.8.5</gson.version>
-    <guice.version>4.2.0</guice.version>
+    <java-jwt.version>3.4.0</java-jwt.version>
+    <jjwt.version>0.10.5</jjwt.version>
+    <guice.version>4.2.1</guice.version>
     <httpclient.version>4.5.6</httpclient.version>
     <httpcore.version>4.4.10</httpcore.version>
-    <jackson.version>2.9.6</jackson.version>
+    <jackson.version>2.9.7</jackson.version>
     <jedis.version>2.9.0</jedis.version>
+    <jolokia-core.version>1.6.0</jolokia-core.version>
     <jersey.version>2.27</jersey.version>
-    <jetty.version>9.4.12.RC1</jetty.version>
+    <jetty.version>9.4.12.v20180830</jetty.version>
     <junit.version>4.12</junit.version>
-    <projectreactor.version>Bismuth-SR10</projectreactor.version>
-    <lettuce.version>5.0.5.RELEASE</lettuce.version>
+    <projectreactor.version>Californium-RELEASE</projectreactor.version>
+    <lettuce.version>5.1.0.RELEASE</lettuce.version>
     <log4j2.version>2.11.1</log4j2.version>
     <disruptor.version>3.4.2</disruptor.version>
     <logback.version>1.2.3</logback.version>
     <lombok.version>1.18.2</lombok.version>
     <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
-    <mybatis-plus-boot-starter.version>2.3.1</mybatis-plus-boot-starter.version>
-    <netty.version>4.1.29.Final</netty.version>
+    <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
+    <mybatis-plus-boot-starter-v3.version>3.0.4</mybatis-plus-boot-starter-v3.version>
+    <netty.version>4.1.30.Final</netty.version>
     <tink.version>1.2.0</tink.version>
+    <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.0</quartz.version>
     <slf4j.version>1.7.25</slf4j.version>
     <tomcat.version>9.0.11</tomcat.version>
     <undertow.version>2.0.13.Final</undertow.version>
     <mysql.version>8.0.12</mysql.version>
-    <vertx.version>3.5.3</vertx.version>
+    <vertx.version>3.5.4</vertx.version>
     <guava.version>26.0-jre</guava.version>
-    <bytebuddy.version>1.8.17</bytebuddy.version>
-    <commons-configuration2.version>2.2</commons-configuration2.version>
+    <bytebuddy.version>1.9.1</bytebuddy.version>
+    <commons-configuration2.version>2.3</commons-configuration2.version>
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <asm.version>6.2</asm.version>
     <org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
@@ -94,21 +99,22 @@
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.2</reactive-streams.version>
     <javassist.version>3.23.1-GA</javassist.version>
-    <cglib.version>3.2.7</cglib.version>
+    <cglib.version>3.2.8</cglib.version>
     <mybatis.version>3.4.6</mybatis.version>
     <mybatis-spring.version>1.3.2</mybatis-spring.version>
-    <mybatis-plus.version>2.3</mybatis-plus.version>
-    <fastjson.version>1.2.49</fastjson.version>
+    <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
+    <mybatis-plus-v3.version>2.3.3</mybatis-plus-v3.version>
+    <fastjson.version>1.2.51</fastjson.version>
     <okhttp.version>3.11.0</okhttp.version>
-    <rxjava.version>2.2.1</rxjava.version>
-    <snakeyaml.version>1.21</snakeyaml.version>
+    <rxjava.version>2.2.2</rxjava.version>
+    <snakeyaml.version>1.19</snakeyaml.version>
     <assertj-core.version>3.11.1</assertj-core.version>
     <mockito-core.version>2.19.1</mockito-core.version>
     <commons-collections4.version>4.2</commons-collections4.version>
     <hamcrest-library.version>1.3</hamcrest-library.version>
     <reflections.version>0.9.11</reflections.version>
     <java-verbal-expressions.version>1.5</java-verbal-expressions.version>
-    <transmittable-thread-local.version>2.6.1</transmittable-thread-local.version>
+    <transmittable-thread-local.version>2.8.1</transmittable-thread-local.version>
     <maven.version>3.5.4</maven.version>
     <maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
     <!-- Plugin versions -->
@@ -142,15 +148,16 @@
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
     <flatten-maven-plugin.version>1.0.1</flatten-maven-plugin.version>
     <vertx-maven-plugin.version>1.0.17</vertx-maven-plugin.version>
-    <protobuf-maven-plugin.version>0.5.1</protobuf-maven-plugin.version>
+    <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     <os-maven-plugin.version>1.6.0</os-maven-plugin.version>
     <protoc.version>3.6.1</protoc.version>
-    <protoc-gen-grpc-java.version>1.14.0</protoc-gen-grpc-java.version>
+    <protoc-gen-grpc-java.version>1.15.1</protoc-gen-grpc-java.version>
+    <vertx-protoc-gen-grpc-java.version>1.15.0</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.1.0</wagon-ssh.version>
     <wagon.version>3.1.0</wagon.version>
     <maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
-    <dockerfile-maven-plugin.version>1.4.4</dockerfile-maven-plugin.version>
+    <dockerfile-maven-plugin.version>1.4.6</dockerfile-maven-plugin.version>
     <arguments/>
     <vertx.verticle/>
   </properties>
@@ -213,6 +220,26 @@
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-yaml</artifactId>
         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-xml</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-protobuf</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.auth0</groupId>
+        <artifactId>java-jwt</artifactId>
+        <version>${java-jwt.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jjwt.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.gson</groupId>
@@ -374,7 +401,7 @@
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus</artifactId>
-        <version>${mybatis-plus.version}</version>
+        <version>${mybatis-plus-v2.version}</version>
       </dependency>
       <dependency>
         <groupId>com.mchange</groupId>
@@ -410,6 +437,11 @@
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jolokia</groupId>
+        <artifactId>jolokia-core</artifactId>
+        <version>${jolokia-core.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.dagger</groupId>
@@ -502,6 +534,11 @@
         <groupId>org.yaml</groupId>
         <artifactId>snakeyaml</artifactId>
         <version>${snakeyaml.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.velocity</groupId>
+        <artifactId>velocity</artifactId>
+        <version>${velocity.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -955,7 +992,7 @@
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus-boot-starter</artifactId>
-        <version>${mybatis-plus-boot-starter.version}</version>
+        <version>${mybatis-plus-boot-starter-v2.version}</version>
       </dependency>
       <dependency>
         <groupId>org.projectlombok</groupId>
