@@ -175,6 +175,11 @@
         <artifactId>iooo-spring-boot-vertx-starter</artifactId>
         <version>${iooo-boot.version}</version>
       </dependency>
+      <dependency>
+        <groupId>tech.iooo.boot</groupId>
+        <artifactId>iooo-boot-commonly-used</artifactId>
+        <version>${iooo-boot.version}</version>
+      </dependency>
       <!-- Third Party -->
       <dependency>
         <groupId>ch.qos.logback</groupId>

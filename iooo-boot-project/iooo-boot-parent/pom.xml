@@ -46,6 +46,7 @@
   <modules>
     <module>../iooo-boot-core</module>
     <module>../iooo-spring-boot-module</module>
+    <module>../iooo-boot-commonly-used</module>
   </modules>
 
   <build>
