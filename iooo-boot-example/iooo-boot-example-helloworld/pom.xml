@@ -38,6 +38,10 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>tech.iooo.boot</groupId>
+      <artifactId>iooo-boot-test</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

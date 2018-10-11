@@ -181,6 +181,11 @@
         <artifactId>iooo-boot-commonly-used</artifactId>
         <version>${iooo-boot.version}</version>
       </dependency>
+      <dependency>
+        <groupId>tech.iooo.boot</groupId>
+        <artifactId>iooo-boot-test</artifactId>
+        <version>${iooo-boot.version}</version>
+      </dependency>
       <!-- Third Party -->
       <dependency>
         <groupId>ch.qos.logback</groupId>
@@ -1118,26 +1123,8 @@
   <dependencies>
     <!-- Generally Useful Test Dependencies -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>${assertj-core.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>${mockito-core.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>${hamcrest-library.version}</version>
+      <groupId>tech.iooo.boot</groupId>
+      <artifactId>iooo-boot-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
