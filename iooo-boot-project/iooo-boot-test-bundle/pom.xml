@@ -8,7 +8,7 @@
     <relativePath>../iooo-boot-parent</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>iooo-boot-test</artifactId>
+  <artifactId>iooo-boot-test-bundle</artifactId>
 
   <dependencies>
     <dependency>
