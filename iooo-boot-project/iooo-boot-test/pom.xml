@@ -12,11 +12,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>tech.iooo.boot</groupId>
-      <artifactId>iooo-boot-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>compile</scope>
