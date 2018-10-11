@@ -37,11 +37,6 @@
       <artifactId>logback-classic</artifactId>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>tech.iooo.boot</groupId>
-      <artifactId>iooo-boot-test</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
