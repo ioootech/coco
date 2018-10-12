@@ -53,6 +53,9 @@
     <commons-io.version>2.6</commons-io.version>
     <curator.version>4.0.1</curator.version>
     <c3p0.version>0.9.5.2</c3p0.version>
+    <dubbo.version>2.6.4</dubbo.version>
+    <motan.version>1.1.1</motan.version>
+    <aspectjweaver.version>1.9.1</aspectjweaver.version>
     <hsqldb.version>2.4.1</hsqldb.version>
     <HikariCP.version>3.2.0</HikariCP.version>
     <dagger.version>2.16</dagger.version>
@@ -582,6 +585,36 @@
         <groupId>com.lmax</groupId>
         <artifactId>disruptor</artifactId>
         <version>${disruptor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>${dubbo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-core</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-transport-netty</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-springsupport</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-registry-zookeeper</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectjweaver.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
