@@ -92,6 +92,7 @@
     <tomcat.version>9.0.11</tomcat.version>
     <undertow.version>2.0.13.Final</undertow.version>
     <mysql.version>8.0.12</mysql.version>
+    <grpc-spring-boot-starter.version>2.0.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.5.4</vertx.version>
     <guava.version>26.0-jre</guava.version>
     <bytebuddy.version>1.9.1</bytebuddy.version>
@@ -610,6 +611,16 @@
         <groupId>com.lmax</groupId>
         <artifactId>disruptor</artifactId>
         <version>${disruptor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.devh</groupId>
+        <artifactId>grpc-server-spring-boot-starter</artifactId>
+        <version>${grpc-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.devh</groupId>
+        <artifactId>grpc-client-spring-boot-starter</artifactId>
+        <version>${grpc-spring-boot-starter.version}</version>
       </dependency>
       <dependency>
         <groupId>com.alibaba</groupId>
