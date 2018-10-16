@@ -163,6 +163,7 @@
     <maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
     <dockerfile-maven-plugin.version>1.4.7</dockerfile-maven-plugin.version>
+    <docker-maven-plugin.version>1.2.0</docker-maven-plugin.version>
     <arguments/>
     <vertx.verticle/>
   </properties>
@@ -1688,6 +1689,11 @@
             <tag>latest</tag>
             <contextDirectory>${project.build.directory}</contextDirectory>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.spotify</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>${docker-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
