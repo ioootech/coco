@@ -162,7 +162,7 @@
     <wagon.version>3.1.0</wagon.version>
     <maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
-    <dockerfile-maven-plugin.version>1.4.6</dockerfile-maven-plugin.version>
+    <dockerfile-maven-plugin.version>1.4.7</dockerfile-maven-plugin.version>
     <arguments/>
     <vertx.verticle/>
   </properties>
