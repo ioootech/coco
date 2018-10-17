@@ -165,6 +165,7 @@
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
     <dockerfile-maven-plugin.version>1.4.7</dockerfile-maven-plugin.version>
     <docker-maven-plugin.version>1.2.0</docker-maven-plugin.version>
+    <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
     <arguments/>
     <vertx.verticle/>
   </properties>
