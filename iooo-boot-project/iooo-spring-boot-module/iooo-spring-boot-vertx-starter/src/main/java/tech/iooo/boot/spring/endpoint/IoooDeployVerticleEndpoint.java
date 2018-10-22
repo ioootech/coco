@@ -30,7 +30,7 @@ import tech.iooo.boot.spring.configuration.VertxConfigConstants;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-@Endpoint(id = "verticles/deploy")
+@Endpoint(id = "verticles.deploy")
 public class IoooDeployVerticleEndpoint implements ApplicationContextAware {
 
   private static final Logger logger = LoggerFactory.getLogger(IoooDeployVerticleEndpoint.class);

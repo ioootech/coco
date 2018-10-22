@@ -5,13 +5,13 @@
   <parent>
     <artifactId>iooo-boot-project</artifactId>
     <groupId>tech.iooo.boot</groupId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <relativePath>..</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>iooo-boot-dependencies</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <packaging>pom</packaging>
 
   <licenses>
@@ -39,11 +39,12 @@
 
   <properties>
     <java.version>1.8</java.version>
+    <kotlin.version>1.2.71</kotlin.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
-    <iooo-boot.version>1.1.0</iooo-boot.version>
+    <iooo-boot.version>1.1.1</iooo-boot.version>
     <!-- spring boot versions -->
-    <spring.boot.version>2.0.5.RELEASE</spring.boot.version>
+    <spring.boot.version>2.0.6.RELEASE</spring.boot.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.11</commons-codec.version>
     <commons-dbcp2.version>2.5.0</commons-dbcp2.version>
@@ -53,6 +54,10 @@
     <commons-io.version>2.6</commons-io.version>
     <curator.version>4.0.1</curator.version>
     <c3p0.version>0.9.5.2</c3p0.version>
+    <dubbo.version>2.6.4</dubbo.version>
+    <dubbo-spring-boot-starter.version>0.2.0</dubbo-spring-boot-starter.version>
+    <motan.version>1.1.1</motan.version>
+    <aspectjweaver.version>1.9.1</aspectjweaver.version>
     <hsqldb.version>2.4.1</hsqldb.version>
     <HikariCP.version>3.2.0</HikariCP.version>
     <dagger.version>2.16</dagger.version>
@@ -71,6 +76,7 @@
     <jersey.version>2.27</jersey.version>
     <jetty.version>9.4.12.v20180830</jetty.version>
     <junit.version>4.12</junit.version>
+    <junit-jupiter.version>5.3.1</junit-jupiter.version>
     <projectreactor.version>Californium-RELEASE</projectreactor.version>
     <lettuce.version>5.1.0.RELEASE</lettuce.version>
     <log4j2.version>2.11.1</log4j2.version>
@@ -88,6 +94,7 @@
     <tomcat.version>9.0.11</tomcat.version>
     <undertow.version>2.0.13.Final</undertow.version>
     <mysql.version>8.0.12</mysql.version>
+    <grpc-spring-boot-starter.version>2.0.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.5.4</vertx.version>
     <guava.version>26.0-jre</guava.version>
     <bytebuddy.version>1.9.1</bytebuddy.version>
@@ -157,7 +164,10 @@
     <wagon.version>3.1.0</wagon.version>
     <maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
-    <dockerfile-maven-plugin.version>1.4.6</dockerfile-maven-plugin.version>
+    <dockerfile-maven-plugin.version>1.4.7</dockerfile-maven-plugin.version>
+    <docker-maven-plugin.version>1.2.0</docker-maven-plugin.version>
+    <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
+    <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <arguments/>
     <vertx.verticle/>
   </properties>
@@ -173,6 +183,16 @@
       <dependency>
         <groupId>tech.iooo.boot</groupId>
         <artifactId>iooo-spring-boot-vertx-starter</artifactId>
+        <version>${iooo-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.iooo.boot</groupId>
+        <artifactId>iooo-boot-commonly-used</artifactId>
+        <version>${iooo-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.iooo.boot</groupId>
+        <artifactId>iooo-boot-test-bundle</artifactId>
         <version>${iooo-boot.version}</version>
       </dependency>
       <!-- Third Party -->
@@ -229,6 +249,36 @@
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-protobuf</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-hibernate5</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-hppc</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-json-org</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-afterburner</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.module</groupId>
+        <artifactId>jackson-module-kotlin</artifactId>
         <version>${jackson.version}</version>
       </dependency>
       <dependency>
@@ -332,6 +382,21 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit-jupiter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit-jupiter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit-jupiter.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -558,6 +623,51 @@
         <version>${disruptor.version}</version>
       </dependency>
       <dependency>
+        <groupId>net.devh</groupId>
+        <artifactId>grpc-server-spring-boot-starter</artifactId>
+        <version>${grpc-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.devh</groupId>
+        <artifactId>grpc-client-spring-boot-starter</artifactId>
+        <version>${grpc-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>${dubbo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>${dubbo-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-core</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-transport-netty</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-springsupport</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.weibo</groupId>
+        <artifactId>motan-registry-zookeeper</artifactId>
+        <version>${motan.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectjweaver.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-api</artifactId>
         <version>${log4j2.version}</version>
@@ -571,6 +681,41 @@
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-slf4j-impl</artifactId>
         <version>${log4j2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib-common</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib-jdk7</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-stdlib-jdk8</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-reflect</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-compiler</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-allopen</artifactId>
+        <version>${kotlin.version}</version>
       </dependency>
 
       <dependency>
@@ -1096,29 +1241,6 @@
   </dependencyManagement>
   <dependencies>
     <!-- Generally Useful Test Dependencies -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>${assertj-core.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>${mockito-core.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>${hamcrest-library.version}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -1567,6 +1689,11 @@
           <version>${spring.boot.version}</version>
         </plugin>
         <plugin>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-maven-plugin</artifactId>
+          <version>${kotlin.version}</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-plugin-plugin</artifactId>
           <version>${maven-plugin-plugin.version}</version>
@@ -1616,6 +1743,11 @@
             <tag>latest</tag>
             <contextDirectory>${project.build.directory}</contextDirectory>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.spotify</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>${docker-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

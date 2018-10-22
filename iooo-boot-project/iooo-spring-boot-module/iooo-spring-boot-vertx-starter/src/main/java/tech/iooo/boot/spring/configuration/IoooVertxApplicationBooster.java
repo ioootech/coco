@@ -40,6 +40,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
   @Override
   public void stop(Runnable callback) {
     callback.run();
+    vertx.close();
     this.running = false;
   }
 

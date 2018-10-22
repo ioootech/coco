@@ -4,7 +4,7 @@
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-dependencies</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <relativePath>../iooo-boot-dependencies</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -46,6 +46,8 @@
   <modules>
     <module>../iooo-boot-core</module>
     <module>../iooo-spring-boot-module</module>
+    <module>../iooo-boot-commonly-used</module>
+    <module>../iooo-boot-test-bundle</module>
   </modules>
 
   <build>

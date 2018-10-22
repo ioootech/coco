@@ -20,7 +20,7 @@ import tech.iooo.boot.spring.configuration.IoooVerticleServicesHolder;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-@Endpoint(id = "verticles/undeploy")
+@Endpoint(id = "verticles.undeploy")
 public class IoooUndeployVerticleEndpoint {
 
   private static final Logger logger = LoggerFactory.getLogger(IoooUndeployVerticleEndpoint.class);
