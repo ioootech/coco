@@ -175,6 +175,9 @@
     <docker-maven-plugin.version>1.2.0</docker-maven-plugin.version>
     <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+    <takari-lifecycle-plugin.version>1.13.7</takari-lifecycle-plugin.version>
+    <license-maven-plugin.version>3.0</license-maven-plugin.version>
+    <tech.iooo.licenseHeader>https://coco.iooo.tech/support/license-header.txt</tech.iooo.licenseHeader>
     <arguments/>
     <vertx.verticle/>
   </properties>
@@ -1807,6 +1810,55 @@
           <groupId>com.spotify</groupId>
           <artifactId>docker-maven-plugin</artifactId>
           <version>${docker-maven-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>io.takari.maven.plugins</groupId>
+          <artifactId>takari-lifecycle-plugin</artifactId>
+          <version>${takari-lifecycle-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${license-maven-plugin.version}</version>
+          <configuration>
+            <aggregate>true</aggregate>
+            <strictCheck>true</strictCheck>
+            <header>${tech.iooo.licenseHeader}</header>
+            <useDefaultExcludes>false</useDefaultExcludes>
+            <includes>
+              <include>**/pom.xml</include>
+              <include>**/*.xml</include>
+              <include>**/*.xsd</include>
+              <include>**/*.xjb</include>
+              <include>**/*.mdo</include>
+              <include>**/*.properties</include>
+              <include>**/*.java</include>
+              <include>**/*.groovy</include>
+              <include>**/*.scala</include>
+              <include>**/*.aj</include>
+              <include>**/*.js</include>
+              <include>**/*.css</include>
+            </includes>
+            <excludes>
+              <exclude>**/target/**</exclude>
+              <exclude>**/conf/**</exclude>
+              <exclude>**/config/**</exclude>
+              <exclude>**/logs/**</exclude>
+              <exclude>**/*.log</exclude>
+              <exclude>**/.*</exclude>
+              <exclude>**/pkg/**</exclude>
+              <exclude>**/.idea/**</exclude>
+              <exclude>**/*.properties</exclude>
+              <exclude>**/pom.xml.releaseBackup</exclude>
+              <exclude>**/*.sh</exclude>
+              <exclude>**/src/test/**</exclude>
+            </excludes>
+            <mapping>
+              <scala>JAVADOC_STYLE</scala>
+              <xjb>XML_STYLE</xjb>
+              <mdo>XML_STYLE</mdo>
+            </mapping>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
