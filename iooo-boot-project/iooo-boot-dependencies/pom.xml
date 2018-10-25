@@ -1847,6 +1847,7 @@
               <exclude>**/*.log</exclude>
               <exclude>**/.*</exclude>
               <exclude>**/pkg/**</exclude>
+              <exclude>**/.mvn/**</exclude>
               <exclude>**/.idea/**</exclude>
               <exclude>**/*.properties</exclude>
               <exclude>**/pom.xml.releaseBackup</exclude>
