@@ -48,6 +48,7 @@
     <module>../iooo-spring-boot-module</module>
     <module>../iooo-boot-commonly-used</module>
     <module>../iooo-boot-test-bundle</module>
+    <module>../iooo-boot-maven-wrapper</module>
   </modules>
 
   <build>
