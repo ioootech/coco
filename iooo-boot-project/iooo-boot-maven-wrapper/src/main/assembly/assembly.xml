@@ -6,7 +6,7 @@
   <formats>
     <format>zip</format>
   </formats>
-
+  <includeBaseDirectory>false</includeBaseDirectory>
   <!-- Adds dependencies to zip package under lib directory -->
   <!-- Project artifact is not copied under library directory since it is added to the root directory of the zip package. -->
   <fileSets>

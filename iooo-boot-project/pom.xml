@@ -25,6 +25,7 @@
 
   <modules>
     <module>iooo-boot-dependencies</module>
+    <module>iooo-boot-maven-wrapper</module>
   </modules>
 
   <build>
