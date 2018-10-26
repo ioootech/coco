@@ -20,7 +20,7 @@ package tech.iooo.boot.core.threadpool.support.eager;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
@@ -32,11 +32,11 @@ public class EagerThreadPool implements ThreadPool {
 
   @Override
   public Executor getExecutor(URL url) {
-    String name = url.getParameter(IoooConstants.THREAD_NAME_KEY, IoooConstants.DEFAULT_THREAD_NAME);
-    int cores = url.getParameter(IoooConstants.CORE_THREADS_KEY, IoooConstants.DEFAULT_CORE_THREADS);
-    int threads = url.getParameter(IoooConstants.THREADS_KEY, Integer.MAX_VALUE);
-    int queues = url.getParameter(IoooConstants.QUEUES_KEY, IoooConstants.DEFAULT_QUEUES);
-    int alive = url.getParameter(IoooConstants.ALIVE_KEY, IoooConstants.DEFAULT_ALIVE);
+    String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
+    int cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);
+    int threads = url.getParameter(Constants.THREADS_KEY, Integer.MAX_VALUE);
+    int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
+    int alive = url.getParameter(Constants.ALIVE_KEY, Constants.DEFAULT_ALIVE);
 
     // init queue and executor
     TaskQueue<Runnable> taskQueue = new TaskQueue<Runnable>(queues <= 0 ? 1 : queues);

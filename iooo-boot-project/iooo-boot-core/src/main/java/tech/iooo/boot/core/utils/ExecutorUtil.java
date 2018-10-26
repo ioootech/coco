@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 
 public class ExecutorUtil {
 
@@ -122,9 +122,9 @@ public class ExecutorUtil {
    * @return new url with updated thread name
    */
   public static URL setThreadName(URL url, String defaultName) {
-    String name = url.getParameter(IoooConstants.THREAD_NAME_KEY, defaultName);
+    String name = url.getParameter(Constants.THREAD_NAME_KEY, defaultName);
     name = name + "-" + url.getAddress();
-    url = url.addParameter(IoooConstants.THREAD_NAME_KEY, name);
+    url = url.addParameter(Constants.THREAD_NAME_KEY, name);
     return url;
   }
 }

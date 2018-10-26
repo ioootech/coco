@@ -22,7 +22,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
@@ -36,9 +36,9 @@ public class FixedThreadPool implements ThreadPool {
 
   @Override
   public Executor getExecutor(URL url) {
-    String name = url.getParameter(IoooConstants.THREAD_NAME_KEY, IoooConstants.DEFAULT_THREAD_NAME);
-    int threads = url.getParameter(IoooConstants.THREADS_KEY, IoooConstants.DEFAULT_THREADS);
-    int queues = url.getParameter(IoooConstants.QUEUES_KEY, IoooConstants.DEFAULT_QUEUES);
+    String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
+    int threads = url.getParameter(Constants.THREADS_KEY, Constants.DEFAULT_THREADS);
+    int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
     return new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS,
         queues == 0 ? new SynchronousQueue<Runnable>() :
             (queues < 0 ? new LinkedBlockingQueue<Runnable>()

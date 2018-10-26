@@ -22,7 +22,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
@@ -36,11 +36,11 @@ public class CachedThreadPool implements ThreadPool {
 
   @Override
   public Executor getExecutor(URL url) {
-    String name = url.getParameter(IoooConstants.THREAD_NAME_KEY, IoooConstants.DEFAULT_THREAD_NAME);
-    int cores = url.getParameter(IoooConstants.CORE_THREADS_KEY, IoooConstants.DEFAULT_CORE_THREADS);
-    int threads = url.getParameter(IoooConstants.THREADS_KEY, Integer.MAX_VALUE);
-    int queues = url.getParameter(IoooConstants.QUEUES_KEY, IoooConstants.DEFAULT_QUEUES);
-    int alive = url.getParameter(IoooConstants.ALIVE_KEY, IoooConstants.DEFAULT_ALIVE);
+    String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
+    int cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);
+    int threads = url.getParameter(Constants.THREADS_KEY, Integer.MAX_VALUE);
+    int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
+    int alive = url.getParameter(Constants.ALIVE_KEY, Constants.DEFAULT_ALIVE);
     return new ThreadPoolExecutor(cores, threads, alive, TimeUnit.MILLISECONDS,
         queues == 0 ? new SynchronousQueue<Runnable>() :
             (queues < 0 ? new LinkedBlockingQueue<Runnable>()

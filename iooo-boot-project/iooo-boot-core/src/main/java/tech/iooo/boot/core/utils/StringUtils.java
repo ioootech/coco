@@ -40,7 +40,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.io.UnsafeStringWriter;
 
 /**
@@ -1597,7 +1597,7 @@ public abstract class StringUtils {
     if (values == null || values.length() == 0) {
       return false;
     }
-    return isContains(IoooConstants.COMMA_SPLIT_PATTERN.split(values), value);
+    return isContains(Constants.COMMA_SPLIT_PATTERN.split(values), value);
   }
 
   /**
@@ -1839,12 +1839,12 @@ public abstract class StringUtils {
 
   public static String getServiceKey(Map<String, String> ps) {
     StringBuilder buf = new StringBuilder();
-    String group = ps.get(IoooConstants.GROUP_KEY);
+    String group = ps.get(Constants.GROUP_KEY);
     if (group != null && group.length() > 0) {
       buf.append(group).append("/");
     }
-    buf.append(ps.get(IoooConstants.INTERFACE_KEY));
-    String version = ps.get(IoooConstants.VERSION_KEY);
+    buf.append(ps.get(Constants.INTERFACE_KEY));
+    String version = ps.get(Constants.VERSION_KEY);
     if (version != null && version.length() > 0) {
       buf.append(":").append(version);
     }
@@ -1900,7 +1900,7 @@ public abstract class StringUtils {
     StringBuilder buf = new StringBuilder();
     for (Object arg : args) {
       if (buf.length() > 0) {
-        buf.append(IoooConstants.COMMA_SEPARATOR);
+        buf.append(Constants.COMMA_SEPARATOR);
       }
       if (arg == null || ReflectionUtils.isPrimitives(arg.getClass())) {
         buf.append(arg);

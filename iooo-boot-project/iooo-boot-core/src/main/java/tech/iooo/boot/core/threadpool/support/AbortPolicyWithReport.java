@@ -28,7 +28,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.utils.JVMUtil;
 
 /**
@@ -75,7 +75,7 @@ public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy {
     Executors.newSingleThreadExecutor().execute(new Runnable() {
       @Override
       public void run() {
-        String dumpPath = url.getParameter(IoooConstants.DUMP_DIRECTORY, System.getProperty("user.home"));
+        String dumpPath = url.getParameter(Constants.DUMP_DIRECTORY, System.getProperty("user.home"));
 
         SimpleDateFormat sdf;
 

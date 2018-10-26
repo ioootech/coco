@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.IoooConstants;
+import tech.iooo.boot.core.constants.Constants;
 
 public class UrlUtils {
 
@@ -39,7 +39,7 @@ public class UrlUtils {
     if (address.contains("://") || address.contains(URL_PARAM_STARTING_SYMBOL)) {
       url = address;
     } else {
-      String[] addresses = IoooConstants.COMMA_SPLIT_PATTERN.split(address);
+      String[] addresses = Constants.COMMA_SPLIT_PATTERN.split(address);
       url = addresses[0];
       if (addresses.length > 1) {
         StringBuilder backup = new StringBuilder();
@@ -49,7 +49,7 @@ public class UrlUtils {
           }
           backup.append(addresses[i]);
         }
-        url += URL_PARAM_STARTING_SYMBOL + IoooConstants.BACKUP_KEY + "=" + backup.toString();
+        url += URL_PARAM_STARTING_SYMBOL + Constants.BACKUP_KEY + "=" + backup.toString();
       }
     }
     String defaultProtocol = defaults == null ? null : defaults.get("protocol");
@@ -132,7 +132,7 @@ public class UrlUtils {
     if (address == null || address.length() == 0) {
       return null;
     }
-    String[] addresses = IoooConstants.REGISTRY_SPLIT_PATTERN.split(address);
+    String[] addresses = Constants.REGISTRY_SPLIT_PATTERN.split(address);
     if (addresses == null || addresses.length == 0) {
       return null; //here won't be empty
     }
@@ -339,19 +339,19 @@ public class UrlUtils {
       version = service.substring(i + 1);
       service = service.substring(0, i);
     }
-    return URL.valueOf(IoooConstants.EMPTY_PROTOCOL + "://0.0.0.0/" + service + URL_PARAM_STARTING_SYMBOL
-        + IoooConstants.CATEGORY_KEY + "=" + category
-        + (group == null ? "" : "&" + IoooConstants.GROUP_KEY + "=" + group)
-        + (version == null ? "" : "&" + IoooConstants.VERSION_KEY + "=" + version));
+    return URL.valueOf(Constants.EMPTY_PROTOCOL + "://0.0.0.0/" + service + URL_PARAM_STARTING_SYMBOL
+        + Constants.CATEGORY_KEY + "=" + category
+        + (group == null ? "" : "&" + Constants.GROUP_KEY + "=" + group)
+        + (version == null ? "" : "&" + Constants.VERSION_KEY + "=" + version));
   }
 
   public static boolean isMatchCategory(String category, String categories) {
     if (categories == null || categories.length() == 0) {
-      return IoooConstants.DEFAULT_CATEGORY.equals(category);
-    } else if (categories.contains(IoooConstants.ANY_VALUE)) {
+      return Constants.DEFAULT_CATEGORY.equals(category);
+    } else if (categories.contains(Constants.ANY_VALUE)) {
       return true;
-    } else if (categories.contains(IoooConstants.REMOVE_VALUE_PREFIX)) {
-      return !categories.contains(IoooConstants.REMOVE_VALUE_PREFIX + category);
+    } else if (categories.contains(Constants.REMOVE_VALUE_PREFIX)) {
+      return !categories.contains(Constants.REMOVE_VALUE_PREFIX + category);
     } else {
       return categories.contains(category);
     }
@@ -360,29 +360,29 @@ public class UrlUtils {
   public static boolean isMatch(URL consumerUrl, URL providerUrl) {
     String consumerInterface = consumerUrl.getServiceInterface();
     String providerInterface = providerUrl.getServiceInterface();
-    if (!(IoooConstants.ANY_VALUE.equals(consumerInterface) || StringUtils.isEquals(consumerInterface, providerInterface))) {
+    if (!(Constants.ANY_VALUE.equals(consumerInterface) || StringUtils.isEquals(consumerInterface, providerInterface))) {
       return false;
     }
 
-    if (!isMatchCategory(providerUrl.getParameter(IoooConstants.CATEGORY_KEY, IoooConstants.DEFAULT_CATEGORY),
-        consumerUrl.getParameter(IoooConstants.CATEGORY_KEY, IoooConstants.DEFAULT_CATEGORY))) {
+    if (!isMatchCategory(providerUrl.getParameter(Constants.CATEGORY_KEY, Constants.DEFAULT_CATEGORY),
+        consumerUrl.getParameter(Constants.CATEGORY_KEY, Constants.DEFAULT_CATEGORY))) {
       return false;
     }
-    if (!providerUrl.getParameter(IoooConstants.ENABLED_KEY, true)
-        && !IoooConstants.ANY_VALUE.equals(consumerUrl.getParameter(IoooConstants.ENABLED_KEY))) {
+    if (!providerUrl.getParameter(Constants.ENABLED_KEY, true)
+        && !Constants.ANY_VALUE.equals(consumerUrl.getParameter(Constants.ENABLED_KEY))) {
       return false;
     }
 
-    String consumerGroup = consumerUrl.getParameter(IoooConstants.GROUP_KEY);
-    String consumerVersion = consumerUrl.getParameter(IoooConstants.VERSION_KEY);
-    String consumerClassifier = consumerUrl.getParameter(IoooConstants.CLASSIFIER_KEY, IoooConstants.ANY_VALUE);
+    String consumerGroup = consumerUrl.getParameter(Constants.GROUP_KEY);
+    String consumerVersion = consumerUrl.getParameter(Constants.VERSION_KEY);
+    String consumerClassifier = consumerUrl.getParameter(Constants.CLASSIFIER_KEY, Constants.ANY_VALUE);
 
-    String providerGroup = providerUrl.getParameter(IoooConstants.GROUP_KEY);
-    String providerVersion = providerUrl.getParameter(IoooConstants.VERSION_KEY);
-    String providerClassifier = providerUrl.getParameter(IoooConstants.CLASSIFIER_KEY, IoooConstants.ANY_VALUE);
-    return (IoooConstants.ANY_VALUE.equals(consumerGroup) || StringUtils.isEquals(consumerGroup, providerGroup) || StringUtils.isContains(consumerGroup, providerGroup))
-        && (IoooConstants.ANY_VALUE.equals(consumerVersion) || StringUtils.isEquals(consumerVersion, providerVersion))
-        && (consumerClassifier == null || IoooConstants.ANY_VALUE.equals(consumerClassifier) || StringUtils.isEquals(consumerClassifier, providerClassifier));
+    String providerGroup = providerUrl.getParameter(Constants.GROUP_KEY);
+    String providerVersion = providerUrl.getParameter(Constants.VERSION_KEY);
+    String providerClassifier = providerUrl.getParameter(Constants.CLASSIFIER_KEY, Constants.ANY_VALUE);
+    return (Constants.ANY_VALUE.equals(consumerGroup) || StringUtils.isEquals(consumerGroup, providerGroup) || StringUtils.isContains(consumerGroup, providerGroup))
+        && (Constants.ANY_VALUE.equals(consumerVersion) || StringUtils.isEquals(consumerVersion, providerVersion))
+        && (consumerClassifier == null || Constants.ANY_VALUE.equals(consumerClassifier) || StringUtils.isEquals(consumerClassifier, providerClassifier));
   }
 
   public static boolean isMatchGlobPattern(String pattern, String value, URL param) {
@@ -427,12 +427,12 @@ public class UrlUtils {
   }
 
   public static boolean isServiceKeyMatch(URL pattern, URL value) {
-    return pattern.getParameter(IoooConstants.INTERFACE_KEY).equals(
-        value.getParameter(IoooConstants.INTERFACE_KEY))
-        && isItemMatch(pattern.getParameter(IoooConstants.GROUP_KEY),
-        value.getParameter(IoooConstants.GROUP_KEY))
-        && isItemMatch(pattern.getParameter(IoooConstants.VERSION_KEY),
-        value.getParameter(IoooConstants.VERSION_KEY));
+    return pattern.getParameter(Constants.INTERFACE_KEY).equals(
+        value.getParameter(Constants.INTERFACE_KEY))
+        && isItemMatch(pattern.getParameter(Constants.GROUP_KEY),
+        value.getParameter(Constants.GROUP_KEY))
+        && isItemMatch(pattern.getParameter(Constants.VERSION_KEY),
+        value.getParameter(Constants.VERSION_KEY));
   }
 
   /**

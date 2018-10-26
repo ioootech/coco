@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-public abstract class IoooConstants {
+public abstract class Constants {
 
   /**
    * line separator
