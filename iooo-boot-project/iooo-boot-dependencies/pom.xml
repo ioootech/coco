@@ -126,7 +126,7 @@
     <aether.version>1.1.0</aether.version>
     <newrelic.version>4.7.0</newrelic.version>
     <rxjava.version>2.2.2</rxjava.version>
-    <snakeyaml.version>1.19</snakeyaml.version>
+    <snakeyaml.version>1.23</snakeyaml.version>
     <assertj-core.version>3.11.1</assertj-core.version>
     <mockito-core.version>2.19.1</mockito-core.version>
     <commons-collections4.version>4.2</commons-collections4.version>
@@ -156,7 +156,7 @@
     <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-    <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+    <maven-shade-plugin.version>3.2.0</maven-shade-plugin.version>
     <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
