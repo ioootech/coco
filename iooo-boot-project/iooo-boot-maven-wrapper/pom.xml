@@ -45,7 +45,9 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
+        <version>${maven-deploy-plugin.version}</version>
         <configuration>
           <groupId>${project.groupId}</groupId>
           <artifactId>${project.artifactId}</artifactId>
