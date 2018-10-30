@@ -1,55 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-parent</artifactId>
     <version>1.1.2-SNAPSHOT</version>
     <relativePath>../iooo-boot-parent</relativePath>
   </parent>
+  <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>iooo-spring-boot-module</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>iooo-boot-netty-module</artifactId>
 
-  <name>iooo-boot :: iooo-spring-boot-module</name>
-  <description>iooo-spring-boot-module</description>
-
-  <modules>
-    <module>iooo-spring-boot-vertx-starter</module>
-  </modules>
+  <name>iooo-boot :: iooo-boot-netty-module</name>
+  <description>iooo-boot-netty-module</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-configuration-processor</artifactId>
-      <optional>true</optional>
+      <groupId>tech.iooo.boot</groupId>
+      <artifactId>iooo-boot-core</artifactId>
     </dependency>
     <dependency>
       <groupId>tech.iooo.boot</groupId>
-      <artifactId>iooo-boot-core</artifactId>
+      <artifactId>iooo-boot-commonly-used</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-all</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
-
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>tech.iooo.boot</groupId>
+      <artifactId>iooo-boot-test-bundle</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -61,5 +58,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>

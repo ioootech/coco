@@ -9,6 +9,9 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>iooo-boot-test-bundle</artifactId>
+  
+  <name>iooo-boot :: iooo-boot-test-bundle</name>
+  <description>iooo-boot-test-bundle</description>
 
   <dependencies>
     <dependency>

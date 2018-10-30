@@ -10,7 +10,9 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>iooo-boot-commonly-used</artifactId>
-
+  <name>iooo-boot :: iooo-boot-commonly-used</name>
+  <description>iooo-boot-commonly-used</description>
+  
   <dependencies>
     <dependency>
       <groupId>ch.qos.logback</groupId>

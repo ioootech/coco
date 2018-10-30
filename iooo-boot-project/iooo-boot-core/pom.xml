@@ -12,7 +12,8 @@
   <packaging>jar</packaging>
 
   <artifactId>iooo-boot-core</artifactId>
-  <version>1.1.2-SNAPSHOT</version>
+  <name>iooo-boot :: iooo-boot-core</name>
+  <description>iooo-boot-core</description>
 
   <properties>
     <logback.level>debug</logback.level>

@@ -12,8 +12,8 @@
   <artifactId>iooo-boot-parent</artifactId>
   <packaging>pom</packaging>
 
-  <name>iooo-boot-parent</name>
-  <url>http://maven.apache.org</url>
+  <name>iooo-boot :: iooo-boot-parent</name>
+  <description>iooo-boot-parent</description>
 
   <properties>
     <main.basedir>${basedir}/../..</main.basedir>
@@ -106,6 +106,7 @@
     <module>../iooo-spring-boot-module</module>
     <module>../iooo-boot-commonly-used</module>
     <module>../iooo-boot-test-bundle</module>
+    <module>../iooo-boot-netty-module</module>
   </modules>
 
   <build>

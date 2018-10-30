@@ -14,7 +14,7 @@
   <artifactId>iooo-spring-boot-vertx-starter</artifactId>
   <packaging>jar</packaging>
 
-  <name>iooo-spring-boot-vertx-starter</name>
+  <name>iooo-boot :: iooo-spring-boot-vertx-starter</name>
   <description>Spring Boot with Vert.x support</description>
 
   <properties>

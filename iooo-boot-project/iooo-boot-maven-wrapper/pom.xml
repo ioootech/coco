@@ -13,7 +13,8 @@
 
   <artifactId>iooo-boot-maven-wrapper</artifactId>
 
-  <name>iooo-boot-maven-wrapper</name>
+  <name>iooo-boot :: iooo-boot-maven-wrapper</name>
+  <description>iooo-boot-maven-wrapper</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
