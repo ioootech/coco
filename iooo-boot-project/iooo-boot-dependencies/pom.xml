@@ -207,6 +207,11 @@
       </dependency>
       <dependency>
         <groupId>tech.iooo.boot</groupId>
+        <artifactId>iooo-boot-netty-module</artifactId>
+        <version>${iooo-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.iooo.boot</groupId>
         <artifactId>iooo-boot-maven-wrapper</artifactId>
         <version>${iooo-boot.version}</version>
       </dependency>
