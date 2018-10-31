@@ -4,7 +4,7 @@
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-dependencies</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <relativePath>../iooo-boot-dependencies</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -12,8 +12,8 @@
   <artifactId>iooo-boot-parent</artifactId>
   <packaging>pom</packaging>
 
-  <name>iooo-boot-parent</name>
-  <url>http://maven.apache.org</url>
+  <name>iooo-boot :: iooo-boot-parent</name>
+  <description>iooo-boot-parent</description>
 
   <properties>
     <main.basedir>${basedir}/../..</main.basedir>
@@ -32,11 +32,69 @@
     </profile>
     <profile>
       <id>sign</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jarsigner-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>iooo-license</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>wrapper</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>tech.iooo.boot</groupId>
+          <artifactId>iooo-boot-maven-wrapper</artifactId>
+          <version>${iooo-boot.version}</version>
+          <type>zip</type>
+          <scope>provided</scope>
+          <classifier>release</classifier>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>unpack-wrapper</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <includeGroupIds>${project.groupId}</includeGroupIds>
+                  <includeArtifactIds>iooo-boot-maven-wrapper</includeArtifactIds>
+                  <overWriteReleases>false</overWriteReleases>
+                  <overWriteSnapshots>false</overWriteSnapshots>
+                  <overWriteIfNewer>true</overWriteIfNewer>
+                  <outputDirectory>${project.basedir}</outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -48,6 +106,7 @@
     <module>../iooo-spring-boot-module</module>
     <module>../iooo-boot-commonly-used</module>
     <module>../iooo-boot-test-bundle</module>
+    <module>../iooo-boot-netty-module</module>
   </modules>
 
   <build>

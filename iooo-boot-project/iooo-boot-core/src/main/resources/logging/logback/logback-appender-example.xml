@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://github.com/logstash/logstash-logback-encoder -->
+<included>
+  <include resource="logging/logback/properties.xml"/>
+  <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <param name="Encoding" value="UTF-8"/>
+    <remoteHost>localhost</remoteHost>
+    <port>5044</port>
+    <!-- encoder is required -->
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+  </appender>
+  <!--<logger name="tech.iooo.coco.booster.webservice.filter.LoggingFilter">-->
+  <!--<level value="INFO"/>-->
+  <!--<appender-ref ref="LOGSTASH"/>-->
+  <!--</logger>-->
+</included>

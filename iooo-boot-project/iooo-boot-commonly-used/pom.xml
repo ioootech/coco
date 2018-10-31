@@ -4,14 +4,20 @@
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-parent</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <relativePath>../iooo-boot-parent</relativePath>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>iooo-boot-commonly-used</artifactId>
-
+  <name>iooo-boot :: iooo-boot-commonly-used</name>
+  <description>iooo-boot-commonly-used</description>
+  
   <dependencies>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-io</artifactId>
