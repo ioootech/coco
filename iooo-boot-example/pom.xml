@@ -12,8 +12,8 @@
   <artifactId>iooo-boot-example</artifactId>
   <packaging>pom</packaging>
 
-  <name>iooo-boot-example</name>
-  <url>http://maven.apache.org</url>
+  <name>iooo-boot :: iooo-boot-example</name>
+  <description>iooo-boot-example</description>
 	
   <modules>
     <module>iooo-boot-example-helloworld</module>

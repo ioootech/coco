@@ -12,8 +12,8 @@
   <artifactId>iooo-boot-example-helloworld</artifactId>
   <packaging>jar</packaging>
 
-  <name>iooo-boot-example-helloworld</name>
-  <url>http://maven.apache.org</url>
+  <name>iooo-boot :: iooo-boot-example-helloworld</name>
+  <description>iooo-boot-example-helloworld</description>
 
   <properties>
     <java.version>1.8</java.version>

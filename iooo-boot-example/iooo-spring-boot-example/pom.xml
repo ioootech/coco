@@ -14,8 +14,8 @@
   <artifactId>iooo-spring-boot-example</artifactId>
   <packaging>jar</packaging>
 
-  <name>iooo-spring-boot-example</name>
-  <description>Demo project for Spring Boot</description>
+  <name>iooo-boot :: iooo-spring-boot-example</name>
+  <description>iooo-spring-boot-example</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
