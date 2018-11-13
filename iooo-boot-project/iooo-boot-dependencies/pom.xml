@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.2.71</kotlin.version>
+    <kotlin.version>1.3.0</kotlin.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.3-SNAPSHOT</iooo-boot.version>
@@ -102,7 +102,7 @@
     <tomcat.version>9.0.12</tomcat.version>
     <undertow.version>2.0.15.Final</undertow.version>
     <mysql.version>8.0.13</mysql.version>
-    <grpc-spring-boot-starter.version>2.0.1.RELEASE</grpc-spring-boot-starter.version>
+    <grpc-spring-boot-starter.version>2.1.0.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.5.4</vertx.version>
     <guava.version>27.0-jre</guava.version>
     <bytebuddy.version>1.9.3</bytebuddy.version>
@@ -114,7 +114,7 @@
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.2</reactive-streams.version>
-    <javassist.version>3.23.1-GA</javassist.version>
+    <javassist.version>3.24.0-GA</javassist.version>
     <cglib.version>3.2.9</cglib.version>
     <mybatis.version>3.4.6</mybatis.version>
     <mybatis-spring.version>1.3.2</mybatis-spring.version>
@@ -133,7 +133,7 @@
     <hamcrest-library.version>1.3</hamcrest-library.version>
     <reflections.version>0.9.11</reflections.version>
     <java-verbal-expressions.version>1.6</java-verbal-expressions.version>
-    <transmittable-thread-local.version>2.9.0</transmittable-thread-local.version>
+    <transmittable-thread-local.version>2.10.2</transmittable-thread-local.version>
     <maven.version>3.6.0</maven.version>
     <maven-plugin-tools.version>3.6.0</maven-plugin-tools.version>
     <!-- Plugin versions -->
