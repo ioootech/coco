@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false">
+
+  <include resource="logging/logback/base.xml"/>
+
+  <!--LOGGERS-->
+
+  <logger name="io.netty" level="INFO"/>
+  <logger name="tech.iooo.boot" level="DEBUG"/>
+
+  <!--/LOGGERS-->
+
+  <root level="INFO">
+    <!--CONSOLE-->
+    <appender-ref ref="STDOUT"/>
+    <!--ROLLING FILE-->
+    <appender-ref ref="ASYNC"/>
+  </root>
+
+</configuration>

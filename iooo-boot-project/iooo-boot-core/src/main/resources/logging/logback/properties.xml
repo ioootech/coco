@@ -3,6 +3,7 @@
 	<property name="LOG_EXCEPTION_CONVERSION_WORD" value="%ex"/>
 	<property name="LOG_HOME" value="logs"/>
 	<property name="LOG_EXCEPTION_CONVERSION_WORD" value="%ex"/>
+	<conversionRule conversionWord="ioooBootVersion" converterClass="tech.iooo.boot.core.logging.logback.IoooBootVersionConverter" />
 	<conversionRule conversionWord="pid" converterClass="tech.iooo.boot.core.logging.logback.ProcessIdConverter" />
 	<conversionRule conversionWord="wex" converterClass="tech.iooo.boot.core.logging.logback.WhitespaceThrowableProxyConverter" />
 	<conversionRule conversionWord="wEx" converterClass="tech.iooo.boot.core.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />

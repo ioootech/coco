@@ -67,8 +67,8 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>tech.iooo.boot</groupId>
+      <artifactId>iooo-boot-test-bundle</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
