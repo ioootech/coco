@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
  * https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
  */
 @UtilityClass
-public class StatusCode {
+public class HttpStatusCode {
 
   /**
    * 2xx Success
