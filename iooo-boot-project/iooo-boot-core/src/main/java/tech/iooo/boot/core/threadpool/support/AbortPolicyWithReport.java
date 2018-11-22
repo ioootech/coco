@@ -16,11 +16,13 @@
  */
 package tech.iooo.boot.core.threadpool.support;
 
+import com.google.common.base.Strings;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.Semaphore;
@@ -47,17 +49,30 @@ public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy {
     this.url = url;
   }
 
+  public AbortPolicyWithReport() {
+    this.threadName = Thread.currentThread().getName();
+    this.url = null;
+  }
+
   @Override
   public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
     String msg = String.format("Thread pool is EXHAUSTED!" +
             " Thread Name: %s, Pool Size: %d (active: %d, core: %d, max: %d, largest: %d), Task: %d (completed: %d)," +
-            " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s), in %s://%s:%d!",
+            " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s)",
         threadName, e.getPoolSize(), e.getActiveCount(), e.getCorePoolSize(), e.getMaximumPoolSize(), e.getLargestPoolSize(),
-        e.getTaskCount(), e.getCompletedTaskCount(), e.isShutdown(), e.isTerminated(), e.isTerminating(),
-        url.getProtocol(), url.getIp(), url.getPort());
-    logger.warn(msg);
+        e.getTaskCount(), e.getCompletedTaskCount(), e.isShutdown(), e.isTerminated(), e.isTerminating());
+
+    StringBuilder result = new StringBuilder(msg);
+
+    if (Objects.nonNull(url) && !Strings.isNullOrEmpty(url.getProtocol()) && !Strings.isNullOrEmpty(url.getIp()) && Objects.nonNull(url.getPort())) {
+      result.append(", ").append(url.getProtocol()).append("://").append(url.getIp()).append(":").append(url.getPort());
+    }
+
+    result.append("!");
+
+    logger.warn(result.toString());
     dumpJStack();
-    throw new RejectedExecutionException(msg);
+    throw new RejectedExecutionException(result.toString());
   }
 
   private void dumpJStack() {
@@ -91,7 +106,7 @@ public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy {
         String dateStr = sdf.format(new Date());
         FileOutputStream jstackStream = null;
         try {
-          jstackStream = new FileOutputStream(new File(dumpPath, "Dubbo_JStack.log" + "." + dateStr));
+          jstackStream = new FileOutputStream(new File(dumpPath, "IoooBoot_JStack.log" + "." + dateStr));
           JVMUtil.jstack(jstackStream);
         } catch (Throwable t) {
           logger.error("dump jstack error", t);
