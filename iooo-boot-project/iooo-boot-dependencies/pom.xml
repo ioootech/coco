@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.3.0</kotlin.version>
+    <kotlin.version>1.3.10</kotlin.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.3-SNAPSHOT</iooo-boot.version>
@@ -59,7 +59,7 @@
     <commons-net.version>3.6</commons-net.version>
     <curator.version>4.0.1</curator.version>
     <c3p0.version>0.9.5.2</c3p0.version>
-    <dubbo.version>2.6.4</dubbo.version>
+    <dubbo.version>2.6.5</dubbo.version>
     <dubbo-spring-boot-starter.version>0.2.0</dubbo-spring-boot-starter.version>
     <motan.version>1.1.1</motan.version>
     <aspectjweaver.version>1.9.2</aspectjweaver.version>
@@ -105,8 +105,8 @@
     <mysql.version>8.0.13</mysql.version>
     <grpc-spring-boot-starter.version>2.1.0.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.5.4</vertx.version>
-    <guava.version>27.0-jre</guava.version>
-    <bytebuddy.version>1.9.3</bytebuddy.version>
+    <guava.version>27.0.1-jre</guava.version>
+    <bytebuddy.version>1.9.4</bytebuddy.version>
     <commons-configuration2.version>2.4</commons-configuration2.version>
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <asm.version>7.0</asm.version>
@@ -121,11 +121,11 @@
     <mybatis-spring.version>1.3.2</mybatis-spring.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.0.6</mybatis-plus-v3.version>
-    <fastjson.version>1.2.51</fastjson.version>
-    <okhttp.version>3.11.0</okhttp.version>
+    <fastjson.version>1.2.53</fastjson.version>
+    <okhttp.version>3.12.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
-    <newrelic.version>4.7.0</newrelic.version>
+    <newrelic.version>4.8.0</newrelic.version>
     <rxjava.version>2.2.3</rxjava.version>
     <snakeyaml.version>1.23</snakeyaml.version>
     <assertj-core.version>3.11.1</assertj-core.version>
