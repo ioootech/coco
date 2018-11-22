@@ -7,7 +7,7 @@
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-parent</artifactId>
-    <version>1.1.3-SNAPSHOT</version>
+    <version>1.1.3</version>
     <relativePath>../iooo-boot-parent</relativePath>
   </parent>
 
