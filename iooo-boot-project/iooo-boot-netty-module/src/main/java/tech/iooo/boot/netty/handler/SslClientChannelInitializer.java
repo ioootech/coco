@@ -19,8 +19,8 @@ package tech.iooo.boot.netty.handler;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
-import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import lombok.AllArgsConstructor;
 
@@ -30,14 +30,25 @@ import lombok.AllArgsConstructor;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=miroku">Ivan97</a>
  */
 @AllArgsConstructor
-public class SslChannelInitializer extends ChannelInitializer<Channel> {
+public class SslClientChannelInitializer extends ChannelInitializer<Channel> {
 
-  private final SslContext sslContext;
+  private final SSLContext sslContext;
   private final boolean startTls;
+  
+  public SslClientChannelInitializer(SSLContext sslContext) {
+    this.sslContext = sslContext;
+    this.startTls = false;
+  }
 
   @Override
   protected void initChannel(Channel ch) throws Exception {
-    SSLEngine sslEngine = sslContext.newEngine(ch.alloc());
-    ch.pipeline().addFirst("ssl", new SslHandler(sslEngine, startTls));
+    SSLEngine sslEngine = sslContext.createSSLEngine();
+    // 配置为 client 模式
+    sslEngine.setUseClientMode(true);
+    // 选择需要启用的 SSL 协议，如 SSLv2 SSLv3 TLSv1 TLSv1.1 TLSv1.2 等
+    sslEngine.setEnabledProtocols(sslEngine.getSupportedProtocols());
+    // 选择需要启用的 CipherSuite 组合，如 ECDHE-ECDSA-CHACHA20-POLY1305 等
+    sslEngine.setEnabledCipherSuites(sslEngine.getSupportedCipherSuites());
+    ch.pipeline().addFirst("iooo-default-ssl", new SslHandler(sslEngine, startTls));
   }
 }
