@@ -135,6 +135,8 @@
     <reflections.version>0.9.11</reflections.version>
     <java-verbal-expressions.version>1.6</java-verbal-expressions.version>
     <transmittable-thread-local.version>2.10.2</transmittable-thread-local.version>
+    <javatuples.version>1.2</javatuples.version>
+    <eclipse-collections.version>9.2.0</eclipse-collections.version>
     <maven.version>3.6.0</maven.version>
     <maven-plugin-tools.version>3.6.0</maven-plugin-tools.version>
     <!-- Plugin versions -->
@@ -327,6 +329,16 @@
         <groupId>com.fasterxml.jackson.datatype</groupId>
         <artifactId>jackson-datatype-hibernate5</artifactId>
         <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.javatuples</groupId>
+        <artifactId>javatuples</artifactId>
+        <version>${javatuples.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.collections</groupId>
+        <artifactId>eclipse-collections</artifactId>
+        <version>${eclipse-collections.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.datatype</groupId>
