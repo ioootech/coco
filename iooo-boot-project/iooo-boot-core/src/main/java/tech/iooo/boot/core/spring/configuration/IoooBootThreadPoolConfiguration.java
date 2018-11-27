@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
@@ -22,6 +23,7 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 public class IoooBootThreadPoolConfiguration {
 
   @Bean
+  @ConditionalOnMissingBean
   public ExecutorService executorService() {
     ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("i-exec-pool-%d").setDaemon(true).build();
     return new ThreadPoolExecutor(5, 200, 0L, TimeUnit.MILLISECONDS,
@@ -29,6 +31,7 @@ public class IoooBootThreadPoolConfiguration {
   }
 
   @Bean
+  @ConditionalOnMissingBean
   public ScheduledExecutorService scheduledExecutorService() {
     return new ScheduledThreadPoolExecutor(1, new BasicThreadFactory.Builder().namingPattern("i-scheduled-pool-%d").daemon(true).build());
   }
