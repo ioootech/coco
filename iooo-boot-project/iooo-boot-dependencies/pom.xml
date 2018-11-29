@@ -69,7 +69,7 @@
     <org.apache.commons.version>1.3.2</org.apache.commons.version>
     <protobuf.version>3.6.1</protobuf.version>
     <grpc.version>1.16.1</grpc.version>
-    <redisson.version>3.9.0</redisson.version>
+    <redisson.version>3.9.1</redisson.version>
     <gson.version>2.8.5</gson.version>
     <java-jwt.version>3.4.1</java-jwt.version>
     <jjwt.version>0.10.5</jjwt.version>
@@ -83,8 +83,8 @@
     <jetty.version>9.4.12.v20180830</jetty.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.3.1</junit-jupiter.version>
-    <projectreactor.version>3.2.2.RELEASE</projectreactor.version>
-    <lettuce.version>5.1.2.RELEASE</lettuce.version>
+    <projectreactor.version>3.2.3.RELEASE</projectreactor.version>
+    <lettuce.version>5.1.3.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
     <log4j2.version>2.11.1</log4j2.version>
@@ -100,11 +100,11 @@
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.0</quartz.version>
     <slf4j.version>1.7.25</slf4j.version>
-    <tomcat.version>9.0.12</tomcat.version>
-    <undertow.version>2.0.15.Final</undertow.version>
+    <tomcat.version>9.0.13</tomcat.version>
+    <undertow.version>2.0.16.Final</undertow.version>
     <mysql.version>8.0.13</mysql.version>
     <grpc-spring-boot-starter.version>2.1.0.RELEASE</grpc-spring-boot-starter.version>
-    <vertx.version>3.5.4</vertx.version>
+    <vertx.version>3.6.0</vertx.version>
     <guava.version>27.0.1-jre</guava.version>
     <bytebuddy.version>1.9.4</bytebuddy.version>
     <commons-configuration2.version>2.4</commons-configuration2.version>
@@ -126,7 +126,7 @@
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
     <newrelic.version>4.8.0</newrelic.version>
-    <rxjava.version>2.2.3</rxjava.version>
+    <rxjava.version>2.2.4</rxjava.version>
     <snakeyaml.version>1.23</snakeyaml.version>
     <assertj-core.version>3.11.1</assertj-core.version>
     <mockito-core.version>2.23.0</mockito-core.version>
@@ -173,7 +173,7 @@
     <os-maven-plugin.version>1.6.1</os-maven-plugin.version>
     <protoc.version>3.6.1</protoc.version>
     <protoc-gen-grpc-java.version>1.16.1</protoc-gen-grpc-java.version>
-    <vertx-protoc-gen-grpc-java.version>1.15.0</vertx-protoc-gen-grpc-java.version>
+    <vertx-protoc-gen-grpc-java.version>1.16.1</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.2.0</wagon-ssh.version>
     <wagon.version>3.2.0</wagon.version>
     <maven-jarsigner-plugin.version>1.4</maven-jarsigner-plugin.version>
@@ -438,6 +438,11 @@
       <dependency>
         <groupId>io.projectreactor</groupId>
         <artifactId>reactor-core</artifactId>
+        <version>${projectreactor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.projectreactor</groupId>
+        <artifactId>reactor-test</artifactId>
         <version>${projectreactor.version}</version>
       </dependency>
       <dependency>
