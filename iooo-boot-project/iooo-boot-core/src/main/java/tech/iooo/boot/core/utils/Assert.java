@@ -228,10 +228,9 @@ public abstract class Assert {
    * @param text the String to check
    * @param message the exception message to use if the assertion fails
    * @throws IllegalArgumentException if the text is empty
-   * @see org.springframework.util.StringUtils#hasLength
    */
   public static void hasLength(@Nullable String text, String message) {
-    if (!org.springframework.util.StringUtils.hasLength(text)) {
+    if (!StringUtils.hasLength(text)) {
       throw new IllegalArgumentException(message);
     }
   }
@@ -247,10 +246,9 @@ public abstract class Assert {
    * assertion fails
    * @throws IllegalArgumentException if the text is empty
    * @since 5.0
-   * @see org.springframework.util.StringUtils#hasLength
    */
   public static void hasLength(@Nullable String text, Supplier<String> messageSupplier) {
-    if (!org.springframework.util.StringUtils.hasLength(text)) {
+    if (!StringUtils.hasLength(text)) {
       throw new IllegalArgumentException(nullSafeGet(messageSupplier));
     }
   }
@@ -273,10 +271,9 @@ public abstract class Assert {
    * @param text the String to check
    * @param message the exception message to use if the assertion fails
    * @throws IllegalArgumentException if the text does not contain valid text content
-   * @see org.springframework.util.StringUtils#hasText
    */
   public static void hasText(@Nullable String text, String message) {
-    if (!org.springframework.util.StringUtils.hasText(text)) {
+    if (!StringUtils.hasText(text)) {
       throw new IllegalArgumentException(message);
     }
   }
@@ -292,10 +289,9 @@ public abstract class Assert {
    * assertion fails
    * @throws IllegalArgumentException if the text does not contain valid text content
    * @since 5.0
-   * @see org.springframework.util.StringUtils#hasText
    */
   public static void hasText(@Nullable String text, Supplier<String> messageSupplier) {
-    if (!org.springframework.util.StringUtils.hasText(text)) {
+    if (!StringUtils.hasText(text)) {
       throw new IllegalArgumentException(nullSafeGet(messageSupplier));
     }
   }
@@ -307,8 +303,7 @@ public abstract class Assert {
    */
   @Deprecated
   public static void hasText(@Nullable String text) {
-    hasText(text,
-        "[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
+    hasText(text, "[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
   }
 
   /**
@@ -320,7 +315,7 @@ public abstract class Assert {
    * @throws IllegalArgumentException if the text contains the substring
    */
   public static void doesNotContain(@Nullable String textToSearch, String substring, String message) {
-    if (org.springframework.util.StringUtils.hasLength(textToSearch) && org.springframework.util.StringUtils.hasLength(substring) &&
+    if (StringUtils.hasLength(textToSearch) && StringUtils.hasLength(substring) &&
         textToSearch.contains(substring)) {
       throw new IllegalArgumentException(message);
     }
@@ -339,7 +334,7 @@ public abstract class Assert {
    * @since 5.0
    */
   public static void doesNotContain(@Nullable String textToSearch, String substring, Supplier<String> messageSupplier) {
-    if (org.springframework.util.StringUtils.hasLength(textToSearch) && org.springframework.util.StringUtils.hasLength(substring) &&
+    if (StringUtils.hasLength(textToSearch) && StringUtils.hasLength(substring) &&
         textToSearch.contains(substring)) {
       throw new IllegalArgumentException(nullSafeGet(messageSupplier));
     }
@@ -364,7 +359,7 @@ public abstract class Assert {
    * @throws IllegalArgumentException if the object array is {@code null} or contains no elements
    */
   public static void notEmpty(@Nullable Object[] array, String message) {
-    if (org.springframework.util.ObjectUtils.isEmpty(array)) {
+    if (ObjectUtils.isEmpty(array)) {
       throw new IllegalArgumentException(message);
     }
   }
@@ -456,7 +451,7 @@ public abstract class Assert {
    * contains no elements
    */
   public static void notEmpty(@Nullable Collection<?> collection, String message) {
-    if (org.springframework.util.CollectionUtils.isEmpty(collection)) {
+    if (CollectionUtils.isEmpty(collection)) {
       throw new IllegalArgumentException(message);
     }
   }
@@ -475,7 +470,7 @@ public abstract class Assert {
    * @since 5.0
    */
   public static void notEmpty(@Nullable Collection<?> collection, Supplier<String> messageSupplier) {
-    if (org.springframework.util.CollectionUtils.isEmpty(collection)) {
+    if (CollectionUtils.isEmpty(collection)) {
       throw new IllegalArgumentException(nullSafeGet(messageSupplier));
     }
   }
@@ -500,7 +495,7 @@ public abstract class Assert {
    * @throws IllegalArgumentException if the map is {@code null} or contains no entries
    */
   public static void notEmpty(@Nullable Map<?, ?> map, String message) {
-    if (org.springframework.util.CollectionUtils.isEmpty(map)) {
+    if (CollectionUtils.isEmpty(map)) {
       throw new IllegalArgumentException(message);
     }
   }
@@ -636,7 +631,7 @@ public abstract class Assert {
     String className = (obj != null ? obj.getClass().getName() : "null");
     String result = "";
     boolean defaultMessage = true;
-    if (org.springframework.util.StringUtils.hasLength(msg)) {
+    if (StringUtils.hasLength(msg)) {
       if (endsWithSeparator(msg)) {
         result = msg + " ";
       }
