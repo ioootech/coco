@@ -18,6 +18,7 @@
   <modules>
     <module>iooo-boot-example-helloworld</module>
     <module>iooo-spring-boot-example</module>
+    <module>iooo-boot-guice-vertx-example</module>
   </modules>
 
   <properties>
