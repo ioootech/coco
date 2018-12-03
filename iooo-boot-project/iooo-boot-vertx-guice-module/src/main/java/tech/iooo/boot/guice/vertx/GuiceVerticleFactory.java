@@ -12,7 +12,6 @@ import java.lang.reflect.Constructor;
  */
 public class GuiceVerticleFactory implements VerticleFactory {
 
-  public static final String PREFIX = "java-guice";
   private Injector injector;
 
   /**
@@ -36,7 +35,7 @@ public class GuiceVerticleFactory implements VerticleFactory {
 
   @Override
   public String prefix() {
-    return PREFIX;
+    return GuiceVertxConstants.VERTICLE_PREFIX;
   }
 
   @Override

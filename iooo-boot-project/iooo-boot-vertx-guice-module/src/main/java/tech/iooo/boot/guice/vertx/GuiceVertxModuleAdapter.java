@@ -10,11 +10,11 @@ import io.vertx.core.Vertx;
  *
  * Guice {@link AbstractModule} for vertx and container injections
  */
-public class GuiceVertxBinder extends AbstractModule {
+public class GuiceVertxModuleAdapter extends AbstractModule {
 
   private final Vertx vertx;
 
-  public GuiceVertxBinder(Vertx vertx) {
+  public GuiceVertxModuleAdapter(Vertx vertx) {
     this.vertx = vertx;
   }
 

@@ -1,5 +1,8 @@
 package tech.iooo.boot.guice.vertx;
 
+import static tech.iooo.boot.guice.vertx.GuiceVertxConstants.BOOTSTRAP_BINDER_NAME;
+import static tech.iooo.boot.guice.vertx.GuiceVertxConstants.CONFIG_BOOTSTRAP_BINDER_NAME;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
@@ -14,6 +17,7 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
+import net.sf.cglib.proxy.Enhancer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,17 +25,14 @@ import org.slf4j.LoggerFactory;
  * Created on 2018-12-01 13:45
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
- * 
+ *
  * Guice Verticle to lazy load the real verticle with DI
  */
 public class GuiceVerticleLoader extends AbstractVerticle {
 
-  public static final String CONFIG_BOOTSTRAP_BINDER_NAME = "guice_binder";
-  public static final String BOOTSTRAP_BINDER_NAME = "tech.iooo.boot.guice.vertx.BootstrapBinder";
   private static final Logger logger = LoggerFactory.getLogger(GuiceVerticleLoader.class);
-  
-  private final String verticleName;
   private final ClassLoader classLoader;
+  private final String verticleName;
   private final Injector parent;
   private Verticle realVerticle;
 
@@ -103,7 +104,10 @@ public class GuiceVerticleLoader extends AbstractVerticle {
       clazz = classLoader.loadClass(className);
     }
     Verticle verticle = createRealVerticle(clazz);
-    return verticle;
+    Enhancer enhancer = new Enhancer();
+    enhancer.setSuperclass(clazz);
+    enhancer.setCallback(new VerticleWrapper<>(verticle));
+    return (Verticle) enhancer.create();
   }
 
   private Verticle createRealVerticle(Class<?> clazz) throws Exception {
@@ -140,11 +144,14 @@ public class GuiceVerticleLoader extends AbstractVerticle {
 
     // Add vert.x binder if not already bound
     if (parent == null || parent.getExistingBinding(Key.get(Vertx.class)) == null) {
-      bootstraps.add(new GuiceVertxBinder(vertx));
+      bootstraps.add(new GuiceVertxModuleAdapter(vertx));
     }
 
     // Each verticle factory will have it's own (child) injector instance
     Injector injector = parent == null ? Guice.createInjector(bootstraps) : parent.createChildInjector(bootstraps);
-    return (Verticle) injector.getInstance(clazz);
+    Enhancer enhancer = new Enhancer();
+    enhancer.setSuperclass(clazz);
+    enhancer.setCallback(new VerticleWrapper<>((Verticle) injector.getInstance(clazz)));
+    return (Verticle) enhancer.create();
   }
 }
