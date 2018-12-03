@@ -1432,15 +1432,18 @@
               </addDefaultImplementationEntries>
             </manifest>
             <manifestEntries>
-              <Implementation-URL>${project.url}</Implementation-URL>
+              <!--<Implementation-URL>${project.url}</Implementation-URL>-->
               <Java-Version>${java.version}</Java-Version>
               <Java-Vendor>${java.vendor}</Java-Vendor>
               <Os-Name>${os.name}</Os-Name>
               <Os-Arch>${os.arch}</Os-Arch>
               <Os-Version>${os.version}</Os-Version>
-              <Scm-Url>${project.scm.url}</Scm-Url>
-              <Scm-Connection>${project.scm.connection}</Scm-Connection>
-              <Scm-Revision>${buildNumber}</Scm-Revision>
+              <Specification-Vendor>IoooTech</Specification-Vendor>
+              <Implementation-Vendor>IoooTech</Implementation-Vendor>
+              <!--<Scm-Url>${project.scm.url}</Scm-Url>-->
+              <!--<Scm-Connection>${project.scm.connection}</Scm-Connection>-->
+              <!--<Scm-Revision>${buildNumber}</Scm-Revision>-->
+              <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
             </manifestEntries>
           </archive>
         </configuration>
@@ -1540,15 +1543,18 @@
                 </addDefaultImplementationEntries>
               </manifest>
               <manifestEntries>
-                <Implementation-URL>${project.url}</Implementation-URL>
+                <!--<Implementation-URL>${project.url}</Implementation-URL>-->
                 <Java-Version>${java.version}</Java-Version>
                 <Java-Vendor>${java.vendor}</Java-Vendor>
                 <Os-Name>${os.name}</Os-Name>
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
-                <Scm-Url>${project.scm.url}</Scm-Url>
-                <Scm-Connection>${project.scm.connection}</Scm-Connection>
-                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Specification-Vendor>IoooTech</Specification-Vendor>
+                <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--<Scm-Url>${project.scm.url}</Scm-Url>-->
+                <!--<Scm-Connection>${project.scm.connection}</Scm-Connection>-->
+                <!--<Scm-Revision>${buildNumber}</Scm-Revision>-->
+                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
           </configuration>
@@ -1638,15 +1644,18 @@
                 </addDefaultImplementationEntries>
               </manifest>
               <manifestEntries>
-                <Implementation-URL>${project.url}</Implementation-URL>
+                <!--<Implementation-URL>${project.url}</Implementation-URL>-->
                 <Java-Version>${java.version}</Java-Version>
                 <Java-Vendor>${java.vendor}</Java-Vendor>
                 <Os-Name>${os.name}</Os-Name>
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
-                <Scm-Url>${project.scm.url}</Scm-Url>
-                <Scm-Connection>${project.scm.connection}</Scm-Connection>
-                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Specification-Vendor>IoooTech</Specification-Vendor>
+                <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--<Scm-Url>${project.scm.url}</Scm-Url>-->
+                <!--<Scm-Connection>${project.scm.connection}</Scm-Connection>-->
+                <!--<Scm-Revision>${buildNumber}</Scm-Revision>-->
+                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
           </configuration>
@@ -1669,15 +1678,18 @@
                 </addDefaultImplementationEntries>
               </manifest>
               <manifestEntries>
-                <Implementation-URL>${project.url}</Implementation-URL>
+                <!--<Implementation-URL>${project.url}</Implementation-URL>-->
                 <Java-Version>${java.version}</Java-Version>
                 <Java-Vendor>${java.vendor}</Java-Vendor>
                 <Os-Name>${os.name}</Os-Name>
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
-                <Scm-Url>${project.scm.url}</Scm-Url>
-                <Scm-Connection>${project.scm.connection}</Scm-Connection>
-                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Specification-Vendor>IoooTech</Specification-Vendor>
+                <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--<Scm-Url>${project.scm.url}</Scm-Url>-->
+                <!--<Scm-Connection>${project.scm.connection}</Scm-Connection>-->
+                <!--<Scm-Revision>${buildNumber}</Scm-Revision>-->
+                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
           </configuration>
@@ -1732,15 +1744,18 @@
                 </addDefaultImplementationEntries>
               </manifest>
               <manifestEntries>
-                <Implementation-URL>${project.url}</Implementation-URL>
+                <!--<Implementation-URL>${project.url}</Implementation-URL>-->
                 <Java-Version>${java.version}</Java-Version>
                 <Java-Vendor>${java.vendor}</Java-Vendor>
                 <Os-Name>${os.name}</Os-Name>
                 <Os-Arch>${os.arch}</Os-Arch>
                 <Os-Version>${os.version}</Os-Version>
-                <Scm-Url>${project.scm.url}</Scm-Url>
-                <Scm-Connection>${project.scm.connection}</Scm-Connection>
-                <Scm-Revision>${buildNumber}</Scm-Revision>
+                <Specification-Vendor>IoooTech</Specification-Vendor>
+                <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--<Scm-Url>${project.scm.url}</Scm-Url>-->
+                <!--<Scm-Connection>${project.scm.connection}</Scm-Connection>-->
+                <!--<Scm-Revision>${buildNumber}</Scm-Revision>-->
+                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
             <failOnMissingWebXml>false</failOnMissingWebXml>

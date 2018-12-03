@@ -3,4 +3,4 @@
    | |/ _ \/ __| '_ \      | |/ _ \ / _ \ / _ \
    | |  __/ (__| | | |  _  | | (_) | (_) | (_) |
    |_|\___|\___|_| |_| (_) |_|\___/ \___/ \___/
-   :: [Based on Spring Boot v${spring-boot.version}] ::
+   :: [Based on Spring Boot v${spring-boot.version} ${application.title}] ::
