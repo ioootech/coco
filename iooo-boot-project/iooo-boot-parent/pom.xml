@@ -17,7 +17,6 @@
 
   <properties>
     <main.basedir>${basedir}/../..</main.basedir>
-    <skip_maven_deploy>false</skip_maven_deploy>
   </properties>
 
   <profiles>
