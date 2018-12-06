@@ -2,6 +2,7 @@ package tech.iooo.boot.netty.handler;
 
 import com.google.protobuf.MessageLite;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
+@Sharable
 @AllArgsConstructor
 public class ProtoBufInitializer extends ChannelInitializer<Channel> {
 

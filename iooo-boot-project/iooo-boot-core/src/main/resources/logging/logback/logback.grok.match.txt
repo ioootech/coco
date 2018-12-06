@@ -1,0 +1,1 @@
+%{DATESTAMP}\s+%{LOGLEVEL}\s+---\s+%{NUMBER:PID}\s+\[.*\]\s+%{USERNAME:LOGGER}\s+:%{GREEDYDATA:selectStr}

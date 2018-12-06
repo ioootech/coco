@@ -1,6 +1,7 @@
 package tech.iooo.boot.netty.handler;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
@@ -15,6 +16,7 @@ import lombok.AllArgsConstructor;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
+@Sharable
 @AllArgsConstructor
 public class ChunckedWriteHandlerInitializer extends ChannelInitializer<Channel> {
 
