@@ -4,6 +4,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created on 2018-12-10 14:02
@@ -15,7 +16,7 @@ import java.lang.annotation.Target;
 public @interface Cache {
 
   //时间刻度，天、时、分...
-  int timeScale() default 0;
+  ChronoUnit timeScale() default ChronoUnit.SECONDS;
 
   //时间间隔
   int timeInterval() default 0;

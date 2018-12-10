@@ -1,6 +1,8 @@
 package tech.iooo.boot.core.spring.cache;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created on 2018-12-10 14:02
@@ -12,7 +14,7 @@ public class CacheWrapper<T> {
   /**
    * 定时器域(时分秒..)
    */
-  private int field;
+  private ChronoUnit timeUnit;
   /**
    * 定时器间隔
    */
@@ -24,25 +26,25 @@ public class CacheWrapper<T> {
   /**
    * 定时器
    */
-  private Calendar timer;
+  private LocalDateTime timer;
 
   public CacheWrapper(Cache cache) {
     this(cache.timeScale(), cache.timeInterval());
   }
 
-  public CacheWrapper(int field, int amount) {
-    this.field = field;
+  public CacheWrapper(ChronoUnit timeUnit, int amount) {
+    this.timeUnit = timeUnit;
     this.amount = amount;
     resetTimer();
   }
 
   public void resetTimer() {
-    timer = Calendar.getInstance();
-    timer.add(field, amount);
+    timer = LocalDateTime.now(ZoneOffset.UTC);
+    timer.plus(amount, timeUnit);
   }
 
   public boolean isTimeOut() {
-    return Calendar.getInstance().after(timer);
+    return LocalDateTime.now(ZoneOffset.UTC).isAfter(timer);
   }
 
   public T getCacheValue() {
