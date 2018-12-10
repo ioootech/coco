@@ -39,8 +39,7 @@ public class CacheWrapper<T> {
   }
 
   public void resetTimer() {
-    timer = LocalDateTime.now(ZoneOffset.UTC);
-    timer.plus(amount, timeUnit);
+    timer = LocalDateTime.now(ZoneOffset.UTC).plus(amount, timeUnit);
   }
 
   public boolean isTimeOut() {
