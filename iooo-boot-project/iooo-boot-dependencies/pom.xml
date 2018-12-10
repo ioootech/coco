@@ -120,6 +120,7 @@
     <cglib.version>3.2.9</cglib.version>
     <xstream.version>1.4.11.1</xstream.version>
     <xerces.version>2.12.0</xerces.version>
+    <bcprov.version>1.60</bcprov.version>
     <mybatis.version>3.4.6</mybatis.version>
     <mybatis-spring.version>1.3.2</mybatis-spring.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
@@ -403,6 +404,16 @@
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
         <version>${fastjson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>${bcprov.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-ext-jdk15on</artifactId>
+        <version>${bcprov.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-codec</groupId>
