@@ -18,6 +18,7 @@
 package tech.iooo.boot.netty.handler;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelInitializer;
 import io.netty.handler.ssl.SslHandler;
 import javax.net.ssl.SSLContext;
@@ -29,6 +30,7 @@ import lombok.AllArgsConstructor;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=miroku">Ivan97</a>
  */
+@Sharable
 @AllArgsConstructor
 public class SslServerChannelInitializer extends ChannelInitializer<Channel> {
 

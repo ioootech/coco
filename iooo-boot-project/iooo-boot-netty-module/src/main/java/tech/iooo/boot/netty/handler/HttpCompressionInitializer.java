@@ -18,6 +18,7 @@
 package tech.iooo.boot.netty.handler;
 
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.handler.codec.http.HttpClientCodec;
@@ -31,6 +32,7 @@ import lombok.AllArgsConstructor;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=miroku">Ivan97</a>
  */
+@Sharable
 @AllArgsConstructor
 public class HttpCompressionInitializer extends ChannelInitializer<Channel> {
 
