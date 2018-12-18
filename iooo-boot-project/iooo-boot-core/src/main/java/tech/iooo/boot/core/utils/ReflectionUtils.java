@@ -1748,6 +1748,26 @@ public abstract class ReflectionUtils {
     return properties;
   }
 
+  public static Map<String, Field> getClassPropertyFields(Class cl) {
+    Map<String, Field> properties = new HashMap<String, Field>();
+    for (; cl != null; cl = cl.getSuperclass()) {
+      Field[] fields = cl.getDeclaredFields();
+      for (Field field : fields) {
+        if (Modifier.isTransient(field.getModifiers())
+            || !Modifier.isStatic(field.getModifiers())) {
+          continue;
+        }
+
+        field.setAccessible(true);
+        if (Modifier.isStatic(field.getModifiers())) {
+          properties.put(field.getName(), field);
+        }
+      }
+    }
+
+    return properties;
+  }
+
   public static Map<String, Method> getBeanPropertyReadMethods(Class cl) {
     Map<String, Method> properties = new HashMap<String, Method>();
     for (; cl != null; cl = cl.getSuperclass()) {
