@@ -6,7 +6,7 @@
   <parent>
     <artifactId>iooo-boot-project</artifactId>
     <groupId>tech.iooo.boot</groupId>
-    <version>1.1.5-SNAPSHOT</version>
+    <version>1.1.5</version>
     <relativePath>../../iooo-boot-project</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
