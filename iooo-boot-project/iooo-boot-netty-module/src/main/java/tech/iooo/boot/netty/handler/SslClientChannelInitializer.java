@@ -47,10 +47,22 @@ public class SslClientChannelInitializer extends ChannelInitializer<Channel> {
     this.startTls = false;
   }
 
+  public SslClientChannelInitializer(SSLContext jdkSslContext, boolean startTls) {
+    this.jdkSslContext = jdkSslContext;
+    this.nettySslContext = null;
+    this.startTls = startTls;
+  }
+
   public SslClientChannelInitializer(SslContext nettySslContext) {
     this.nettySslContext = nettySslContext;
     this.jdkSslContext = null;
     this.startTls = false;
+  }
+
+  public SslClientChannelInitializer(SslContext nettySslContext, boolean startTls) {
+    this.nettySslContext = nettySslContext;
+    this.jdkSslContext = null;
+    this.startTls = startTls;
   }
 
   @Override
@@ -60,10 +72,10 @@ public class SslClientChannelInitializer extends ChannelInitializer<Channel> {
       sslEngine = nettySslContext.newEngine(ch.alloc());
     } else if (Objects.nonNull(jdkSslContext)) {
       sslEngine = jdkSslContext.createSSLEngine();
+      // 配置为 client 模式
+      sslEngine.setUseClientMode(true);
     }
     Assert.notNull(sslEngine, "SSLEngine is null");
-    // 配置为 client 模式
-    sslEngine.setUseClientMode(true);
     // 选择需要启用的 SSL 协议，如 SSLv2 SSLv3 TLSv1 TLSv1.1 TLSv1.2 等
     sslEngine.setEnabledProtocols(sslEngine.getSupportedProtocols());
     // 选择需要启用的 CipherSuite 组合，如 ECDHE-ECDSA-CHACHA20-POLY1305 等

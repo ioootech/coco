@@ -56,6 +56,13 @@ public class SslServerChannelInitializer extends ChannelInitializer<Channel> {
     this.nettySslContext = null;
   }
 
+  public SslServerChannelInitializer(SSLContext jdkSslContext, boolean needClientAuth, boolean startTls) {
+    this.jdkSslContext = jdkSslContext;
+    this.startTls = startTls;
+    this.needClientAuth = needClientAuth;
+    this.nettySslContext = null;
+  }
+
   public SslServerChannelInitializer(SslContext nettySslContext) {
     this.nettySslContext = nettySslContext;
     this.startTls = false;
@@ -70,6 +77,13 @@ public class SslServerChannelInitializer extends ChannelInitializer<Channel> {
     this.jdkSslContext = null;
   }
 
+  public SslServerChannelInitializer(SslContext nettySslContext, boolean needClientAuth, boolean startTls) {
+    this.nettySslContext = nettySslContext;
+    this.needClientAuth = needClientAuth;
+    this.startTls = startTls;
+    this.jdkSslContext = null;
+  }
+
   @Override
   protected void initChannel(Channel ch) throws Exception {
     SSLEngine sslEngine = null;
@@ -77,10 +91,10 @@ public class SslServerChannelInitializer extends ChannelInitializer<Channel> {
       sslEngine = nettySslContext.newEngine(ch.alloc());
     } else if (Objects.nonNull(jdkSslContext)) {
       sslEngine = jdkSslContext.createSSLEngine();
+      // 配置为 server 模式
+      sslEngine.setUseClientMode(false);
     }
     Assert.notNull(sslEngine, "SSLEngine is null");
-    // 配置为 server 模式
-    sslEngine.setUseClientMode(false);
     //false为单向认证，true为双向认证  
     sslEngine.setNeedClientAuth(needClientAuth);
     // 选择需要启用的 SSL 协议，如 SSLv2 SSLv3 TLSv1 TLSv1.1 TLSv1.2 等
