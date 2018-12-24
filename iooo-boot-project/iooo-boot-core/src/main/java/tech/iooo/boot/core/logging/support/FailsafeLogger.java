@@ -17,9 +17,8 @@
 package tech.iooo.boot.core.logging.support;
 
 
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.logging.Logger;
-import tech.iooo.boot.core.utils.NetUtils;
-import tech.iooo.boot.core.utils.Version;
 
 public class FailsafeLogger implements Logger {
 
@@ -38,7 +37,7 @@ public class FailsafeLogger implements Logger {
   }
 
   private String appendContextMessage(String msg) {
-    return "IoooBoot[v" + Version.getVersion() + "].Current host[" + NetUtils.getLocalHost() + "] : " + msg;
+    return "[" + Constants.IOOO_BOOT + "] : " + msg;
   }
 
   @Override
