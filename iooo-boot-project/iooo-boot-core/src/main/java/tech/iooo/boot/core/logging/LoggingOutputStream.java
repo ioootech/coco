@@ -13,7 +13,6 @@ import tech.iooo.boot.core.constants.SystemProperties;
  */
 public class LoggingOutputStream extends OutputStream {
 
-
   /**
    * Indicates stream state.
    */
@@ -23,11 +22,6 @@ public class LoggingOutputStream extends OutputStream {
    * Internal buffer where data is stored.
    */
   private String mem;
-
-  /**
-   * Remembers the size of the buffer.
-   */
-  private int curBufLength;
 
   /**
    * The logger to write to.
@@ -51,7 +45,6 @@ public class LoggingOutputStream extends OutputStream {
     this.level = level;
     mem = "";
   }
-
 
   /**
    * Writes the specified byte to this output stream.
