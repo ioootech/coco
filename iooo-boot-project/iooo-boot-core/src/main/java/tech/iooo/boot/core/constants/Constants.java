@@ -699,6 +699,8 @@ public abstract class Constants {
   public static final String TAG_KEY = "tag";
 
   public static final String REQUEST_TAG_KEY = "request.tag";
+  
+  public static final String IOOO_APPLICATION_LOGGER = "iooo.application.logger";
 
   /*
    * private Constants(){ }

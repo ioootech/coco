@@ -2,7 +2,6 @@ package tech.iooo.boot.core.logging;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.event.Level;
 import tech.iooo.boot.core.constants.SystemProperties;
@@ -12,60 +11,84 @@ import tech.iooo.boot.core.constants.SystemProperties;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-java8-in-action">Ivan97</a>
  */
-@Data
 public class LoggingOutputStream extends OutputStream {
 
-  private Logger logger;
 
-  private Level level;
+  /**
+   * Indicates stream state.
+   */
+  private boolean hasBeenClosed = false;
 
+  /**
+   * Internal buffer where data is stored.
+   */
   private String mem;
 
-  public LoggingOutputStream(Logger logger, Level level) {
-    setLogger(logger);
-    setLevel(level);
+  /**
+   * Remembers the size of the buffer.
+   */
+  private int curBufLength;
+
+  /**
+   * The logger to write to.
+   */
+  private Logger logger;
+
+  /**
+   * The log level.
+   */
+  private Level level;
+
+  /**
+   * Creates the Logging instance to flush to the given logger.
+   *
+   * @param logger the Logger to write to
+   * @param level the log level
+   * @throws IllegalArgumentException in case if one of arguments is  null.
+   */
+  public LoggingOutputStream(Logger logger, Level level) throws IllegalArgumentException {
+    this.logger = logger;
+    this.level = level;
     mem = "";
   }
 
 
+  /**
+   * Writes the specified byte to this output stream.
+   *
+   * @param b the byte to write
+   * @throws IOException if an I/O error occurs.
+   */
   @Override
   public void write(int b) throws IOException {
+    if (hasBeenClosed) {
+      throw new IOException("The stream has been closed.");
+    }
     byte[] bytes = new byte[1];
     bytes[0] = (byte) (b & 0xff);
     mem = mem + new String(bytes);
+
     if (mem.endsWith(SystemProperties.LINE_SEPARATOR)) {
       mem = mem.substring(0, mem.length() - 1);
       flush();
     }
   }
 
+  /**
+   * Flushes this output stream and forces any buffered output bytes to be written out.
+   */
   @Override
-  public void flush() throws IOException {
-    switch (level) {
-      case INFO:
-        if (logger.isInfoEnabled()) {
-          logger.info(mem);
-        }
-        break;
-      case WARN:
-        logger.warn(mem);
-        break;
-      case DEBUG:
-        if (logger.isDebugEnabled()) {
-          logger.debug(mem);
-        }
-        break;
-      case ERROR:
-        logger.error(mem);
-        break;
-      case TRACE:
-        if (logger.isTraceEnabled()) {
-          logger.trace(mem);
-        }
-        break;
-      default:
-        break;
-    }
+  public void flush() {
+    LoggingUtils.log(logger, level, mem);
     mem = "";
+  }
+
+  /**
+   * Closes this output stream and releases any system resources associated with this stream.
+   */
+  @Override
+  public void close() {
+    flush();
+    hasBeenClosed = true;
   }
 }
