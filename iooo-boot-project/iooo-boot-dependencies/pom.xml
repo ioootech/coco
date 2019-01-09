@@ -104,6 +104,7 @@
     <slf4j.version>1.7.25</slf4j.version>
     <tomcat.version>9.0.14</tomcat.version>
     <undertow.version>2.0.16.Final</undertow.version>
+    <icu4j.version>63.1</icu4j.version>
     <mysql.version>8.0.13</mysql.version>
     <grpc-spring-boot-starter.version>2.2.0.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.6.2</vertx.version>
@@ -395,6 +396,11 @@
         <groupId>com.thoughtworks.xstream</groupId>
         <artifactId>xstream</artifactId>
         <version>${xstream.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.ibm.icu</groupId>
+        <artifactId>icu4j</artifactId>
+        <version>${icu4j.version}</version>
       </dependency>
       <dependency>
         <groupId>org.javatuples</groupId>
