@@ -184,6 +184,7 @@
     <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     <os-maven-plugin.version>1.6.1</os-maven-plugin.version>
     <protoc.version>3.6.1</protoc.version>
+    <quasar-maven-plugin.version>0.7.9</quasar-maven-plugin.version>
     <protoc-gen-grpc-java.version>1.17.1</protoc-gen-grpc-java.version>
     <vertx-protoc-gen-grpc-java.version>1.16.1</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.3.1</wagon-ssh.version>
@@ -1659,6 +1660,24 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.vlkan</groupId>
+          <artifactId>quasar-maven-plugin</artifactId>
+          <version>${quasar-maven-plugin.version}</version>
+          <configuration>
+            <check>true</check>
+            <debug>true</debug>
+            <verbose>true</verbose>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>compile</phase>
+              <goals>
+                <goal>instrument</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>io.reactiverse</groupId>
