@@ -98,6 +98,7 @@
     <mybatis-plus-boot-starter-v3.version>3.0.7</mybatis-plus-boot-starter-v3.version>
     <netty.version>4.1.32.Final</netty.version>
     <netty-tcnative.version>2.0.20.Final</netty-tcnative.version>
+    <quasar-core.version>0.7.10</quasar-core.version>
     <tink.version>1.2.1</tink.version>
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.0</quartz.version>
@@ -300,7 +301,13 @@
         <artifactId>newrelic-java</artifactId>
         <version>${newrelic.version}</version>
         <!--<scope>provided</scope>-->
-        <!--<type>zip</type>-->
+        <type>zip</type>
+      </dependency>
+      <dependency>
+        <groupId>co.paralleluniverse</groupId>
+        <artifactId>quasar-core</artifactId>
+        <version>${quasar-core.version}</version>
+        <classifier>jdk8</classifier>
       </dependency>
       <dependency>
         <groupId>com.sun.jdmk</groupId>
