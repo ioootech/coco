@@ -13,7 +13,7 @@
   <artifactId>iooo-boot-dependencies</artifactId>
   <version>1.1.6-SNAPSHOT</version>
   <packaging>pom</packaging>
-  
+
   <name>iooo-boot :: iooo-boot-dependencies</name>
   <description>iooo-boot-dependencies</description>
 
@@ -121,7 +121,7 @@
     <reactive-streams.version>1.0.2</reactive-streams.version>
     <javassist.version>3.24.1-GA</javassist.version>
     <cglib.version>3.2.10</cglib.version>
-    <sentinel-core.version>1.4.1</sentinel-core.version>
+    <sentinel.version>1.4.1</sentinel.version>
     <jna.version>5.2.0</jna.version>
     <xstream.version>1.4.11.1</xstream.version>
     <xerces.version>2.12.0</xerces.version>
@@ -199,7 +199,8 @@
     <takari-lifecycle-plugin.version>1.13.9</takari-lifecycle-plugin.version>
     <license-maven-plugin.version>3.0</license-maven-plugin.version>
     <maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>
-    <tech.iooo.licenseHeader>https://coco.iooo.tech/support/license-header.txt</tech.iooo.licenseHeader>
+    <tech.iooo.licenseHeader>https://coco.iooo.tech/support/license-header.txt
+    </tech.iooo.licenseHeader>
     <arguments/>
     <vertx.verticle/>
   </properties>
@@ -539,7 +540,12 @@
       <dependency>
         <groupId>com.alibaba.csp</groupId>
         <artifactId>sentinel-core</artifactId>
-        <version>${sentinel-core.version}</version>
+        <version>${sentinel.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.csp</groupId>
+        <artifactId>sentinel-annotation-aspectj</artifactId>
+        <version>${sentinel.version}</version>
       </dependency>
       <dependency>
         <groupId>io.projectreactor</groupId>
@@ -1539,7 +1545,8 @@
               <Os-Arch>${os.arch}</Os-Arch>
               <Os-Version>${os.version}</Os-Version>
               <Scm-Revision>${buildNumber}</Scm-Revision>
-              <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
+              <Implementation-Title>
+                <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
             </manifestEntries>
           </archive>
         </configuration>
@@ -1648,7 +1655,8 @@
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
                 <Scm-Revision>${buildNumber}</Scm-Revision>
-                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
+                <Implementation-Title>
+                  <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
           </configuration>
@@ -1765,7 +1773,8 @@
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
                 <Scm-Revision>${buildNumber}</Scm-Revision>
-                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
+                <Implementation-Title>
+                  <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
           </configuration>
@@ -1797,7 +1806,8 @@
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
                 <Scm-Revision>${buildNumber}</Scm-Revision>
-                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
+                <Implementation-Title>
+                  <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
           </configuration>
@@ -1861,7 +1871,8 @@
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
                 <Scm-Revision>${buildNumber}</Scm-Revision>
-                <Implementation-Title><![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
+                <Implementation-Title>
+                  <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
               </manifestEntries>
             </archive>
             <failOnMissingWebXml>false</failOnMissingWebXml>
