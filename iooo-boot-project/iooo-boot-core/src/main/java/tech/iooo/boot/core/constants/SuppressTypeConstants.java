@@ -84,6 +84,10 @@ public class SuppressTypeConstants {
    * to suppress warnings relative to unused code
    */
   public static final String UNUSED = "unused";
+  /**
+   * to suppress warnings relative to Spring bean definitions
+   */
+  public static final String SPRING_JAVA_INJECTION_POINTS_AUTOWIRING_INSPECTION = "SpringJavaInjectionPointsAutowiringInspection";
 
   private SuppressTypeConstants() {
     //do nothing
