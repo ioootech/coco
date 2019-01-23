@@ -2,7 +2,6 @@ anguage: java
 sudo: false
 os: linux
 jdk:
-  - oraclejdk8
   - openjdk8
 cache:
   directories:
@@ -13,7 +12,7 @@ notification:
   email:
     recipients:
       - yangkizhang@gmail.com
-    on_success: always
+    on_success: false
     on_failure: always
 
 branches:
@@ -24,10 +23,4 @@ script:
   - ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true cobertura:cobertura -B -V 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
-deploy:
-  provider: script
-  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -Piooo-deploy"
-  skip_cleanup: true
-  on:
-    tags: true
+  - cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -Piooo-deploy
