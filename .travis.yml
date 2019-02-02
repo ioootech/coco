@@ -8,6 +8,14 @@ cache:
     - "$HOME/.cache"
     - "$HOME/.m2"
 
+env:
+  global:
+    - GPG_DIR="`pwd`/deploy"
+
+before_install:
+  - openssl aes-256-cbc -pass pass:$GPG_PASSPHRASE -in $GPG_DIR/pubring.gpg.enc -out $GPG_DIR/pubring.gpg -d
+  - openssl aes-256-cbc -pass pass:$GPG_PASSPHRASE -in $GPG_DIR/secring.gpg.enc -out $GPG_DIR/secring.gpg -d
+
 notification:
   email:
     recipients:

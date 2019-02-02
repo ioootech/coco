@@ -91,17 +91,20 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop() {
-    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
+    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle, res -> {
+      if (res.succeeded()) {
+        if (logger.isInfoEnabled()) {
+          logger.info("unload verticle {} ", verticle);
+        }
+      } else {
+        logger.error("something happened while unload verticle " + verticle, res.cause());
+      }
+    })));
   }
 
   @Override
   public boolean isRunning() {
     return this.running;
-  }
-
-  @Override
-  public int getPhase() {
-    return Integer.MAX_VALUE;
   }
 
   @Override

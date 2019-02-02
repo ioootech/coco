@@ -108,7 +108,7 @@
     <icu4j.version>63.1</icu4j.version>
     <mysql.version>8.0.14</mysql.version>
     <grpc-spring-boot-starter.version>2.2.1.RELEASE</grpc-spring-boot-starter.version>
-    <vertx.version>3.6.2</vertx.version>
+    <vertx.version>3.6.3</vertx.version>
     <guava.version>27.0.1-jre</guava.version>
     <bytebuddy.version>1.9.7</bytebuddy.version>
     <commons-configuration2.version>2.4</commons-configuration2.version>
