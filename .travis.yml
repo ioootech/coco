@@ -7,6 +7,7 @@ cache:
   directories:
   - "$HOME/.cache"
   - "$HOME/.m2"
+  - "$HOME/.gnupg"
 before_install:
 - openssl aes-256-cbc -K $encrypted_ca1e0dd2c873_key -iv $encrypted_ca1e0dd2c873_iv
   -in pubring.gpg.enc -out ~\/.gnupg/pubring.gpg -d
@@ -20,8 +21,7 @@ branches:
   only:
   - develop
 script:
-- "./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true cobertura:cobertura -B
-  -V"
+- "./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true cobertura:cobertura -B -V"
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 - cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -Piooo-deploy
