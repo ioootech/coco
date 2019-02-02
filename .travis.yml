@@ -12,6 +12,7 @@ env:
   global:
     - GPG_DIR="$HOME/.gnupg"
 before_install:
+  - cp .travis.settings.xml $HOME/.m2/settings.xml
   - openssl aes-256-cbc -K $encrypted_ca1e0dd2c873_key -iv $encrypted_ca1e0dd2c873_iv
     -in pubring.gpg.enc -out $GPG_DIR/pubring.gpg -d
 notification:
@@ -25,6 +26,4 @@ branches:
     - develop
 script:
   - "./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true cobertura:cobertura -B -V"
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy -Piooo-deploy
+  - "./mvnw deploy -Piooo-deploy"
