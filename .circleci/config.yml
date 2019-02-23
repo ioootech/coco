@@ -1,0 +1,13 @@
+dependencies:
+  override:
+    - ./mvnw -DskipTests clean install dependency:resolve-plugins dependency:go-offline
+
+test:
+  override:
+    - ./mvnw -o surefire:test
+
+deployment:
+  main:
+    branch: master
+    commands:
+      - ./mvnw -s .circleci.settings.xml -DskipTests deploy -Piooo-deploy
