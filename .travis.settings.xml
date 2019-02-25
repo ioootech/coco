@@ -18,10 +18,6 @@
       <properties>
         <gpg.executable>gpg2</gpg.executable>
         <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-        <!-- tell gpg to NOT use the default keyring from the current user's home -->
-        <gpg.defaultKeyring>false</gpg.defaultKeyring>
-        <!-- instead tell gpg to use the keyrings from your GPG_DIR -->
-        <gpg.publicKeyring>${env.GPG_DIR}/pubring.gpg</gpg.publicKeyring>
       </properties>
     </profile>
   </profiles>
