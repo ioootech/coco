@@ -1,39 +1,34 @@
 language: java
 os: linux
 jdk:
-  - openjdk8
+- openjdk8
 cache:
   directories:
-    - "$HOME/.cache"
-    - "$HOME/.m2"
-
+  - "$HOME/.cache"
+  - "$HOME/.m2"
 env:
   global:
-    - secure: B36LKIkHeV6dqNW1N6iUfJRw2Dn1+9vUQKFpokzUUms+gIGVgHXci1EpcFfIsIcmV7WV/9ZqaaoN8Hn849cAnNXJPmkmpNvzSbU9A8KYWdkDBq1Q9jTOX5fCLn4GYfUyJrTSKH/ACLhEhXs2c8m4dmNFtAXn+mrrf/Wvl23yXZhZoPw8miBwSMarTB2Jimbpd4oruSMjCVsoq2/Iiu7FiUiH+iMn2v6u4mcLBq/frEHRlv6sVswg6PJhZLWnwfEtjLJ+oIZ2E3guUuhuhKywSLmSC0ly43Z1xLkf3rgBNz+PZf8JdETNKwkPbFX7nJA1OkCphTuYxg94+2YJjMacZB+LJEH5zPqT63npalzb+VBCsebxZ6uP/dpvGRILFk4pNuOmOEoM/1iJpP3Dw25APk9NJvuHq7gzcSCUcXN5AE6tHZFDYGRRRv1xn/xK3e79KfA2isu3AfMh3u0FXKGZyPqHecXzMxNgs3YQHibDJhxT5NRTFd4r4kfGYVkBlYkeKmrt6Taj51YkYh4WlQpt0GKstlZqmzXFxLvlfrmDrZoZPSAoST7cYQ7W7qCTYt2Fvmla4QkPgvmLiZQdUDctwRmC4H5fNaeUE+lt6mIQ7gIG3Dzsau+DXlrn/ysNUHPfO1orPeU/3M8sLzT6n3Ot1TjLAW03VZ9hDQVtpbyRC4E=
-    - secure: KdE7nBMSl54kFFrlyZYNhYAtzKdKKNs4kGQJjFqWU0C75EhersfOA7EzWtVILC2RI0D8MYkyH7XH2IaR4dImmYjCv+0BvXTMLPQKdpJzP9V21vwYd4YGrVtNCkATQnhLxYFTB15Ido479+z/aI3tR8bD1r74eQ6kHNorHGeoNyYlJ2sE7pRGXSH7cBXgETZ1uB01NEMmW9Q42me0IIOKWxZQPOfkS9nh17VgFYLdy4kn4F5hGcDPuJzuu4vHBdGWMAm/vfSo4+5WdUyjSrrE5xKG5LeiuL5qprs34SvfBQ0P17k8CV840wP+5AnPsgcGmVf/BeH8c8LOXjhyDYLPsM6X+tuqFm/PkHB8OrUeNEC6I6GXbg4/p4Th02gVv5Ow7D1WP1pVKvDciHcV66LLemfcGOAn8Rvk2hXFgojeQZQHGqqUiREHyWiOjezVyABlfd+wco4YOMb6OQj1EOzSVIXQEITYwh3NfcAtysXviSKca/hhrSXLf0AemUQf2lcmzKEZxhAk00kZJ5lWJAXynUg3EzF+xP+UDblSyZ8sLvjMWVtgGjqA0b/jMN63S20ddwBd4efoUaqSigFbsKsa5NkiOX9OwR+pWWQmRZXU6gl/3rrr7xS6cz0JU7PpczSWPGbxMFMJoZQCry8lLbP4VAwsY6KYFXbEfEnbRDMFdUM=
-    - secure: GuAG+9xRgZd7HCuoLj/rA54eKsMLEnI3BbCwPQXyoidZhEKMise52FUPKICOee9oKg+i1oVDw8PqUTTIcEDdK4Yj/q+BRxmW/7GVwjTwcRE3iMdeaMw2FGqn8bzppNHzxwv32+UpFZJVFSror0NZzycQa8tMv6JyEYEABNYYyD8CfF5WwtQoQ81ApYeQtuBP8MqcmO6S83d6djhaSsatmwAblKiapDmy2FfLFAektnwm2/SUk4ERBjYWFHS8W6LsYt/CP/Zis27ythVcSMJBWL2JKTddRq50K14hSuejghf/VzQJ70HfqPRtyvLe1JUkxyx+vFaV0s6076TRL+Z6hu/2V19gBs06hS+2Ztxo+4iMu2Kz0DFxTT8+G5lDscQmiZpdImYH4hdx23pVEIJ5byeWEbRlkgH5smTjNt7RLcSfpobHK84LauD73PvtXqRKfqvrEPxUGdPL/xgSm7n/qQfhwugVLl+vSWRk3cSAnuYEfUtmXt1uJmseJUMqmTusQ6Toc6De7q0c97VenWt+gfEAof1Do7h4C6spshRY/RXCuhFy/u3G4U5DNk6sWIQbMJyDsuazhd2izbJcpRNAt/x/MrZh/DYr3OsQGOGanxkE9twEzkMZ5bqJkA4faGrn8dtE9pNoqhjqKF746aDbuwj6Cmf6rYykZMP1Opcn+wM=
-
+  - secure: B36LKIkHeV6dqNW1N6iUfJRw2Dn1+9vUQKFpokzUUms+gIGVgHXci1EpcFfIsIcmV7WV/9ZqaaoN8Hn849cAnNXJPmkmpNvzSbU9A8KYWdkDBq1Q9jTOX5fCLn4GYfUyJrTSKH/ACLhEhXs2c8m4dmNFtAXn+mrrf/Wvl23yXZhZoPw8miBwSMarTB2Jimbpd4oruSMjCVsoq2/Iiu7FiUiH+iMn2v6u4mcLBq/frEHRlv6sVswg6PJhZLWnwfEtjLJ+oIZ2E3guUuhuhKywSLmSC0ly43Z1xLkf3rgBNz+PZf8JdETNKwkPbFX7nJA1OkCphTuYxg94+2YJjMacZB+LJEH5zPqT63npalzb+VBCsebxZ6uP/dpvGRILFk4pNuOmOEoM/1iJpP3Dw25APk9NJvuHq7gzcSCUcXN5AE6tHZFDYGRRRv1xn/xK3e79KfA2isu3AfMh3u0FXKGZyPqHecXzMxNgs3YQHibDJhxT5NRTFd4r4kfGYVkBlYkeKmrt6Taj51YkYh4WlQpt0GKstlZqmzXFxLvlfrmDrZoZPSAoST7cYQ7W7qCTYt2Fvmla4QkPgvmLiZQdUDctwRmC4H5fNaeUE+lt6mIQ7gIG3Dzsau+DXlrn/ysNUHPfO1orPeU/3M8sLzT6n3Ot1TjLAW03VZ9hDQVtpbyRC4E=
+  - secure: KdE7nBMSl54kFFrlyZYNhYAtzKdKKNs4kGQJjFqWU0C75EhersfOA7EzWtVILC2RI0D8MYkyH7XH2IaR4dImmYjCv+0BvXTMLPQKdpJzP9V21vwYd4YGrVtNCkATQnhLxYFTB15Ido479+z/aI3tR8bD1r74eQ6kHNorHGeoNyYlJ2sE7pRGXSH7cBXgETZ1uB01NEMmW9Q42me0IIOKWxZQPOfkS9nh17VgFYLdy4kn4F5hGcDPuJzuu4vHBdGWMAm/vfSo4+5WdUyjSrrE5xKG5LeiuL5qprs34SvfBQ0P17k8CV840wP+5AnPsgcGmVf/BeH8c8LOXjhyDYLPsM6X+tuqFm/PkHB8OrUeNEC6I6GXbg4/p4Th02gVv5Ow7D1WP1pVKvDciHcV66LLemfcGOAn8Rvk2hXFgojeQZQHGqqUiREHyWiOjezVyABlfd+wco4YOMb6OQj1EOzSVIXQEITYwh3NfcAtysXviSKca/hhrSXLf0AemUQf2lcmzKEZxhAk00kZJ5lWJAXynUg3EzF+xP+UDblSyZ8sLvjMWVtgGjqA0b/jMN63S20ddwBd4efoUaqSigFbsKsa5NkiOX9OwR+pWWQmRZXU6gl/3rrr7xS6cz0JU7PpczSWPGbxMFMJoZQCry8lLbP4VAwsY6KYFXbEfEnbRDMFdUM=
+  - secure: GuAG+9xRgZd7HCuoLj/rA54eKsMLEnI3BbCwPQXyoidZhEKMise52FUPKICOee9oKg+i1oVDw8PqUTTIcEDdK4Yj/q+BRxmW/7GVwjTwcRE3iMdeaMw2FGqn8bzppNHzxwv32+UpFZJVFSror0NZzycQa8tMv6JyEYEABNYYyD8CfF5WwtQoQ81ApYeQtuBP8MqcmO6S83d6djhaSsatmwAblKiapDmy2FfLFAektnwm2/SUk4ERBjYWFHS8W6LsYt/CP/Zis27ythVcSMJBWL2JKTddRq50K14hSuejghf/VzQJ70HfqPRtyvLe1JUkxyx+vFaV0s6076TRL+Z6hu/2V19gBs06hS+2Ztxo+4iMu2Kz0DFxTT8+G5lDscQmiZpdImYH4hdx23pVEIJ5byeWEbRlkgH5smTjNt7RLcSfpobHK84LauD73PvtXqRKfqvrEPxUGdPL/xgSm7n/qQfhwugVLl+vSWRk3cSAnuYEfUtmXt1uJmseJUMqmTusQ6Toc6De7q0c97VenWt+gfEAof1Do7h4C6spshRY/RXCuhFy/u3G4U5DNk6sWIQbMJyDsuazhd2izbJcpRNAt/x/MrZh/DYr3OsQGOGanxkE9twEzkMZ5bqJkA4faGrn8dtE9pNoqhjqKF746aDbuwj6Cmf6rYykZMP1Opcn+wM=
 before_install:
-  - cp .travis.settings.xml $HOME/.m2/settings.xml
-  - openssl aes-256-cbc -K $encrypted_ca1e0dd2c873_key -iv $encrypted_ca1e0dd2c873_iv
-    -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
-
+- openssl aes-256-cbc -K $encrypted_ca1e0dd2c873_key -iv $encrypted_ca1e0dd2c873_iv
+  -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+- cp .travis.settings.xml $HOME/.m2/settings.xml
 install: mvn -DskipTests -Dgpg.skip install
-
 after_success:
-  - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
-  - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
-    --import deployment/signingkey.asc
-  - mvn clean deploy --settings deployment/settings.xml -Dgpg.executable=gpg2 -Dgpg.keyname=5F84CD1775351968CABF0B0D779D2423E1D24D89
-    -Dgpg.passphrase=$GPG_PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg -Piooo-deploy
-
+- gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
+- gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
+  --import deployment/signingkey.asc
+- mvn clean deploy --settings deployment/settings.xml -Dgpg.executable=gpg2 -Dgpg.keyname=5F84CD1775351968CABF0B0D779D2423E1D24D89
+  -Dgpg.passphrase=$GPG_PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg
+  -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg -Piooo-deploy
 notification:
   email:
     recipients:
-      - yangkizhang@gmail.com
+    - yangkizhang@gmail.com
     on_success: false
     on_failure: always
 branches:
   only:
-    - develop
-
+  - develop
