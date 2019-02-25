@@ -14,3 +14,5 @@
 - branch develop [![Build Status](https://travis-ci.org/ioootech/coco.svg?branch=develop)](https://travis-ci.org/ioootech/coco)
 
 - branch master [![Build Status](https://travis-ci.org/ioootech/coco.svg?branch=master)](https://travis-ci.org/ioootech/coco)
+
+- [About travis deploy to maven central](https://github.com/stefanbirkner/travis-deploy-to-maven-central)
