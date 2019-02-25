@@ -2,10 +2,20 @@ language: java
 os: linux
 jdk:
   - openjdk8
+branches:
+  only:
+    - develop
 cache:
   directories:
     - "$HOME/.cache"
     - "$HOME/.m2"
+notification:
+  email:
+    recipients:
+      - yangkizhang@gmail.com
+    on_success: false
+    on_failure: always
+
 env:
   global:
     - secure: B36LKIkHeV6dqNW1N6iUfJRw2Dn1+9vUQKFpokzUUms+gIGVgHXci1EpcFfIsIcmV7WV/9ZqaaoN8Hn849cAnNXJPmkmpNvzSbU9A8KYWdkDBq1Q9jTOX5fCLn4GYfUyJrTSKH/ACLhEhXs2c8m4dmNFtAXn+mrrf/Wvl23yXZhZoPw8miBwSMarTB2Jimbpd4oruSMjCVsoq2/Iiu7FiUiH+iMn2v6u4mcLBq/frEHRlv6sVswg6PJhZLWnwfEtjLJ+oIZ2E3guUuhuhKywSLmSC0ly43Z1xLkf3rgBNz+PZf8JdETNKwkPbFX7nJA1OkCphTuYxg94+2YJjMacZB+LJEH5zPqT63npalzb+VBCsebxZ6uP/dpvGRILFk4pNuOmOEoM/1iJpP3Dw25APk9NJvuHq7gzcSCUcXN5AE6tHZFDYGRRRv1xn/xK3e79KfA2isu3AfMh3u0FXKGZyPqHecXzMxNgs3YQHibDJhxT5NRTFd4r4kfGYVkBlYkeKmrt6Taj51YkYh4WlQpt0GKstlZqmzXFxLvlfrmDrZoZPSAoST7cYQ7W7qCTYt2Fvmla4QkPgvmLiZQdUDctwRmC4H5fNaeUE+lt6mIQ7gIG3Dzsau+DXlrn/ysNUHPfO1orPeU/3M8sLzT6n3Ot1TjLAW03VZ9hDQVtpbyRC4E=
@@ -20,15 +30,4 @@ after_success:
   - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
   - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
     --import deployment/signingkey.asc
-  - mvn clean deploy -Dgpg.executable=gpg2 -Dgpg.keyname=5F84CD1775351968CABF0B0D779D2423E1D24D89
-    -Dgpg.passphrase=$GPG_PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg
-    -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg -Piooo-deploy
-notification:
-  email:
-    recipients:
-      - yangkizhang@gmail.com
-    on_success: false
-    on_failure: always
-branches:
-  only:
-    - develop
+  - mvn clean deploy -Piooo-deploy
