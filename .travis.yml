@@ -1,0 +1,33 @@
+language: java
+os: linux
+jdk:
+  - openjdk8
+branches:
+  only:
+    - develop
+cache:
+  directories:
+    - "$HOME/.cache"
+    - "$HOME/.m2"
+notification:
+  email:
+    recipients:
+      - yangkizhang@gmail.com
+    on_success: false
+    on_failure: always
+env:
+  global:
+    - secure: IQNPRxs4Jmsue0XPQqq9i6IqI4Bk8b02oAq4NiEhRRb1Lsba8ugHU/otxA7MtCllTLW/7Ohyz6ASpbJy+OWBBsW9ZdvugcqwlDJXKxpsaa8m7KoEFxjs7MrxOVL1qs/gMdg9xZo+M5LosmS/6hP/IACEo7YOewYTvwdPtBd6zBK3nQFUAKLL84TlW8+HXHKe4kZgDEXG5lqy2DBqMY3lnHm21q/mMPzfr8lSxU2Hw2iw4dzSu4U2DdDEt6kfCZfBTq6TARjzIaW/ZJwfjXxYaDlgrnrj77/3PZH9U+PYyrGTdt2ygdIkIZ+9kURChHVjyndiRjI5InODMHnUOUCv6jXvB7ZCtGos2y5+ocyds2iDrq71uqzECyW98sndahkB4/+aP0lYpMcMW8xMiz++8xpYdc8RpCHMJ2P10PbA/dRdHABgAZeX086nUTSYpOsQxddG0JusJKchwGB1Xs68tiuvieDJWPID3uTg5Mugc7jh85fxv7IFTOGzmWDC12t92qbj2jX7u2BjuK5Nk2pPMb5WTxENkMUDr1BGP5jB6xuazCYZe/KZ6/g+a2HzrN5IPNQOcJ0u91zenGEaJQ9m4Lu8pObVeHiic9bVOKv6EFb2LOMeLj2wnGzSzykip1JmLlk1WbwfkBipX82hT4bq3as2F5kZtsTtohSpe5XpyK0=
+    - secure: O8o5E+IHAZzO2l8SVJQOBzz7vHjjp7q7Hv+9oaLQxw0fsaY/BBISiZnNd8HDQUDLHFCKa5TMqitil/URGiNS2YCW0UQY+YQJboodgBkv4GAvEfO2M01pRbBrI7yE7Ym0Lo4hJ6ryqkPtMsldZ1RIsYYmggDsMTLy1+NGVvm/U2Gfq1K5Z8Sh84LXU9wLrMrOxK84B6aKiGeRVPA6n6NjX9pm6Dk/9egJj7zZ7a3LB5mJ0Ifo997BvMPa7PCszVEwOF6E2wQW9mhE5hz9W8Ql6gR1jLXMa5CQJtt8vgWfEM3NWy96yjB2FdiXYNog/7hbaFP76godPtcb9cz9mb8N3lM+MDjUvXWYMncXeNtDutUq+sMW3yeqyBALlu18896gUzE6dm2URdP7At40Jhk5bQ2Yx2AjMgLe4JBqXbYO0rNZqNDarJWK8ZV1mozfvss7NkSupXQWe5rdCntj/AZFnuLHYaqV8iSR84qDNkakiGSyVCNUe9LsSy8mQhTlonF+uOPlHyOObSmSVtUb1iKXih3YmDK4aWAfxIJl6uv+MgeT4aT/YGngpg0PIFkpQY4jaC2YoI6A9/xJzlZnsJU5Lw4vxYNJNoZYRKMDhSI7wJ503e9tXtgUwP8fYMIODssJ034AYtRvboeE3eQMrRVtVys83mL+vcyDp8xk7BGKPbY=
+    - secure: gQXnPMgGriSfYkUVm+oTefl8q5cKCFH2IvLkwGm/afbspeUG+Ta7o7S1OsdXq50/JbbhTnyeNgXQ7O/kvZfLYcLeJIB159nv+B8GtVlnv0V+Sng8pdng5kyR0yMhiYL7Mefs7hf0eBAsz39Dla9XeiMl+OkKFpKWz66FZxLKyN44z/DH1RND3FEqOg4mQwM3/ngVTXAcUCfNW6rf75Loy+b0LEG7a439zSf5TVoNvgvSL+9TaILNhKeStkLXBuzm7xNAFWPwAs48nBq/yj+drHewOk05o0gnR9QUhVCHFnAX52GZ6s+J6+voUF5MsysZU0r/xkwdifijoRBdynRmuVkkGPRPoOd5b9QXHXjyFUP9E4BFcjU9u+P7la+vzSKNadw0zcWmyl4G4pu/jtvaWTIbsZeR7HttHZk2v+AGiwKOUUeG33Gi47RbPYUGfKfZ01M8UPocEgbQ0NDC/9paX9MO8lQrSxidMD/Qbzkl9INGBPh/+qMaMxt+AAa9yp04wBWSt5t8M/DGEfA997B1O4nwtwopHmf6FYMNKfFx+PArObvgOFIUpptsjVKJDhFmoHBQ2DRoVXQgj10zNqjrA3GXPH/n5iI8qX5Di0i44HIqqh0xeNXmgK+spPHB/2XS1GmwM+41pr7xgi4zUWcmNEtS2Y3sgo3FVbJU93uRktg=
+install: "./mvnw -DskipTests -Dgpg.skip install"
+before_install:
+  - cp .travis.settings.xml $HOME/.m2/settings.xml
+  - openssl aes-256-cbc -K $encrypted_ca1e0dd2c873_key -iv $encrypted_ca1e0dd2c873_iv
+    -in deployment/signingkey.asc.enc -out deployment/signingkey.asc -d
+after_success:
+  - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
+  - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
+    --import deployment/signingkey.asc
+  - "./mvnw clean deploy -Dgpg.executable=gpg2 -Dgpg.passphrase=$PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg
+  -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg -Piooo-deploy"

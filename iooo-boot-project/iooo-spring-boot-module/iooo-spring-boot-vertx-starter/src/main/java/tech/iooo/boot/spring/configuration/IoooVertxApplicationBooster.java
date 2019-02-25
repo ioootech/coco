@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Configuration;
+import tech.iooo.boot.core.utils.ClassUtils;
 import tech.iooo.boot.spring.annotation.VerticleService;
 
 /**
@@ -74,7 +75,10 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
           deploymentOptions,
           res -> {
             if (res.succeeded()) {
-              logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", verticleClass.getSimpleName(), optionName, res.result());
+              if (logger.isInfoEnabled()) {
+                String className = ClassUtils.isCglibProxyClass(verticleClass) ? ClassUtils.getUserClass(verticleClass).getSimpleName() : verticleClass.getSimpleName();
+                logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", className, optionName, res.result());
+              }
               IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");
               IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).put(res.result(), verticle);
             } else {
@@ -87,17 +91,20 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop() {
-    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle)));
+    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle, res -> {
+      if (res.succeeded()) {
+        if (logger.isInfoEnabled()) {
+          logger.info("unload verticle {} ", verticle);
+        }
+      } else {
+        logger.error("something happened while unload verticle " + verticle, res.cause());
+      }
+    })));
   }
 
   @Override
   public boolean isRunning() {
     return this.running;
-  }
-
-  @Override
-  public int getPhase() {
-    return Integer.MAX_VALUE;
   }
 
   @Override

@@ -20,10 +20,13 @@ package tech.iooo.boot.netty.handler;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelInitializer;
+import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
+import java.util.Objects;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import lombok.AllArgsConstructor;
+import tech.iooo.boot.core.utils.Assert;
 
 /**
  * Created on 2018/10/30 5:03 PM
@@ -34,27 +37,64 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SslServerChannelInitializer extends ChannelInitializer<Channel> {
 
-  private final SSLContext sslContext;
+  private final SSLContext jdkSslContext;
+  private final SslContext nettySslContext;
   private final boolean startTls;
   private final boolean needClientAuth;
 
-  public SslServerChannelInitializer(SSLContext sslContext) {
-    this.sslContext = sslContext;
+  public SslServerChannelInitializer(SSLContext jdkSslContext) {
+    this.jdkSslContext = jdkSslContext;
     this.startTls = false;
     this.needClientAuth = false;
+    this.nettySslContext = null;
   }
 
-  public SslServerChannelInitializer(SSLContext sslContext, boolean needClientAuth) {
-    this.sslContext = sslContext;
+  public SslServerChannelInitializer(SSLContext jdkSslContext, boolean needClientAuth) {
+    this.jdkSslContext = jdkSslContext;
     this.startTls = false;
     this.needClientAuth = needClientAuth;
+    this.nettySslContext = null;
+  }
+
+  public SslServerChannelInitializer(SSLContext jdkSslContext, boolean needClientAuth, boolean startTls) {
+    this.jdkSslContext = jdkSslContext;
+    this.startTls = startTls;
+    this.needClientAuth = needClientAuth;
+    this.nettySslContext = null;
+  }
+
+  public SslServerChannelInitializer(SslContext nettySslContext) {
+    this.nettySslContext = nettySslContext;
+    this.startTls = false;
+    this.needClientAuth = false;
+    this.jdkSslContext = null;
+  }
+
+  public SslServerChannelInitializer(SslContext nettySslContext, boolean needClientAuth) {
+    this.nettySslContext = nettySslContext;
+    this.needClientAuth = needClientAuth;
+    this.startTls = false;
+    this.jdkSslContext = null;
+  }
+
+  public SslServerChannelInitializer(SslContext nettySslContext, boolean needClientAuth, boolean startTls) {
+    this.nettySslContext = nettySslContext;
+    this.needClientAuth = needClientAuth;
+    this.startTls = startTls;
+    this.jdkSslContext = null;
   }
 
   @Override
   protected void initChannel(Channel ch) throws Exception {
-    SSLEngine sslEngine = sslContext.createSSLEngine();
-    // 配置为 server 模式
-    sslEngine.setUseClientMode(false);
+    SSLEngine sslEngine = null;
+    if (Objects.nonNull(nettySslContext)) {
+      sslEngine = nettySslContext.newEngine(ch.alloc());
+    } else if (Objects.nonNull(jdkSslContext)) {
+      sslEngine = jdkSslContext.createSSLEngine();
+      // 配置为 server 模式
+      sslEngine.setUseClientMode(false);
+    }
+    Assert.notNull(sslEngine, "SSLEngine is null");
     //false为单向认证，true为双向认证  
     sslEngine.setNeedClientAuth(needClientAuth);
     // 选择需要启用的 SSL 协议，如 SSLv2 SSLv3 TLSv1 TLSv1.1 TLSv1.2 等

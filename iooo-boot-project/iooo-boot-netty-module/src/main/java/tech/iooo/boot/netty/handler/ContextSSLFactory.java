@@ -10,6 +10,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 import tech.iooo.boot.core.io.Resources;
 
 /**
@@ -17,11 +18,8 @@ import tech.iooo.boot.core.io.Resources;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-netty-moomba">Ivan97</a>
  */
+@UtilityClass
 public class ContextSSLFactory {
-
-  public ContextSSLFactory() {
-
-  }
 
   public static SSLContext getServerSslContext(String path, String password) {
     SSLContext serverSslContext = null;
