@@ -11,9 +11,9 @@ class SystemPropertiesTest {
 
   @Test
   void test() {
-    System.out.println(SystemProperties.JAVA_VM_VERSION);
-    System.out.println(SystemProperties.OS_NAME);
-    System.out.println(SystemProperties.FILE_ENCODING);
-    System.out.println(SystemProperties.FILE_SEPARATOR);
+//    System.out.println(SystemProperties.JAVA_VM_VERSION);
+//    System.out.println(SystemProperties.OS_NAME);
+//    System.out.println(SystemProperties.FILE_ENCODING);
+//    System.out.println(SystemProperties.FILE_SEPARATOR);
   }
 }
