@@ -140,7 +140,7 @@
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
     <newrelic.version>4.11.0</newrelic.version>
-    <rxjava.version>2.2.6</rxjava.version>
+    <rxjava.version>2.2.7</rxjava.version>
     <snakeyaml.version>1.23</snakeyaml.version>
     <assertj-core.version>3.12.0</assertj-core.version>
     <mockito-core.version>2.24.5</mockito-core.version>
