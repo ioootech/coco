@@ -60,6 +60,7 @@
     <curator.version>4.1.0</curator.version>
     <c3p0.version>0.9.5.3</c3p0.version>
     <dubbo.version>2.6.5</dubbo.version>
+    <apache.dubbo.version>2.7.0</apache.dubbo.version>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
     <motan.version>1.1.3</motan.version>
     <aspectjweaver.version>1.9.2</aspectjweaver.version>
@@ -68,11 +69,11 @@
     <dagger.version>2.21</dagger.version>
     <org.apache.commons.version>1.3.2</org.apache.commons.version>
     <protobuf.version>3.6.1</protobuf.version>
-    <grpc.version>1.18.0</grpc.version>
-    <redisson.version>3.10.2</redisson.version>
+    <grpc.version>1.19.0</grpc.version>
+    <redisson.version>3.10.3</redisson.version>
     <gson.version>2.8.5</gson.version>
     <java-jwt.version>3.7.0</java-jwt.version>
-    <jjwt.version>0.10.5</jjwt.version>
+    <jjwt.version>0.10.6</jjwt.version>
     <guice.version>4.2.2</guice.version>
     <governator.version>1.17.5</governator.version>
     <httpclient.version>4.5.7</httpclient.version>
@@ -97,7 +98,7 @@
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
     <mybatis-plus-boot-starter-v3.version>3.0.7.1</mybatis-plus-boot-starter-v3.version>
     <netty.version>4.1.33.Final</netty.version>
-    <netty-tcnative.version>2.0.20.Final</netty-tcnative.version>
+    <netty-tcnative.version>2.0.22.Final</netty-tcnative.version>
     <quasar-core.version>0.8.0</quasar-core.version>
     <tink.version>1.2.2</tink.version>
     <velocity.version>1.7</velocity.version>
@@ -141,8 +142,8 @@
     <commons-modeler.version>2.0.1</commons-modeler.version>
     <newrelic.version>4.11.0</newrelic.version>
     <rxjava.version>2.2.7</rxjava.version>
-    <snakeyaml.version>1.23</snakeyaml.version>
-    <assertj-core.version>3.12.0</assertj-core.version>
+    <snakeyaml.version>1.24</snakeyaml.version>
+    <assertj-core.version>3.12.1</assertj-core.version>
     <mockito-core.version>2.24.5</mockito-core.version>
     <commons-collections4.version>4.3</commons-collections4.version>
     <hamcrest-library.version>2.1</hamcrest-library.version>
@@ -187,7 +188,7 @@
     <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
     <protoc.version>3.6.1</protoc.version>
     <quasar-maven-plugin.version>0.7.9</quasar-maven-plugin.version>
-    <protoc-gen-grpc-java.version>1.18.0</protoc-gen-grpc-java.version>
+    <protoc-gen-grpc-java.version>1.19.0</protoc-gen-grpc-java.version>
     <vertx-protoc-gen-grpc-java.version>1.16.1</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.3.2</wagon-ssh.version>
     <wagon.version>3.3.2</wagon.version>
@@ -849,9 +850,19 @@
         <version>${dubbo.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo</artifactId>
+        <version>${apache.dubbo.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.alibaba.boot</groupId>
         <artifactId>dubbo-spring-boot-starter</artifactId>
         <version>${dubbo-spring-boot-starter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo-spring-boot-starter</artifactId>
+        <version>${apache.dubbo.version}</version>
       </dependency>
       <dependency>
         <groupId>com.weibo</groupId>
