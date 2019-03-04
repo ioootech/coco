@@ -1,7 +1,11 @@
 # iooo-boot-project
 
 ## central repos version
-[![Maven Central](https://maven-badges-generator.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot/badge.svg)](https://maven-badges-generator.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot)
+[![Maven Central](https://maven-badges-generator.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot-core/badge.svg)](https://maven-badges-generator.herokuapp.com/maven-central/tech.iooo.boot/iooo-boot-parent)
+
+## snapshot repos version
+[![Maven Public](https://maven-badges-generator.herokuapp.com/maven-public/tech.iooo.boot/iooo-boot-core/badge.svg)](https://maven-badges-generator.herokuapp.com/maven-public/tech.iooo.boot/iooo-boot-core)
+
 
 ## Blog
 [![Blog](https://img.shields.io/badge/Blog-IoooTech-brightgreen.svg?longCache=true&style=plastic)](https://blog.iooo.tech)
