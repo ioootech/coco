@@ -118,6 +118,7 @@
     <asm.version>7.0</asm.version>
     <org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
     <poi.version>4.0.1</poi.version>
+    <jctools.version>2.1.1</jctools.version>
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.2</reactive-streams.version>
@@ -419,6 +420,11 @@
         <groupId>com.ibm.icu</groupId>
         <artifactId>icu4j</artifactId>
         <version>${icu4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jctools</groupId>
+        <artifactId>jctools-core</artifactId>
+        <version>${jctools.version}</version>
       </dependency>
       <dependency>
         <groupId>org.javatuples</groupId>
