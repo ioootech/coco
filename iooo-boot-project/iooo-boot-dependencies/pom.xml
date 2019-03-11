@@ -679,7 +679,7 @@
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus</artifactId>
-        <version>${mybatis-plus-v2.version}</version>
+        <version>${mybatis-plus-v3.version}</version>
       </dependency>
       <dependency>
         <groupId>com.mchange</groupId>
@@ -1365,7 +1365,7 @@
       <dependency>
         <groupId>com.baomidou</groupId>
         <artifactId>mybatis-plus-boot-starter</artifactId>
-        <version>${mybatis-plus-boot-starter-v2.version}</version>
+        <version>${mybatis-plus-boot-starter-v3.version}</version>
       </dependency>
       <dependency>
         <groupId>org.projectlombok</groupId>
