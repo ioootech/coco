@@ -40,8 +40,8 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop(Runnable callback) {
-    callback.run();
     vertx.close();
+    callback.run();
     this.running = false;
   }
 
@@ -58,17 +58,17 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
       DeploymentOptions deploymentOptions;
       String optionName;
       if (ioooVertxProperties.getVerticle().isFailFast()) {
-        deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
         optionName = verticleService.deploymentOption();
+        deploymentOptions = applicationContext.getBean(optionName, DeploymentOptions.class);
       } else {
         if (applicationContext.containsBean(verticleService.deploymentOption())) {
-          deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
           optionName = verticleService.deploymentOption();
+          deploymentOptions = applicationContext.getBean(optionName, DeploymentOptions.class);
         } else {
           logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
               verticleService.deploymentOption(), verticleClass.getSimpleName());
-          deploymentOptions = applicationContext.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
           optionName = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+          deploymentOptions = applicationContext.getBean(optionName, DeploymentOptions.class);
         }
       }
       vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
