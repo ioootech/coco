@@ -17,6 +17,7 @@
 package tech.iooo.boot.core.logging.support;
 
 
+import com.google.common.base.Strings;
 import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.logging.Logger;
 
@@ -37,7 +38,11 @@ public class FailsafeLogger implements Logger {
   }
 
   private String appendContextMessage(String msg) {
-    return "[" + Constants.IOOO_BOOT + "] : " + msg;
+    if (!Strings.isNullOrEmpty(System.getProperty(Constants.IOOO_APPLICATION_LOGGER_FLAG))) {
+      return "[" + System.getProperty(Constants.IOOO_APPLICATION_LOGGER_FLAG) + "] : " + msg;
+    } else {
+      return msg;
+    }
   }
 
   @Override

@@ -702,6 +702,8 @@ public abstract class Constants {
 
   public static final String IOOO_APPLICATION_LOGGER = "iooo.application.logger";
 
+  public static final String IOOO_APPLICATION_LOGGER_FLAG = "iooo.application.logger.flag";
+
   public static final String IOOO_BOOT = "IoooBoot";
 
   /*
