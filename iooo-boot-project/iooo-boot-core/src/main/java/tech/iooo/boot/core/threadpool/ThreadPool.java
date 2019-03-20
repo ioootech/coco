@@ -17,11 +17,31 @@
 package tech.iooo.boot.core.threadpool;
 
 import java.util.concurrent.Executor;
+import tech.iooo.boot.core.threadpool.support.cached.CachedThreadPool;
+import tech.iooo.boot.core.threadpool.support.eager.EagerThreadPool;
+import tech.iooo.boot.core.threadpool.support.fixed.FixedThreadPool;
+import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
 
 /**
  * ThreadPool
  */
 public interface ThreadPool {
+
+  static CachedThreadPool cachedThreadPool() {
+    return new CachedThreadPool();
+  }
+
+  static EagerThreadPool eagerThreadPool() {
+    return new EagerThreadPool();
+  }
+
+  static FixedThreadPool fixedThreadPool() {
+    return new FixedThreadPool();
+  }
+
+  static LimitedThreadPool limitedThreadPool() {
+    return new LimitedThreadPool();
+  }
 
   /**
    * Thread pool
