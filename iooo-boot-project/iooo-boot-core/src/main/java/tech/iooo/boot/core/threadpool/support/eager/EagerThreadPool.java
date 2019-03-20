@@ -19,10 +19,9 @@ package tech.iooo.boot.core.threadpool.support.eager;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
-import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
+import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 
 /**
@@ -31,23 +30,21 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 public class EagerThreadPool implements ThreadPool {
 
   @Override
-  public Executor getExecutor(URL url) {
-    String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
-    int cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);
-    int threads = url.getParameter(Constants.THREADS_KEY, Integer.MAX_VALUE);
-    int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
-    int alive = url.getParameter(Constants.ALIVE_KEY, Constants.DEFAULT_ALIVE);
-
+  public Executor executor(ThreadPoolConfig config) {
     // init queue and executor
-    TaskQueue<Runnable> taskQueue = new TaskQueue<Runnable>(queues <= 0 ? 1 : queues);
-    EagerThreadPoolExecutor executor = new EagerThreadPoolExecutor(cores,
-        threads,
-        alive,
+    TaskQueue<Runnable> taskQueue = new TaskQueue<>(config.getQueues() <= 0 ? 1 : config.getQueues());
+    EagerThreadPoolExecutor executor = new EagerThreadPoolExecutor(config.getCores(),
+        config.getThreads(),
+        config.getAlive(),
         TimeUnit.MILLISECONDS,
         taskQueue,
-        new NamedInternalThreadFactory(name, true),
-        new AbortPolicyWithReport(name, url));
+        new NamedInternalThreadFactory(config.getName(), true),
+        new AbortPolicyWithReport(config.getName()));
     taskQueue.setExecutor(executor);
     return executor;
+  }
+
+  public Executor executor() {
+    return executor(ThreadPoolConfig.DEFAULT_CONFIG);
   }
 }

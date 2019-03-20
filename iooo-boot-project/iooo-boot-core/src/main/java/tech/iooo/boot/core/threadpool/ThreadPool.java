@@ -17,7 +17,6 @@
 package tech.iooo.boot.core.threadpool;
 
 import java.util.concurrent.Executor;
-import tech.iooo.boot.core.URL;
 
 /**
  * ThreadPool
@@ -27,8 +26,9 @@ public interface ThreadPool {
   /**
    * Thread pool
    *
-   * @param url URL contains thread parameter
+   * @param config URL contains thread parameter
    * @return thread pool
    */
-  Executor getExecutor(URL url);
+  Executor executor(ThreadPoolConfig config);
+
 }

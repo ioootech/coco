@@ -49,6 +49,11 @@ public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy {
     this.url = url;
   }
 
+  public AbortPolicyWithReport(String threadName) {
+    this.threadName = threadName;
+    this.url = null;
+  }
+
   public AbortPolicyWithReport() {
     this.threadName = Thread.currentThread().getName();
     this.url = null;

@@ -21,10 +21,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
+import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 
 /**
@@ -35,15 +34,15 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 public class FixedThreadPool implements ThreadPool {
 
   @Override
-  public Executor getExecutor(URL url) {
-    String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
-    int threads = url.getParameter(Constants.THREADS_KEY, Constants.DEFAULT_THREADS);
-    int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
-    return new ThreadPoolExecutor(threads, threads, 0, TimeUnit.MILLISECONDS,
-        queues == 0 ? new SynchronousQueue<Runnable>() :
-            (queues < 0 ? new LinkedBlockingQueue<Runnable>()
-                : new LinkedBlockingQueue<Runnable>(queues)),
-        new NamedInternalThreadFactory(name, true), new AbortPolicyWithReport(name, url));
+  public Executor executor(ThreadPoolConfig config) {
+    return new ThreadPoolExecutor(config.getThreads(), config.getThreads(), 0, TimeUnit.MILLISECONDS,
+        config.getQueues() == 0 ? new SynchronousQueue<>() :
+            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                : new LinkedBlockingQueue<>(config.getQueues())),
+        new NamedInternalThreadFactory(config.getName(), true), new AbortPolicyWithReport(config.getName()));
   }
 
+  public Executor executor() {
+    return executor(ThreadPoolConfig.DEFAULT_CONFIG);
+  }
 }
