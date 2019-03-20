@@ -29,38 +29,37 @@ class SortingTest {
 
   @Test
   void insertSorting() {
-    InsertSorting<Integer> integerInsertSorting = new InsertSorting<>();
-    log(integerInsertSorting.apply(nums.toArray(new Integer[0])));
+    log(Sorts.insertSorting(Integer.class).apply(nums.toArray(new Integer[0])));
   }
 
   @Test
   void selectionSorting() {
-    SelectionSorting<Integer> selectionSorting = new SelectionSorting<>();
-    log(selectionSorting.apply(nums.toArray(new Integer[0])));
+    log(Sorts.selectionSorting(Integer.class).apply(nums.toArray(new Integer[0])));
+  }
+
+  @Test
+  void bubbleSorting() {
+    log(Sorts.bubbleSorting(Integer.class).apply(nums.toArray(new Integer[0])));
   }
 
   @Test
   void shellSorting() {
-    ShellSorting<Integer> shellSorting = new ShellSorting<>();
-    log(shellSorting.apply(nums.toArray(new Integer[0])));
+    log(Sorts.shellSorting(Integer.class).apply(nums.toArray(new Integer[0])));
   }
 
   @Test
   void heapSorting() {
-    HeapSorting<Integer> heapSorting = new HeapSorting<>();
-    log(heapSorting.apply(nums.toArray(new Integer[0])));
+    log(Sorts.heapSorting(Integer.class).apply(nums.toArray(new Integer[0])));
   }
 
   @Test
   void mergeSorting() {
-    MergeSorting<Integer> mergeSorting = new MergeSorting<>();
-    log(mergeSorting.apply(nums.toArray(new Integer[0])));
+    log(Sorts.mergeSorting(Integer.class).apply(nums.toArray(new Integer[0])));
   }
 
   @Test
   void quickSorting() {
-    QuickSorting<Integer> quickSorting = new QuickSorting<>();
-    log(quickSorting.apply(nums.toArray(new Integer[0])));
+    log(Sorts.quickSorting(Integer.class).apply(nums.toArray(new Integer[0])));
   }
 
   private void log(Object[] objects) {
