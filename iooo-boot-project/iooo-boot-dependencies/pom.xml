@@ -111,6 +111,7 @@
     <undertow.version>2.0.19.Final</undertow.version>
     <icu4j.version>63.1</icu4j.version>
     <mysql.version>8.0.15</mysql.version>
+    <h2.version>1.4.199</h2.version>
     <grpc-spring-boot-starter.version>2.2.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.6.3</vertx.version>
     <guava.version>27.1-jre</guava.version>
@@ -715,6 +716,11 @@
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jolokia</groupId>
