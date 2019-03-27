@@ -17,29 +17,25 @@ public class JedisSentinelLifecycle implements Lifecycle {
   private boolean running;
   private JedisPool pool;
 
-  public JedisSentinelLifecycle(CacheType cacheType) {
+  public JedisSentinelLifecycle(CacheType cacheType, Config initConfig) {
     this.cacheType = cacheType;
     switch (cacheType) {
       case JedisCluster:
-        config = new ClusterRedisConfig();
+        Assert.isTrue(initConfig instanceof ClusterRedisConfig, "config type error");
+        config = initConfig;
         break;
       case Jedis:
-        config = new RedisConfig();
+        Assert.isTrue(initConfig instanceof RedisConfig, "config type error");
+        config = initConfig;
       default:
         break;
     }
-  }
-
-  public JedisSentinelLifecycle(Config config, CacheType cacheType) {
-    this.config = config;
-    this.cacheType = cacheType;
   }
 
   @Override
   public void start() {
     switch (cacheType) {
       case Jedis: {
-        Assert.isTrue(config instanceof RedisConfig, "config type error");
         RedisConfig redisConfig = (RedisConfig) config;
         pool = new JedisPool(redisConfig.getJedisPoolConfig(), redisConfig.getHost(), redisConfig.getPort(), redisConfig.getTimeout(), redisConfig.getPassword());
         JedisSentinelKit.init(pool);
@@ -48,7 +44,6 @@ public class JedisSentinelLifecycle implements Lifecycle {
         break;
       }
       case JedisCluster: {
-        Assert.isTrue(config instanceof ClusterRedisConfig, "config type error");
         JedisClusterCacheable jedisClusterCacheable = new JedisClusterCacheable();
         jedisClusterCacheable.init((ClusterRedisConfig) config);
         CacheKit.init(jedisClusterCacheable);

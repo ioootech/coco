@@ -10,9 +10,14 @@ import tech.iooo.boot.core.utils.LRUCache;
  */
 public class LRUCacheable<T> implements Cacheable<T> {
 
-  private LRUCache<String, T> lruCache = new LRUCache<>();
+  private LRUCache<String, T> lruCache;
 
   public LRUCacheable() {
+    lruCache = new LRUCache<>();
+  }
+
+  public LRUCacheable(int maxCapacity) {
+    lruCache = new LRUCache<>(maxCapacity);
   }
 
   @Override
