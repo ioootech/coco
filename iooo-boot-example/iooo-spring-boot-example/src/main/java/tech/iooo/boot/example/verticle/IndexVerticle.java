@@ -3,6 +3,7 @@ package tech.iooo.boot.example.verticle;
 import io.vertx.core.AbstractVerticle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tech.iooo.boot.cache.CacheKit;
 import tech.iooo.boot.spring.annotation.VerticleService;
 
 /**
@@ -18,5 +19,11 @@ public class IndexVerticle extends AbstractVerticle {
   @Override
   public void start() throws Exception {
     logger.info("welcome");
+    vertx.setPeriodic(1000, id -> {
+      CacheKit.set("mm", System.currentTimeMillis());
+      if (logger.isInfoEnabled()) {
+        logger.info("{}", CacheKit.get("mm"));
+      }
+    });
   }
 }

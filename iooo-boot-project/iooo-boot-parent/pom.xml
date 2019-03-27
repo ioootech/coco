@@ -107,6 +107,7 @@
     <module>../iooo-boot-test-bundle</module>
     <module>../iooo-boot-netty-module</module>
     <module>../iooo-boot-vertx-guice-module</module>
+    <module>../iooo-boot-cache-tools</module>
   </modules>
 
   <build>
