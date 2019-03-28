@@ -299,6 +299,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @param value the value that eventually completes the mapped future
    * @return the mapped future
    */
+  @Override
   default <V> Future<V> map(V value) {
     Future<V> ret = Future.future();
     setHandler(ar -> {
