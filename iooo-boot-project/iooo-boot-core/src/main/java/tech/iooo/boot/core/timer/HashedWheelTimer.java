@@ -100,14 +100,14 @@ public class HashedWheelTimer implements Timer {
   private volatile long startTime;
 
   /**
-   * Creates a new timer with the default thread factory ({@link Executors#defaultThreadFactory()}), default tick duration, and default number of ticks per wheel.
+   * Creates a new timer with the default thread FACTORY ({@link Executors#defaultThreadFactory()}), default tick duration, and default number of ticks per wheel.
    */
   public HashedWheelTimer() {
     this(Executors.defaultThreadFactory());
   }
 
   /**
-   * Creates a new timer with the default thread factory ({@link Executors#defaultThreadFactory()}) and default number of ticks per wheel.
+   * Creates a new timer with the default thread FACTORY ({@link Executors#defaultThreadFactory()}) and default number of ticks per wheel.
    *
    * @param tickDuration the duration between tick
    * @param unit the time unit of the {@code tickDuration}
@@ -119,7 +119,7 @@ public class HashedWheelTimer implements Timer {
   }
 
   /**
-   * Creates a new timer with the default thread factory ({@link Executors#defaultThreadFactory()}).
+   * Creates a new timer with the default thread FACTORY ({@link Executors#defaultThreadFactory()}).
    *
    * @param tickDuration the duration between tick
    * @param unit the time unit of the {@code tickDuration}

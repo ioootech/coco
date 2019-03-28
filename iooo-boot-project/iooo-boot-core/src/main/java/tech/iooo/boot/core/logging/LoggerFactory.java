@@ -29,7 +29,7 @@ import tech.iooo.boot.core.logging.slf4j.Slf4jLoggerAdapter;
 import tech.iooo.boot.core.logging.support.FailsafeLogger;
 
 /**
- * Logger factory
+ * Logger FACTORY
  */
 public class LoggerFactory {
 

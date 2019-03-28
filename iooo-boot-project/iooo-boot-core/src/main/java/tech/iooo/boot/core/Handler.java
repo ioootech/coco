@@ -8,5 +8,5 @@ package tech.iooo.boot.core;
 @FunctionalInterface
 public interface Handler<E> {
 
-  void handle(E var1);
+  void handle(E event);
 }

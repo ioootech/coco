@@ -147,7 +147,7 @@ public class GuiceVerticleLoader extends AbstractVerticle {
       bootstraps.add(new GuiceVertxModuleAdapter(vertx));
     }
 
-    // Each verticle factory will have it's own (child) injector instance
+    // Each verticle FACTORY will have it's own (child) injector instance
     Injector injector = parent == null ? Guice.createInjector(bootstraps) : parent.createChildInjector(bootstraps);
     Enhancer enhancer = new Enhancer();
     enhancer.setSuperclass(clazz);
