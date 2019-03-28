@@ -1,6 +1,7 @@
 package tech.iooo.boot.core;
 
 import java.util.function.Function;
+import tech.iooo.boot.core.constants.SuppressTypeConstants;
 
 /**
  * Created on 2018-12-18 23:33
@@ -51,6 +52,7 @@ public interface AsyncResult<T> {
     });
   }
 
+  @SuppressWarnings(SuppressTypeConstants.UNCHECKED)
   default <V> AsyncResult<V> mapEmpty() {
     return (AsyncResult<V>) this.map((Object) null);
   }
