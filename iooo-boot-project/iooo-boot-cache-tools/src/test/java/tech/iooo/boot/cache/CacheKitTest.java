@@ -17,7 +17,7 @@ class CacheKitTest {
   //
   @BeforeAll
   static void init() {
-    jedisSentinelLifecycle = new JedisSentinelLifecycle(CacheType.Jedis, new RedisConfig());
+    jedisSentinelLifecycle = new JedisSentinelLifecycle(CacheType.LRU, new RedisConfig());
     jedisSentinelLifecycle.start();
   }
 
