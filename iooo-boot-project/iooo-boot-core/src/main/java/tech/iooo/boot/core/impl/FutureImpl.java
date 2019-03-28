@@ -168,7 +168,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
       if (succeeded || failed) {
         return false;
       }
-      this.throwable = cause != null ? cause : new NoStackTraceThrowable(null);
+      this.throwable = cause != null ? cause : new NoStackTraceException(null);
       failed = true;
       h = handler;
       handler = null;
@@ -181,7 +181,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
 
   @Override
   public boolean tryFail(String failureMessage) {
-    return tryFail(new NoStackTraceThrowable(failureMessage));
+    return tryFail(new NoStackTraceException(failureMessage));
   }
 
   @Override

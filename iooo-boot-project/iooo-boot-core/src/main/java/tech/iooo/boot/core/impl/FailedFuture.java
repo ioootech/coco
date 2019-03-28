@@ -29,7 +29,7 @@ public class FailedFuture<T> implements Future<T> {
    * @param t the throwable
    */
   FailedFuture(Throwable t) {
-    cause = t != null ? t : new NoStackTraceThrowable(null);
+    cause = t != null ? t : new NoStackTraceException(null);
   }
 
   /**
@@ -38,7 +38,7 @@ public class FailedFuture<T> implements Future<T> {
    * @param failureMessage the failure message
    */
   FailedFuture(String failureMessage) {
-    this(new NoStackTraceThrowable(failureMessage));
+    this(new NoStackTraceException(failureMessage));
   }
 
   @Override

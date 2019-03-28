@@ -262,7 +262,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
 
   @Override
   public boolean tryFail(String failureMessage) {
-    return tryFail(new NoStackTraceThrowable(failureMessage));
+    return tryFail(new NoStackTraceException(failureMessage));
   }
 
   private Handler<AsyncResult<CompositeFuture>> setCompleted(Throwable cause) {

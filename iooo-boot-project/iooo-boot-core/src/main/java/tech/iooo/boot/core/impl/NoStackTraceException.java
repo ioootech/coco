@@ -14,9 +14,11 @@ package tech.iooo.boot.core.impl;
 /**
  * @author <a href="http://tfox.org">Tim Fox</a>
  */
-public class NoStackTraceThrowable extends Throwable {
+public class NoStackTraceException extends Throwable {
 
-  public NoStackTraceThrowable(String message) {
+  private static final long serialVersionUID = -7472818745097794808L;
+
+  public NoStackTraceException(String message) {
     super(message, null, false, false);
   }
 }
