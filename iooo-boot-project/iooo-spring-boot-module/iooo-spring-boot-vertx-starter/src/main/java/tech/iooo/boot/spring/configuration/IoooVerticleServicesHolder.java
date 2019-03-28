@@ -11,6 +11,9 @@ import io.vertx.core.AbstractVerticle;
  */
 public class IoooVerticleServicesHolder {
 
+  /**
+   * ClassName deploymentId instance
+   */
   private static final Table<String, String, AbstractVerticle> ACTIVE_VERTICLE_SERVICES = HashBasedTable.create();
   private static final Table<String, String, AbstractVerticle> INACTIVE_VERTICLE_SERVICES = HashBasedTable.create();
 
@@ -25,5 +28,10 @@ public class IoooVerticleServicesHolder {
     synchronized (IoooVerticleServicesHolder.class) {
       return INACTIVE_VERTICLE_SERVICES;
     }
+  }
+
+  public static void reset() {
+    INACTIVE_VERTICLE_SERVICES.putAll(IoooVerticleServicesHolder.activeVerticleServices());
+    ACTIVE_VERTICLE_SERVICES.clear();
   }
 }

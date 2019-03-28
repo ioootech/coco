@@ -40,6 +40,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop(Runnable callback) {
+    stop();
     vertx.close();
     callback.run();
     this.running = false;
@@ -91,7 +92,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop() {
-    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle, res -> {
+    IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle, res -> {
       if (res.succeeded()) {
         if (logger.isInfoEnabled()) {
           logger.info("unload verticle {} ", verticle);
@@ -99,7 +100,8 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
       } else {
         logger.error("something happened while unload verticle " + verticle, res.cause());
       }
-    })));
+    }));
+    IoooVerticleServicesHolder.reset();
   }
 
   @Override
