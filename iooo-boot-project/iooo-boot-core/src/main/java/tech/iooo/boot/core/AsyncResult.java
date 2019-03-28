@@ -88,15 +88,11 @@ public interface AsyncResult<T> {
   }
 
   default AsyncResult<T> otherwise(T value) {
-    return this.otherwise((err) -> {
-      return value;
-    });
+    return this.otherwise((err) -> value);
   }
 
   default AsyncResult<T> otherwiseEmpty() {
-    return this.otherwise((err) -> {
-      return null;
-    });
+    return this.otherwise((err) -> null);
   }
 }
 
