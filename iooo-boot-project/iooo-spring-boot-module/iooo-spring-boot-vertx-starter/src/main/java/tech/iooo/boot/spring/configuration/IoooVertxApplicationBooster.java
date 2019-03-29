@@ -41,7 +41,6 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
   @Override
   public void stop(Runnable callback) {
     stop();
-    vertx.close();
     callback.run();
     this.running = false;
   }
@@ -102,6 +101,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
       }
     }));
     IoooVerticleServicesHolder.reset();
+    vertx.close();
   }
 
   @Override
