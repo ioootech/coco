@@ -17,6 +17,9 @@
 package tech.iooo.boot.core.threadpool;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import tech.iooo.boot.core.threadpool.support.cached.CachedThreadPool;
 import tech.iooo.boot.core.threadpool.support.eager.EagerThreadPool;
 import tech.iooo.boot.core.threadpool.support.fixed.FixedThreadPool;
@@ -24,6 +27,8 @@ import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
 
 /**
  * ThreadPool
+ *
+ * @author Ivan97
  */
 public interface ThreadPool {
 
@@ -42,6 +47,17 @@ public interface ThreadPool {
   static LimitedThreadPool limitedThreadPool() {
     return new LimitedThreadPool();
   }
+
+  static ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
+    return new ScheduledThreadPoolExecutor(config.getCores(),
+        new BasicThreadFactory.Builder().namingPattern(config.getNamePrefix())
+            .daemon(config.isDaemon()).build());
+  }
+
+  static ScheduledExecutorService scheduledExecutorService() {
+    return scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
+  }
+
 
   /**
    * Thread pool

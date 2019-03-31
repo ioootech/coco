@@ -20,4 +20,5 @@ public class ThreadPoolConfig {
   private int threads = Integer.MAX_VALUE;
   private int queues = Constants.DEFAULT_QUEUES;
   private int alive = Constants.DEFAULT_ALIVE;
+  private boolean daemon = false;
 }

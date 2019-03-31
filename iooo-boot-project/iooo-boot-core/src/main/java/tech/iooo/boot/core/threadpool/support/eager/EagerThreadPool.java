@@ -40,8 +40,8 @@ public class EagerThreadPool implements ThreadPool {
         config.getAlive(),
         TimeUnit.MILLISECONDS,
         taskQueue,
-        new NamedInternalThreadFactory(config.getNamePrefix(), true),
-        new AbortPolicyWithReport(config.getNamePrefix()));
+        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()),
+        new AbortPolicyWithReport());
     taskQueue.setExecutor(executor);
     return executor;
   }

@@ -40,7 +40,7 @@ public class CachedThreadPool implements ThreadPool {
         config.getQueues() == 0 ? new SynchronousQueue<>() :
             (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
                 : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(config.getNamePrefix(), true), new AbortPolicyWithReport(config.getNamePrefix()));
+        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
   }
 
   public ExecutorService executorService() {
