@@ -17,6 +17,7 @@
 
 package tech.iooo.boot.core.threadpool.support.limited;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
@@ -34,14 +35,18 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
  */
 public class LimitedThreadPool implements ThreadPool {
 
+  private ExecutorService executorService;
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
-    return new ThreadPoolExecutor(config.getCores(), config.getThreads(), Long.MAX_VALUE, TimeUnit.MILLISECONDS,
-        config.getQueues() == 0 ? new SynchronousQueue<>() :
-            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
-                : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
-
+    if (Objects.isNull(executorService)) {
+      executorService = new ThreadPoolExecutor(config.getCores(), config.getThreads(), Long.MAX_VALUE, TimeUnit.MILLISECONDS,
+          config.getQueues() == 0 ? new SynchronousQueue<>() :
+              (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                  : new LinkedBlockingQueue<>(config.getQueues())),
+          new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
+    }
+    return executorService;
   }
 
   public ExecutorService executorService() {
