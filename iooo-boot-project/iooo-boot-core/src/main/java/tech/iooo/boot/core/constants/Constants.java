@@ -163,7 +163,7 @@ public abstract class Constants {
 
   public static final int DEFAULT_FORKS = 2;
 
-  public static final String DEFAULT_THREAD_NAME_PREFIX = "i-executor-pool-%d";
+  public static final String DEFAULT_THREAD_NAME_PREFIX = "i-exec-pool-";
 
   public static final boolean DEFAULT_THREAD_DAEMON = false;
 
