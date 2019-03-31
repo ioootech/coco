@@ -13,12 +13,19 @@ import tech.iooo.boot.core.constants.Constants;
 @Builder
 public class ThreadPoolConfig {
 
-  public static final ThreadPoolConfig DEFAULT_CONFIG = new ThreadPoolConfig.ThreadPoolConfigBuilder().build();
+  public static final ThreadPoolConfig DEFAULT_CONFIG = new ThreadPoolConfigBuilder()
+      .namePrefix(Constants.DEFAULT_THREAD_NAME_PREFIX)
+      .cores(Constants.DEFAULT_CORE_THREADS)
+      .threads(Constants.DEFAULT_THREADS)
+      .queues(Constants.DEFAULT_QUEUES)
+      .alive(Constants.DEFAULT_ALIVE)
+      .daemon(Constants.DEFAULT_THREAD_DAEMON)
+      .build();
 
   private String namePrefix = Constants.DEFAULT_THREAD_NAME_PREFIX;
   private int cores = Constants.DEFAULT_CORE_THREADS;
-  private int threads = Integer.MAX_VALUE;
+  private int threads = Constants.DEFAULT_THREADS;
   private int queues = Constants.DEFAULT_QUEUES;
   private int alive = Constants.DEFAULT_ALIVE;
-  private boolean daemon = false;
+  private boolean daemon = Constants.DEFAULT_THREAD_DAEMON;
 }
