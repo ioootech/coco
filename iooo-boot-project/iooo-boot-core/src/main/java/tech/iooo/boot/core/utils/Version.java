@@ -89,7 +89,7 @@ public final class Version {
         version = cls.getPackage().getSpecificationVersion();
       }
       if (version == null || version.length() == 0) {
-        // guess version fro jar file name if nothing's found from MANIFEST.MF
+        // guess version fro jar file namePrefix if nothing's found from MANIFEST.MF
         CodeSource codeSource = cls.getProtectionDomain().getCodeSource();
         if (codeSource == null) {
           logger.info("No codeSource for class " + cls.getName() + " when getVersion, use default version " + defaultVersion);

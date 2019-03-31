@@ -77,7 +77,7 @@ public abstract class Assert {
    * on an assertion failure.
    * <pre class="code">
    * Assert.state(id == null,
-   *     () -&gt; "ID for " + entity.getName() + " must not already be initialized");
+   *     () -&gt; "ID for " + entity.getNamePrefix() + " must not already be initialized");
    * </pre>
    * @param expression a boolean expression
    * @param messageSupplier a supplier for the exception message to use if the
@@ -198,7 +198,7 @@ public abstract class Assert {
   /**
    * Assert that an object is not {@code null}.
    * <pre class="code">
-   * Assert.notNull(clazz, () -&gt; "The class '" + clazz.getName() + "' must not be null");
+   * Assert.notNull(clazz, () -&gt; "The class '" + clazz.getNamePrefix() + "' must not be null");
    * </pre>
    * @param object the object to check
    * @param messageSupplier a supplier for the exception message to use if the
@@ -224,7 +224,7 @@ public abstract class Assert {
   /**
    * Assert that the given String is not empty; that is,
    * it must not be {@code null} and not the empty String.
-   * <pre class="code">Assert.hasLength(name, "Name must not be empty");</pre>
+   * <pre class="code">Assert.hasLength(namePrefix, "Name must not be empty");</pre>
    * @param text the String to check
    * @param message the exception message to use if the assertion fails
    * @throws IllegalArgumentException if the text is empty
@@ -239,7 +239,7 @@ public abstract class Assert {
    * Assert that the given String is not empty; that is,
    * it must not be {@code null} and not the empty String.
    * <pre class="code">
-   * Assert.hasLength(name, () -&gt; "Name for account '" + account.getId() + "' must not be empty");
+   * Assert.hasLength(namePrefix, () -&gt; "Name for account '" + account.getId() + "' must not be empty");
    * </pre>
    * @param text the String to check
    * @param messageSupplier a supplier for the exception message to use if the
@@ -267,7 +267,7 @@ public abstract class Assert {
   /**
    * Assert that the given String contains valid text content; that is, it must not
    * be {@code null} and must contain at least one non-whitespace character.
-   * <pre class="code">Assert.hasText(name, "'name' must not be empty");</pre>
+   * <pre class="code">Assert.hasText(namePrefix, "'namePrefix' must not be empty");</pre>
    * @param text the String to check
    * @param message the exception message to use if the assertion fails
    * @throws IllegalArgumentException if the text does not contain valid text content
@@ -282,7 +282,7 @@ public abstract class Assert {
    * Assert that the given String contains valid text content; that is, it must not
    * be {@code null} and must contain at least one non-whitespace character.
    * <pre class="code">
-   * Assert.hasText(name, () -&gt; "Name for account '" + account.getId() + "' must not be empty");
+   * Assert.hasText(namePrefix, () -&gt; "Name for account '" + account.getId() + "' must not be empty");
    * </pre>
    * @param text the String to check
    * @param messageSupplier a supplier for the exception message to use if the
@@ -308,7 +308,7 @@ public abstract class Assert {
 
   /**
    * Assert that the given text does not contain the given substring.
-   * <pre class="code">Assert.doesNotContain(name, "rod", "Name must not contain 'rod'");</pre>
+   * <pre class="code">Assert.doesNotContain(namePrefix, "rod", "Name must not contain 'rod'");</pre>
    * @param textToSearch the text to search
    * @param substring the substring to find within the text
    * @param message the exception message to use if the assertion fails
@@ -324,7 +324,7 @@ public abstract class Assert {
   /**
    * Assert that the given text does not contain the given substring.
    * <pre class="code">
-   * Assert.doesNotContain(name, forbidden, () -&gt; "Name must not contain '" + forbidden + "'");
+   * Assert.doesNotContain(namePrefix, forbidden, () -&gt; "Name must not contain '" + forbidden + "'");
    * </pre>
    * @param textToSearch the text to search
    * @param substring the substring to find within the text
@@ -535,8 +535,8 @@ public abstract class Assert {
    * @param obj the object to check
    * @param message a message which will be prepended to provide further context.
    * If it is empty or ends in ":" or ";" or "," or ".", a full exception message
-   * will be appended. If it ends in a space, the name of the offending object's
-   * type will be appended. In any other case, a ":" with a space and the name
+   * will be appended. If it ends in a space, the namePrefix of the offending object's
+   * type will be appended. In any other case, a ":" with a space and the namePrefix
    * of the offending object's type will be appended.
    * @throws IllegalArgumentException if the object is not an instance of type
    */
@@ -584,8 +584,8 @@ public abstract class Assert {
    * @param subType the sub type to check
    * @param message a message which will be prepended to provide further context.
    * If it is empty or ends in ":" or ";" or "," or ".", a full exception message
-   * will be appended. If it ends in a space, the name of the offending sub type
-   * will be appended. In any other case, a ":" with a space and the name of the
+   * will be appended. If it ends in a space, the namePrefix of the offending sub type
+   * will be appended. In any other case, a ":" with a space and the namePrefix of the
    * offending sub type will be appended.
    * @throws IllegalArgumentException if the classes are not assignable
    */

@@ -15,7 +15,7 @@
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
 			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}"/>
 		</Console>
-		<!--<File name="File-Appender" fileName="${LOG_FILES_PATH}/application.log" >-->
+		<!--<File namePrefix="File-Appender" fileName="${LOG_FILES_PATH}/application.log" >-->
 		<!--<PatternLayout pattern="${sys:FILE_LOG_PATTERN}"/>-->
 		<!--</File>-->
 		<RollingFile name="RollingFile-Appender"

@@ -16,7 +16,7 @@
  */
 package tech.iooo.boot.core.threadpool;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import tech.iooo.boot.core.threadpool.support.cached.CachedThreadPool;
 import tech.iooo.boot.core.threadpool.support.eager.EagerThreadPool;
 import tech.iooo.boot.core.threadpool.support.fixed.FixedThreadPool;
@@ -46,9 +46,9 @@ public interface ThreadPool {
   /**
    * Thread pool
    *
-   * @param config URL contains thread parameter
+   * @param config ThreadPoolConfig contains thread parameter
    * @return thread pool
    */
-  Executor executor(ThreadPoolConfig config);
+  ExecutorService executorService(ThreadPoolConfig config);
 
 }

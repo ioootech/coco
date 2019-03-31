@@ -172,10 +172,10 @@ public abstract class ReflectionUtils {
   private static final ConcurrentMap<String, Method> Signature_METHODS_CACHE = new ConcurrentHashMap<String, Method>();
 
   /**
-   * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code name}. Searches all superclasses up to {@link Object}.
+   * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code namePrefix}. Searches all superclasses up to {@link Object}.
    *
    * @param clazz the class to introspect
-   * @param name the name of the field
+   * @param name the namePrefix of the field
    * @return the corresponding Field object, or {@code null} if not found
    */
   public static Field findField(Class<?> clazz, String name) {
@@ -183,16 +183,16 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code name} and/or {@link Class type}. Searches all superclasses up to {@link Object}.
+   * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code namePrefix} and/or {@link Class type}. Searches all superclasses up to {@link Object}.
    *
    * @param clazz the class to introspect
-   * @param name the name of the field (may be {@code null} if type is specified)
-   * @param type the type of the field (may be {@code null} if name is specified)
+   * @param name the namePrefix of the field (may be {@code null} if type is specified)
+   * @param type the type of the field (may be {@code null} if namePrefix is specified)
    * @return the corresponding Field object, or {@code null} if not found
    */
   public static Field findField(Class<?> clazz, String name, Class<?> type) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.isTrue(name != null || type != null, "Either name or type of the field must be specified");
+    Assert.isTrue(name != null || type != null, "Either namePrefix or type of the field must be specified");
     Class<?> searchType = clazz;
     while (Object.class != searchType && searchType != null) {
       Field[] fields = getDeclaredFields(searchType);
@@ -246,11 +246,11 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * Attempt to find a {@link Method} on the supplied class with the supplied name and no parameters. Searches all superclasses up to {@code Object}.
+   * Attempt to find a {@link Method} on the supplied class with the supplied namePrefix and no parameters. Searches all superclasses up to {@code Object}.
    * <p>Returns {@code null} if no {@link Method} can be found.
    *
    * @param clazz the class to introspect
-   * @param name the name of the method
+   * @param name the namePrefix of the method
    * @return the Method object, or {@code null} if none found
    */
   public static Method findMethod(Class<?> clazz, String name) {
@@ -258,17 +258,17 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * Attempt to find a {@link Method} on the supplied class with the supplied name and parameter types. Searches all superclasses up to {@code Object}.
+   * Attempt to find a {@link Method} on the supplied class with the supplied namePrefix and parameter types. Searches all superclasses up to {@code Object}.
    * <p>Returns {@code null} if no {@link Method} can be found.
    *
    * @param clazz the class to introspect
-   * @param name the name of the method
+   * @param name the namePrefix of the method
    * @param paramTypes the parameter types of the method (may be {@code null} to indicate any signature)
    * @return the Method object, or {@code null} if none found
    */
   public static Method findMethod(Class<?> clazz, String name, Class<?>... paramTypes) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.notNull(name, "Method name must not be null");
+    Assert.notNull(name, "Method namePrefix must not be null");
     Class<?> searchType = clazz;
     while (searchType != null) {
       Method[] methods = (searchType.isInterface() ? searchType.getMethods() : getDeclaredMethods(searchType));
@@ -923,10 +923,10 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * get name. java.lang.Object[][].class => "java.lang.Object[][]"
+   * get namePrefix. java.lang.Object[][].class => "java.lang.Object[][]"
    *
    * @param c class.
-   * @return name.
+   * @return namePrefix.
    */
   public static String getName(Class<?> c) {
     if (c.isArray()) {
@@ -967,10 +967,10 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * get method name. "void do(int)", "void do()", "int do(java.lang.String,boolean)"
+   * get method namePrefix. "void do(int)", "void do()", "int do(java.lang.String,boolean)"
    *
    * @param m method.
-   * @return name.
+   * @return namePrefix.
    */
   public static String getName(final Method m) {
     StringBuilder ret = new StringBuilder();
@@ -1006,10 +1006,10 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * get constructor name. "()", "(java.lang.String,int)"
+   * get constructor namePrefix. "()", "(java.lang.String,int)"
    *
    * @param c constructor.
-   * @return name.
+   * @return namePrefix.
    */
   public static String getName(final Constructor<?> c) {
     StringBuilder ret = new StringBuilder("(");
@@ -1224,9 +1224,9 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * name to desc. java.util.Map[][] => "[[Ljava/util/Map;"
+   * namePrefix to desc. java.util.Map[][] => "[[Ljava/util/Map;"
    *
-   * @param name name.
+   * @param name namePrefix.
    * @return desc.
    */
   public static String name2desc(String name) {
@@ -1264,10 +1264,10 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * desc to name. "[[I" => "int[][]"
+   * desc to namePrefix. "[[I" => "int[][]"
    *
    * @param desc desc.
-   * @return name.
+   * @return namePrefix.
    */
   public static String desc2name(String desc) {
     StringBuilder sb = new StringBuilder();
@@ -1339,9 +1339,9 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * name to class. "boolean" => boolean.class "java.util.Map[][]" => java.util.Map[][].class
+   * namePrefix to class. "boolean" => boolean.class "java.util.Map[][]" => java.util.Map[][].class
    *
-   * @param name name.
+   * @param name namePrefix.
    * @return Class instance.
    */
   public static Class<?> name2class(String name) throws ClassNotFoundException {
@@ -1349,10 +1349,10 @@ public abstract class ReflectionUtils {
   }
 
   /**
-   * name to class. "boolean" => boolean.class "java.util.Map[][]" => java.util.Map[][].class
+   * namePrefix to class. "boolean" => boolean.class "java.util.Map[][]" => java.util.Map[][].class
    *
    * @param cl ClassLoader instance.
-   * @param name name.
+   * @param name namePrefix.
    * @return Class instance.
    */
   private static Class<?> name2class(ClassLoader cl, String name) throws ClassNotFoundException {
@@ -1515,7 +1515,7 @@ public abstract class ReflectionUtils {
    * Find method from method signature
    *
    * @param clazz Target class to find method
-   * @param methodName Method signature, e.g.: method1(int, String). It is allowed to provide method name only, e.g.: method2
+   * @param methodName Method signature, e.g.: method1(int, String). It is allowed to provide method namePrefix only, e.g.: method2
    * @return target method
    * @throws IllegalStateException when multiple methods are found (overridden method when parameter info is not provided)
    */
@@ -1540,7 +1540,7 @@ public abstract class ReflectionUtils {
         throw new NoSuchMethodException("No such method " + methodName + " in class " + clazz);
       }
       if (finded.size() > 1) {
-        String msg = String.format("Not unique method for method name(%s) in class(%s), find %d methods.",
+        String msg = String.format("Not unique method for method namePrefix(%s) in class(%s), find %d methods.",
             methodName, clazz.getName(), finded.size());
         throw new IllegalStateException(msg);
       }

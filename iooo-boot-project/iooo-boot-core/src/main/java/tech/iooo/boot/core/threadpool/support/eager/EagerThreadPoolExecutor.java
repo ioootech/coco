@@ -26,6 +26,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * EagerThreadPoolExecutor
+ *
+ * @author Ivan97
  */
 public class EagerThreadPoolExecutor extends ThreadPoolExecutor {
 

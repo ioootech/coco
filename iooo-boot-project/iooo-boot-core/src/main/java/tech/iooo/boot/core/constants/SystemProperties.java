@@ -33,9 +33,9 @@ public class SystemProperties {
   public String JAVA_LIBRARY_PATH = getProperty("java.library.path");
   public boolean JAVA_RMI_SERVER_DISABLE_HTTP = getPropertyAsBoolean("java.rmi.server.disableHttp", true);
   public String JAVA_RMI_SERVER_HOSTNAME = getProperty("java.rmi.server.hostname");
-  public String JAVA_RUNTIME_NAME = getProperty("java.runtime.name");
+  public String JAVA_RUNTIME_NAME = getProperty("java.runtime.namePrefix");
   public String JAVA_RUNTIME_VERSION = getProperty("java.runtime.version");
-  public String JAVA_SPECIFICATION_NAME = getProperty("java.specification.name");
+  public String JAVA_SPECIFICATION_NAME = getProperty("java.specification.namePrefix");
   public String JAVA_SPECIFICATION_VENDOR = getProperty("java.specification.vendor");
   public String JAVA_SPECIFICATION_VERSION = getProperty("java.specification.version");
   public boolean JAVA_UTIL_ARRAYS_USE_LEGACY_MERGE_SORT = getPropertyAsBoolean("java.util.Arrays.useLegacyMergeSort", true);
@@ -43,8 +43,8 @@ public class SystemProperties {
   public String JAVA_VENDOR = getProperty("java.vendor");
   public String JAVA_VERSION = getProperty("java.version");
   public String JAVA_VM_INFO = getProperty("java.vm.info");
-  public String JAVA_VM_NAME = getProperty("java.vm.name");
-  public String JAVA_VM_SPECIFICATION_NAME = getProperty("java.vm.specification.name");
+  public String JAVA_VM_NAME = getProperty("java.vm.namePrefix");
+  public String JAVA_VM_SPECIFICATION_NAME = getProperty("java.vm.specification.namePrefix");
   public String JAVA_VM_SPECIFICATION_VENDOR = getProperty("java.vm.specification.vendor");
   public String JAVA_VM_SPECIFICATION_VERSION = getProperty("java.vm.specification.version");
   public String JAVA_VM_VENDOR = getProperty("java.vm.vendor");
@@ -52,7 +52,7 @@ public class SystemProperties {
   public boolean JAVAX_SWING_REBASE_CSS_SIZE_MAP = getPropertyAsBoolean("javax.swing.rebaseCssSizeMap", true);
   public String LINE_SEPARATOR = System.lineSeparator();
   public String OS_ARCH = getProperty("os.arch");
-  public String OS_NAME = getProperty("os.name");
+  public String OS_NAME = getProperty("os.namePrefix");
   public String OS_VERSION = getProperty("os.version");
   public String PATH_SEPARATOR = getProperty("path.separator");
   public String SOCKS_NON_PROXY_HOSTS = getProperty("socksNonProxyHosts","192.168.0.0/16|*.192.168.0.0/16|10.0.0.0/8|*.10.0.0.0/8|172.16.0.0/12|*.172.16.0.0/12|127.0.0.1|localhost|*.localhost|local|*.local");
@@ -64,7 +64,7 @@ public class SystemProperties {
   public String USER_HOME = getProperty("user.home");
   public String USER_LANGUAGE = getProperty("user.language");
   public String USER_LANGUAGE_FORMAT = getProperty("user.language.format");
-  public String USER_NAME = getProperty("user.name");
+  public String USER_NAME = getProperty("user.namePrefix");
   public String USER_TIMEZONE = getProperty("user.timezone");
 
   private String getProperty(String key) {

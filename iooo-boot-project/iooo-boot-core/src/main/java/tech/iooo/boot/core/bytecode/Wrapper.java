@@ -137,7 +137,7 @@ public abstract class Wrapper {
     c2.append(name).append(" w; try{ w = ((").append(name).append(")$1); }catch(Throwable e){ throw new IllegalArgumentException(e); }");
     c3.append(name).append(" w; try{ w = ((").append(name).append(")$1); }catch(Throwable e){ throw new IllegalArgumentException(e); }");
 
-    Map<String, Class<?>> pts = new HashMap<String, Class<?>>(); // <property name, property types>
+    Map<String, Class<?>> pts = new HashMap<String, Class<?>>(); // <property namePrefix, property types>
     Map<String, Method> ms = new LinkedHashMap<String, Method>(); // <method desc, Method instance>
     List<String> mns = new ArrayList<String>(); // method names.
     List<String> dmns = new ArrayList<String>(); // declaring method names.
@@ -182,7 +182,7 @@ public abstract class Wrapper {
       if (override) {
         if (len > 0) {
           for (int l = 0; l < len; l++) {
-            c3.append(" && ").append(" $3[").append(l).append("].getName().equals(\"")
+            c3.append(" && ").append(" $3[").append(l).append("].getNamePrefix().equals(\"")
                 .append(m.getParameterTypes()[l].getName()).append("\")");
           }
         }
@@ -242,10 +242,10 @@ public abstract class Wrapper {
     cc.setSuperClass(Wrapper.class);
 
     cc.addDefaultConstructor();
-    cc.addField("public static String[] pns;"); // property name array.
+    cc.addField("public static String[] pns;"); // property namePrefix array.
     cc.addField("public static " + Map.class.getName() + " pts;"); // property type map.
-    cc.addField("public static String[] mns;"); // all method name array.
-    cc.addField("public static String[] dmns;"); // declared method name array.
+    cc.addField("public static String[] mns;"); // all method namePrefix array.
+    cc.addField("public static String[] dmns;"); // declared method namePrefix array.
     for (int i = 0, len = ms.size(); i < len; i++) {
       cc.addField("public static Class[] mts" + i + ";");
     }
@@ -346,16 +346,16 @@ public abstract class Wrapper {
   }
 
   /**
-   * get property name array.
+   * get property namePrefix array.
    *
-   * @return property name array.
+   * @return property namePrefix array.
    */
   abstract public String[] getPropertyNames();
 
   /**
    * get property type.
    *
-   * @param pn property name.
+   * @param pn property namePrefix.
    * @return Property type or nul.
    */
   abstract public Class<?> getPropertyType(String pn);
@@ -363,7 +363,7 @@ public abstract class Wrapper {
   /**
    * has property.
    *
-   * @param name property name.
+   * @param name property namePrefix.
    * @return has or has not.
    */
   abstract public boolean hasProperty(String name);
@@ -372,7 +372,7 @@ public abstract class Wrapper {
    * get property value.
    *
    * @param instance instance.
-   * @param pn property name.
+   * @param pn property namePrefix.
    * @return value.
    */
   abstract public Object getPropertyValue(Object instance, String pn) throws NoSuchPropertyException, IllegalArgumentException;
@@ -381,7 +381,7 @@ public abstract class Wrapper {
    * set property value.
    *
    * @param instance instance.
-   * @param pn property name.
+   * @param pn property namePrefix.
    * @param pv property value.
    */
   abstract public void setPropertyValue(Object instance, String pn, Object pv) throws NoSuchPropertyException, IllegalArgumentException;
@@ -390,7 +390,7 @@ public abstract class Wrapper {
    * get property value.
    *
    * @param instance instance.
-   * @param pns property name array.
+   * @param pns property namePrefix array.
    * @return value array.
    */
   public Object[] getPropertyValues(Object instance, String[] pns) throws NoSuchPropertyException, IllegalArgumentException {
@@ -405,7 +405,7 @@ public abstract class Wrapper {
    * set property value.
    *
    * @param instance instance.
-   * @param pns property name array.
+   * @param pns property namePrefix array.
    * @param pvs property value array.
    */
   public void setPropertyValues(Object instance, String[] pns, Object[] pvs) throws NoSuchPropertyException, IllegalArgumentException {
@@ -419,23 +419,23 @@ public abstract class Wrapper {
   }
 
   /**
-   * get method name array.
+   * get method namePrefix array.
    *
-   * @return method name array.
+   * @return method namePrefix array.
    */
   abstract public String[] getMethodNames();
 
   /**
-   * get method name array.
+   * get method namePrefix array.
    *
-   * @return method name array.
+   * @return method namePrefix array.
    */
   abstract public String[] getDeclaredMethodNames();
 
   /**
    * has method.
    *
-   * @param name method name.
+   * @param name method namePrefix.
    * @return has or has not.
    */
   public boolean hasMethod(String name) {
@@ -451,7 +451,7 @@ public abstract class Wrapper {
    * invoke method.
    *
    * @param instance instance.
-   * @param mn method name.
+   * @param mn method namePrefix.
    * @param args argument array.
    * @return return value.
    */

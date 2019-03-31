@@ -16,7 +16,7 @@
  */
 package tech.iooo.boot.core.threadpool.support.cached;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -29,20 +29,21 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 /**
  * This thread pool is self-tuned. Thread will be recycled after idle for one minute, and new thread will be created for the upcoming request.
  *
+ * @author Ivan97
  * @see java.util.concurrent.Executors#newCachedThreadPool()
  */
 public class CachedThreadPool implements ThreadPool {
 
   @Override
-  public Executor executor(ThreadPoolConfig config) {
+  public ExecutorService executorService(ThreadPoolConfig config) {
     return new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
         config.getQueues() == 0 ? new SynchronousQueue<>() :
             (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
                 : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(config.getName(), true), new AbortPolicyWithReport(config.getName()));
+        new NamedInternalThreadFactory(config.getNamePrefix(), true), new AbortPolicyWithReport(config.getNamePrefix()));
   }
 
-  public Executor executor() {
-    return executor(ThreadPoolConfig.DEFAULT_CONFIG);
+  public ExecutorService executorService() {
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
   }
 }

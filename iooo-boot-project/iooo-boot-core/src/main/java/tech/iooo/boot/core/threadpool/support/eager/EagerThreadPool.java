@@ -17,7 +17,7 @@
 
 package tech.iooo.boot.core.threadpool.support.eager;
 
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
@@ -26,11 +26,13 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 
 /**
  * EagerThreadPool When the core threads are all in busy, create new thread instead of putting task into blocking queue.
+ *
+ * @author Ivan97
  */
 public class EagerThreadPool implements ThreadPool {
 
   @Override
-  public Executor executor(ThreadPoolConfig config) {
+  public ExecutorService executorService(ThreadPoolConfig config) {
     // init queue and executor
     TaskQueue<Runnable> taskQueue = new TaskQueue<>(config.getQueues() <= 0 ? 1 : config.getQueues());
     EagerThreadPoolExecutor executor = new EagerThreadPoolExecutor(config.getCores(),
@@ -38,13 +40,13 @@ public class EagerThreadPool implements ThreadPool {
         config.getAlive(),
         TimeUnit.MILLISECONDS,
         taskQueue,
-        new NamedInternalThreadFactory(config.getName(), true),
-        new AbortPolicyWithReport(config.getName()));
+        new NamedInternalThreadFactory(config.getNamePrefix(), true),
+        new AbortPolicyWithReport(config.getNamePrefix()));
     taskQueue.setExecutor(executor);
     return executor;
   }
 
-  public Executor executor() {
-    return executor(ThreadPoolConfig.DEFAULT_CONFIG);
+  public ExecutorService executorService() {
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
   }
 }

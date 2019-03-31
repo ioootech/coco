@@ -379,7 +379,7 @@ public class HashedWheelTimer implements Timer {
   }
 
   private boolean isWindows() {
-    return System.getProperty("os.name", "").toLowerCase(Locale.US).contains("win");
+    return System.getProperty("os.namePrefix", "").toLowerCase(Locale.US).contains("win");
   }
 
   private static final class HashedWheelTimeout implements Timeout {

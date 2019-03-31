@@ -101,7 +101,7 @@ public abstract class Proxy {
       sb.append(itf).append(';');
     }
 
-    // use interface class name list as key.
+    // use interface class namePrefix list as key.
     String key = sb.toString();
 
     // get cache by class loader.

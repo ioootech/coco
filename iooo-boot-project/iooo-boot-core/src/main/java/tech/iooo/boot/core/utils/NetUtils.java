@@ -163,7 +163,7 @@ public class NetUtils {
   }
 
   /**
-   * normalize the ipv6 Address, convert scope name to scope id. e.g. convert fe80:0:0:0:894:aeec:f37d:23e1%en0 to fe80:0:0:0:894:aeec:f37d:23e1%5
+   * normalize the ipv6 Address, convert scope namePrefix to scope id. e.g. convert fe80:0:0:0:894:aeec:f37d:23e1%en0 to fe80:0:0:0:894:aeec:f37d:23e1%5
    *
    * The %5 after ipv6 address is called scope id. see java doc of {@link Inet6Address} for more details.
    *

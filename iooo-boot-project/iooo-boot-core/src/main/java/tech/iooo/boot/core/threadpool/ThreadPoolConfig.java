@@ -15,7 +15,7 @@ public class ThreadPoolConfig {
 
   public static final ThreadPoolConfig DEFAULT_CONFIG = new ThreadPoolConfig.ThreadPoolConfigBuilder().build();
 
-  private String name = Constants.DEFAULT_THREAD_NAME;
+  private String namePrefix = Constants.DEFAULT_THREAD_NAME_PREFIX;
   private int cores = Constants.DEFAULT_CORE_THREADS;
   private int threads = Integer.MAX_VALUE;
   private int queues = Constants.DEFAULT_QUEUES;

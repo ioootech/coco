@@ -98,12 +98,12 @@ public abstract class ClassUtils {
   private static final Map<Class<?>, Class<?>> primitiveTypeToWrapperMap = new IdentityHashMap<>(8);
 
   /**
-   * Map with primitive type name as key and corresponding primitive type as value, for example: "int" -> "int.class".
+   * Map with primitive type namePrefix as key and corresponding primitive type as value, for example: "int" -> "int.class".
    */
   private static final Map<String, Class<?>> primitiveTypeNameMap = new HashMap<>(32);
 
   /**
-   * Map with common Java language class name as key and corresponding Class as value. Primarily for efficient deserialization of remote invocations.
+   * Map with common Java language class namePrefix as key and corresponding Class as value. Primarily for efficient deserialization of remote invocations.
    */
   private static final Map<String, Class<?>> commonClassCache = new HashMap<>(64);
 
@@ -216,9 +216,9 @@ public abstract class ClassUtils {
    * Replacement for {@code Class.forName()} that also returns Class instances for primitives (e.g. "int") and array class names (e.g. "String[]"). Furthermore, it is also capable
    * of resolving inner class names in Java source style (e.g. "java.lang.Thread.State" instead of "java.lang.Thread$State").
    *
-   * @param name the name of the Class
+   * @param name the namePrefix of the Class
    * @param classLoader the class loader to use (may be {@code null}, which indicates the default class loader)
-   * @return a class instance for the supplied name
+   * @return a class instance for the supplied namePrefix
    * @throws ClassNotFoundException if the class was not found
    * @throws LinkageError if the class file could not be loaded
    * @see Class#forName(String, boolean, ClassLoader)
@@ -279,14 +279,14 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Resolve the given class name into a Class instance. Supports primitives (like "int") and array class names (like "String[]").
+   * Resolve the given class namePrefix into a Class instance. Supports primitives (like "int") and array class names (like "String[]").
    * <p>This is effectively equivalent to the {@code forName}
    * method with the same arguments, with the only difference being the exceptions thrown in case of class loading failure.
    *
-   * @param className the name of the Class
+   * @param className the namePrefix of the Class
    * @param classLoader the class loader to use (may be {@code null}, which indicates the default class loader)
-   * @return a class instance for the supplied name
-   * @throws IllegalArgumentException if the class name was not resolvable (that is, the class could not be found or the class file could not be loaded)
+   * @return a class instance for the supplied namePrefix
+   * @throws IllegalArgumentException if the class namePrefix was not resolvable (that is, the class could not be found or the class file could not be loaded)
    * @throws IllegalStateException if the corresponding class is resolvable but there was a readability mismatch in the inheritance hierarchy of the class (typically a missing
    * dependency declaration in a Jigsaw module definition for a superclass or interface implemented by the class to be loaded here)
    * @see #forName(String, ClassLoader)
@@ -307,10 +307,10 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Determine whether the {@link Class} identified by the supplied name is present and can be loaded. Will return {@code false} if either the class or one of its dependencies is
+   * Determine whether the {@link Class} identified by the supplied namePrefix is present and can be loaded. Will return {@code false} if either the class or one of its dependencies is
    * not present or cannot be loaded.
    *
-   * @param className the name of the class to check
+   * @param className the namePrefix of the class to check
    * @param classLoader the class loader to use (may be {@code null} which indicates the default class loader)
    * @return whether the specified class is present (including all of its superclasses and interfaces)
    * @throws IllegalStateException if the corresponding class is resolvable but there was a readability mismatch in the inheritance hierarchy of the class (typically a missing
@@ -402,7 +402,7 @@ public abstract class ClassUtils {
   private static boolean isLoadable(Class<?> clazz, ClassLoader classLoader) {
     try {
       return (clazz == classLoader.loadClass(clazz.getName()));
-      // Else: different class with same name found
+      // Else: different class with same namePrefix found
     } catch (ClassNotFoundException ex) {
       // No corresponding class found at all
       return false;
@@ -410,12 +410,12 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Resolve the given class name as primitive class, if appropriate, according to the JVM's naming rules for primitive classes.
+   * Resolve the given class namePrefix as primitive class, if appropriate, according to the JVM's naming rules for primitive classes.
    * <p>Also supports the JVM's internal class names for primitive arrays.
    * Does <i>not</i> support the "[]" suffix notation for primitive arrays; this is only supported by {@link #forName(String, ClassLoader)}.
    *
-   * @param name the name of the potentially primitive class
-   * @return the primitive class, or {@code null} if the name does not denote a primitive class or primitive array class
+   * @param name the namePrefix of the potentially primitive class
+   * @return the primitive class, or {@code null} if the namePrefix does not denote a primitive class or primitive array class
    */
   @Nullable
   public static Class<?> resolvePrimitiveClassName(@Nullable String name) {
@@ -528,10 +528,10 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Convert a "/"-based resource path to a "."-based fully qualified class name.
+   * Convert a "/"-based resource path to a "."-based fully qualified class namePrefix.
    *
    * @param resourcePath the resource path pointing to a class
-   * @return the corresponding fully qualified class name
+   * @return the corresponding fully qualified class namePrefix
    */
   public static String convertResourcePathToClassName(String resourcePath) {
     Assert.notNull(resourcePath, "Resource path must not be null");
@@ -539,30 +539,30 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Convert a "."-based fully qualified class name to a "/"-based resource path.
+   * Convert a "."-based fully qualified class namePrefix to a "/"-based resource path.
    *
-   * @param className the fully qualified class name
+   * @param className the fully qualified class namePrefix
    * @return the corresponding resource path, pointing to the class
    */
   public static String convertClassNameToResourcePath(String className) {
-    Assert.notNull(className, "Class name must not be null");
+    Assert.notNull(className, "Class namePrefix must not be null");
     return className.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
   }
 
   /**
    * Return a path suitable for use with {@code ClassLoader.getResource} (also suitable for use with {@code Class.getResource} by prepending a slash ('/') to the return value).
    * Built by taking the package of the specified class file, converting all dots ('.') to slashes ('/'), adding a trailing slash if necessary, and concatenating the specified
-   * resource name to this. <br/>As such, this function may be used to build a path suitable for loading a resource file that is in the same package as a class file, although
+   * resource namePrefix to this. <br/>As such, this function may be used to build a path suitable for loading a resource file that is in the same package as a class file, although
    * {@link org.springframework.core.io.ClassPathResource} is usually even more convenient.
    *
    * @param clazz the Class whose package will be used as the base
-   * @param resourceName the resource name to append. A leading slash is optional.
+   * @param resourceName the resource namePrefix to append. A leading slash is optional.
    * @return the built-up resource path
    * @see ClassLoader#getResource
    * @see Class#getResource
    */
   public static String addResourcePathToPackagePath(Class<?> clazz, String resourceName) {
-    Assert.notNull(resourceName, "Resource name must not be null");
+    Assert.notNull(resourceName, "Resource namePrefix must not be null");
     if (!resourceName.startsWith("/")) {
       return classPackageAsResourcePath(clazz) + '/' + resourceName;
     }
@@ -570,12 +570,12 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Given an input class object, return a string which consists of the class's package name as a pathname, i.e., all dots ('.') are replaced by slashes ('/'). Neither a leading
-   * nor trailing slash is added. The result could be concatenated with a slash and the name of a resource and fed directly to {@code ClassLoader.getResource()}. For it to be fed
+   * Given an input class object, return a string which consists of the class's package namePrefix as a pathname, i.e., all dots ('.') are replaced by slashes ('/'). Neither a leading
+   * nor trailing slash is added. The result could be concatenated with a slash and the namePrefix of a resource and fed directly to {@code ClassLoader.getResource()}. For it to be fed
    * to {@code Class.getResource} instead, a leading slash would also have to be prepended to the returned value.
    *
    * @param clazz the input class. A {@code null} value or the default (empty) package will result in an empty string ("") being returned.
-   * @return a path which represents the package name
+   * @return a path which represents the package namePrefix
    * @see ClassLoader#getResource
    * @see Class#getResource
    */
@@ -595,7 +595,7 @@ public abstract class ClassUtils {
   /**
    * Build a String that consists of the names of the classes/interfaces in the given array.
    * <p>Basically like {@code AbstractCollection.toString()}, but stripping
-   * the "class "/"interface " prefix before every class name.
+   * the "class "/"interface " prefix before every class namePrefix.
    *
    * @param classes an array of Class objects
    * @return a String of form "[com.foo.Bar, com.foo.Baz]"
@@ -608,7 +608,7 @@ public abstract class ClassUtils {
   /**
    * Build a String that consists of the names of the classes/interfaces in the given collection.
    * <p>Basically like {@code AbstractCollection.toString()}, but stripping
-   * the "class "/"interface " prefix before every class name.
+   * the "class "/"interface " prefix before every class namePrefix.
    *
    * @param classes a Collection of Class objects (may be {@code null})
    * @return a String of form "[com.foo.Bar, com.foo.Baz]"
@@ -821,9 +821,9 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Check whether the specified class name is a CGLIB-generated class.
+   * Check whether the specified class namePrefix is a CGLIB-generated class.
    *
-   * @param className the class name to check
+   * @param className the class namePrefix to check
    */
   public static boolean isCglibProxyClassName(@Nullable String className) {
     return (className != null && className.contains(CGLIB_CLASS_SEPARATOR));
@@ -857,11 +857,11 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Return a descriptive name for the given object's type: usually simply the class name, but component type class name + "[]" for arrays, and an appended list of implemented
+   * Return a descriptive namePrefix for the given object's type: usually simply the class namePrefix, but component type class namePrefix + "[]" for arrays, and an appended list of implemented
    * interfaces for JDK proxies.
    *
    * @param value the value to introspect
-   * @return the qualified name of the class
+   * @return the qualified namePrefix of the class
    */
   @Nullable
   public static String getDescriptiveType(@Nullable Object value) {
@@ -886,24 +886,24 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Check whether the given class matches the user-specified type name.
+   * Check whether the given class matches the user-specified type namePrefix.
    *
    * @param clazz the class to check
-   * @param typeName the type name to match
+   * @param typeName the type namePrefix to match
    */
   public static boolean matchesTypeName(Class<?> clazz, @Nullable String typeName) {
     return (typeName != null && (typeName.equals(clazz.getTypeName()) || typeName.equals(clazz.getSimpleName())));
   }
 
   /**
-   * Get the class name without the qualified package name.
+   * Get the class namePrefix without the qualified package namePrefix.
    *
-   * @param className the className to get the short name for
-   * @return the class name of the class without the package name
+   * @param className the className to get the short namePrefix for
+   * @return the class namePrefix of the class without the package namePrefix
    * @throws IllegalArgumentException if the className is empty
    */
   public static String getShortName(String className) {
-    Assert.hasLength(className, "Class name must not be empty");
+    Assert.hasLength(className, "Class namePrefix must not be empty");
     int lastDotIndex = className.lastIndexOf(PACKAGE_SEPARATOR);
     int nameEndIndex = className.indexOf(CGLIB_CLASS_SEPARATOR);
     if (nameEndIndex == -1) {
@@ -915,20 +915,20 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Get the class name without the qualified package name.
+   * Get the class namePrefix without the qualified package namePrefix.
    *
-   * @param clazz the class to get the short name for
-   * @return the class name of the class without the package name
+   * @param clazz the class to get the short namePrefix for
+   * @return the class namePrefix of the class without the package namePrefix
    */
   public static String getShortName(Class<?> clazz) {
     return getShortName(getQualifiedName(clazz));
   }
 
   /**
-   * Return the short string name of a Java class in uncapitalized JavaBeans property format. Strips the outer class name in case of an inner class.
+   * Return the short string namePrefix of a Java class in uncapitalized JavaBeans property format. Strips the outer class namePrefix in case of an inner class.
    *
    * @param clazz the class
-   * @return the short name rendered in a standard JavaBeans property format
+   * @return the short namePrefix rendered in a standard JavaBeans property format
    * @see java.beans.Introspector#decapitalize(String)
    */
   public static String getShortNameAsProperty(Class<?> clazz) {
@@ -939,10 +939,10 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Determine the name of the class file, relative to the containing package: e.g. "String.class"
+   * Determine the namePrefix of the class file, relative to the containing package: e.g. "String.class"
    *
    * @param clazz the class
-   * @return the file name of the ".class" file
+   * @return the file namePrefix of the ".class" file
    */
   public static String getClassFileName(Class<?> clazz) {
     Assert.notNull(clazz, "Class must not be null");
@@ -952,10 +952,10 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Determine the name of the package of the given class, e.g. "java.lang" for the {@code java.lang.String} class.
+   * Determine the namePrefix of the package of the given class, e.g. "java.lang" for the {@code java.lang.String} class.
    *
    * @param clazz the class
-   * @return the package name, or the empty String if the class is defined in the default package
+   * @return the package namePrefix, or the empty String if the class is defined in the default package
    */
   public static String getPackageName(Class<?> clazz) {
     Assert.notNull(clazz, "Class must not be null");
@@ -963,22 +963,22 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Determine the name of the package of the given fully-qualified class name, e.g. "java.lang" for the {@code java.lang.String} class name.
+   * Determine the namePrefix of the package of the given fully-qualified class namePrefix, e.g. "java.lang" for the {@code java.lang.String} class namePrefix.
    *
-   * @param fqClassName the fully-qualified class name
-   * @return the package name, or the empty String if the class is defined in the default package
+   * @param fqClassName the fully-qualified class namePrefix
+   * @return the package namePrefix, or the empty String if the class is defined in the default package
    */
   public static String getPackageName(String fqClassName) {
-    Assert.notNull(fqClassName, "Class name must not be null");
+    Assert.notNull(fqClassName, "Class namePrefix must not be null");
     int lastDotIndex = fqClassName.lastIndexOf(PACKAGE_SEPARATOR);
     return (lastDotIndex != -1 ? fqClassName.substring(0, lastDotIndex) : "");
   }
 
   /**
-   * Return the qualified name of the given class: usually simply the class name, but component type class name + "[]" for arrays.
+   * Return the qualified namePrefix of the given class: usually simply the class namePrefix, but component type class namePrefix + "[]" for arrays.
    *
    * @param clazz the class
-   * @return the qualified name of the class
+   * @return the qualified namePrefix of the class
    */
   public static String getQualifiedName(Class<?> clazz) {
     Assert.notNull(clazz, "Class must not be null");
@@ -986,21 +986,21 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Return the qualified name of the given method, consisting of fully qualified interface/class name + "." + method name.
+   * Return the qualified namePrefix of the given method, consisting of fully qualified interface/class namePrefix + "." + method namePrefix.
    *
    * @param method the method
-   * @return the qualified name of the method
+   * @return the qualified namePrefix of the method
    */
   public static String getQualifiedMethodName(Method method) {
     return getQualifiedMethodName(method, null);
   }
 
   /**
-   * Return the qualified name of the given method, consisting of fully qualified interface/class name + "." + method name.
+   * Return the qualified namePrefix of the given method, consisting of fully qualified interface/class namePrefix + "." + method namePrefix.
    *
    * @param method the method
    * @param clazz the clazz that the method is being invoked on (may be {@code null} to indicate the method's declaring class)
-   * @return the qualified name of the method
+   * @return the qualified namePrefix of the method
    * @since 4.3.4
    */
   public static String getQualifiedMethodName(Method method, @Nullable Class<?> clazz) {
@@ -1045,7 +1045,7 @@ public abstract class ClassUtils {
    * <p>Essentially translates {@code NoSuchMethodException} to "false".
    *
    * @param clazz the clazz to analyze
-   * @param methodName the name of the method
+   * @param methodName the namePrefix of the method
    * @param paramTypes the parameter types of the method
    * @return whether the class has a corresponding method
    * @see Class#getMethod
@@ -1057,11 +1057,11 @@ public abstract class ClassUtils {
   /**
    * Determine whether the given class has a public method with the given signature, and return it if available (else throws an {@code IllegalStateException}).
    * <p>In case of any signature specified, only returns the method if there is a
-   * unique candidate, i.e. a single public method with the specified name.
+   * unique candidate, i.e. a single public method with the specified namePrefix.
    * <p>Essentially translates {@code NoSuchMethodException} to {@code IllegalStateException}.
    *
    * @param clazz the clazz to analyze
-   * @param methodName the name of the method
+   * @param methodName the namePrefix of the method
    * @param paramTypes the parameter types of the method (may be {@code null} to indicate any signature)
    * @return the method (never {@code null})
    * @throws IllegalStateException if the method has not been found
@@ -1069,7 +1069,7 @@ public abstract class ClassUtils {
    */
   public static Method getMethod(Class<?> clazz, String methodName, @Nullable Class<?>... paramTypes) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.notNull(methodName, "Method name must not be null");
+    Assert.notNull(methodName, "Method namePrefix must not be null");
     if (paramTypes != null) {
       try {
         return clazz.getMethod(methodName, paramTypes);
@@ -1097,11 +1097,11 @@ public abstract class ClassUtils {
   /**
    * Determine whether the given class has a public method with the given signature, and return it if available (else return {@code null}).
    * <p>In case of any signature specified, only returns the method if there is a
-   * unique candidate, i.e. a single public method with the specified name.
+   * unique candidate, i.e. a single public method with the specified namePrefix.
    * <p>Essentially translates {@code NoSuchMethodException} to {@code null}.
    *
    * @param clazz the clazz to analyze
-   * @param methodName the name of the method
+   * @param methodName the namePrefix of the method
    * @param paramTypes the parameter types of the method (may be {@code null} to indicate any signature)
    * @return the method, or {@code null} if not found
    * @see Class#getMethod
@@ -1109,7 +1109,7 @@ public abstract class ClassUtils {
   @Nullable
   public static Method getMethodIfAvailable(Class<?> clazz, String methodName, @Nullable Class<?>... paramTypes) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.notNull(methodName, "Method name must not be null");
+    Assert.notNull(methodName, "Method namePrefix must not be null");
     if (paramTypes != null) {
       try {
         return clazz.getMethod(methodName, paramTypes);
@@ -1132,15 +1132,15 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Return the number of methods with a given name (with any argument types), for the given class and/or its superclasses. Includes non-public methods.
+   * Return the number of methods with a given namePrefix (with any argument types), for the given class and/or its superclasses. Includes non-public methods.
    *
    * @param clazz the clazz to check
-   * @param methodName the name of the method
-   * @return the number of methods with the given name
+   * @param methodName the namePrefix of the method
+   * @return the number of methods with the given namePrefix
    */
   public static int getMethodCountForName(Class<?> clazz, String methodName) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.notNull(methodName, "Method name must not be null");
+    Assert.notNull(methodName, "Method namePrefix must not be null");
     int count = 0;
     Method[] declaredMethods = clazz.getDeclaredMethods();
     for (Method method : declaredMethods) {
@@ -1178,15 +1178,15 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Does the given class or one of its superclasses at least have one or more methods with the supplied name (with any argument types)? Includes non-public methods.
+   * Does the given class or one of its superclasses at least have one or more methods with the supplied namePrefix (with any argument types)? Includes non-public methods.
    *
    * @param clazz the clazz to check
-   * @param methodName the name of the method
-   * @return whether there is at least one method with the given name
+   * @param methodName the namePrefix of the method
+   * @return whether there is at least one method with the given namePrefix
    */
   public static boolean hasAtLeastOneMethodWithName(Class<?> clazz, String methodName) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.notNull(methodName, "Method name must not be null");
+    Assert.notNull(methodName, "Method namePrefix must not be null");
     Method[] declaredMethods = clazz.getDeclaredMethods();
     for (Method method : declaredMethods) {
       if (method.getName().equals(methodName)) {
@@ -1320,15 +1320,15 @@ public abstract class ClassUtils {
    * Return a public static method of a class.
    *
    * @param clazz the class which defines the method
-   * @param methodName the static method name
+   * @param methodName the static method namePrefix
    * @param args the parameter types to the method
    * @return the static method, or {@code null} if no static method was found
-   * @throws IllegalArgumentException if the method name is blank or the clazz is null
+   * @throws IllegalArgumentException if the method namePrefix is blank or the clazz is null
    */
   @Nullable
   public static Method getStaticMethod(Class<?> clazz, String methodName, Class<?>... args) {
     Assert.notNull(clazz, "Class must not be null");
-    Assert.notNull(methodName, "Method name must not be null");
+    Assert.notNull(methodName, "Method namePrefix must not be null");
     try {
       Method method = clazz.getMethod(methodName, args);
       return Modifier.isStatic(method.getModifiers()) ? method : null;
