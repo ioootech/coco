@@ -2,6 +2,7 @@ package tech.iooo.boot.core.threadpool;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import tech.iooo.boot.core.constants.Constants;
 
 /**
@@ -11,6 +12,7 @@ import tech.iooo.boot.core.constants.Constants;
  */
 @Data
 @Builder
+@Accessors(chain = true)
 public class ThreadPoolConfig {
 
   public static final ThreadPoolConfig DEFAULT_CONFIG = new ThreadPoolConfigBuilder()
