@@ -50,6 +50,6 @@ public class CachedThreadPool implements ThreadPool {
   }
 
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setThreads(Integer.MAX_VALUE));
   }
 }

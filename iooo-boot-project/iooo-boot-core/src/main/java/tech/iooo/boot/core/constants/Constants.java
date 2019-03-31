@@ -175,7 +175,7 @@ public abstract class Constants {
 
   public static final int DEFAULT_QUEUES = 0;
 
-  public static final int DEFAULT_ALIVE = 60 * 1000;
+  public static final long DEFAULT_ALIVE = 60 * 1000L;
 
   public static final int DEFAULT_CONNECTIONS = 0;
 

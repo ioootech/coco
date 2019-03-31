@@ -40,7 +40,7 @@ public class FixedThreadPool implements ThreadPool {
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
     if (Objects.isNull(executorService)) {
-      executorService = new ThreadPoolExecutor(config.getThreads(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
+      executorService = new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
           config.getQueues() == 0 ? new SynchronousQueue<>() :
               (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
                   : new LinkedBlockingQueue<>(config.getQueues())),
@@ -49,8 +49,7 @@ public class FixedThreadPool implements ThreadPool {
     return executorService;
   }
 
-
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setAlive(0));
   }
 }

@@ -28,6 +28,6 @@ public class ThreadPoolConfig {
   private int cores = Constants.DEFAULT_CORE_THREADS;
   private int threads = Constants.DEFAULT_THREADS;
   private int queues = Constants.DEFAULT_QUEUES;
-  private int alive = Constants.DEFAULT_ALIVE;
+  private long alive = Constants.DEFAULT_ALIVE;
   private boolean daemon = Constants.DEFAULT_THREAD_DAEMON;
 }

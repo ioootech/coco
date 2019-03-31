@@ -49,11 +49,10 @@ public class EagerThreadPool implements ThreadPool {
       this.executorService = executor;
       taskQueue.setExecutor(executor);
     }
-
     return executorService;
   }
 
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setThreads(Integer.MAX_VALUE));
   }
 }

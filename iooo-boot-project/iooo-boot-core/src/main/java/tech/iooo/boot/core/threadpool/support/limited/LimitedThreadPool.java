@@ -40,7 +40,7 @@ public class LimitedThreadPool implements ThreadPool {
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
     if (Objects.isNull(executorService)) {
-      executorService = new ThreadPoolExecutor(config.getCores(), config.getThreads(), Long.MAX_VALUE, TimeUnit.MILLISECONDS,
+      executorService = new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
           config.getQueues() == 0 ? new SynchronousQueue<>() :
               (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
                   : new LinkedBlockingQueue<>(config.getQueues())),
@@ -50,6 +50,6 @@ public class LimitedThreadPool implements ThreadPool {
   }
 
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setAlive(Long.MAX_VALUE));
   }
 }
