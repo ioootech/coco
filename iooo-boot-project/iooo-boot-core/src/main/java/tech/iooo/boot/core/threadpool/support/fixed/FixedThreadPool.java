@@ -45,7 +45,6 @@ public class FixedThreadPool implements ThreadPool {
               (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
                   : new LinkedBlockingQueue<>(config.getQueues())),
           new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
-
     }
     return executorService;
   }
