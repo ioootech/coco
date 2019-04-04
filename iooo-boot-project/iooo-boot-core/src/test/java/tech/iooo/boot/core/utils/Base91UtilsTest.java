@@ -9,17 +9,17 @@ import org.junit.Test;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-public class Base91Test {
+public class Base91UtilsTest {
 
 	@Test
 	public void encode() {
-		assertEquals(Base91.encode("test"), "fPNKd");
-		assertEquals(Base91.encode("Hello World!"), ">OwJh>Io0Tv!8PE");
+		assertEquals(Base91Utils.encode("test"), "fPNKd");
+		assertEquals(Base91Utils.encode("Hello World!"), ">OwJh>Io0Tv!8PE");
 	}
 
 	@Test
 	public void decode() {
-		assertEquals(Base91.decode("fPNKd"), "test");
-		assertEquals(Base91.decode(">OwJh>Io0Tv!8PE"), "Hello World!");
+		assertEquals(Base91Utils.decode("fPNKd"), "test");
+		assertEquals(Base91Utils.decode(">OwJh>Io0Tv!8PE"), "Hello World!");
 	}
 }

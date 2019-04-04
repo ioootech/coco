@@ -7,5 +7,5 @@ package tech.iooo.boot.core;
  */
 public interface Closeable {
 
-  void close(Handler<AsyncResult<Void>> res);
+  void close(Handler<AsyncResult<Void>> completionHandler);
 }

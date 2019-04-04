@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.logging.jcl.JclLoggerAdapter;
 import tech.iooo.boot.core.logging.jdk.JdkLoggerAdapter;
 import tech.iooo.boot.core.logging.log4j.Log4jLoggerAdapter;
@@ -28,7 +29,7 @@ import tech.iooo.boot.core.logging.slf4j.Slf4jLoggerAdapter;
 import tech.iooo.boot.core.logging.support.FailsafeLogger;
 
 /**
- * Logger factory
+ * Logger FACTORY
  */
 public class LoggerFactory {
 
@@ -37,7 +38,7 @@ public class LoggerFactory {
 
   // search common-used logging frameworks
   static {
-    String logger = System.getProperty("iooo.application.logger");
+    String logger = System.getProperty(Constants.IOOO_APPLICATION_LOGGER);
     if ("slf4j".equals(logger)) {
       setLoggerAdapter(new Slf4jLoggerAdapter());
     } else if ("jcl".equals(logger)) {
@@ -80,7 +81,9 @@ public class LoggerFactory {
   public static void setLoggerAdapter(LoggerAdapter loggerAdapter) {
     if (loggerAdapter != null) {
       Logger logger = loggerAdapter.getLogger(LoggerFactory.class.getName());
-      logger.info("using logger: " + loggerAdapter.getClass().getName());
+      if (logger.isDebugEnabled()) {
+        logger.debug("using logger: " + loggerAdapter.getClass().getName());
+      }
       LoggerFactory.LOGGER_ADAPTER = loggerAdapter;
       for (Map.Entry<String, FailsafeLogger> entry : LOGGERS.entrySet()) {
         entry.getValue().setLogger(LOGGER_ADAPTER.getLogger(entry.getKey()));

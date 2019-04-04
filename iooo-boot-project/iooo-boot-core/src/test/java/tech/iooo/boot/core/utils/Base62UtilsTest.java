@@ -14,20 +14,20 @@ import org.junit.jupiter.api.Test;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
 @DisplayName("Base62")
-class Base62Test {
+class Base62UtilsTest {
 
-  private final Base62 standardEncoder = Base62.createInstance();
+  private final Base62Utils standardEncoder = Base62Utils.createInstance();
 
-  private final Base62[] encoders = {
-      Base62.createInstanceWithGmpCharacterSet(),
-      Base62.createInstanceWithInvertedCharacterSet()
+  private final Base62Utils[] encoders = {
+      Base62Utils.createInstanceWithGmpCharacterSet(),
+      Base62Utils.createInstanceWithInvertedCharacterSet()
   };
 
   @Test
   @DisplayName("should preserve identity of simple byte arrays")
   public void preservesIdentity() {
     for (byte[] message : Environment.getRawInputs()) {
-      for (Base62 encoder : encoders) {
+      for (Base62Utils encoder : encoders) {
         final byte[] encoded = encoder.encode(message);
         final byte[] decoded = encoder.decode(encoded);
 
@@ -40,7 +40,7 @@ class Base62Test {
   @DisplayName("should produce encodings that only contain alphanumeric characters")
   public void alphaNumericOutput() {
     for (byte[] message : Environment.getRawInputs()) {
-      for (Base62 encoder : encoders) {
+      for (Base62Utils encoder : encoders) {
         final byte[] encoded = encoder.encode(message);
         final String encodedStr = new String(encoded);
 
@@ -54,7 +54,7 @@ class Base62Test {
   public void emptyInputs() {
     final byte[] empty = new byte[0];
 
-    for (Base62 encoder : encoders) {
+    for (Base62Utils encoder : encoders) {
       final byte[] encoded = encoder.encode(empty);
       assertArrayEquals(empty, encoded);
 

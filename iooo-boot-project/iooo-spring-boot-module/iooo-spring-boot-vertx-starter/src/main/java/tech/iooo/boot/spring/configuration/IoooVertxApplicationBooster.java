@@ -40,8 +40,8 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop(Runnable callback) {
+    stop();
     callback.run();
-    vertx.close();
     this.running = false;
   }
 
@@ -58,17 +58,17 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
       DeploymentOptions deploymentOptions;
       String optionName;
       if (ioooVertxProperties.getVerticle().isFailFast()) {
-        deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
         optionName = verticleService.deploymentOption();
+        deploymentOptions = applicationContext.getBean(optionName, DeploymentOptions.class);
       } else {
         if (applicationContext.containsBean(verticleService.deploymentOption())) {
-          deploymentOptions = applicationContext.getBean(verticleService.deploymentOption(), DeploymentOptions.class);
           optionName = verticleService.deploymentOption();
+          deploymentOptions = applicationContext.getBean(optionName, DeploymentOptions.class);
         } else {
           logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
               verticleService.deploymentOption(), verticleClass.getSimpleName());
-          deploymentOptions = applicationContext.getBean(VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS, DeploymentOptions.class);
           optionName = VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
+          deploymentOptions = applicationContext.getBean(optionName, DeploymentOptions.class);
         }
       }
       vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
@@ -91,7 +91,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
 
   @Override
   public void stop() {
-    stop(() -> IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle, res -> {
+    IoooVerticleServicesHolder.activeVerticleServices().columnKeySet().forEach(verticle -> vertx.undeploy(verticle, res -> {
       if (res.succeeded()) {
         if (logger.isInfoEnabled()) {
           logger.info("unload verticle {} ", verticle);
@@ -99,7 +99,9 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
       } else {
         logger.error("something happened while unload verticle " + verticle, res.cause());
       }
-    })));
+    }));
+    IoooVerticleServicesHolder.reset();
+    vertx.close();
   }
 
   @Override

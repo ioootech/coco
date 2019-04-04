@@ -27,9 +27,9 @@ public class GreetingVerticle extends AbstractVerticle {
   public void start(Future<Void> startFuture) throws Exception {
     vertx.createHttpServer().requestHandler(request -> {
       String name = request.getParam("name");
-      logger.info("Got request for name: " + name);
+      logger.info("Got request for namePrefix: " + name);
       if (name == null) {
-        request.response().setStatusCode(400).end("Missing name");
+        request.response().setStatusCode(400).end("Missing namePrefix");
       } else {
         // It's fine to call the greeter from the event loop as it's not blocking
         request.response().end(greeter.sayHello(name));

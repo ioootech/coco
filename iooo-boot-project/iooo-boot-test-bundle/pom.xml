@@ -4,7 +4,7 @@
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-parent</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <relativePath>../iooo-boot-parent</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -51,17 +51,7 @@
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>compile</scope>
     </dependency>
   </dependencies>

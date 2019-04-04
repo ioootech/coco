@@ -16,35 +16,40 @@
  */
 package tech.iooo.boot.core.threadpool.support.cached;
 
-import java.util.concurrent.Executor;
+import java.util.Objects;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.Constants;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
+import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
 import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 
 /**
  * This thread pool is self-tuned. Thread will be recycled after idle for one minute, and new thread will be created for the upcoming request.
  *
+ * @author Ivan97
  * @see java.util.concurrent.Executors#newCachedThreadPool()
  */
 public class CachedThreadPool implements ThreadPool {
 
+  private ExecutorService executorService;
+
   @Override
-  public Executor getExecutor(URL url) {
-    String name = url.getParameter(Constants.THREAD_NAME_KEY, Constants.DEFAULT_THREAD_NAME);
-    int cores = url.getParameter(Constants.CORE_THREADS_KEY, Constants.DEFAULT_CORE_THREADS);
-    int threads = url.getParameter(Constants.THREADS_KEY, Integer.MAX_VALUE);
-    int queues = url.getParameter(Constants.QUEUES_KEY, Constants.DEFAULT_QUEUES);
-    int alive = url.getParameter(Constants.ALIVE_KEY, Constants.DEFAULT_ALIVE);
-    return new ThreadPoolExecutor(cores, threads, alive, TimeUnit.MILLISECONDS,
-        queues == 0 ? new SynchronousQueue<Runnable>() :
-            (queues < 0 ? new LinkedBlockingQueue<Runnable>()
-                : new LinkedBlockingQueue<Runnable>(queues)),
-        new NamedInternalThreadFactory(name, true), new AbortPolicyWithReport(name, url));
+  public ExecutorService executorService(ThreadPoolConfig config) {
+    if (Objects.isNull(executorService)) {
+      executorService = new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
+          config.getQueues() == 0 ? new SynchronousQueue<>() :
+              (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                  : new LinkedBlockingQueue<>(config.getQueues())),
+          new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
+    }
+    return executorService;
+  }
+
+  public ExecutorService executorService() {
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setThreads(Integer.MAX_VALUE));
   }
 }

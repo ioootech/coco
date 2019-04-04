@@ -493,7 +493,7 @@ public class HttpStatusCode {
    */
   public Integer CLOUDFLARE_RAILGUN_ERROR = 527;
   /**
-   * Error 530 indicates that the requested host name could not be resolved on the Cloudflare network to an origin server.
+   * Error 530 indicates that the requested host namePrefix could not be resolved on the Cloudflare network to an origin server.
    */
   public Integer CLOUDFLARE_ORIGIN_DNS_ERROR = 530;
 }

@@ -16,19 +16,44 @@
  */
 package tech.iooo.boot.core.threadpool;
 
-import java.util.concurrent.Executor;
-import tech.iooo.boot.core.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import tech.iooo.boot.core.threadpool.support.cached.CachedThreadPool;
+import tech.iooo.boot.core.threadpool.support.eager.EagerThreadPool;
+import tech.iooo.boot.core.threadpool.support.fixed.FixedThreadPool;
+import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
 
 /**
  * ThreadPool
+ *
+ * @author Ivan97
  */
 public interface ThreadPool {
+
+  ExecutorService CACHED_THREAD_POOL_EXECUTOR_SERVICE = new CachedThreadPool().executorService();
+
+  ExecutorService EAGER_THREAD_POOL_EXECUTOR_SERVICE = new EagerThreadPool().executorService();
+
+  ExecutorService FIXED_THREAD_POOL_EXECUTOR_SERVICE = new FixedThreadPool().executorService();
+
+  ExecutorService LIMITED_THREAD_POOL_EXECUTOR_SERVICE = new LimitedThreadPool().executorService();
+
+  ScheduledExecutorService SCHEDULED_EXECUTOR_SERVICE = scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
+
+  static ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
+    return new ScheduledThreadPoolExecutor(config.getCores(),
+        new BasicThreadFactory.Builder().namingPattern(config.getNamePrefix())
+            .daemon(config.isDaemon()).build());
+  }
 
   /**
    * Thread pool
    *
-   * @param url URL contains thread parameter
+   * @param config ThreadPoolConfig contains thread parameter
    * @return thread pool
    */
-  Executor getExecutor(URL url);
+  ExecutorService executorService(ThreadPoolConfig config);
+
 }

@@ -8,7 +8,7 @@ import java.util.BitSet;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-codewar-booster">Ivan97</a>
  */
-public class Base91 {
+public class Base91Utils {
 
   private static final int BASE = 91;
   private static final int PACK = 13;

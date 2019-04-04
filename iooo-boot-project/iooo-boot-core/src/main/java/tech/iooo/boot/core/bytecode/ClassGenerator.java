@@ -330,7 +330,7 @@ public final class ClassGenerator {
             mCtc.addConstructor(CtNewConstructor
                 .copy(getCtConstructor(mCopyConstructors.get(code.substring(1))), mCtc, null));
           } else {
-            String[] sn = mCtc.getSimpleName().split("\\$+"); // inner class name include $.
+            String[] sn = mCtc.getSimpleName().split("\\$+"); // inner class namePrefix include $.
             mCtc.addConstructor(
                 CtNewConstructor.make(code.replaceFirst(SIMPLE_NAME_TAG, sn[sn.length - 1]), mCtc));
           }

@@ -168,10 +168,10 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Check whether the given array of enum constants contains a constant with the given name,
+	 * Check whether the given array of enum constants contains a constant with the given namePrefix,
 	 * ignoring case when determining a match.
 	 * @param enumValues the enum values to check, typically the product of a call to MyEnum.values()
-	 * @param constant the constant name to find (must not be null or empty string)
+	 * @param constant the constant namePrefix to find (must not be null or empty string)
 	 * @return whether the constant has been found in the given array
 	 */
 	public static boolean containsConstant(Enum<?>[] enumValues, String constant) {
@@ -179,9 +179,9 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Check whether the given array of enum constants contains a constant with the given name.
+	 * Check whether the given array of enum constants contains a constant with the given namePrefix.
 	 * @param enumValues the enum values to check, typically the product of a call to MyEnum.values()
-	 * @param constant the constant name to find (must not be null or empty string)
+	 * @param constant the constant namePrefix to find (must not be null or empty string)
 	 * @param caseSensitive whether case is significant in determining a match
 	 * @return whether the constant has been found in the given array
 	 */
@@ -607,10 +607,10 @@ public abstract class ObjectUtils {
 	}
 
 	/**
-	 * Determine the class name for the given object.
+	 * Determine the class namePrefix for the given object.
 	 * <p>Returns {@code "null"} if {@code obj} is {@code null}.
 	 * @param obj the object to introspect (may be {@code null})
-	 * @return the corresponding class name
+	 * @return the corresponding class namePrefix
 	 */
 	public static String nullSafeClassName(Object obj) {
 		return (obj != null ? obj.getClass().getName() : NULL_STRING);

@@ -34,7 +34,6 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
   }
 
   @Bean
-  @ConditionalOnMissingBean
   public Vertx vertx(VertxOptions vertxOptions) {
     IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
     Vertx vertx = Vertx.vertx(vertxOptions);

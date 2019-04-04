@@ -66,7 +66,7 @@ public class ClassLoaderWrapper {
   /*
    * Find a class on the classpath (or die trying)
    *
-   * @param name - the class to look for
+   * @param namePrefix - the class to look for
    * @return - the class
    * @throws ClassNotFoundException Duh.
    */
@@ -77,7 +77,7 @@ public class ClassLoaderWrapper {
   /*
    * Find a class on the classpath, starting with a specific classloader (or die trying)
    *
-   * @param name        - the class to look for
+   * @param namePrefix        - the class to look for
    * @param classLoader - the first classloader to try
    * @return - the class
    * @throws ClassNotFoundException Duh.
@@ -155,7 +155,7 @@ public class ClassLoaderWrapper {
   /*
    * Attempt to load a class from a group of classloaders
    *
-   * @param name        - the class to load
+   * @param namePrefix        - the class to load
    * @param classLoader - the group of classloaders to examine
    * @return the class
    * @throws ClassNotFoundException - Remember the wisdom of Judge Smails: Well, the world needs ditch diggers, too.

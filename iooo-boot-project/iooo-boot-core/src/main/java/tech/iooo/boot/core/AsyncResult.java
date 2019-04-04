@@ -1,6 +1,8 @@
 package tech.iooo.boot.core;
 
+import java.util.Objects;
 import java.util.function.Function;
+import tech.iooo.boot.core.constants.SuppressTypeConstants;
 
 /**
  * Created on 2018-12-18 23:33
@@ -18,7 +20,7 @@ public interface AsyncResult<T> {
   boolean failed();
 
   default <U> AsyncResult<U> map(final Function<T, U> mapper) {
-    if (mapper == null) {
+    if (Objects.isNull(mapper)) {
       throw new NullPointerException();
     } else {
       return new AsyncResult<U>() {
@@ -46,11 +48,10 @@ public interface AsyncResult<T> {
   }
 
   default <V> AsyncResult<V> map(V value) {
-    return this.map((t) -> {
-      return value;
-    });
+    return this.map((t) -> value);
   }
 
+  @SuppressWarnings(SuppressTypeConstants.UNCHECKED)
   default <V> AsyncResult<V> mapEmpty() {
     return (AsyncResult<V>) this.map((Object) null);
   }
@@ -88,15 +89,11 @@ public interface AsyncResult<T> {
   }
 
   default AsyncResult<T> otherwise(T value) {
-    return this.otherwise((err) -> {
-      return value;
-    });
+    return this.otherwise((err) -> value);
   }
 
   default AsyncResult<T> otherwiseEmpty() {
-    return this.otherwise((err) -> {
-      return null;
-    });
+    return this.otherwise((err) -> null);
   }
 }
 

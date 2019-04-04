@@ -112,6 +112,8 @@ public class CompilerClassUtils {
         return float[].class;
       case "double[]":
         return double[].class;
+      default:
+        break;
     }
     try {
       return arrayForName(className);

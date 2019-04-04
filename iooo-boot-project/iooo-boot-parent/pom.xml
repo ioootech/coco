@@ -4,7 +4,7 @@
   <parent>
     <groupId>tech.iooo.boot</groupId>
     <artifactId>iooo-boot-dependencies</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <relativePath>../iooo-boot-dependencies</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -107,6 +107,7 @@
     <module>../iooo-boot-test-bundle</module>
     <module>../iooo-boot-netty-module</module>
     <module>../iooo-boot-vertx-guice-module</module>
+    <module>../iooo-boot-cache-tools</module>
   </modules>
 
   <build>

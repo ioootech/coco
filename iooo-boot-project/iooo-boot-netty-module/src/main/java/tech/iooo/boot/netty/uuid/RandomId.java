@@ -112,18 +112,18 @@ public final class RandomId implements Serializable {
     // java9 下更高效
     byte[] bytes = new byte[24];
 
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 0, byteToHexLE(timestamp >>> 24));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 2, byteToHexLE(timestamp >>> 16));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 4, byteToHexLE(timestamp >>> 8));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 6, byteToHexLE(timestamp));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 8, byteToHexLE(random >>> 56));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 10, byteToHexLE(random >>> 48));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 12, byteToHexLE(random >>> 40));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 14, byteToHexLE(random >>> 32));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 16, byteToHexLE(random >>> 24));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 18, byteToHexLE(random >>> 16));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 20, byteToHexLE(random >>> 8));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 22, byteToHexLE(random));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 0, byteToHexLE(timestamp >>> 24));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 2, byteToHexLE(timestamp >>> 16));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 4, byteToHexLE(timestamp >>> 8));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 6, byteToHexLE(timestamp));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 8, byteToHexLE(random >>> 56));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 10, byteToHexLE(random >>> 48));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 12, byteToHexLE(random >>> 40));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 14, byteToHexLE(random >>> 32));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 16, byteToHexLE(random >>> 24));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 18, byteToHexLE(random >>> 16));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 20, byteToHexLE(random >>> 8));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 22, byteToHexLE(random));
 
     String hex = UnsafeStringUtils.toLatin1String(bytes);
 
@@ -136,19 +136,19 @@ public final class RandomId implements Serializable {
   public String toHexString32() {
     byte[] bytes = new byte[32];
 
-    unsafe().putLong(bytes, ARRAY_BYTE_BASE_OFFSET, HEX32_PADDING);
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 0 + 8, byteToHexLE(timestamp >>> 24));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 2 + 8, byteToHexLE(timestamp >>> 16));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 4 + 8, byteToHexLE(timestamp >>> 8));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 6 + 8, byteToHexLE(timestamp));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 8 + 8, byteToHexLE(random >>> 56));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 10 + 8, byteToHexLE(random >>> 48));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 12 + 8, byteToHexLE(random >>> 40));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 14 + 8, byteToHexLE(random >>> 32));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 16 + 8, byteToHexLE(random >>> 24));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 18 + 8, byteToHexLE(random >>> 16));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 20 + 8, byteToHexLE(random >>> 8));
-    unsafe().putShort(bytes, ARRAY_BYTE_BASE_OFFSET + 22 + 8, byteToHexLE(random));
+    unsafe().putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET, HEX32_PADDING);
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 0 + 8, byteToHexLE(timestamp >>> 24));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 2 + 8, byteToHexLE(timestamp >>> 16));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 4 + 8, byteToHexLE(timestamp >>> 8));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 6 + 8, byteToHexLE(timestamp));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 8 + 8, byteToHexLE(random >>> 56));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 10 + 8, byteToHexLE(random >>> 48));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 12 + 8, byteToHexLE(random >>> 40));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 14 + 8, byteToHexLE(random >>> 32));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 16 + 8, byteToHexLE(random >>> 24));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 18 + 8, byteToHexLE(random >>> 16));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 20 + 8, byteToHexLE(random >>> 8));
+    unsafe().putShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + 22 + 8, byteToHexLE(random));
 
     String hex = UnsafeStringUtils.toLatin1String(bytes);
 

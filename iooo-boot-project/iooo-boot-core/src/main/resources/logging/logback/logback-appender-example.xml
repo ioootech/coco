@@ -9,7 +9,7 @@
     <!-- encoder is required -->
     <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
   </appender>
-  <!--<logger name="tech.iooo.coco.booster.webservice.filter.LoggingFilter">-->
+  <!--<logger namePrefix="tech.iooo.coco.booster.webservice.filter.LoggingFilter">-->
   <!--<level value="INFO"/>-->
   <!--<appender-ref ref="LOGSTASH"/>-->
   <!--</logger>-->

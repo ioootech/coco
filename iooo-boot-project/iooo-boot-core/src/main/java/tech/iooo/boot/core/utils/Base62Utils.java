@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-public class Base62 {
+public class Base62Utils {
 
   private static final int STANDARD_BASE = 256;
 
@@ -17,36 +17,36 @@ public class Base62 {
 
   private byte[] lookup;
 
-  private Base62(final byte[] alphabet) {
+  private Base62Utils(final byte[] alphabet) {
     this.alphabet = alphabet;
     createLookupTable();
   }
 
   /**
-   * Creates a {@link Base62} instance. Defaults to the GMP-style character set.
+   * Creates a {@link Base62Utils} instance. Defaults to the GMP-style character set.
    *
-   * @return a {@link Base62} instance.
+   * @return a {@link Base62Utils} instance.
    */
-  public static Base62 createInstance() {
+  public static Base62Utils createInstance() {
     return createInstanceWithGmpCharacterSet();
   }
 
   /**
-   * Creates a {@link Base62} instance using the GMP-style character set.
+   * Creates a {@link Base62Utils} instance using the GMP-style character set.
    *
-   * @return a {@link Base62} instance.
+   * @return a {@link Base62Utils} instance.
    */
-  public static Base62 createInstanceWithGmpCharacterSet() {
-    return new Base62(CharacterSets.GMP);
+  public static Base62Utils createInstanceWithGmpCharacterSet() {
+    return new Base62Utils(CharacterSets.GMP);
   }
 
   /**
-   * Creates a {@link Base62} instance using the inverted character set.
+   * Creates a {@link Base62Utils} instance using the inverted character set.
    *
-   * @return a {@link Base62} instance.
+   * @return a {@link Base62Utils} instance.
    */
-  public static Base62 createInstanceWithInvertedCharacterSet() {
-    return new Base62(CharacterSets.INVERTED);
+  public static Base62Utils createInstanceWithInvertedCharacterSet() {
+    return new Base62Utils(CharacterSets.INVERTED);
   }
 
   /**

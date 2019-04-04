@@ -508,18 +508,18 @@ public abstract class StringUtils {
   }
 
   /**
-   * Unqualify a string qualified by a '.' dot character. For example, "this.name.is.qualified", returns "qualified".
+   * Unqualify a string qualified by a '.' dot character. For example, "this.namePrefix.is.qualified", returns "qualified".
    *
-   * @param qualifiedName the qualified name
+   * @param qualifiedName the qualified namePrefix
    */
   public static String unqualify(String qualifiedName) {
     return unqualify(qualifiedName, '.');
   }
 
   /**
-   * Unqualify a string qualified by a separator character. For example, "this:name:is:qualified" returns "qualified" if using a ':' separator.
+   * Unqualify a string qualified by a separator character. For example, "this:namePrefix:is:qualified" returns "qualified" if using a ':' separator.
    *
-   * @param qualifiedName the qualified name
+   * @param qualifiedName the qualified namePrefix
    * @param separator the separator
    */
   public static String unqualify(String qualifiedName, char separator) {

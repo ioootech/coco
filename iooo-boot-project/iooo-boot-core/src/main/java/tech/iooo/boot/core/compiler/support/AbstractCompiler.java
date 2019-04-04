@@ -45,7 +45,7 @@ public abstract class AbstractCompiler implements Compiler {
     if (matcher.find()) {
       cls = matcher.group(1);
     } else {
-      throw new IllegalArgumentException("No such class name in " + code);
+      throw new IllegalArgumentException("No such class namePrefix in " + code);
     }
     String className = pkg != null && pkg.length() > 0 ? pkg + "." + cls : cls;
     try {

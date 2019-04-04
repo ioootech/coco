@@ -24,9 +24,9 @@ import org.springframework.stereotype.Component;
 public @interface VerticleService {
 
   /**
-   * The value may indicate a suggestion for a logical component name, to be turned into a Spring bean in case of an autodetected component.
+   * The value may indicate a suggestion for a logical component namePrefix, to be turned into a Spring bean in case of an autodetected component.
    *
-   * @return the suggested component name, if any (or empty String otherwise)
+   * @return the suggested component namePrefix, if any (or empty String otherwise)
    */
   @AliasFor(annotation = Component.class)
   String value() default "";

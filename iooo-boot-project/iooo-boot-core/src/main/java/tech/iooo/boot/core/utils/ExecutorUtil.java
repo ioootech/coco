@@ -117,9 +117,9 @@ public class ExecutorUtil {
   }
 
   /**
-   * append thread name with url address
+   * append thread namePrefix with url address
    *
-   * @return new url with updated thread name
+   * @return new url with updated thread namePrefix
    */
   public static URL setThreadName(URL url, String defaultName) {
     String name = url.getParameter(Constants.THREAD_NAME_KEY, defaultName);
