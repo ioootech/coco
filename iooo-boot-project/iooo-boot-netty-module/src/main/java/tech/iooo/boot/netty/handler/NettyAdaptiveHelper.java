@@ -31,9 +31,9 @@ public class NettyAdaptiveHelper {
   private static final boolean EPOLL = Epoll.isAvailable();
   private static final boolean KQUEUE = KQueue.isAvailable();
 
-  public static boolean isMac = System.getProperty("os.namePrefix").toLowerCase(Locale.US).contains("mac");
-  public static boolean isWin = System.getProperty("os.namePrefix").toLowerCase(Locale.US).contains("win");
-  public static boolean isLinux = System.getProperty("os.namePrefix").toLowerCase(Locale.US).contains("linux");
+  public static boolean isMac = System.getProperty("os.name").toLowerCase(Locale.US).contains("mac");
+  public static boolean isWin = System.getProperty("os.name").toLowerCase(Locale.US).contains("win");
+  public static boolean isLinux = System.getProperty("os.name").toLowerCase(Locale.US).contains("linux");
 
   public static DnsAddressResolverGroup resolverGroup =
       new DnsAddressResolverGroup(EPOLL ? EpollDatagramChannel.class : KQUEUE ? KQueueDatagramChannel.class : NioDatagramChannel.class,
