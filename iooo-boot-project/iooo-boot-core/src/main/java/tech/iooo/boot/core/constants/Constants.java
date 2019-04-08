@@ -167,7 +167,7 @@ public abstract class Constants {
 
   public static final boolean DEFAULT_THREAD_DAEMON = true;
 
-  public static final int DEFAULT_CORE_THREADS = 1;
+  public static final int DEFAULT_CORE_THREADS = 0;
 
   public static final int DEFAULT_THREADS = 200;
 
