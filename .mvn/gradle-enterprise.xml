@@ -1,0 +1,35 @@
+<gradleEnterprise>
+  <buildScan>
+    <termsOfService>
+      <url>https://gradle.com/terms-of-service</url>
+      <accept>true</accept>
+    </termsOfService>
+    <links>
+      <link>
+        <name>github</name>
+        <url>https://github.com/ioootech/coco</url>
+      </link>
+      <link>
+        <name>travis-ci</name>
+        <url>https://travis-ci.org/ioootech/coco</url>
+      </link>
+    </links>
+    <tags>
+      <tag>iooo-boot-ci</tag>
+    </tags>
+    <values>
+      <value>
+        <name>Build Number</name>
+        <value>${project.buildNumber}</value>
+      </value>
+    </values>
+  </buildScan>
+  <buildCache>
+    <local>
+      <cleanup>
+        <retention>P30D</retention>
+        <interval>P10D</interval>
+      </cleanup>
+    </local>
+  </buildCache>
+</gradleEnterprise>
