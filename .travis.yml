@@ -32,5 +32,5 @@ after_success:
   - gpg2 --keyring=$TRAVIS_BUILD_DIR/pubring.gpg --no-default-keyring --import deployment/signingkey.asc
   - gpg2 --allow-secret-key-import --keyring=$TRAVIS_BUILD_DIR/secring.gpg --no-default-keyring
     --import deployment/signingkey.asc
-  - "./mvnw clean deploy -Dgpg.executable=gpg2 -Dgpg.passphrase=$PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg
+  - "./mvnw clean deploy -Dscan -Dgpg.executable=gpg2 -Dgpg.passphrase=$PASSPHRASE -Dgpg.publicKeyring=$TRAVIS_BUILD_DIR/pubring.gpg
   -Dgpg.secretKeyring=$TRAVIS_BUILD_DIR/secring.gpg -Piooo-deploy"
