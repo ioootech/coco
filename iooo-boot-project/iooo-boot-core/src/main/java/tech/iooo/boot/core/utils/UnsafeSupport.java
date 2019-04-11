@@ -131,11 +131,11 @@ public enum UnsafeSupport {
     UNSAFE = unsafe;
   }
 
-  static Unsafe getUnsafe() {
+  public static Unsafe getUnsafe() {
     return UNSAFE;
   }
 
-  static boolean hasUnsafe() {
+  public static boolean hasUnsafe() {
     return UNSAFE != null;
   }
 }
