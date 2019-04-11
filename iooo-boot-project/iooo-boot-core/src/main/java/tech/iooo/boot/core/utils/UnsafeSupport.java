@@ -14,8 +14,9 @@ import sun.misc.Unsafe;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
 @SuppressWarnings("restriction")
-public enum UnsafeSupport {
+enum UnsafeSupport {
   ;
+
   static final Logger logger = LoggerFactory.getLogger(UnsafeSupport.class);
   private static final Unsafe UNSAFE;
 
@@ -51,8 +52,8 @@ public enum UnsafeSupport {
       }
     } else {
       unsafe = (Unsafe) maybeUnsafe;
-      if (logger.isDebugEnabled()) {
-        logger.debug("Unsafe unavailable - Could not get it via Field sun.misc.Unsafe.theUnsafe", (Throwable) maybeUnsafe);
+      if (logger.isTraceEnabled()) {
+        logger.trace("sun.misc.Unsafe.theUnsafe ok");
       }
     }
 
