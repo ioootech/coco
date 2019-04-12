@@ -7,18 +7,19 @@ import java.nio.ByteBuffer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.Unsafe;
+import tech.iooo.boot.core.constants.SuppressTypeConstants;
 
 /**
  * Created on 2019-04-11 15:27
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-@SuppressWarnings("restriction")
+@SuppressWarnings(SuppressTypeConstants.RESTRICTION)
 public interface UnsafeSupport {
   
-  static Unsafe unsafe = InternalUnsafeBin.getUnsafe();
+  Unsafe unsafe = InternalUnsafeBin.getUnsafe();
   
-  static boolean hasUnsafe = InternalUnsafeBin.hasUnsafe();
+  boolean hasUnsafe = InternalUnsafeBin.hasUnsafe();
 
   enum InternalUnsafeBin {
     ;

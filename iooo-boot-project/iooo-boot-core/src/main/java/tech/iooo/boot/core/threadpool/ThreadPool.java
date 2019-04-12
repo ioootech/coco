@@ -32,13 +32,17 @@ import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
  */
 public interface ThreadPool {
 
-  ExecutorService CACHED_THREAD_POOL_EXECUTOR_SERVICE = new CachedThreadPool().executorService();
+  CachedThreadPool CACHED_THREAD_POOL = new CachedThreadPool();
+  ExecutorService CACHED_THREAD_POOL_EXECUTOR_SERVICE = CACHED_THREAD_POOL.executorService();
 
-  ExecutorService EAGER_THREAD_POOL_EXECUTOR_SERVICE = new EagerThreadPool().executorService();
+  EagerThreadPool EAGER_THREAD_POOL = new EagerThreadPool();
+  ExecutorService EAGER_THREAD_POOL_EXECUTOR_SERVICE = EAGER_THREAD_POOL.executorService();
 
-  ExecutorService FIXED_THREAD_POOL_EXECUTOR_SERVICE = new FixedThreadPool().executorService();
+  FixedThreadPool FIXED_THREAD_POOL = new FixedThreadPool();
+  ExecutorService FIXED_THREAD_POOL_EXECUTOR_SERVICE = FIXED_THREAD_POOL.executorService();
 
-  ExecutorService LIMITED_THREAD_POOL_EXECUTOR_SERVICE = new LimitedThreadPool().executorService();
+  LimitedThreadPool LIMITED_THREAD_POOL = new LimitedThreadPool();
+  ExecutorService LIMITED_THREAD_POOL_EXECUTOR_SERVICE = LIMITED_THREAD_POOL.executorService();
 
   ScheduledExecutorService SCHEDULED_EXECUTOR_SERVICE = scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
 
