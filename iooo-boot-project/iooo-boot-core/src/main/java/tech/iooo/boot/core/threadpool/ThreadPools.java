@@ -17,32 +17,38 @@ import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
 public class ThreadPools {
 
   public CachedThreadPool cachedThreadPool = new CachedThreadPool();
-  public ExecutorService cachedThreadPoolExecutorService = cachedThreadPool.executorService();
-  public EagerThreadPool eagerThreadPool = new EagerThreadPool();
-  public ExecutorService eagerThreadPoolExecutorService = eagerThreadPool.executorService();
-  public FixedThreadPool fixedThreadPool = new FixedThreadPool();
-  public ExecutorService fixedThreadPoolExecutorService = fixedThreadPool.executorService();
-  public LimitedThreadPool limitedThreadPool = new LimitedThreadPool();
-  public ExecutorService limitedThreadPoolExecutorService = limitedThreadPool.executorService();
-  public ScheduledExecutorService scheduledExecutorService = ThreadPool.scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
+  public ExecutorService cachedThreadPoolExecutor = cachedThreadPool.executorService();
 
-  public ExecutorService cachedThreadPoolExecutorService(ThreadPoolConfig config) {
+  public EagerThreadPool eagerThreadPool = new EagerThreadPool();
+  public ExecutorService eagerThreadPoolExecutor = eagerThreadPool.executorService();
+
+  public FixedThreadPool fixedThreadPool = new FixedThreadPool();
+  public ExecutorService fixedThreadPoolExecutor = fixedThreadPool.executorService();
+
+  public LimitedThreadPool limitedThreadPool = new LimitedThreadPool();
+  public ExecutorService limitedThreadPoolExecutor = limitedThreadPool.executorService();
+
+  public ExecutorService singleThreadExecutor = fixedThreadPoolExecutor(ThreadPoolConfig.DEFAULT_CONFIG.setCores(1));
+  
+  public ScheduledExecutorService scheduledExecutor = ThreadPool.scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
+
+  public ExecutorService cachedThreadPoolExecutor(ThreadPoolConfig config) {
     return cachedThreadPool.executorService(config);
   }
 
-  public ExecutorService eagerThreadPoolExecutorService(ThreadPoolConfig config) {
+  public ExecutorService eagerThreadPoolExecutor(ThreadPoolConfig config) {
     return eagerThreadPool.executorService(config);
   }
 
-  public ExecutorService fixedThreadPoolExecutorService(ThreadPoolConfig config) {
+  public ExecutorService fixedThreadPoolExecutor(ThreadPoolConfig config) {
     return fixedThreadPool.executorService(config);
   }
 
-  public ExecutorService limitedThreadPoolExecutorService(ThreadPoolConfig config) {
+  public ExecutorService limitedThreadPoolExecutor(ThreadPoolConfig config) {
     return limitedThreadPool.executorService(config);
   }
 
-  public ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
+  public ScheduledExecutorService scheduledExecutor(ThreadPoolConfig config) {
     return ThreadPool.scheduledExecutorService(config);
   }
 }

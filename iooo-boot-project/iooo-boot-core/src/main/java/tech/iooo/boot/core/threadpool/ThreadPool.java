@@ -17,9 +17,15 @@
 package tech.iooo.boot.core.threadpool;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
+import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
+import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 
 /**
  * ThreadPool
@@ -28,6 +34,12 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
  */
 public interface ThreadPool {
 
+  /**
+   * Scheduled Executor Service
+   *
+   * @param config ThreadPoolConfig contains thread parameter
+   * @return scheduled thread pool
+   */
   static ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
     return new ScheduledThreadPoolExecutor(config.getCores(),
         new BasicThreadFactory.Builder().namingPattern(config.getNamePrefix())
@@ -40,6 +52,12 @@ public interface ThreadPool {
    * @param config ThreadPoolConfig contains thread parameter
    * @return thread pool
    */
-  ExecutorService executorService(ThreadPoolConfig config);
+  default ExecutorService executorService(ThreadPoolConfig config) {
+    return new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
+        config.getQueues() == 0 ? new SynchronousQueue<>() :
+            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                : new LinkedBlockingQueue<>(config.getQueues())),
+        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
+  }
 
 }
