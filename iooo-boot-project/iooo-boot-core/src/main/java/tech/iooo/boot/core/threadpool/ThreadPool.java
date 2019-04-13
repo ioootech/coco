@@ -20,10 +20,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import org.apache.commons.lang3.concurrent.BasicThreadFactory;
-import tech.iooo.boot.core.threadpool.support.cached.CachedThreadPool;
-import tech.iooo.boot.core.threadpool.support.eager.EagerThreadPool;
-import tech.iooo.boot.core.threadpool.support.fixed.FixedThreadPool;
-import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
 
 /**
  * ThreadPool
@@ -31,20 +27,6 @@ import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
  * @author Ivan97
  */
 public interface ThreadPool {
-
-  CachedThreadPool CACHED_THREAD_POOL = new CachedThreadPool();
-  ExecutorService CACHED_THREAD_POOL_EXECUTOR_SERVICE = CACHED_THREAD_POOL.executorService();
-
-  EagerThreadPool EAGER_THREAD_POOL = new EagerThreadPool();
-  ExecutorService EAGER_THREAD_POOL_EXECUTOR_SERVICE = EAGER_THREAD_POOL.executorService();
-
-  FixedThreadPool FIXED_THREAD_POOL = new FixedThreadPool();
-  ExecutorService FIXED_THREAD_POOL_EXECUTOR_SERVICE = FIXED_THREAD_POOL.executorService();
-
-  LimitedThreadPool LIMITED_THREAD_POOL = new LimitedThreadPool();
-  ExecutorService LIMITED_THREAD_POOL_EXECUTOR_SERVICE = LIMITED_THREAD_POOL.executorService();
-
-  ScheduledExecutorService SCHEDULED_EXECUTOR_SERVICE = scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
 
   static ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
     return new ScheduledThreadPoolExecutor(config.getCores(),
