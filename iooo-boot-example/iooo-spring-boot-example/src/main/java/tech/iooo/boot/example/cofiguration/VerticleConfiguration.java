@@ -1,5 +1,6 @@
 package tech.iooo.boot.example.cofiguration;
 
+import io.vertx.core.Vertx;
 import io.vertx.core.DeploymentOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class VerticleConfiguration {
+
+  @Bean
+  public Vertx vertx(){
+    return Vertx.vertx();
+  }
 
   @Bean("greeterDeploymentOptions")
   public DeploymentOptions greeterDeploymentOptions() {

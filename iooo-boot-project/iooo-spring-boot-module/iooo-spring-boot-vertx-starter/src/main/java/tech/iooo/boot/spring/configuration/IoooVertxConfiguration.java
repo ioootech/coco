@@ -4,7 +4,6 @@ import static tech.iooo.boot.spring.configuration.VertxConfigConstants.DEFAULT_D
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import io.vertx.core.VertxOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.file.FileSystem;
 import io.vertx.core.shareddata.SharedData;
@@ -29,14 +28,9 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
 
   @Bean
   @ConditionalOnMissingBean
-  public VertxOptions vertxOptions() {
-    return new VertxOptions();
-  }
-
-  @Bean
-  public Vertx vertx(VertxOptions vertxOptions) {
+  public Vertx vertx() {
     IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
-    Vertx vertx = Vertx.vertx(vertxOptions);
+    Vertx vertx = Vertx.vertx();
     vertx.registerVerticleFactory(factory);
     return vertx;
   }
