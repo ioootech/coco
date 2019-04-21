@@ -1590,6 +1590,7 @@
               <Os-Name>${os.name}</Os-Name>
               <Os-Arch>${os.arch}</Os-Arch>
               <Os-Version>${os.version}</Os-Version>
+              <!--suppress UnresolvedMavenProperty -->
               <Scm-Revision>${buildNumber}</Scm-Revision>
               <Implementation-Title>
                 <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
@@ -1700,6 +1701,7 @@
                 <Os-Version>${os.version}</Os-Version>
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--suppress UnresolvedMavenProperty -->
                 <Scm-Revision>${buildNumber}</Scm-Revision>
                 <Implementation-Title>
                   <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
@@ -1818,6 +1820,7 @@
                 <Os-Version>${os.version}</Os-Version>
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--suppress UnresolvedMavenProperty -->
                 <Scm-Revision>${buildNumber}</Scm-Revision>
                 <Implementation-Title>
                   <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
@@ -1851,6 +1854,7 @@
                 <Os-Version>${os.version}</Os-Version>
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--suppress UnresolvedMavenProperty -->
                 <Scm-Revision>${buildNumber}</Scm-Revision>
                 <Implementation-Title>
                   <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
@@ -1916,6 +1920,7 @@
                 <Os-Version>${os.version}</Os-Version>
                 <Specification-Vendor>IoooTech</Specification-Vendor>
                 <Implementation-Vendor>IoooTech</Implementation-Vendor>
+                <!--suppress UnresolvedMavenProperty -->
                 <Scm-Revision>${buildNumber}</Scm-Revision>
                 <Implementation-Title>
                   <![CDATA[Iooo Boot v${iooo-boot.version}]]></Implementation-Title>
