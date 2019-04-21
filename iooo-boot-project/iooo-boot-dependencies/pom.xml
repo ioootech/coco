@@ -79,6 +79,7 @@
     <httpclient.version>4.5.8</httpclient.version>
     <httpcore.version>4.4.11</httpcore.version>
     <jackson.version>2.9.8</jackson.version>
+    <rocketmq-client.version>4.5.0</rocketmq-client.version>
     <jedis.version>2.9.3</jedis.version>
     <jedis-v3.version>3.0.1</jedis-v3.version>
     <jolokia-core.version>1.6.0</jolokia-core.version>
@@ -324,6 +325,11 @@
         <version>${newrelic.version}</version>
         <!--<scope>provided</scope>-->
         <type>zip</type>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.rocketmq</groupId>
+        <artifactId>rocketmq-client</artifactId>
+        <version>${rocketmq-client.version}</version>
       </dependency>
       <dependency>
         <groupId>co.paralleluniverse</groupId>
