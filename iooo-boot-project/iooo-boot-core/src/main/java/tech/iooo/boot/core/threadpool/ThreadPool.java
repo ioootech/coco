@@ -42,7 +42,7 @@ public interface ThreadPool {
    */
   static ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
     return new ScheduledThreadPoolExecutor(config.getCores(),
-        new BasicThreadFactory.Builder().namingPattern(config.getNamePrefix())
+        new BasicThreadFactory.Builder().namingPattern("i-exec-scheduled")
             .daemon(config.isDaemon()).build());
   }
 

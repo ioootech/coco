@@ -34,20 +34,25 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
  */
 public class FixedThreadPool implements ThreadPool {
 
+  private static final String FIXED_THREAD_NAME_PREFIX = "i-exec-fixed";
+  private static final String SINGLE_THREAD_NAME_PREFIX = "i-exec-single";
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
-    return new ThreadPoolExecutor(config.getCores(), config.getCores(), config.getAlive(), TimeUnit.MILLISECONDS,
+    return new ThreadPoolExecutor(config.getCores(), config.getCores(), 0L, TimeUnit.MILLISECONDS,
         config.getQueues() == 0 ? new SynchronousQueue<>() :
             (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
                 : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
+        new NamedInternalThreadFactory(
+            config.getCores() == 1 ? SINGLE_THREAD_NAME_PREFIX : FIXED_THREAD_NAME_PREFIX,
+            config.isDaemon()),
+        new AbortPolicyWithReport());
   }
 
   public ExecutorService executorService() {
     return executorService(ThreadPoolConfig.DEFAULT_CONFIG
         .setCores(Runtime.getRuntime().availableProcessors() + 1)
-        .setQueues(Integer.MAX_VALUE)
-        .setDaemon(false)
-        .setAlive(0L));
+        .setNamePrefix(FIXED_THREAD_NAME_PREFIX)
+        .setQueues(Integer.MAX_VALUE));
   }
 }

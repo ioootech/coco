@@ -31,22 +31,24 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
  */
 public class EagerThreadPool implements ThreadPool {
 
+  private static final String EAGER_THREAD_NAME_PREFIX = "i-exec-eager";
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
     // init queue and executor
     TaskQueue<Runnable> taskQueue = new TaskQueue<>(config.getQueues() <= 0 ? 1 : config.getQueues());
     EagerThreadPoolExecutor executor = new EagerThreadPoolExecutor(config.getCores(),
-        config.getThreads(),
+        Integer.MAX_VALUE,
         config.getAlive(),
         TimeUnit.MILLISECONDS,
         taskQueue,
-        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()),
+        new NamedInternalThreadFactory(EAGER_THREAD_NAME_PREFIX, config.isDaemon()),
         new AbortPolicyWithReport());
     taskQueue.setExecutor(executor);
     return executor;
   }
 
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setThreads(Integer.MAX_VALUE));
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
   }
 }

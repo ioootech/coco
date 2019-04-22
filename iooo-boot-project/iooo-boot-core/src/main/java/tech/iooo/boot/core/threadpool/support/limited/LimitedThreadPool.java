@@ -18,8 +18,14 @@
 package tech.iooo.boot.core.threadpool.support.limited;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
+import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
 
 /**
  * Creates a thread pool that creates new threads as needed until limits reaches. This thread pool will not shrink automatically.
@@ -28,7 +34,18 @@ import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
  */
 public class LimitedThreadPool implements ThreadPool {
 
+  private static final String LIMITED_THREAD_NAME_PREFIX = "i-exec-limited";
+
+  @Override
+  public ExecutorService executorService(ThreadPoolConfig config) {
+    return new ThreadPoolExecutor(config.getCores(), config.getThreads(), Long.MAX_VALUE, TimeUnit.MILLISECONDS,
+        config.getQueues() == 0 ? new SynchronousQueue<>() :
+            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                : new LinkedBlockingQueue<>(config.getQueues())),
+        new NamedInternalThreadFactory(LIMITED_THREAD_NAME_PREFIX, config.isDaemon()), new AbortPolicyWithReport());
+  }
+
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setAlive(Long.MAX_VALUE));
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG);
   }
 }

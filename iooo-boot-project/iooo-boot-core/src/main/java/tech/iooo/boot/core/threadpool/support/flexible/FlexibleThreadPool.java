@@ -11,7 +11,7 @@ import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
  */
 public class FlexibleThreadPool implements ThreadPool {
 
-  private ThreadPoolConfig config = ThreadPoolConfig.DEFAULT_CONFIG;
+  private ThreadPoolConfig config = ThreadPoolConfig.DEFAULT_CONFIG.setNamePrefix("i-exec-flexible");
 
   public ExecutorService executorService() {
     return executorService(config);
