@@ -18,6 +18,7 @@
 package tech.iooo.boot.core.threadpool.support.limited;
 
 import java.util.concurrent.ExecutorService;
+import lombok.experimental.Delegate;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
 
@@ -28,7 +29,10 @@ import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
  */
 public class LimitedThreadPool implements ThreadPool {
 
+  @Delegate
+  private ThreadPoolConfig config = ThreadPoolConfig.DEFAULT_CONFIG;
+
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setAlive(Long.MAX_VALUE));
+    return executorService(config.setAlive(Long.MAX_VALUE));
   }
 }

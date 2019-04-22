@@ -19,6 +19,7 @@ package tech.iooo.boot.core.threadpool.support.eager;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
+import lombok.experimental.Delegate;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
@@ -30,6 +31,9 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
  * @author Ivan97
  */
 public class EagerThreadPool implements ThreadPool {
+
+  @Delegate
+  private ThreadPoolConfig config = ThreadPoolConfig.DEFAULT_CONFIG;
 
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
@@ -47,6 +51,6 @@ public class EagerThreadPool implements ThreadPool {
   }
 
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setThreads(Integer.MAX_VALUE));
+    return executorService(config.setThreads(Integer.MAX_VALUE));
   }
 }

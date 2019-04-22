@@ -21,6 +21,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import lombok.experimental.Delegate;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
@@ -34,6 +35,9 @@ import tech.iooo.boot.core.threadpool.support.AbortPolicyWithReport;
  */
 public class FixedThreadPool implements ThreadPool {
 
+  @Delegate
+  private ThreadPoolConfig config = ThreadPoolConfig.DEFAULT_CONFIG;
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
     return new ThreadPoolExecutor(config.getCores(), config.getCores(), config.getAlive(), TimeUnit.MILLISECONDS,
@@ -44,7 +48,7 @@ public class FixedThreadPool implements ThreadPool {
   }
 
   public ExecutorService executorService() {
-    return executorService(ThreadPoolConfig.DEFAULT_CONFIG
+    return executorService(config
         .setCores(Runtime.getRuntime().availableProcessors() + 1)
         .setQueues(Integer.MAX_VALUE)
         .setDaemon(false)
