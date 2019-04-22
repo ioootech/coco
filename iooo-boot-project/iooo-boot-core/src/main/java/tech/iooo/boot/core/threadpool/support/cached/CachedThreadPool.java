@@ -17,7 +17,6 @@
 package tech.iooo.boot.core.threadpool.support.cached;
 
 import java.util.concurrent.ExecutorService;
-import lombok.experimental.Delegate;
 import tech.iooo.boot.core.threadpool.ThreadPool;
 import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
 
@@ -29,10 +28,7 @@ import tech.iooo.boot.core.threadpool.ThreadPoolConfig;
  */
 public class CachedThreadPool implements ThreadPool {
 
-  @Delegate
-  private ThreadPoolConfig config = ThreadPoolConfig.DEFAULT_CONFIG;
-
   public ExecutorService executorService() {
-    return executorService(config.setThreads(Integer.MAX_VALUE));
+    return executorService(ThreadPoolConfig.DEFAULT_CONFIG.setThreads(Integer.MAX_VALUE));
   }
 }

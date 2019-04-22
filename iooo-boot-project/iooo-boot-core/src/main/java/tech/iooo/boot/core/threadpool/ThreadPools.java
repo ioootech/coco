@@ -6,6 +6,7 @@ import lombok.experimental.UtilityClass;
 import tech.iooo.boot.core.threadpool.support.cached.CachedThreadPool;
 import tech.iooo.boot.core.threadpool.support.eager.EagerThreadPool;
 import tech.iooo.boot.core.threadpool.support.fixed.FixedThreadPool;
+import tech.iooo.boot.core.threadpool.support.flexible.FlexibleThreadPool;
 import tech.iooo.boot.core.threadpool.support.limited.LimitedThreadPool;
 
 /**
@@ -28,8 +29,11 @@ public class ThreadPools {
   public LimitedThreadPool limitedThreadPool = new LimitedThreadPool();
   public ExecutorService limitedThreadPoolExecutor = limitedThreadPool.executorService();
 
+  public FlexibleThreadPool flexibleThreadPool = new FlexibleThreadPool();
+  public ExecutorService flexibleThreadPoolExecutor = flexibleThreadPool.executorService();
+
   public ExecutorService singleThreadExecutor = fixedThreadPoolExecutor(ThreadPoolConfig.DEFAULT_CONFIG.setCores(1));
-  
+
   public ScheduledExecutorService scheduledExecutor = ThreadPool.scheduledExecutorService(ThreadPoolConfig.DEFAULT_CONFIG);
 
   public ExecutorService cachedThreadPoolExecutor(ThreadPoolConfig config) {
