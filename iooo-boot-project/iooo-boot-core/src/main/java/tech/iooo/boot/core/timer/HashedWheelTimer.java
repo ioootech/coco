@@ -23,7 +23,6 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
@@ -100,14 +99,14 @@ public class HashedWheelTimer implements Timer {
   private volatile long startTime;
 
   /**
-   * Creates a new timer with the default thread FACTORY ({@link Executors#defaultThreadFactory()}), default tick duration, and default number of ticks per wheel.
+   * Creates a new timer with the default thread FACTORY ({@link DefaultThreadFactory}), default tick duration, and default number of ticks per wheel.
    */
   public HashedWheelTimer() {
-    this(Executors.defaultThreadFactory());
+    this(defaultThreadFactory());
   }
 
   /**
-   * Creates a new timer with the default thread FACTORY ({@link Executors#defaultThreadFactory()}) and default number of ticks per wheel.
+   * Creates a new timer with the default thread FACTORY ({@link DefaultThreadFactory}) and default number of ticks per wheel.
    *
    * @param tickDuration the duration between tick
    * @param unit the time unit of the {@code tickDuration}
@@ -115,11 +114,11 @@ public class HashedWheelTimer implements Timer {
    * @throws IllegalArgumentException if {@code tickDuration} is &lt;= 0
    */
   public HashedWheelTimer(long tickDuration, TimeUnit unit) {
-    this(Executors.defaultThreadFactory(), tickDuration, unit);
+    this(defaultThreadFactory(), tickDuration, unit);
   }
 
   /**
-   * Creates a new timer with the default thread FACTORY ({@link Executors#defaultThreadFactory()}).
+   * Creates a new timer with the default thread FACTORY ({@link DefaultThreadFactory)}).
    *
    * @param tickDuration the duration between tick
    * @param unit the time unit of the {@code tickDuration}
@@ -128,7 +127,7 @@ public class HashedWheelTimer implements Timer {
    * @throws IllegalArgumentException if either of {@code tickDuration} and {@code ticksPerWheel} is &lt;= 0
    */
   public HashedWheelTimer(long tickDuration, TimeUnit unit, int ticksPerWheel) {
-    this(Executors.defaultThreadFactory(), tickDuration, unit, ticksPerWheel);
+    this(defaultThreadFactory(), tickDuration, unit, ticksPerWheel);
   }
 
   /**
@@ -255,6 +254,10 @@ public class HashedWheelTimer implements Timer {
     logger.error("You are creating too many " + resourceType + " instances. " +
         resourceType + " is a shared resource that must be reused across the JVM," +
         "so that only a few instances are created.");
+  }
+
+  private static DefaultThreadFactory defaultThreadFactory() {
+    return new DefaultThreadFactory();
   }
 
   @Override
@@ -629,6 +632,32 @@ public class HashedWheelTimer implements Timer {
       head.prev = null;
       head.bucket = null;
       return head;
+    }
+  }
+
+  private static class DefaultThreadFactory implements ThreadFactory {
+
+    private static final AtomicInteger POOL_NUMBER = new AtomicInteger(1);
+    private final ThreadGroup group;
+    private final AtomicInteger threadNumber = new AtomicInteger(1);
+    private final String namePrefix;
+
+    DefaultThreadFactory() {
+      SecurityManager s = System.getSecurityManager();
+      group = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
+      namePrefix = "hashed-wheel-timer-" + POOL_NUMBER.getAndIncrement() + "-thread-";
+    }
+
+    @Override
+    public Thread newThread(Runnable r) {
+      Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);
+      if (t.isDaemon()) {
+        t.setDaemon(false);
+      }
+      if (t.getPriority() != Thread.NORM_PRIORITY) {
+        t.setPriority(Thread.NORM_PRIORITY);
+      }
+      return t;
     }
   }
 
