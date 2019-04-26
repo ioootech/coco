@@ -6,14 +6,12 @@ package tech.iooo.boot.core;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
 
-import java.io.Serializable;
-
-public interface IEnum<T extends Serializable> {
+public interface IEnum<T> {
 
   /**
    * Enum value
    *
    * @return T t
    */
-  T getValue();
+  T get();
 }
