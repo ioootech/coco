@@ -3,6 +3,7 @@ package tech.iooo.boot.core.spring.cache;
 import com.google.common.collect.Maps;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Objects;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 import tech.iooo.boot.core.constants.SuppressTypeConstants;
@@ -37,7 +38,7 @@ public class CacheMethodInterceptor implements MethodInterceptor {
     Object result = null;
     CacheWrapper wrapper = null;
     Cache cache = method.getAnnotation(Cache.class);
-    if (!(cache == null && cache.timeInterval() <= 0)) {
+    if (!( Objects.isNull(cache) || cache.timeInterval() <= 0)) {
       if (cacheWrapper.containsKey(method.toString())) {
         wrapper = cacheWrapper.get(method.toString());
       } else {

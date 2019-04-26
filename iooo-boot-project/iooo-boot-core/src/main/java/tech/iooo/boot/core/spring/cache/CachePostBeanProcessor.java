@@ -1,5 +1,6 @@
 package tech.iooo.boot.core.spring.cache;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.cglib.proxy.Enhancer;
@@ -11,12 +12,16 @@ import org.springframework.stereotype.Component;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
+@Slf4j
 @Component
 public class CachePostBeanProcessor implements BeanPostProcessor {
 
   @Override
   public Object postProcessAfterInitialization(@NonNull Object bean, String beanName) throws BeansException {
     if (bean.getClass().isAnnotationPresent(CacheProxy.class)) {
+      if (logger.isDebugEnabled()) {
+        logger.debug("CacheProxy for class {}", bean.getClass().getName());
+      }
       //如果是代理的类
       Enhancer enhancer = new Enhancer();
       enhancer.setSuperclass(bean.getClass());
