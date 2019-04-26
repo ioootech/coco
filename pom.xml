@@ -13,7 +13,7 @@
   <groupId>tech.iooo.boot</groupId>
   <artifactId>iooo-boot</artifactId>
   <version>1.1.8-SNAPSHOT</version>
-  <packaging>pom</packaging> 
+  <packaging>pom</packaging>
 
   <name>iooo-boot</name>
   <url>https://github.com/ioootech/coco</url>
@@ -46,7 +46,7 @@
       </modules>
     </profile>
   </profiles>
-  
+
   <build>
     <plugins>
       <plugin>
