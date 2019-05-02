@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class CachePostBeanProcessor implements BeanPostProcessor {
+public class CacheBeanPostProcessor implements BeanPostProcessor {
 
   @Override
   public Object postProcessAfterInitialization(@NonNull Object bean, String beanName) throws BeansException {
