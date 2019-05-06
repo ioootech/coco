@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.3.30</kotlin.version>
+    <kotlin.version>1.3.31</kotlin.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
@@ -62,28 +62,28 @@
     <dubbo.version>2.6.6</dubbo.version>
     <apache.dubbo.version>2.7.1</apache.dubbo.version>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
-    <motan.version>1.1.3</motan.version>
+    <motan.version>1.1.4</motan.version>
     <aspectjweaver.version>1.9.3</aspectjweaver.version>
     <hsqldb.version>2.4.1</hsqldb.version>
     <HikariCP.version>3.3.1</HikariCP.version>
     <dagger.version>2.22.1</dagger.version>
     <protobuf.version>3.7.1</protobuf.version>
     <grpc.version>1.20.0</grpc.version>
-    <redisson.version>3.10.6</redisson.version>
+    <redisson.version>3.10.7</redisson.version>
     <gson.version>2.8.5</gson.version>
-    <java-jwt.version>3.7.0</java-jwt.version>
+    <java-jwt.version>3.8.0</java-jwt.version>
     <jjwt.version>0.10.6</jjwt.version>
     <guice.version>4.2.2</guice.version>
-    <governator.version>1.17.5</governator.version>
+    <governator.version>1.17.7</governator.version>
     <httpclient.version>4.5.8</httpclient.version>
     <httpcore.version>4.4.11</httpcore.version>
     <jackson.version>2.9.8</jackson.version>
     <rocketmq-client.version>4.5.0</rocketmq-client.version>
     <jedis.version>2.9.3</jedis.version>
     <jedis-v3.version>3.0.1</jedis-v3.version>
-    <jolokia-core.version>1.6.0</jolokia-core.version>
+    <jolokia-core.version>1.6.1</jolokia-core.version>
     <jersey.version>2.28</jersey.version>
-    <jetty.version>9.4.16.v20190411</jetty.version>
+    <jetty.version>9.4.18.v20190429</jetty.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.4.2</junit-jupiter.version>
     <projectreactor.version>3.2.8.RELEASE</projectreactor.version>
@@ -98,9 +98,9 @@
     <lombok.version>1.18.6</lombok.version>
     <mybatis-spring-boot-starter.version>2.0.1</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
-    <mybatis-plus-boot-starter-v3.version>3.1.0</mybatis-plus-boot-starter-v3.version>
+    <mybatis-plus-boot-starter-v3.version>3.1.1</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
-    <mybatis-plus-v3.version>3.1.0</mybatis-plus-v3.version>
+    <mybatis-plus-v3.version>3.1.1</mybatis-plus-v3.version>
     <netty.version>4.1.36.Final</netty.version>
     <netty-tcnative.version>2.0.25.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
@@ -112,10 +112,10 @@
     <slf4j.version>1.7.26</slf4j.version>
     <tomcat.version>9.0.19</tomcat.version>
     <undertow.version>2.0.20.Final</undertow.version>
-    <icu4j.version>64.1</icu4j.version>
-    <mysql.version>8.0.15</mysql.version>
+    <icu4j.version>64.2</icu4j.version>
+    <mysql.version>8.0.16</mysql.version>
     <h2.version>1.4.199</h2.version>
-    <grpc-spring-boot-starter.version>2.2.1.RELEASE</grpc-spring-boot-starter.version>
+    <grpc-spring-boot-starter.version>2.3.0.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.7.0</vertx.version>
     <guava.version>27.1-jre</guava.version>
     <bytebuddy.version>1.9.12</bytebuddy.version>
@@ -123,21 +123,21 @@
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <asm.version>7.1</asm.version>
     <org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
-    <poi.version>4.0.1</poi.version>
+    <poi.version>4.1.0</poi.version>
     <jctools.version>2.1.2</jctools.version>
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.2</reactive-streams.version>
-    <javassist.version>3.24.1-GA</javassist.version>
-    <cglib.version>3.2.10</cglib.version>
-    <sentinel.version>1.5.1</sentinel.version>
-    <jna.version>5.2.0</jna.version>
+    <javassist.version>3.25.0-GA</javassist.version>
+    <cglib.version>3.2.12</cglib.version>
+    <sentinel.version>1.6.0</sentinel.version>
+    <jna.version>5.3.1</jna.version>
     <xstream.version>1.4.11.1</xstream.version>
     <xerces.version>2.12.0</xerces.version>
     <bcprov.version>1.61</bcprov.version>
     <mybatis.version>3.5.1</mybatis.version>
     <mybatis-spring.version>2.0.1</mybatis-spring.version>
-    <fastjson.version>1.2.57</fastjson.version>
+    <fastjson.version>1.2.58</fastjson.version>
     <okhttp.version>3.14.1</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
@@ -146,7 +146,7 @@
     <protostuff.version>1.6.0</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
-    <newrelic.version>4.12.1</newrelic.version>
+    <newrelic.version>5.0.0</newrelic.version>
     <rxjava.version>2.2.8</rxjava.version>
     <snakeyaml.version>1.24</snakeyaml.version>
     <assertj-core.version>3.12.2</assertj-core.version>
@@ -164,11 +164,11 @@
     <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
     <flyway.version>5.2.4</flyway.version>
-    <git-commit-id-plugin.version>2.2.6</git-commit-id-plugin.version>
+    <git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
     <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
     <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
@@ -195,7 +195,7 @@
     <protoc.version>3.7.1</protoc.version>
     <quasar-maven-plugin.version>0.7.9</quasar-maven-plugin.version>
     <protoc-gen-grpc-java.version>1.20.0</protoc-gen-grpc-java.version>
-    <vertx-protoc-gen-grpc-java.version>1.16.1</vertx-protoc-gen-grpc-java.version>
+    <vertx-protoc-gen-grpc-java.version>1.20.0</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.3.2</wagon-ssh.version>
     <wagon.version>3.3.2</wagon.version>
     <jgit-buildnumber-maven-plugin.version>2.2.0</jgit-buildnumber-maven-plugin.version>
