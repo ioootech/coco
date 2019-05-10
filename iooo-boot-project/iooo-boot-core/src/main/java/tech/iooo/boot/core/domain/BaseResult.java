@@ -27,9 +27,9 @@ public class BaseResult<T> implements Serializable {
 
   private static final long serialVersionUID = 5186020669003158216L;
 
-  private String message = "success";
-  private boolean ok = true;
+  private boolean success = true;
   private int code = SUCCESS;
+  private String message = "success";
   private T data;
 
   public BaseResult(T data) {
@@ -39,7 +39,7 @@ public class BaseResult<T> implements Serializable {
 
   public BaseResult(Throwable e) {
     super();
-    this.ok = false;
+    this.success = false;
     this.message = e.toString();
     this.code = FAIL;
   }
