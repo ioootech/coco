@@ -88,6 +88,10 @@ public class SuppressTypeConstants {
    * to suppress warnings relative to Spring bean definitions
    */
   public static final String SPRING_JAVA_INJECTION_POINTS_AUTOWIRING_INSPECTION = "SpringJavaInjectionPointsAutowiringInspection";
+  /**
+   * to suppress warnings relative to unstable api usage
+   */
+  public static final String UNSTABLE_API_USAGE = "UnstableApiUsage";
 
   private SuppressTypeConstants() {
     //do nothing
