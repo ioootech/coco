@@ -2,10 +2,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>iooo-boot-parent</artifactId>
     <groupId>tech.iooo.boot</groupId>
+    <artifactId>iooo-boot</artifactId>
     <version>1.1.8-SNAPSHOT</version>
-    <relativePath>../iooo-boot-project/iooo-boot-parent</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -18,8 +18,19 @@
   <modules>
     <module>iooo-boot-example-helloworld</module>
     <module>iooo-spring-boot-example</module>
-    <module>iooo-boot-guice-vertx-example</module>
   </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>tech.iooo.boot</groupId>
+        <artifactId>iooo-boot-dependencies</artifactId>
+        <version>${project.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

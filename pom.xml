@@ -28,32 +28,12 @@
 
   <modules>
     <module>iooo-boot-project</module>
+    <module>iooo-boot-example</module>
   </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <main.basedir>${basedir}</main.basedir>
   </properties>
-
-  <profiles>
-    <profile>
-      <id>default</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <modules>
-        <module>iooo-boot-project</module>
-      </modules>
-    </profile>
-  </profiles>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>
