@@ -1,4 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   tech.iooo.boot.core.spring.IoooBootCoreAutoConfiguration
-org.springframework.context.ApplicationListener=\
-  tech.iooo.boot.core.spring.listener.IoooBootVersionInfoApplicationListener

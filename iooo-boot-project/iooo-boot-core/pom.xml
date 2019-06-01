@@ -121,6 +121,8 @@
                   <includes>
                     <include>**/*.xml</include>
                     <include>**/*.yml</include>
+                    <include>**/banner.txt</include>
+                    <include>**/iooo-boot-version.txt</include>
                   </includes>
                 </resource>
                 <resource>
@@ -129,6 +131,8 @@
                   <excludes>
                     <exclude>**/*.xml</exclude>
                     <exclude>**/*.yml</exclude>
+                    <include>**/banner.txt</include>
+                    <include>**/iooo-boot-version.txt</include>
                   </excludes>
                 </resource>
               </resources>
