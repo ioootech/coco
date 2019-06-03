@@ -1522,6 +1522,10 @@ public abstract class StringUtils {
     return false;
   }
 
+  public static boolean isNotBlank(String str) {
+    return !isBlank(str);
+  }
+
   /**
    * is empty string.
    *

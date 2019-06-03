@@ -25,6 +25,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Proxy;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -307,8 +308,8 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Determine whether the {@link Class} identified by the supplied namePrefix is present and can be loaded. Will return {@code false} if either the class or one of its dependencies is
-   * not present or cannot be loaded.
+   * Determine whether the {@link Class} identified by the supplied namePrefix is present and can be loaded. Will return {@code false} if either the class or one of its
+   * dependencies is not present or cannot be loaded.
    *
    * @param className the namePrefix of the class to check
    * @param classLoader the class loader to use (may be {@code null} which indicates the default class loader)
@@ -570,9 +571,9 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Given an input class object, return a string which consists of the class's package namePrefix as a pathname, i.e., all dots ('.') are replaced by slashes ('/'). Neither a leading
-   * nor trailing slash is added. The result could be concatenated with a slash and the namePrefix of a resource and fed directly to {@code ClassLoader.getResource()}. For it to be fed
-   * to {@code Class.getResource} instead, a leading slash would also have to be prepended to the returned value.
+   * Given an input class object, return a string which consists of the class's package namePrefix as a pathname, i.e., all dots ('.') are replaced by slashes ('/'). Neither a
+   * leading nor trailing slash is added. The result could be concatenated with a slash and the namePrefix of a resource and fed directly to {@code ClassLoader.getResource()}. For
+   * it to be fed to {@code Class.getResource} instead, a leading slash would also have to be prepended to the returned value.
    *
    * @param clazz the input class. A {@code null} value or the default (empty) package will result in an empty string ("") being returned.
    * @return a path which represents the package namePrefix
@@ -857,8 +858,8 @@ public abstract class ClassUtils {
   }
 
   /**
-   * Return a descriptive namePrefix for the given object's type: usually simply the class namePrefix, but component type class namePrefix + "[]" for arrays, and an appended list of implemented
-   * interfaces for JDK proxies.
+   * Return a descriptive namePrefix for the given object's type: usually simply the class namePrefix, but component type class namePrefix + "[]" for arrays, and an appended list
+   * of implemented interfaces for JDK proxies.
    *
    * @param value the value to introspect
    * @return the qualified namePrefix of the class
@@ -1376,5 +1377,17 @@ public abstract class ClassUtils {
       return className.substring(lastDotIdx + 1);
     }
     return className;
+  }
+
+  public static String getClassLocation(Class<?> clazz) {
+    try {
+      URL resource = clazz.getProtectionDomain().getCodeSource().getLocation();
+      if (resource != null) {
+        return resource.toString();
+      }
+    } catch (Throwable t) {
+      // ignore
+    }
+    return "--<unknown location>--";
   }
 }

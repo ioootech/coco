@@ -55,9 +55,10 @@ public class SystemProperties {
   public String OS_NAME = getProperty("os.namePrefix");
   public String OS_VERSION = getProperty("os.version");
   public String PATH_SEPARATOR = getProperty("path.separator");
-  public String SOCKS_NON_PROXY_HOSTS = getProperty("socksNonProxyHosts","192.168.0.0/16|*.192.168.0.0/16|10.0.0.0/8|*.10.0.0.0/8|172.16.0.0/12|*.172.16.0.0/12|127.0.0.1|localhost|*.localhost|local|*.local");
+  public String SOCKS_NON_PROXY_HOSTS = getProperty("socksNonProxyHosts",
+      "192.168.0.0/16|*.192.168.0.0/16|10.0.0.0/8|*.10.0.0.0/8|172.16.0.0/12|*.172.16.0.0/12|127.0.0.1|localhost|*.localhost|local|*.local");
   public String SOCKS_PROXY_HOST = getProperty("socksProxyHost");
-  public int SOCKS_PROXY_PORT = getPropertyAsInteger("socksProxyPort"); 
+  public int SOCKS_PROXY_PORT = getPropertyAsInteger("socksProxyPort");
   public String SUN_ARCH_DATA_MODEL = getProperty("sun.arch.data.model");
   public String USER_COUNTRY = getProperty("user.country");
   public String USER_DIR = getProperty("user.dir");
@@ -84,10 +85,22 @@ public class SystemProperties {
   }
 
   private int getPropertyAsInteger(String key) {
-    return Integer.parseInt(System.getProperty(key));
+    int result = 0;
+    try {
+      result = Integer.parseInt(System.getProperty(key));
+    } catch (Exception ignore) {
+      //ignore
+    }
+    return result;
   }
 
   private int getPropertyAsInteger(String key, int def) {
-    return Strings.isNullOrEmpty(System.getProperty(key)) ? def : Integer.parseInt(System.getProperty(key));
+    int result = 0;
+    try {
+      result = Strings.isNullOrEmpty(System.getProperty(key)) ? def : Integer.parseInt(System.getProperty(key));
+    } catch (Exception ignore) {
+      //ignore
+    }
+    return result;
   }
 }

@@ -23,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import tech.iooo.boot.core.constants.SystemProperties;
 
 public abstract class ResourceUtils {
 
@@ -382,6 +383,22 @@ public abstract class ResourceUtils {
    */
   public static void useCachesIfNecessary(URLConnection con) {
     con.setUseCaches(con.getClass().getSimpleName().startsWith("JNLP"));
+  }
+
+  /**
+   * 根据系统参数，获取用户目录，获取失败时返回 /tmp/
+   * @return 返回路径，结尾包含“/”
+   */
+  public static String localUserHome() {
+    String userHome = SystemProperties.USER_HOME;
+    if (StringUtils.isNotBlank(userHome)) {
+      if (!userHome.endsWith(File.separator)) {
+        userHome += File.separator;
+      }
+    } else {
+      userHome = "/tmp/";
+    }
+    return userHome;
   }
 
 }
