@@ -158,6 +158,7 @@
     <transmittable-thread-local.version>2.10.2</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>9.2.0</eclipse-collections.version>
+    <re2j.version>1.2</re2j.version>
     <maven.version>3.6.1</maven.version>
     <maven-plugin-tools.version>3.6.0</maven-plugin-tools.version>
     <!-- Plugin versions -->
@@ -446,6 +447,11 @@
         <groupId>com.jcabi</groupId>
         <artifactId>jcabi-ssh</artifactId>
         <version>${jcabi-ssh.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.re2j</groupId>
+        <artifactId>re2j</artifactId>
+        <version>${re2j.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jctools</groupId>
