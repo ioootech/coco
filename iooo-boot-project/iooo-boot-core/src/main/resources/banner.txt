@@ -3,5 +3,5 @@
    | |/ _ \/ __| '_ \      | |/ _ \ / _ \ / _ \
    | |  __/ (__| | | |  _  | | (_) | (_) | (_) |
    |_|\___|\___|_| |_| (_) |_|\___/ \___/ \___/
-   :: [v#project.version#] ::
+   ::             [v#project.version#]               ::
    :: [Based on Spring Boot v${spring-boot.version}] ::
