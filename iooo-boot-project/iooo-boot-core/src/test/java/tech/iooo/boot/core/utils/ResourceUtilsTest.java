@@ -14,6 +14,6 @@ class ResourceUtilsTest {
 
   @Test
   void locateUserHome() {
-    log.info("{}", ResourceUtils.localUserHome());
+    log.info("{}", ResourceUtils.CLASSPATH_URL_PREFIX);
   }
 }
