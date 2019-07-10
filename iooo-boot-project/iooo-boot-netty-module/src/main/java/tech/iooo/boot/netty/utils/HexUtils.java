@@ -120,7 +120,7 @@ public class HexUtils {
 
 		for (int i = 0; i < length; i++) {
 			byte b = bytes[i];
-			unsafe().putShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i * 2, byteToHexLE(b));
+			unsafe.putShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i * 2, byteToHexLE(b));
 		}
 
 		return UnsafeStringUtils.toLatin1String(hexBytes);
@@ -146,7 +146,7 @@ public class HexUtils {
 
 		for (int i = 0; i < batchLength; i += 8) {
 			long offset = ARRAY_BYTE_BASE_OFFSET + i;
-			long bytesLong = unsafe().getLong(bytes, offset);
+			long bytesLong = unsafe.getLong(bytes, offset);
 
 			long hex;
 
@@ -156,18 +156,18 @@ public class HexUtils {
 			hex |= ((byteToHexLE(bytesLong >>> 8 * 3) & 0xFFFFL) << 8 * 6);
 
 			offset += i;
-			unsafe().putLong(hexBytes, offset, hex);
+			unsafe.putLong(hexBytes, offset, hex);
 
 			hex = ((byteToHexLE(bytesLong >>> 8 * 4) & 0xFFFFL));
 			hex |= ((byteToHexLE(bytesLong >>> 8 * 5) & 0xFFFFL) << 8 * 2);
 			hex |= ((byteToHexLE(bytesLong >>> 8 * 6) & 0xFFFFL) << 8 * 4);
 			hex |= ((byteToHexLE(bytesLong >>> 8 * 7) & 0xFFFFL) << 8 * 6);
 
-			unsafe().putLong(hexBytes, offset + 8, hex);
+			unsafe.putLong(hexBytes, offset + 8, hex);
 		}
 
 		for (int i = batchLength; i < length; i++) {
-			unsafe().putShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + (i << 1), byteToHexLE(bytes[i]));
+			unsafe.putShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + (i << 1), byteToHexLE(bytes[i]));
 		}
 
 		return UnsafeStringUtils.toLatin1String(hexBytes);
@@ -181,7 +181,7 @@ public class HexUtils {
 		hex |= ((byteToHexLE(value >>> 8 * 2) & 0xFFFFL) << 8 * 2);
 		hex |= ((byteToHexLE(value >>> 8 * 3) & 0xFFFFL));
 
-		unsafe().putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + offset, hex);
+		unsafe.putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + offset, hex);
 	}
 
 	public static void toHex(byte[] bytes, int offset, long value) {
@@ -191,13 +191,13 @@ public class HexUtils {
 		hex |= ((byteToHexLE(value >>> 8 * 1) & 0xFFFFL) << 8 * 4);
 		hex |= ((byteToHexLE(value >>> 8 * 2) & 0xFFFFL) << 8 * 2);
 		hex |= ((byteToHexLE(value >>> 8 * 3) & 0xFFFFL));
-		unsafe().putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + offset + 8, hex);
+		unsafe.putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + offset + 8, hex);
 
 		hex = ((byteToHexLE(value >>> 8 * 4) & 0xFFFFL) << 8 * 6);
 		hex |= ((byteToHexLE(value >>> 8 * 5) & 0xFFFFL) << 8 * 4);
 		hex |= ((byteToHexLE(value >>> 8 * 6) & 0xFFFFL) << 8 * 2);
 		hex |= ((byteToHexLE(value >>> 8 * 7) & 0xFFFFL));
-		unsafe().putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + offset, hex);
+		unsafe.putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + offset, hex);
 	}
 
 	public static String toHex(int value) {
@@ -237,7 +237,7 @@ public class HexUtils {
 
 		for (int i = 0; i < offset; i++) {
 			byte b = byteBuffer.get(offset + i);
-			unsafe().putShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i * 2, byteToHexLE(b));
+			unsafe.putShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i * 2, byteToHexLE(b));
 		}
 
 		return UnsafeStringUtils.toLatin1String(hexBytes);
@@ -268,24 +268,24 @@ public class HexUtils {
 			long offset = ARRAY_BYTE_BASE_OFFSET + i;
 
 			long bytesLong = 0;
-			long hexLong = unsafe().getLong(hexBytes, offset);
+			long hexLong = unsafe.getLong(hexBytes, offset);
 
 			bytesLong = (hexToByteLE(hexLong) & 0xFFL);
 			bytesLong |= ((hexToByteLE(hexLong >>> 8 * 2) & 0xFFL) << 8);
 			bytesLong |= ((hexToByteLE(hexLong >>> 8 * 4) & 0xFFL) << 8 * 2);
 			bytesLong |= ((hexToByteLE(hexLong >>> 8 * 6) & 0xFFL) << 8 * 3);
 
-			hexLong = unsafe().getLong(hexBytes, offset + 8);
+			hexLong = unsafe.getLong(hexBytes, offset + 8);
 			bytesLong |= ((hexToByteLE(hexLong) & 0xFFL) << 8 * 4);
 			bytesLong |= ((hexToByteLE(hexLong >>> 8 * 2) & 0xFFL) << 8 * 5);
 			bytesLong |= ((hexToByteLE(hexLong >>> 8 * 4) & 0xFFL) << 8 * 6);
 			bytesLong |= ((hexToByteLE(hexLong >>> 8 * 6) & 0xFFL) << 8 * 7);
 
-			unsafe().putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + (i >>> 1), bytesLong);
+			unsafe.putLongVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + (i >>> 1), bytesLong);
 		}
 
 		for (int i = batchLength; i < length; i += 2) {
-			short index = unsafe().getShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i);
+			short index = unsafe.getShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i);
 			bytes[i >>> 1] = hexToByteLE(index);
 		}
 
@@ -307,7 +307,7 @@ public class HexUtils {
 		byte[] hexBytes = UnsafeStringUtils.getLatin1Bytes(hex);
 
 		for (int i = 0; i < length; i += 2) {
-			short index = unsafe().getShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i);
+			short index = unsafe.getShortVolatile(hexBytes, ARRAY_BYTE_BASE_OFFSET + i);
 			bytes[i >>> 1] = hexToByteLE(index);
 		}
 

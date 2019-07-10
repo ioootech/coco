@@ -63,7 +63,7 @@ public class URLEncodeUtils {
           byteBuffer.put((byte) ' ');
         } else if (b == ESCAPE_CHAR) {
 
-          short hex = unsafe().getShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + i + 1);
+          short hex = unsafe.getShortVolatile(bytes, ARRAY_BYTE_BASE_OFFSET + i + 1);
           byteBuffer.put(HexUtils.hexToByteLE(hex));
 
           i += 2;

@@ -23,9 +23,9 @@ public class UnsafeStringUtils {
 
       try {
         Field coderField = String.class.getDeclaredField("coder");
-        _coderFieldOffset = UnsafeUtils.unsafe().objectFieldOffset(coderField);
+        _coderFieldOffset = UnsafeUtils.unsafe.objectFieldOffset(coderField);
 
-        if (UnsafeUtils.unsafe().getByte("你好，世界", _coderFieldOffset) != UTF16) {
+        if (UnsafeUtils.unsafe.getByte("你好，世界", _coderFieldOffset) != UTF16) {
           _coderFieldOffset = -1;
         }
       } catch (Throwable e) {
@@ -44,13 +44,13 @@ public class UnsafeStringUtils {
 
       try {
         Field valueField = String.class.getDeclaredField("value");
-        _bytesFieldOffset = UnsafeUtils.unsafe().objectFieldOffset(valueField);
+        _bytesFieldOffset = UnsafeUtils.unsafe.objectFieldOffset(valueField);
 
-        if (UnsafeUtils.unsafe().getObject("你好，世界", _bytesFieldOffset) == null) {
+        if (UnsafeUtils.unsafe.getObject("你好，世界", _bytesFieldOffset) == null) {
           _bytesFieldOffset = -1;
         }
 
-        if (!(UnsafeUtils.unsafe().getObject("你好，世界", _bytesFieldOffset) instanceof byte[])) {
+        if (!(UnsafeUtils.unsafe.getObject("你好，世界", _bytesFieldOffset) instanceof byte[])) {
           _bytesFieldOffset = -1;
         }
       } catch (Throwable e) {
@@ -69,7 +69,7 @@ public class UnsafeStringUtils {
 
       try {
         Field hashField = String.class.getDeclaredField("hash");
-        _hashFieldOffset = UnsafeUtils.unsafe().objectFieldOffset(hashField);
+        _hashFieldOffset = UnsafeUtils.unsafe.objectFieldOffset(hashField);
       } catch (Throwable e) {
         _hashFieldOffset = -1;
       }
@@ -85,7 +85,7 @@ public class UnsafeStringUtils {
 
   public static boolean isLatin1(String str) {
     if (coderFieldOffset > 0) {
-      return UnsafeUtils.unsafe().getByte(str, coderFieldOffset) == LATIN1;
+      return UnsafeUtils.unsafe.getByte(str, coderFieldOffset) == LATIN1;
     }
 
     return false;
@@ -96,7 +96,7 @@ public class UnsafeStringUtils {
    */
   public static byte[] getUTF8Bytes(String str) {
     if (bytesFieldOffset > 0 && isLatin1(str)) {
-      byte[] bytes = (byte[]) UnsafeUtils.unsafe().getObject(str, bytesFieldOffset);
+      byte[] bytes = (byte[]) UnsafeUtils.unsafe.getObject(str, bytesFieldOffset);
 
       if (bytes != null) {
         boolean ascii = true;
@@ -122,7 +122,7 @@ public class UnsafeStringUtils {
    */
   public static byte[] getLatin1Bytes(String str) {
     if (bytesFieldOffset > 0 && isLatin1(str)) {
-      byte[] bytes = (byte[]) UnsafeUtils.unsafe().getObject(str, bytesFieldOffset);
+      byte[] bytes = (byte[]) UnsafeUtils.unsafe.getObject(str, bytesFieldOffset);
 
       if (bytes != null) {
         return bytes;
@@ -143,15 +143,15 @@ public class UnsafeStringUtils {
     // allocate String instance
     Object obj = null;
     try {
-      obj = UnsafeUtils.unsafe().allocateInstance(String.class);
+      obj = UnsafeUtils.unsafe.allocateInstance(String.class);
     } catch (Throwable t) {
       return new String(bytes, StandardCharsets.ISO_8859_1);
     }
 
     // init field
-    UnsafeUtils.unsafe().putObject(obj, bytesFieldOffset, bytes);
-    UnsafeUtils.unsafe().putByte(obj, coderFieldOffset, LATIN1);
-    UnsafeUtils.unsafe().putInt(obj, hashFieldOffset, 0);
+    UnsafeUtils.unsafe.putObject(obj, bytesFieldOffset, bytes);
+    UnsafeUtils.unsafe.putByte(obj, coderFieldOffset, LATIN1);
+    UnsafeUtils.unsafe.putInt(obj, hashFieldOffset, 0);
 
     return (String) obj;
   }

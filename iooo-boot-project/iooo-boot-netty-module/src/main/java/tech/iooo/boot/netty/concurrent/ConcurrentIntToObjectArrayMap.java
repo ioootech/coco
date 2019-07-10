@@ -54,7 +54,7 @@ public class ConcurrentIntToObjectArrayMap<T> {
 			return false;
 		}
 
-		Object value = unsafe().getObjectVolatile(finalArray, offset(ABASE, ASHIFT, key));
+		Object value = unsafe.getObjectVolatile(finalArray, offset(ABASE, ASHIFT, key));
 
 		if (value == NOT_FOUND) {
 			return false;
@@ -79,7 +79,7 @@ public class ConcurrentIntToObjectArrayMap<T> {
 			return null;
 		}
 
-		Object value = unsafe().getObjectVolatile(finalArray, offset(ABASE, ASHIFT, key));
+		Object value = unsafe.getObjectVolatile(finalArray, offset(ABASE, ASHIFT, key));
 
 		if (value != NOT_FOUND) {
 			return (T) value;
@@ -100,7 +100,7 @@ public class ConcurrentIntToObjectArrayMap<T> {
 		if (key >= finalArray.length) {
 			value = NOT_FOUND;
 		} else {
-			value = unsafe().getObjectVolatile(finalArray, offset(ABASE, ASHIFT, key));
+			value = unsafe.getObjectVolatile(finalArray, offset(ABASE, ASHIFT, key));
 		}
 
 		if (value != NOT_FOUND) {
@@ -110,7 +110,7 @@ public class ConcurrentIntToObjectArrayMap<T> {
 		synchronized (this) {
 			final Object[] theArray = array;
 			if (key < theArray.length) {
-				value = unsafe().getObjectVolatile(theArray, offset(ABASE, ASHIFT, key));
+				value = unsafe.getObjectVolatile(theArray, offset(ABASE, ASHIFT, key));
 			}
 
 			if (value != NOT_FOUND) {
@@ -145,7 +145,7 @@ public class ConcurrentIntToObjectArrayMap<T> {
 
 		for (;;) {// like cas
 			final Object[] before = array;
-			unsafe().putOrderedObject(before, offset, value);
+			unsafe.putOrderedObject(before, offset, value);
 			final Object[] after = array;
 
 			if (before == after) {
@@ -174,7 +174,7 @@ public class ConcurrentIntToObjectArrayMap<T> {
 
 		for (;;) {// like cas
 			final Object[] before = array;
-			unsafe().putOrderedObject(before, offset, NOT_FOUND);
+			unsafe.putOrderedObject(before, offset, NOT_FOUND);
 			final Object[] after = array;
 
 			if (before == after) {
@@ -225,9 +225,9 @@ public class ConcurrentIntToObjectArrayMap<T> {
 
 	static {
 		try {
-			ABASE = unsafe().arrayBaseOffset(Object[].class);
+			ABASE = unsafe.arrayBaseOffset(Object[].class);
 
-			int scale = unsafe().arrayIndexScale(Object[].class);
+			int scale = unsafe.arrayIndexScale(Object[].class);
 			if ((scale & (scale - 1)) != 0) {
 				throw new Error("array index scale not a power of two");
 			}
