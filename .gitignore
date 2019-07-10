@@ -14,3 +14,6 @@ logs
 dependency-reduced-pom.xml
 
 */signingkey.asc
+*/.settings
+*/.project
+*/.classpath
