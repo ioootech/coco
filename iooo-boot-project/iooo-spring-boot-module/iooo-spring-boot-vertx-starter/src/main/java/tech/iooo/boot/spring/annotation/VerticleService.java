@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 @Documented
 @Component
 @Inherited
+@Deprecated
 public @interface VerticleService {
 
   /**
