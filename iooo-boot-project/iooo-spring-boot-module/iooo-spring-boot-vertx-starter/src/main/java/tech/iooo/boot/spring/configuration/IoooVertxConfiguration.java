@@ -8,12 +8,15 @@ import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.file.FileSystem;
 import io.vertx.core.shareddata.SharedData;
 import org.springframework.beans.BeansException;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 
 /**
  * Created on 2018/8/24 上午10:56
@@ -36,8 +39,21 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
   }
 
   @Bean
+  @ConditionalOnBean(Vertx.class)
+  @ConditionalOnClass(io.vertx.reactivex.core.Vertx.class)
+  public io.vertx.reactivex.core.Vertx reactivexVertx(Vertx vertx) {
+    return new io.vertx.reactivex.core.Vertx(vertx);
+  }
+
+  @Bean
   @ConditionalOnMissingBean
   public EventBus eventBus(Vertx vertx) {
+    return vertx.eventBus();
+  }
+
+  @Bean
+  @ConditionalOnBean(io.vertx.reactivex.core.Vertx.class)
+  public io.vertx.reactivex.core.eventbus.EventBus reactivexEventBus(io.vertx.reactivex.core.Vertx vertx) {
     return vertx.eventBus();
   }
 
@@ -48,8 +64,20 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
   }
 
   @Bean
+  @ConditionalOnBean(io.vertx.reactivex.core.Vertx.class)
+  public io.vertx.reactivex.core.file.FileSystem reactivexFileSystem(io.vertx.reactivex.core.Vertx vertx) {
+    return vertx.fileSystem();
+  }
+
+  @Bean
   @ConditionalOnMissingBean
   public SharedData sharedData(Vertx vertx) {
+    return vertx.sharedData();
+  }
+
+  @Bean
+  @ConditionalOnBean(io.vertx.reactivex.core.Vertx.class)
+  public io.vertx.reactivex.core.shareddata.SharedData reactivexSharedData(io.vertx.reactivex.core.Vertx vertx) {
     return vertx.sharedData();
   }
 
@@ -59,7 +87,7 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
   }
 
   @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+  public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
     this.applicationContext = applicationContext;
   }
 }

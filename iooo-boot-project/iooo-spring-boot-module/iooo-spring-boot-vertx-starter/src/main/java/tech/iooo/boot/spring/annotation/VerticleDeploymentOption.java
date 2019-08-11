@@ -8,6 +8,8 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.annotation.AliasFor;
 
 /**
  * @author 龙也
@@ -19,5 +21,6 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface VerticleDeploymentOption {
 
+  @AliasFor(annotation = Qualifier.class)
   String value() default DEFAULT_DEPLOYMENT_OPTIONS;
 }
