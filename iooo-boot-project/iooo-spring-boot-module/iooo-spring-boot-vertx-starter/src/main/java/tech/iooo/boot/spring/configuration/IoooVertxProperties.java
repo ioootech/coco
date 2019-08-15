@@ -1,6 +1,9 @@
 package tech.iooo.boot.spring.configuration;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 import lombok.Data;
+import lombok.experimental.Delegate;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -13,6 +16,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class IoooVertxProperties {
 
   private IoooVertxProperties.Verticle verticle = new IoooVertxProperties.Verticle();
+  private DefaultDeploymentOption defaultDeploymentOption = new IoooVertxProperties.DefaultDeploymentOption();
 
   @Data
   public static class Verticle {
@@ -21,5 +25,23 @@ public class IoooVertxProperties {
      * deploy过程是否开启快速失败
      */
     private boolean failFast = false;
+  }
+
+  @Data
+  public static class DefaultDeploymentOption {
+
+    private String config;
+    private List<String> extraClasspath;
+    private Boolean ha;
+    private Integer instances;
+    private List<String> isolatedClasses;
+    private String isolationGroup;
+    private Long maxWorkerExecuteTime;
+    private TimeUnit maxWorkerExecuteTimeUnit;
+    @Delegate
+    private Boolean multiThreaded;
+    private Boolean worker;
+    private String workerPoolName;
+    private Integer workerPoolSize;
   }
 }

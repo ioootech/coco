@@ -6,8 +6,11 @@ import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.file.FileSystem;
+import io.vertx.core.json.JsonObject;
 import io.vertx.core.shareddata.SharedData;
+import java.util.Optional;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +29,8 @@ import org.springframework.lang.NonNull;
 public class IoooVertxConfiguration implements ApplicationContextAware {
 
   private ApplicationContext applicationContext;
+  @Autowired
+  private IoooVertxProperties ioooVertxProperties;
 
   @Bean
   @ConditionalOnMissingBean
@@ -56,7 +61,20 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
 
   @Bean(DEFAULT_DEPLOYMENT_OPTIONS)
   public DeploymentOptions deploymentOptions() {
-    return new DeploymentOptions();
+    DeploymentOptions deploymentOptions = new DeploymentOptions();
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getConfig()).ifPresent(item -> deploymentOptions.setConfig(JsonObject.mapFrom(item)));
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getExtraClasspath()).ifPresent(deploymentOptions::setExtraClasspath);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getHa()).ifPresent(deploymentOptions::setHa);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getInstances()).ifPresent(deploymentOptions::setInstances);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getIsolatedClasses()).ifPresent(deploymentOptions::setIsolatedClasses);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getIsolationGroup()).ifPresent(deploymentOptions::setIsolationGroup);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getMaxWorkerExecuteTime()).ifPresent(deploymentOptions::setMaxWorkerExecuteTime);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getMaxWorkerExecuteTimeUnit()).ifPresent(deploymentOptions::setMaxWorkerExecuteTimeUnit);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getMultiThreaded()).ifPresent(deploymentOptions::setMultiThreaded);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorker()).ifPresent(deploymentOptions::setWorker);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorkerPoolName()).ifPresent(deploymentOptions::setWorkerPoolName);
+    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorkerPoolSize()).ifPresent(deploymentOptions::setWorkerPoolSize);
+    return deploymentOptions;
   }
 
   @Override
