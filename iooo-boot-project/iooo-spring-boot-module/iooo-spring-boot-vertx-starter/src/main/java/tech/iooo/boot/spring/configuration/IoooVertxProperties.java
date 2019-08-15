@@ -17,6 +17,7 @@ public class IoooVertxProperties {
 
   private IoooVertxProperties.Verticle verticle = new IoooVertxProperties.Verticle();
   private DefaultDeploymentOption defaultDeploymentOption = new IoooVertxProperties.DefaultDeploymentOption();
+  private Server server = new IoooVertxProperties.Server();
 
   @Data
   public static class Verticle {
@@ -43,5 +44,12 @@ public class IoooVertxProperties {
     private Boolean worker;
     private String workerPoolName;
     private Integer workerPoolSize;
+  }
+
+  @Data
+  public static class Server {
+
+    private Boolean enable = false;
+    private Integer port = 8080;
   }
 }
