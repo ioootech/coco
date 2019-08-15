@@ -8,8 +8,6 @@ import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.file.FileSystem;
 import io.vertx.core.shareddata.SharedData;
 import org.springframework.beans.BeansException;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -39,21 +37,8 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
   }
 
   @Bean
-  @ConditionalOnBean(Vertx.class)
-  @ConditionalOnClass(io.vertx.reactivex.core.Vertx.class)
-  public io.vertx.reactivex.core.Vertx reactivexVertx(Vertx vertx) {
-    return new io.vertx.reactivex.core.Vertx(vertx);
-  }
-
-  @Bean
   @ConditionalOnMissingBean
   public EventBus eventBus(Vertx vertx) {
-    return vertx.eventBus();
-  }
-
-  @Bean
-  @ConditionalOnBean(io.vertx.reactivex.core.Vertx.class)
-  public io.vertx.reactivex.core.eventbus.EventBus reactivexEventBus(io.vertx.reactivex.core.Vertx vertx) {
     return vertx.eventBus();
   }
 
@@ -64,20 +49,8 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
   }
 
   @Bean
-  @ConditionalOnBean(io.vertx.reactivex.core.Vertx.class)
-  public io.vertx.reactivex.core.file.FileSystem reactivexFileSystem(io.vertx.reactivex.core.Vertx vertx) {
-    return vertx.fileSystem();
-  }
-
-  @Bean
   @ConditionalOnMissingBean
   public SharedData sharedData(Vertx vertx) {
-    return vertx.sharedData();
-  }
-
-  @Bean
-  @ConditionalOnBean(io.vertx.reactivex.core.Vertx.class)
-  public io.vertx.reactivex.core.shareddata.SharedData reactivexSharedData(io.vertx.reactivex.core.Vertx vertx) {
     return vertx.sharedData();
   }
 
