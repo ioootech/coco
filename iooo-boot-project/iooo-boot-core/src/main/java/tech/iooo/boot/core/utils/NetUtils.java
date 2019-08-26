@@ -84,12 +84,13 @@ public class NetUtils {
         ss = new ServerSocket(i);
         return i;
       } catch (IOException e) {
+        logger.warn("port {} is occupied", i);
         // continue
       } finally {
         if (ss != null) {
           try {
             ss.close();
-          } catch (IOException e) {
+          } catch (IOException ignore) {
           }
         }
       }

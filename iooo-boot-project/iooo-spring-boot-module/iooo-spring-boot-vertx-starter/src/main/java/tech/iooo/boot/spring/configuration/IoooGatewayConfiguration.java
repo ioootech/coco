@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
+import tech.iooo.boot.core.utils.Assert;
 import tech.iooo.boot.spring.annotation.IoooController;
 import tech.iooo.boot.spring.common.IController;
 
@@ -22,7 +23,7 @@ import tech.iooo.boot.spring.common.IController;
  */
 @Configuration
 @ConditionalOnClass(Router.class)
-@ConditionalOnProperty(prefix = "vertx.server", name = "enable", havingValue = "true")
+@ConditionalOnProperty(prefix = "vertx.server", name = "enable", havingValue = "true", matchIfMissing = true)
 public class IoooGatewayConfiguration implements ApplicationContextAware {
 
   private ApplicationContext applicationContext;
@@ -34,7 +35,10 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
     Table<String, HttpMethod, IController> table = HashBasedTable.create();
     map.forEach((name, controller) -> {
       IoooController ioooController = controller.getClass().getAnnotation(IoooController.class);
-      table.put(ioooController.path(), ioooController.method(), (IController) controller);
+      String configPath = ioooController.path().trim();
+      Assert.doesNotContain(configPath, " ", "path参数不应该包含空格");
+      String path = configPath.startsWith("/") ? configPath : "/" + configPath;
+      table.put(path, ioooController.method(), (IController) controller);
     });
     return table;
   }

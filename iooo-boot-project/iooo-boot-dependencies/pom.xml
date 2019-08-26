@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.3.41</kotlin.version>
+    <kotlin.version>1.3.50</kotlin.version>
     <maven.min.version>3.0.3</maven.min.version>
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
@@ -50,11 +50,11 @@
     <spring.boot.version>2.1.7.RELEASE</spring.boot.version>
     <spring.version>5.1.9.RELEASE</spring.version>
     <!-- Dependency versions -->
-    <commons-codec.version>1.12</commons-codec.version>
-    <commons-dbcp2.version>2.6.0</commons-dbcp2.version>
+    <commons-codec.version>1.13</commons-codec.version>
+    <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
     <commons-lang3.version>3.9</commons-lang3.version>
     <commons-pool.version>1.6</commons-pool.version>
-    <commons-pool2.version>2.6.2</commons-pool2.version>
+    <commons-pool2.version>2.7.0</commons-pool2.version>
     <commons-io.version>2.6</commons-io.version>
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-net.version>3.6</commons-net.version>
@@ -68,31 +68,31 @@
     <aspectjweaver.version>1.9.4</aspectjweaver.version>
     <hsqldb.version>2.5.0</hsqldb.version>
     <HikariCP.version>3.3.1</HikariCP.version>
-    <dagger.version>2.23.2</dagger.version>
-    <protobuf.version>3.9.0</protobuf.version>
-    <grpc.version>1.22.1</grpc.version>
-    <redisson.version>3.11.1</redisson.version>
+    <dagger.version>2.24</dagger.version>
+    <protobuf.version>3.9.1</protobuf.version>
+    <grpc.version>1.23.0</grpc.version>
+    <redisson.version>3.11.2</redisson.version>
     <gson.version>2.8.5</gson.version>
-    <java-jwt.version>3.8.1</java-jwt.version>
+    <java-jwt.version>3.8.2</java-jwt.version>
     <jjwt.version>0.10.6</jjwt.version>
     <guice.version>4.2.2</guice.version>
     <governator.version>1.17.8</governator.version>
     <httpclient.version>4.5.9</httpclient.version>
     <httpcore.version>4.4.11</httpcore.version>
-    <jackson.version>2.9.9</jackson.version>
-    <rocketmq-client.version>4.5.1</rocketmq-client.version>
+    <jackson.version>2.9.9.3</jackson.version>
+    <rocketmq-client.version>4.5.2</rocketmq-client.version>
     <jedis.version>2.10.2</jedis.version>
     <jedis-v3.version>3.1.0</jedis-v3.version>
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <jersey.version>2.29</jersey.version>
-    <jetty.version>9.4.19.v20190610</jetty.version>
+    <jetty.version>9.4.20.v20190813</jetty.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.5.1</junit-jupiter.version>
-    <projectreactor.version>3.2.10.RELEASE</projectreactor.version>
-    <lettuce.version>5.1.7.RELEASE</lettuce.version>
+    <projectreactor.version>3.2.11.RELEASE</projectreactor.version>
+    <lettuce.version>5.1.8.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
-    <log4j2.version>2.12.0</log4j2.version>
+    <log4j2.version>2.12.1</log4j2.version>
     <disruptor.version>3.4.2</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.3</logback.version>
@@ -103,7 +103,7 @@
     <mybatis-plus-boot-starter-v3.version>3.1.2</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.1.2</mybatis-plus-v3.version>
-    <netty.version>4.1.38.Final</netty.version>
+    <netty.version>4.1.39.Final</netty.version>
     <netty-tcnative.version>2.0.25.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
@@ -111,18 +111,18 @@
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.1</quartz.version>
     <groovy-all.version>2.5.7</groovy-all.version>
-    <slf4j.version>1.7.26</slf4j.version>
-    <tomcat.version>9.0.22</tomcat.version>
-    <undertow.version>2.0.22.Final</undertow.version>
+    <slf4j.version>1.7.28</slf4j.version>
+    <tomcat.version>9.0.24</tomcat.version>
+    <undertow.version>2.0.25.Final</undertow.version>
     <icu4j.version>64.2</icu4j.version>
     <mysql.version>8.0.17</mysql.version>
     <h2.version>1.4.199</h2.version>
     <grpc-spring-boot-starter.version>2.3.0.RELEASE</grpc-spring-boot-starter.version>
-    <vertx.version>3.8.0</vertx.version>
+    <vertx.version>3.8.1</vertx.version>
     <guava.version>28.0-jre</guava.version>
-    <bytebuddy.version>1.9.15</bytebuddy.version>
+    <bytebuddy.version>1.10.1</bytebuddy.version>
     <commons-configuration2.version>2.5</commons-configuration2.version>
-    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <asm.version>7.1</asm.version>
     <org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
     <poi.version>4.1.0</poi.version>
@@ -131,20 +131,20 @@
     <jctools.version>2.1.2</jctools.version>
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
-    <reactive-streams.version>1.0.2</reactive-streams.version>
+    <reactive-streams.version>1.0.3</reactive-streams.version>
     <javassist.version>3.25.0-GA</javassist.version>
-    <cglib.version>3.2.12</cglib.version>
-    <sentinel.version>1.6.2</sentinel.version>
+    <cglib.version>3.3.0</cglib.version>
+    <sentinel.version>1.6.3</sentinel.version>
     <jna.version>5.4.0</jna.version>
     <xstream.version>1.4.11.1</xstream.version>
     <xerces.version>2.12.0</xerces.version>
-    <bcprov.version>1.61</bcprov.version>
+    <bcprov.version>1.62</bcprov.version>
     <mybatis.version>3.5.2</mybatis.version>
     <mybatis-spring.version>2.0.2</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
-    <pagehelper.version>5.1.7</pagehelper.version>
-    <fastjson.version>1.2.58</fastjson.version>
-    <okhttp.version>4.0.1</okhttp.version>
+    <pagehelper.version>5.1.10</pagehelper.version>
+    <fastjson.version>1.2.59</fastjson.version>
+    <okhttp.version>4.1.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
     <sharding.version>3.1.0</sharding.version>
@@ -152,16 +152,16 @@
     <protostuff.version>1.6.0</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
-    <newrelic.version>5.2.0</newrelic.version>
+    <newrelic.version>5.3.0</newrelic.version>
     <rxjava.version>2.2.11</rxjava.version>
-    <snakeyaml.version>1.24</snakeyaml.version>
-    <assertj-core.version>3.12.2</assertj-core.version>
-    <mockito-core.version>2.27.0</mockito-core.version>
-    <commons-collections4.version>4.3</commons-collections4.version>
+    <snakeyaml.version>1.25</snakeyaml.version>
+    <assertj-core.version>3.13.2</assertj-core.version>
+    <mockito-core.version>3.0.0</mockito-core.version>
+    <commons-collections4.version>4.4</commons-collections4.version>
     <hamcrest-library.version>2.1</hamcrest-library.version>
     <reflections.version>0.9.11</reflections.version>
     <java-verbal-expressions.version>1.6</java-verbal-expressions.version>
-    <transmittable-thread-local.version>2.10.2</transmittable-thread-local.version>
+    <transmittable-thread-local.version>2.11.0</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>10.0.0</eclipse-collections.version>
     <re2j.version>1.3</re2j.version>
@@ -201,7 +201,7 @@
     <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
     <protoc.version>3.9.0</protoc.version>
     <quasar-maven-plugin.version>0.7.9</quasar-maven-plugin.version>
-    <protoc-gen-grpc-java.version>1.22.1</protoc-gen-grpc-java.version>
+    <protoc-gen-grpc-java.version>1.23.0</protoc-gen-grpc-java.version>
     <vertx-protoc-gen-grpc-java.version>1.20.0</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.3.2</wagon-ssh.version>
     <wagon.version>3.3.2</wagon.version>

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
+import tech.iooo.boot.core.utils.NetUtils;
 import tech.iooo.boot.spring.common.IController;
 
 /**
@@ -42,10 +43,10 @@ public class IoooGatewayVerticle extends AbstractVerticle {
         router.route(method, path).handler(controller);
       });
     }
-
-    server.requestHandler(router).listen(ioooVertxProperties.getServer().getPort(), res -> {
+    int port = NetUtils.getAvailablePort(ioooVertxProperties.getServer().getPort());
+    server.requestHandler(router).listen(port, res -> {
       if (res.succeeded()) {
-        log.info("vertx gateway listening on port {}", ioooVertxProperties.getServer().getPort());
+        log.info("vertx gateway listening on port {}", port);
         startPromise.complete();
       } else {
         startPromise.fail(res.cause());
