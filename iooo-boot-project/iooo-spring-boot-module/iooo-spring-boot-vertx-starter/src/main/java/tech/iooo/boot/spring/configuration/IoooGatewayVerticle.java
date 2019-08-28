@@ -41,8 +41,9 @@ public class IoooGatewayVerticle extends AbstractVerticle {
       Router router = Router.router(vertx);
       for (String path : table.rowKeySet()) {
         table.row(path).forEach((method, controller) -> {
-          log.info("method::[{}] path::[{}] controller::[{}]", method, path, controller.getClass().getSimpleName());
-          router.route(method, path).handler(controller);
+          String configPath = path.startsWith("/") ? path : "/" + path;
+          log.info("method::[{}] path::[{}] controller::[{}]", method, configPath, controller.getClass().getSimpleName());
+          router.route(method, configPath).handler(controller);
         });
       }
       int port = NetUtils.getAvailablePort(ioooVertxProperties.getServer().getPort());
