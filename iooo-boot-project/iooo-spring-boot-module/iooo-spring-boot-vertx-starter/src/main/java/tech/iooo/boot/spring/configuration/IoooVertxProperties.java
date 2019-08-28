@@ -49,7 +49,6 @@ public class IoooVertxProperties {
   @Data
   public static class Server {
 
-    private Boolean enable = false;
     private Integer port = 8080;
   }
 }

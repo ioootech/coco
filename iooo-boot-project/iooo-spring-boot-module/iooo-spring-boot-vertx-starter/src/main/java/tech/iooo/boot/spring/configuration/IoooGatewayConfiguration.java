@@ -5,17 +5,17 @@ import com.google.common.collect.Table;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
 import java.util.Map;
+import java.util.Objects;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import tech.iooo.boot.core.utils.Assert;
-import tech.iooo.boot.spring.annotation.IoooController;
-import tech.iooo.boot.spring.common.IController;
+import tech.iooo.boot.spring.annotation.RequestMapping;
+import tech.iooo.boot.spring.common.RoutingContextHandler;
 
 /**
  * @author 龙也
@@ -23,22 +23,26 @@ import tech.iooo.boot.spring.common.IController;
  */
 @Configuration
 @ConditionalOnClass(Router.class)
-@ConditionalOnProperty(prefix = "vertx.server", name = "enable", havingValue = "true", matchIfMissing = true)
 public class IoooGatewayConfiguration implements ApplicationContextAware {
 
   private ApplicationContext applicationContext;
 
   @Bean(name = "ioooControllerTable")
-  public Table<String, HttpMethod, IController> loadController() {
-    Map<String, Object> map = applicationContext.getBeansWithAnnotation(IoooController.class);
+  public Table<String, HttpMethod, RoutingContextHandler> loadController() {
+    Map<String, RoutingContextHandler> map = applicationContext.getBeansOfType(RoutingContextHandler.class);
     //path method controller
-    Table<String, HttpMethod, IController> table = HashBasedTable.create();
+    Table<String, HttpMethod, RoutingContextHandler> table = HashBasedTable.create();
     map.forEach((name, controller) -> {
-      IoooController ioooController = controller.getClass().getAnnotation(IoooController.class);
-      String configPath = ioooController.path().trim();
-      Assert.doesNotContain(configPath, " ", "path参数不应该包含空格");
-      String path = configPath.startsWith("/") ? configPath : "/" + configPath;
-      table.put(path, ioooController.method(), (IController) controller);
+      RequestMapping requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
+      //优先看RequestMapping配置
+      if (Objects.nonNull(requestMapping)) {
+        String configPath = requestMapping.path().trim();
+        Assert.doesNotContain(configPath, " ", "path参数不应该包含空格");
+        String path = configPath.startsWith("/") ? configPath : "/" + configPath;
+        table.put(path, requestMapping.method(), controller);
+      } else {
+        table.put(controller.path(), controller.httpMethod(), controller);
+      }
     });
     return table;
   }
