@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Service;
+import tech.iooo.boot.core.utils.ClassUtils;
 import tech.iooo.boot.core.utils.NetUtils;
 import tech.iooo.boot.spring.common.RoutingContextHandler;
 
@@ -42,7 +43,8 @@ public class IoooGatewayVerticle extends AbstractVerticle {
       for (String path : table.rowKeySet()) {
         table.row(path).forEach((method, controller) -> {
           String configPath = path.startsWith("/") ? path : "/" + path;
-          log.info("method::[{}] path::[{}] controller::[{}]", method, configPath, controller.getClass().getSimpleName());
+          String controllerName = ClassUtils.getUserClass(controller).getSimpleName();
+          log.info("method::[{}] path::[{}] controller::[{}]", method, configPath, controllerName);
           router.route(method, configPath).handler(controller);
         });
       }

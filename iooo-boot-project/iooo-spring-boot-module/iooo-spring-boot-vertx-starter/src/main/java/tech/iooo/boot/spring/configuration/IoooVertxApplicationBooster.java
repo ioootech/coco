@@ -81,7 +81,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle, ApplicationC
           res -> {
             if (res.succeeded()) {
               if (logger.isInfoEnabled()) {
-                String className = ClassUtils.isCglibProxyClass(verticleClass) ? ClassUtils.getUserClass(verticleClass).getSimpleName() : verticleClass.getSimpleName();
+                String className = ClassUtils.getUserClass(verticleClass).getSimpleName();
                 logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", className, optionName, res.result());
               }
               IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");

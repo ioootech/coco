@@ -1,11 +1,16 @@
 package tech.iooo.boot.spring.configuration;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.ext.web.Router;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +31,7 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
 @ConditionalOnClass(Router.class)
 public class IoooGatewayConfiguration implements ApplicationContextAware {
 
+  private static final Logger log = LoggerFactory.getLogger(IoooGatewayConfiguration.class);
   private ApplicationContext applicationContext;
 
   @Bean(name = "ioooControllerTable")
@@ -33,9 +39,32 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
     Map<String, RoutingContextHandler> map = applicationContext.getBeansOfType(RoutingContextHandler.class);
     //path method controller
     Table<String, HttpMethod, RoutingContextHandler> table = HashBasedTable.create();
+    ArrayListMultimap<String, RoutingContextHandler> multimap = ArrayListMultimap.create();
+    map.values().forEach(handler -> {
+      RequestMapping requestMapping = ClassUtils.getUserClass(handler).getAnnotation(RequestMapping.class);
+      String path;
+      if (Objects.nonNull(requestMapping)) {
+        path = requestMapping.path();
+      } else {
+        path = handler.path();
+      }
+      multimap.put(path, handler);
+    });
+
+    multimap.keySet().forEach(path -> {
+      if (multimap.get(path).size() > 1) {
+        String list = Joiner.on(",").join(multimap.get(path).stream()
+            .map(handler -> ClassUtils.getUserClass(handler).getName())
+            .collect(Collectors.toList()));
+        String errMsg = String.format("there are duplicate handlers with the same path [%s].Check these handlers [%s]", path, list);
+        log.error("{}", errMsg);
+        throw new IllegalArgumentException(errMsg);
+      }
+    });
+
     map.forEach((name, controller) -> {
       RequestMapping requestMapping;
-      if (ClassUtils.isCglibProxyClass(controller.getClass())) {
+      if (ClassUtils.isCglibProxy(controller)) {
         requestMapping = ClassUtils.getUserClass(controller).getAnnotation(RequestMapping.class);
       } else {
         requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
