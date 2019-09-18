@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import tech.iooo.boot.core.utils.Assert;
+import tech.iooo.boot.core.utils.ClassUtils;
 import tech.iooo.boot.spring.annotation.RequestMapping;
 import tech.iooo.boot.spring.common.RoutingContextHandler;
 
@@ -33,7 +34,12 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
     //path method controller
     Table<String, HttpMethod, RoutingContextHandler> table = HashBasedTable.create();
     map.forEach((name, controller) -> {
-      RequestMapping requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
+      RequestMapping requestMapping;
+      if (ClassUtils.isCglibProxyClass(controller.getClass())) {
+        requestMapping = ClassUtils.getUserClass(controller).getAnnotation(RequestMapping.class);
+      } else {
+        requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
+      }
       //优先看RequestMapping配置
       if (Objects.nonNull(requestMapping)) {
         String configPath = requestMapping.path().trim();

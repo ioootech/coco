@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface RequestMapping {
 
-  String path();
+  String path() default "/";
 
   HttpMethod method() default HttpMethod.GET;
 }
