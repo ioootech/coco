@@ -63,12 +63,7 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
     });
 
     map.forEach((name, controller) -> {
-      RequestMapping requestMapping;
-      if (ClassUtils.isCglibProxy(controller)) {
-        requestMapping = ClassUtils.getUserClass(controller).getAnnotation(RequestMapping.class);
-      } else {
-        requestMapping = controller.getClass().getAnnotation(RequestMapping.class);
-      }
+      RequestMapping requestMapping = ClassUtils.getUserClass(controller).getAnnotation(RequestMapping.class);
       //优先看RequestMapping配置
       if (Objects.nonNull(requestMapping)) {
         String configPath = requestMapping.path().trim();
