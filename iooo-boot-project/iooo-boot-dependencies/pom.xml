@@ -69,9 +69,9 @@
     <hsqldb.version>2.5.0</hsqldb.version>
     <HikariCP.version>3.3.1</HikariCP.version>
     <dagger.version>2.24</dagger.version>
-    <protobuf.version>3.9.1</protobuf.version>
-    <grpc.version>1.23.0</grpc.version>
-    <redisson.version>3.11.3</redisson.version>
+    <protobuf.version>3.10.0</protobuf.version>
+    <grpc.version>1.24.0</grpc.version>
+    <redisson.version>3.11.4</redisson.version>
     <gson.version>2.8.5</gson.version>
     <java-jwt.version>3.8.2</java-jwt.version>
     <jjwt.version>0.10.6</jjwt.version>
@@ -79,7 +79,7 @@
     <governator.version>1.17.8</governator.version>
     <httpclient.version>4.5.10</httpclient.version>
     <httpcore.version>4.4.12</httpcore.version>
-    <jackson.version>2.9.9</jackson.version>
+    <jackson.version>2.9.10</jackson.version>
     <rocketmq-client.version>4.5.2</rocketmq-client.version>
     <jedis.version>2.10.2</jedis.version>
     <jedis-v3.version>3.1.0</jedis-v3.version>
@@ -88,7 +88,7 @@
     <jetty.version>9.4.20.v20190813</jetty.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
-    <projectreactor.version>3.2.12.RELEASE</projectreactor.version>
+    <projectreactor.version>3.3.0.RELEASE</projectreactor.version>
     <lettuce.version>5.1.8.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
@@ -104,7 +104,7 @@
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.2.0</mybatis-plus-v3.version>
     <netty.version>4.1.41.Final</netty.version>
-    <netty-tcnative.version>2.0.25.Final</netty-tcnative.version>
+    <netty-tcnative.version>2.0.26.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
     <tink.version>1.2.2</tink.version>
@@ -112,7 +112,7 @@
     <quartz.version>2.3.1</quartz.version>
     <groovy-all.version>2.5.8</groovy-all.version>
     <slf4j.version>1.7.28</slf4j.version>
-    <tomcat.version>9.0.24</tomcat.version>
+    <tomcat.version>9.0.26</tomcat.version>
     <undertow.version>2.0.26.Final</undertow.version>
     <icu4j.version>64.2</icu4j.version>
     <mysql.version>8.0.17</mysql.version>
@@ -143,7 +143,7 @@
     <mybatis-spring.version>2.0.2</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
     <pagehelper.version>5.1.10</pagehelper.version>
-    <fastjson.version>1.2.60</fastjson.version>
+    <fastjson.version>1.2.61</fastjson.version>
     <okhttp.version>4.2.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
@@ -152,7 +152,7 @@
     <protostuff.version>1.6.0</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
-    <newrelic.version>5.5.0</newrelic.version>
+    <newrelic.version>5.7.0</newrelic.version>
     <rxjava.version>2.2.12</rxjava.version>
     <snakeyaml.version>1.25</snakeyaml.version>
     <assertj-core.version>3.13.2</assertj-core.version>
@@ -170,8 +170,8 @@
     <!-- Plugin versions -->
     <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-    <flyway.version>5.2.4</flyway.version>
-    <git-commit-id-plugin.version>3.0.0</git-commit-id-plugin.version>
+    <flyway.version>6.0.3</flyway.version>
+    <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -199,16 +199,16 @@
     <vertx-maven-plugin.version>1.0.18</vertx-maven-plugin.version>
     <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
-    <protoc.version>3.9.0</protoc.version>
+    <protoc.version>3.10.0</protoc.version>
     <quasar-maven-plugin.version>0.7.9</quasar-maven-plugin.version>
-    <protoc-gen-grpc-java.version>1.23.0</protoc-gen-grpc-java.version>
+    <protoc-gen-grpc-java.version>1.24.0</protoc-gen-grpc-java.version>
     <vertx-protoc-gen-grpc-java.version>1.20.0</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.3.2</wagon-ssh.version>
     <wagon.version>3.3.2</wagon.version>
     <jgit-buildnumber-maven-plugin.version>2.2.0</jgit-buildnumber-maven-plugin.version>
     <maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
-    <dockerfile-maven-plugin.version>1.4.10</dockerfile-maven-plugin.version>
+    <dockerfile-maven-plugin.version>1.4.12</dockerfile-maven-plugin.version>
     <docker-maven-plugin.version>1.2.0</docker-maven-plugin.version>
     <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
