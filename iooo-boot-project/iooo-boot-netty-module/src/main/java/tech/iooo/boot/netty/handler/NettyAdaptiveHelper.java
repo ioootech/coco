@@ -19,7 +19,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.resolver.dns.DefaultDnsServerAddressStreamProvider;
 import io.netty.resolver.dns.DnsAddressResolverGroup;
-import java.util.Locale;
+import org.apache.commons.lang3.SystemUtils;
 
 /**
  * Created on 2018-11-27 09:30
@@ -31,10 +31,6 @@ public class NettyAdaptiveHelper {
   private static final boolean EPOLL = Epoll.isAvailable();
   private static final boolean KQUEUE = KQueue.isAvailable();
 
-  public static boolean isMac = System.getProperty("os.name").toLowerCase(Locale.US).contains("mac");
-  public static boolean isWin = System.getProperty("os.name").toLowerCase(Locale.US).contains("win");
-  public static boolean isLinux = System.getProperty("os.name").toLowerCase(Locale.US).contains("linux");
-
   public static DnsAddressResolverGroup resolverGroup =
       new DnsAddressResolverGroup(EPOLL ? EpollDatagramChannel.class : KQUEUE ? KQueueDatagramChannel.class : NioDatagramChannel.class,
           DefaultDnsServerAddressStreamProvider.INSTANCE);
@@ -45,13 +41,14 @@ public class NettyAdaptiveHelper {
   public static Class<? extends SocketChannel> clientSocketChannel = EPOLL ? EpollSocketChannel.class : KQUEUE ? KQueueSocketChannel.class : NioSocketChannel.class;
 
 
-  public static EventLoopGroup bossEventLoopGroup = isMac ? new KQueueEventLoopGroup() : isLinux ? new EpollEventLoopGroup() : new NioEventLoopGroup();
+  public static EventLoopGroup bossEventLoopGroup =
+      SystemUtils.IS_OS_MAC ? new KQueueEventLoopGroup() : SystemUtils.IS_OS_LINUX ? new EpollEventLoopGroup() : new NioEventLoopGroup();
 
   public static EventLoopGroup clientEventLoopGroup() {
-    return isMac ? new KQueueEventLoopGroup() : isLinux ? new EpollEventLoopGroup() : new NioEventLoopGroup();
+    return SystemUtils.IS_OS_MAC ? new KQueueEventLoopGroup() : SystemUtils.IS_OS_LINUX ? new EpollEventLoopGroup() : new NioEventLoopGroup();
   }
 
   public static EventLoopGroup clientEventLoopGroup(int thread) {
-    return isMac ? new KQueueEventLoopGroup(thread) : isLinux ? new EpollEventLoopGroup(thread) : new NioEventLoopGroup(thread);
+    return SystemUtils.IS_OS_MAC ? new KQueueEventLoopGroup(thread) : SystemUtils.IS_OS_LINUX ? new EpollEventLoopGroup(thread) : new NioEventLoopGroup(thread);
   }
 }
