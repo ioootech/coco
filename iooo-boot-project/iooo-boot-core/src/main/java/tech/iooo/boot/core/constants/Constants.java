@@ -165,7 +165,7 @@ public abstract class Constants {
 
   public static final String DEFAULT_THREAD_NAME_PREFIX = "i-exec-pool";
 
-  public static final boolean DEFAULT_THREAD_DAEMON = true;
+  public static final boolean DEFAULT_THREAD_DAEMON = false;
 
   public static final int DEFAULT_CORE_THREADS = 0;
 

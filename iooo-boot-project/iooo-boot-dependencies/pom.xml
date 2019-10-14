@@ -143,6 +143,7 @@
     <mybatis-spring.version>2.0.2</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
     <pagehelper.version>5.1.10</pagehelper.version>
+    <pagehelper.boot.version>1.2.12</pagehelper.boot.version>
     <fastjson.version>1.2.61</fastjson.version>
     <okhttp.version>4.2.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
@@ -399,6 +400,11 @@
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper</artifactId>
         <version>${pagehelper.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>${pagehelper.boot.version}</version>
       </dependency>
       <dependency>
         <groupId>com.esotericsoftware</groupId>
