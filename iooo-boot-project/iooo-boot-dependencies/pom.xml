@@ -67,7 +67,7 @@
     <motan.version>1.1.6</motan.version>
     <aspectjweaver.version>1.9.4</aspectjweaver.version>
     <hsqldb.version>2.5.0</hsqldb.version>
-    <HikariCP.version>3.3.1</HikariCP.version>
+    <HikariCP.version>3.4.1</HikariCP.version>
     <dagger.version>2.24</dagger.version>
     <protobuf.version>3.10.0</protobuf.version>
     <grpc.version>1.24.0</grpc.version>
@@ -79,7 +79,7 @@
     <governator.version>1.17.8</governator.version>
     <httpclient.version>4.5.10</httpclient.version>
     <httpcore.version>4.4.12</httpcore.version>
-    <jackson.version>2.9.10</jackson.version>
+    <jackson.version>2.10.0</jackson.version>
     <rocketmq-client.version>4.5.2</rocketmq-client.version>
     <jedis.version>2.10.2</jedis.version>
     <jedis-v3.version>3.1.0</jedis-v3.version>
@@ -132,7 +132,7 @@
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.3</reactive-streams.version>
-    <javassist.version>3.25.0-GA</javassist.version>
+    <javassist.version>3.26.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
     <sentinel.version>1.6.3</sentinel.version>
     <jna.version>5.4.0</jna.version>
@@ -149,7 +149,7 @@
     <aether.version>1.1.0</aether.version>
     <sharding.version>3.1.0</sharding.version>
     <kryo.version>5.0.0-RC4</kryo.version>
-    <protostuff.version>1.6.0</protostuff.version>
+    <protostuff.version>1.6.2</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
     <newrelic.version>5.7.0</newrelic.version>
@@ -170,7 +170,7 @@
     <!-- Plugin versions -->
     <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-    <flyway.version>6.0.3</flyway.version>
+    <flyway.version>6.0.6</flyway.version>
     <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
