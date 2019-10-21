@@ -58,4 +58,9 @@ public class SharedData<T> {
       writeLock.unlock();
     }
   }
+
+  @Override
+  public String toString() {
+    return item.toString();
+  }
 }
