@@ -1,8 +1,6 @@
 package tech.iooo.boot.core.utils;
 
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author 龙也
@@ -10,9 +8,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
  */
 public class SharedData<T> {
 
-  private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-  private ReadLock readLock = lock.readLock();
-  private WriteLock writeLock = lock.writeLock();
+  private ReentrantLock lock = new ReentrantLock();
 
   private volatile T item;
 
@@ -26,19 +22,19 @@ public class SharedData<T> {
 
   public T get() {
     try {
-      readLock.lock();
+      lock.lock();
       return this.item;
     } finally {
-      readLock.unlock();
+      lock.unlock();
     }
   }
 
   public void set(T item) {
     try {
-      writeLock.lock();
+      lock.lock();
       this.item = item;
     } finally {
-      writeLock.unlock();
+      lock.unlock();
     }
   }
 }
