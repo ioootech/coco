@@ -10,9 +10,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
  */
 public class SharedData<T> {
 
-  private static ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-  private static ReadLock readLock = lock.readLock();
-  private static WriteLock writeLock = lock.writeLock();
+  private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+  private ReadLock readLock = lock.readLock();
+  private WriteLock writeLock = lock.writeLock();
 
   private volatile T item;
 
@@ -21,12 +21,7 @@ public class SharedData<T> {
   }
 
   public static <T> SharedData<T> init(T item) {
-    try {
-      writeLock.lock();
-      return new SharedData<>(item);
-    } finally {
-      writeLock.unlock();
-    }
+    return new SharedData<>(item);
   }
 
   public T get() {
