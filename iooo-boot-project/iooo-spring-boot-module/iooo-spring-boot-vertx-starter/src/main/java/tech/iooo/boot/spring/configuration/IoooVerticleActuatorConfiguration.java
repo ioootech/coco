@@ -1,7 +1,7 @@
 package tech.iooo.boot.spring.configuration;
 
 import org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.iooo.boot.spring.endpoint.IoooDeployVerticleEndpoint;
@@ -14,7 +14,7 @@ import tech.iooo.boot.spring.endpoint.IoooUndeployVerticleEndpoint;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
 @Configuration
-@ConditionalOnBean(EndpointAutoConfiguration.class)
+@ConditionalOnClass(EndpointAutoConfiguration.class)
 public class IoooVerticleActuatorConfiguration {
 
   @Bean
