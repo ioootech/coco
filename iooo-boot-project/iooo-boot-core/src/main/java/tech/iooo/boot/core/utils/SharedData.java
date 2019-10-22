@@ -60,6 +60,22 @@ public class SharedData<T> {
     }
   }
 
+  /**
+   * 删除原值，返回旧值
+   *
+   * @return old value
+   */
+  public T remove() {
+    try {
+      writeLock.lock();
+      T oldValue = this.item;
+      this.item = null;
+      return oldValue;
+    } finally {
+      writeLock.unlock();
+    }
+  }
+
   @Override
   public String toString() {
     return item.toString();
