@@ -3,7 +3,6 @@ package tech.iooo.boot.spring.configuration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import lombok.Data;
-import lombok.experimental.Delegate;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -39,7 +38,7 @@ public class IoooVertxProperties {
     private String isolationGroup;
     private Long maxWorkerExecuteTime;
     private TimeUnit maxWorkerExecuteTimeUnit;
-    @Delegate
+    @Deprecated
     private Boolean multiThreaded;
     private Boolean worker;
     private String workerPoolName;
