@@ -19,28 +19,38 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class BaseResult<T> implements Serializable {
 
-  public static final int NO_LOGIN = -1;
-  public static final int SUCCESS = 1;
-  public static final int FAIL = 0;
-  public static final int NO_PERMISSION = 2;
-  public static final int USERNAME_EXIST = -909;
-
   private static final long serialVersionUID = 5186020669003158216L;
 
+  public static final String SUCCESS = "SUCCESS";
+  public static final String ERROR = "ERROR";
+  public static final String NO_PERMISSION = "NO_PERMISSION";
+
   private boolean success = true;
-  private int code = SUCCESS;
-  private String message = "success";
+  private String errCode;
+  private String message = SUCCESS;
   private T data;
 
-  public BaseResult(T data) {
-    super();
-    this.data = data;
+  public static <T> BaseResult<T> of(T data) {
+    return BaseResult.<T>builder()
+        .success(true)
+        .message(SUCCESS)
+        .data(data)
+        .build();
   }
 
-  public BaseResult(Throwable e) {
-    super();
-    this.success = false;
-    this.message = e.toString();
-    this.code = FAIL;
+  public static <T> BaseResult<T> fail(String errCode, String message) {
+    return BaseResult.<T>builder()
+        .success(false)
+        .errCode(errCode)
+        .message(message)
+        .build();
+  }
+
+  public static <T> BaseResult<T> fail(Throwable e) {
+    return BaseResult.<T>builder()
+        .success(false)
+        .errCode(ERROR)
+        .message(e.getMessage())
+        .build();
   }
 }
