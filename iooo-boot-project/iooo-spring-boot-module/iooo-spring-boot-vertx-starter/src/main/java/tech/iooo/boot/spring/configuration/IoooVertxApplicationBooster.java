@@ -108,4 +108,6 @@ public class IoooVertxApplicationBooster implements SmartLifecycle {
   public boolean isRunning() {
     return this.running;
   }
+
+
 }
