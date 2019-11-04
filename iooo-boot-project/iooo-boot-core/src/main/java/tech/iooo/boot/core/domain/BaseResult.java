@@ -28,9 +28,9 @@ public class BaseResult<T> implements Serializable {
   public static final String ERROR = "ERROR";
   public static final String NO_PERMISSION = "NO_PERMISSION";
 
-  private boolean success = true;
+  private boolean success;
   private String errCode;
-  private String message = SUCCESS;
+  private String message;
   private T data;
 
   public static <T> BaseResult<T> of(T data) {

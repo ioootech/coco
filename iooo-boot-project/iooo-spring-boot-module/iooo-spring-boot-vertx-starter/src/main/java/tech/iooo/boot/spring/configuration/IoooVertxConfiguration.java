@@ -9,15 +9,12 @@ import io.vertx.core.file.FileSystem;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.shareddata.SharedData;
 import java.util.Optional;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
+import tech.iooo.boot.core.spring.component.SpringUtils;
 
 /**
  * Created on 2018/8/24 上午10:56
@@ -26,16 +23,15 @@ import org.springframework.lang.NonNull;
  */
 @Configuration
 @EnableConfigurationProperties(IoooVertxProperties.class)
-public class IoooVertxConfiguration implements ApplicationContextAware {
+public class IoooVertxConfiguration {
 
-  private ApplicationContext applicationContext;
   @Autowired
   private IoooVertxProperties ioooVertxProperties;
 
   @Bean
   @ConditionalOnMissingBean
   public Vertx vertx() {
-    IoooVerticleFactory factory = applicationContext.getBean(IoooVerticleFactory.class);
+    IoooVerticleFactory factory = SpringUtils.getBean(IoooVerticleFactory.class);
     Vertx vertx = Vertx.vertx();
     vertx.registerVerticleFactory(factory);
     return vertx;
@@ -75,10 +71,5 @@ public class IoooVertxConfiguration implements ApplicationContextAware {
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorkerPoolName()).ifPresent(deploymentOptions::setWorkerPoolName);
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorkerPoolSize()).ifPresent(deploymentOptions::setWorkerPoolSize);
     return deploymentOptions;
-  }
-
-  @Override
-  public void setApplicationContext(@NonNull ApplicationContext applicationContext) throws BeansException {
-    this.applicationContext = applicationContext;
   }
 }
