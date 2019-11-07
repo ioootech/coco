@@ -306,10 +306,10 @@ public class RsaUtils {
     System.out.println("私钥>>" + keyPair[1]);
 
     JsonObject jsonObject = new JsonObject();
-    jsonObject.addProperty("name", "yanshao");
-    jsonObject.addProperty("ab", "ab");
-    jsonObject.addProperty("age", 25);
-    jsonObject.addProperty("address", "武汉");
+    jsonObject.addProperty("name", "龙也");
+    jsonObject.addProperty("age", 28);
+    jsonObject.addProperty("address", "杭州");
+    jsonObject.addProperty("foo", "bar");
     Gson gson = new Gson();
     String params = gson.toJson(jsonObject);
 
