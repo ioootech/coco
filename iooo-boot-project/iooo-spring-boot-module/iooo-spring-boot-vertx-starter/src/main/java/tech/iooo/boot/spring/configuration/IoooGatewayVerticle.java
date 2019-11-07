@@ -5,6 +5,7 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class IoooGatewayVerticle extends AbstractVerticle {
       log.warn("there is no RoutingContextHandler in this application");
       startPromise.complete();
     } else {
-      HttpServer server = vertx.createHttpServer();
+      HttpServer server = vertx.createHttpServer(new HttpServerOptions().setLogActivity(true));
       Router router = Router.router(vertx);
       for (String path : table.rowKeySet()) {
         table.row(path).forEach((method, controller) -> {
