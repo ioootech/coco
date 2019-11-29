@@ -12,11 +12,15 @@
 package tech.iooo.boot.core.impl;
 
 
+import io.vertx.core.impl.NoStackTraceThrowable;
+import java.util.ArrayList;
+import java.util.Objects;
 import tech.iooo.boot.core.AsyncResult;
 import tech.iooo.boot.core.Future;
 import tech.iooo.boot.core.Handler;
+import tech.iooo.boot.core.Promise;
 
-class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
+class FutureImpl<T> implements Promise<T>, Future<T> {
 
   private boolean failed;
   private boolean succeeded;
@@ -34,7 +38,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
    * The result of the operation. This will be null if the operation failed.
    */
   @Override
-  public T result() {
+  public synchronized T result() {
     return result;
   }
 
@@ -42,7 +46,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
    * An exception describing failure. This will be null if the operation succeeded.
    */
   @Override
-  public Throwable cause() {
+  public synchronized Throwable cause() {
     return throwable;
   }
 
@@ -75,17 +79,41 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
    */
   @Override
   public Future<T> setHandler(Handler<AsyncResult<T>> handler) {
-    boolean callHandler;
+    Objects.requireNonNull(handler, "No null handler accepted");
     synchronized (this) {
-      callHandler = isComplete();
-      if (!callHandler) {
-        this.handler = handler;
+      if (!isComplete()) {
+        if (this.handler == null) {
+          this.handler = handler;
+        } else {
+          addHandler(handler);
+        }
+        return this;
       }
     }
-    if (callHandler) {
+    dispatch(handler);
+    return this;
+  }
+
+  private void addHandler(Handler<AsyncResult<T>> h) {
+    Handlers<T> handlers;
+    if (handler instanceof Handlers) {
+      handlers = (Handlers<T>) handler;
+    } else {
+      handlers = new Handlers<>();
+      handlers.add(handler);
+      handler = handlers;
+    }
+    handlers.add(h);
+  }
+
+  protected void dispatch(Handler<AsyncResult<T>> handler) {
+    if (handler instanceof Handlers) {
+      for (Handler<AsyncResult<T>> h : (Handlers<T>) handler) {
+        h.handle(this);
+      }
+    } else {
       handler.handle(this);
     }
-    return this;
   }
 
   @Override
@@ -129,7 +157,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
       handler = null;
     }
     if (h != null) {
-      h.handle(this);
+      dispatch(h);
     }
     return true;
   }
@@ -168,7 +196,7 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
       if (succeeded || failed) {
         return false;
       }
-      this.throwable = cause != null ? cause : new NoStackTraceException(null);
+      this.throwable = cause != null ? cause : new NoStackTraceThrowable(null);
       failed = true;
       h = handler;
       handler = null;
@@ -181,7 +209,12 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
 
   @Override
   public boolean tryFail(String failureMessage) {
-    return tryFail(new NoStackTraceException(failureMessage));
+    return tryFail(new NoStackTraceThrowable(failureMessage));
+  }
+
+  @Override
+  public Future<T> future() {
+    return this;
   }
 
   @Override
@@ -194,6 +227,17 @@ class FutureImpl<T> implements Future<T>, Handler<AsyncResult<T>> {
         return "Future{cause=" + throwable.getMessage() + "}";
       }
       return "Future{unresolved}";
+    }
+  }
+
+
+  private class Handlers<T> extends ArrayList<Handler<AsyncResult<T>>> implements Handler<AsyncResult<T>> {
+
+    @Override
+    public void handle(AsyncResult<T> res) {
+      for (Handler<AsyncResult<T>> handler : this) {
+        handler.handle(res);
+      }
     }
   }
 }

@@ -12,14 +12,16 @@
 package tech.iooo.boot.core.impl;
 
 
+import io.vertx.core.impl.NoStackTraceThrowable;
 import tech.iooo.boot.core.AsyncResult;
 import tech.iooo.boot.core.Future;
 import tech.iooo.boot.core.Handler;
+import tech.iooo.boot.core.Promise;
 
 /**
  * @author <a href="mailto:julien@julienviet.com">Julien Viet</a>
  */
-public class FailedFuture<T> implements Future<T> {
+public class FailedFuture<T> implements Future<T>, Promise<T> {
 
   private final Throwable cause;
 
@@ -29,7 +31,7 @@ public class FailedFuture<T> implements Future<T> {
    * @param t the throwable
    */
   FailedFuture(Throwable t) {
-    cause = t != null ? t : new NoStackTraceException(null);
+    cause = t != null ? t : new NoStackTraceThrowable(null);
   }
 
   /**
@@ -38,7 +40,7 @@ public class FailedFuture<T> implements Future<T> {
    * @param failureMessage the failure message
    */
   FailedFuture(String failureMessage) {
-    this(new NoStackTraceException(failureMessage));
+    this(new NoStackTraceThrowable(failureMessage));
   }
 
   @Override
@@ -115,6 +117,11 @@ public class FailedFuture<T> implements Future<T> {
   @Override
   public void handle(AsyncResult<T> asyncResult) {
     throw new IllegalStateException("Result is already complete: failed");
+  }
+
+  @Override
+  public Future<T> future() {
+    return this;
   }
 
   @Override

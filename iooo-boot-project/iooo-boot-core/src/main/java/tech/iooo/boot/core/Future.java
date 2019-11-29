@@ -10,8 +10,6 @@ import tech.iooo.boot.core.utils.ServiceHelper;
  */
 public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
 
-  FutureFactory FACTORY = ServiceHelper.loadFactory(FutureFactory.class);
-
   /**
    * Create a future that hasn't completed yet and that is passed to the {@code handler} before it is returned.
    *
@@ -19,10 +17,14 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @param <T> the result type
    * @return the future.
    */
-  static <T> Future<T> future(Handler<Future<T>> handler) {
-    Future<T> fut = future();
-    handler.handle(fut);
-    return fut;
+  static <T> Future<T> future(Handler<Promise<T>> handler) {
+    Promise<T> promise = Promise.promise();
+    try {
+      handler.handle(promise);
+    } catch (Throwable e) {
+      promise.tryFail(e);
+    }
+    return promise.future();
   }
 
   /**
@@ -30,9 +32,11 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    *
    * @param <T> the result type
    * @return the future
+   * @deprecated instead use {@link Promise#promise()}
    */
+  @Deprecated
   static <T> Future<T> future() {
-    return FACTORY.future();
+    return factory.future();
   }
 
   /**
@@ -42,7 +46,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @return the future
    */
   static <T> Future<T> succeededFuture() {
-    return FACTORY.succeededFuture();
+    return factory.succeededFuture();
   }
 
   /**
@@ -53,7 +57,11 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @return the future
    */
   static <T> Future<T> succeededFuture(T result) {
-    return FACTORY.succeededFuture(result);
+    if (result == null) {
+      return factory.succeededFuture();
+    } else {
+      return factory.succeededFuture(result);
+    }
   }
 
   /**
@@ -64,7 +72,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @return the future
    */
   static <T> Future<T> failedFuture(Throwable t) {
-    return FACTORY.failedFuture(t);
+    return factory.failedFuture(t);
   }
 
   /**
@@ -75,7 +83,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @return the future
    */
   static <T> Future<T> failedFuture(String failureMessage) {
-    return FACTORY.failureFuture(failureMessage);
+    return factory.failureFuture(failureMessage);
   }
 
   /**
@@ -88,39 +96,81 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
   boolean isComplete();
 
   /**
-   * Set a handler for the result.
-   * <p>
-   * If the future has already been completed it will be called immediately. Otherwise it will be called when the future is completed.
-   *
-   * @param handler the Handler that will be called with the result
-   * @return a reference to this, so it can be used fluently
+   * Like {@link #onComplete(Handler)}.
    */
   Future<T> setHandler(Handler<AsyncResult<T>> handler);
+
+  /**
+   * Add a handler to be notified of the result. <br/>
+   *
+   * @param handler the handler that will be called with the result
+   * @return a reference to this, so it can be used fluently
+   */
+  default Future<T> onComplete(Handler<AsyncResult<T>> handler) {
+    return setHandler(handler);
+  }
+
+  /**
+   * Add a handler to be notified of the succeeded result. <br/>
+   *
+   * @param handler the handler that will be called with the succeeded result
+   * @return a reference to this, so it can be used fluently
+   */
+  default Future<T> onSuccess(Handler<T> handler) {
+    return onComplete(ar -> {
+      if (ar.succeeded()) {
+        handler.handle(ar.result());
+      }
+    });
+  }
+
+  /**
+   * Add a handler to be notified of the failed result. <br/>
+   *
+   * @param handler the handler that will be called with the failed result
+   * @return a reference to this, so it can be used fluently
+   */
+  default Future<T> onFailure(Handler<Throwable> handler) {
+    return onComplete(ar -> {
+      if (ar.failed()) {
+        handler.handle(ar.cause());
+      }
+    });
+  }
 
   /**
    * Set the result. Any handler will be called, if there is one, and the future will be marked as completed.
    *
    * @param result the result
+   * @deprecated instead create a {@link Promise} and use {@link Promise#complete(Object)}
    */
+  @Deprecated
   void complete(T result);
 
   /**
    * Set a null result. Any handler will be called, if there is one, and the future will be marked as completed.
+   *
+   * @deprecated instead create a {@link Promise} and use {@link Promise#complete()}
    */
+  @Deprecated
   void complete();
 
   /**
    * Set the failure. Any handler will be called, if there is one, and the future will be marked as completed.
    *
    * @param cause the failure cause
+   * @deprecated instead create a {@link Promise} and use {@link Promise#fail(Throwable)}
    */
+  @Deprecated
   void fail(Throwable cause);
 
   /**
    * Try to set the failure. When it happens, any handler will be called, if there is one, and the future will be marked as completed.
    *
    * @param failureMessage the failure message
+   * @deprecated instead create a {@link Promise} and use {@link Promise#fail(String)}
    */
+  @Deprecated
   void fail(String failureMessage);
 
   /**
@@ -128,14 +178,18 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    *
    * @param result the result
    * @return false when the future is already completed
+   * @deprecated instead create a {@link Promise} and use {@link Promise#tryComplete(Object)}
    */
+  @Deprecated
   boolean tryComplete(T result);
 
   /**
    * Try to set the result. When it happens, any handler will be called, if there is one, and the future will be marked as completed.
    *
    * @return false when the future is already completed
+   * @deprecated instead create a {@link Promise} and use {@link Promise#tryComplete()}
    */
+  @Deprecated
   boolean tryComplete();
 
   /**
@@ -143,7 +197,9 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    *
    * @param cause the failure cause
    * @return false when the future is already completed
+   * @deprecated instead create a {@link Promise} and use {@link Promise#tryFail(Throwable)}
    */
+  @Deprecated
   boolean tryFail(Throwable cause);
 
   /**
@@ -151,7 +207,9 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    *
    * @param failureMessage the failure message
    * @return false when the future is already completed
+   * @deprecated instead create a {@link Promise} and use {@link Promise#tryFail(String)}
    */
+  @Deprecated
   boolean tryFail(String failureMessage);
 
   /**
@@ -187,10 +245,16 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
   boolean failed();
 
   /**
+   * Alias for {@link #compose(Function)}.
+   */
+  default <U> Future<U> flatMap(Function<T, Future<U>> mapper) {
+    return compose(mapper);
+  }
+
+  /**
    * Compose this future with a provided {@code next} future.<p>
    *
-   * When this (the one on which {@code compose} is called) future succeeds, the {@code handler} will be called with the completed value, this handler should complete the next
-   * future.<p>
+   * When this (the one on which {@code compose} is called) future succeeds, the {@code handler} will be called with the completed value, this handler should complete the next future.<p>
    *
    * If the {@code handler} throws an exception, the returned future will be failed with this exception.<p>
    *
@@ -199,7 +263,9 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @param handler the handler
    * @param next the next future
    * @return the next future, used for chaining
+   * @deprecated use {@link #compose(Function)})} instead
    */
+  @Deprecated
   default <U> Future<U> compose(Handler<T> handler, Future<U> next) {
     setHandler(ar -> {
       if (ar.succeeded()) {
@@ -221,8 +287,8 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
   /**
    * Compose this future with a {@code mapper} function.<p>
    *
-   * When this future (the one on which {@code compose} is called) succeeds, the {@code mapper} will be called with the completed value and this mapper returns another future
-   * object. This returned future completion will complete the future returned by this method call.<p>
+   * When this future (the one on which {@code compose} is called) succeeds, the {@code mapper} will be called with the completed value and this mapper returns another future object. This returned future completion will complete the future
+   * returned by this method call.<p>
    *
    * If the {@code mapper} throws an exception, the returned future will be failed with this exception.<p>
    *
@@ -232,32 +298,60 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    * @return the composed future
    */
   default <U> Future<U> compose(Function<T, Future<U>> mapper) {
-    if (mapper == null) {
+    return compose(mapper, Future::failedFuture);
+  }
+
+  /**
+   * Compose this future with a {@code successMapper} and {@code failureMapper} functions.<p>
+   *
+   * When this future (the one on which {@code compose} is called) succeeds, the {@code successMapper} will be called with the completed value and this mapper returns another future object. This returned future completion will complete the
+   * future returned by this method call.<p>
+   *
+   * When this future (the one on which {@code compose} is called) fails, the {@code failureMapper} will be called with the failure and this mapper returns another future object. This returned future completion will complete the future
+   * returned by this method call.<p>
+   *
+   * If any mapper function throws an exception, the returned future will be failed with this exception.<p>
+   *
+   * @param successMapper the function mapping the success
+   * @param failureMapper the function mapping the failure
+   * @return the composed future
+   */
+  default <U> Future<U> compose(Function<T, Future<U>> successMapper, Function<Throwable, Future<U>> failureMapper) {
+    if (successMapper == null) {
       throw new NullPointerException();
     }
-    Future<U> ret = Future.future();
+    if (failureMapper == null) {
+      throw new NullPointerException();
+    }
+    Promise<U> ret = Promise.promise();
     setHandler(ar -> {
       if (ar.succeeded()) {
         Future<U> apply;
         try {
-          apply = mapper.apply(ar.result());
+          apply = successMapper.apply(ar.result());
         } catch (Throwable e) {
           ret.fail(e);
           return;
         }
         apply.setHandler(ret);
       } else {
-        ret.fail(ar.cause());
+        Future<U> apply;
+        try {
+          apply = failureMapper.apply(ar.cause());
+        } catch (Throwable e) {
+          ret.fail(e);
+          return;
+        }
+        apply.setHandler(ret);
       }
     });
-    return ret;
+    return ret.future();
   }
 
   /**
    * Apply a {@code mapper} function on this future.<p>
    *
-   * When this future succeeds, the {@code mapper} will be called with the completed value and this mapper returns a value. This value will complete the future returned by this
-   * method call.<p>
+   * When this future succeeds, the {@code mapper} will be called with the completed value and this mapper returns a value. This value will complete the future returned by this method call.<p>
    *
    * If the {@code mapper} throws an exception, the returned future will be failed with this exception.<p>
    *
@@ -271,7 +365,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
     if (mapper == null) {
       throw new NullPointerException();
     }
-    Future<U> ret = Future.future();
+    Promise<U> ret = Promise.promise();
     setHandler(ar -> {
       if (ar.succeeded()) {
         U mapped;
@@ -286,7 +380,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
         ret.fail(ar.cause());
       }
     });
-    return ret;
+    return ret.future();
   }
 
   /**
@@ -301,7 +395,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    */
   @Override
   default <V> Future<V> map(V value) {
-    Future<V> ret = Future.future();
+    Promise<V> ret = Promise.promise();
     setHandler(ar -> {
       if (ar.succeeded()) {
         ret.complete(value);
@@ -309,7 +403,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
         ret.fail(ar.cause());
       }
     });
-    return ret;
+    return ret.future();
   }
 
   /**
@@ -338,7 +432,9 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
 
   /**
    * @return an handler completing this future
+   * @deprecated use this object instead since it extends {@code Handler<AsyncResult<T>>}
    */
+  @Deprecated
   default Handler<AsyncResult<T>> completer() {
     return this;
   }
@@ -353,7 +449,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
     if (mapper == null) {
       throw new NullPointerException();
     }
-    Future<T> ret = Future.future();
+    Promise<T> ret = Promise.promise();
     setHandler(ar -> {
       if (ar.succeeded()) {
         ret.complete(result());
@@ -368,14 +464,13 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
         mapped.setHandler(ret);
       }
     });
-    return ret;
+    return ret.future();
   }
 
   /**
    * Apply a {@code mapper} function on this future.<p>
    *
-   * When this future fails, the {@code mapper} will be called with the completed value and this mapper returns a value. This value will complete the future returned by this method
-   * call.<p>
+   * When this future fails, the {@code mapper} will be called with the completed value and this mapper returns a value. This value will complete the future returned by this method call.<p>
    *
    * If the {@code mapper} throws an exception, the returned future will be failed with this exception.<p>
    *
@@ -389,7 +484,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
     if (mapper == null) {
       throw new NullPointerException();
     }
-    Future<T> ret = Future.future();
+    Promise<T> ret = Promise.promise();
     setHandler(ar -> {
       if (ar.succeeded()) {
         ret.complete(result());
@@ -404,7 +499,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
         ret.complete(value);
       }
     });
-    return ret;
+    return ret.future();
   }
 
   /**
@@ -419,7 +514,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    */
   @Override
   default Future<T> otherwise(T value) {
-    Future<T> ret = Future.future();
+    Promise<T> ret = Promise.promise();
     setHandler(ar -> {
       if (ar.succeeded()) {
         ret.complete(result());
@@ -427,7 +522,7 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
         ret.complete(value);
       }
     });
-    return ret;
+    return ret.future();
   }
 
   /**
@@ -441,11 +536,10 @@ public interface Future<T> extends AsyncResult<T>, Handler<AsyncResult<T>> {
    *
    * @return the mapped future
    */
-
   @Override
   default Future<T> otherwiseEmpty() {
     return (Future<T>) AsyncResult.super.otherwiseEmpty();
   }
 
+  FutureFactory factory = ServiceHelper.loadFactory(FutureFactory.class);
 }
-

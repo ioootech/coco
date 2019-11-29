@@ -6,6 +6,7 @@ package tech.iooo.boot.core.impl;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
 
+import io.vertx.core.impl.NoStackTraceThrowable;
 import java.util.function.Function;
 import tech.iooo.boot.core.AsyncResult;
 import tech.iooo.boot.core.CompositeFuture;
@@ -17,13 +18,14 @@ import tech.iooo.boot.core.Handler;
  */
 public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult<CompositeFuture>> {
 
-  private static final Handler<AsyncResult<CompositeFuture>> NO_HANDLER = c -> {};
+  private static final Handler<AsyncResult<CompositeFuture>> NO_HANDLER = c -> {
+  };
 
   public static CompositeFuture all(Future<?>... results) {
     CompositeFutureImpl composite = new CompositeFutureImpl(results);
     int len = results.length;
-    for (int i = 0; i < len; i++) {
-      results[i].setHandler(ar -> {
+    for (Future<?> result : results) {
+      result.setHandler(ar -> {
         Handler<AsyncResult<CompositeFuture>> handler = null;
         if (ar.succeeded()) {
           synchronized (composite) {
@@ -53,7 +55,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
   public static CompositeFuture any(Future<?>... results) {
     CompositeFutureImpl composite = new CompositeFutureImpl(results);
     int len = results.length;
-    for (int i = 0;i < len;i++) {
+    for (int i = 0; i < len; i++) {
       results[i].setHandler(ar -> {
         Handler<AsyncResult<CompositeFuture>> handler = null;
         if (ar.succeeded()) {
@@ -83,7 +85,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
 
   private static final Function<CompositeFuture, Throwable> ALL = cf -> {
     int size = cf.size();
-    for (int i = 0;i < size;i++) {
+    for (int i = 0; i < size; i++) {
       if (!cf.succeeded(i)) {
         return cf.cause(i);
       }
@@ -95,7 +97,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
     return join(ALL, results);
   }
 
-  private  static CompositeFuture join(Function<CompositeFuture, Throwable> pred, Future<?>... results) {
+  private static CompositeFuture join(Function<CompositeFuture, Throwable> pred, Future<?>... results) {
     CompositeFutureImpl composite = new CompositeFutureImpl(results);
     int len = results.length;
     for (int i = 0; i < len; i++) {
@@ -262,7 +264,7 @@ public class CompositeFutureImpl implements CompositeFuture, Handler<AsyncResult
 
   @Override
   public boolean tryFail(String failureMessage) {
-    return tryFail(new NoStackTraceException(failureMessage));
+    return tryFail(new NoStackTraceThrowable(failureMessage));
   }
 
   private Handler<AsyncResult<CompositeFuture>> setCompleted(Throwable cause) {

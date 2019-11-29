@@ -1,7 +1,5 @@
 package tech.iooo.boot.core;
 
-import tech.iooo.boot.core.utils.ServiceHelper;
-
 /**
  * Created on 2019-03-28 09:17
  *
@@ -9,9 +7,7 @@ import tech.iooo.boot.core.utils.ServiceHelper;
  */
 public interface FutureFactory {
 
-  static FutureFactory instance() {
-    return ServiceHelper.loadFactory(FutureFactory.class);
-  }
+  <T> Promise<T> promise();
 
   <T> Future<T> future();
 

@@ -2,13 +2,20 @@ package tech.iooo.boot.core.impl;
 
 import tech.iooo.boot.core.Future;
 import tech.iooo.boot.core.FutureFactory;
+import tech.iooo.boot.core.Promise;
 
 /**
  * @author ivan97
  */
+
 public class FutureFactoryImpl implements FutureFactory {
 
   private static final SucceededFuture EMPTY = new SucceededFuture<>(null);
+
+  @Override
+  public <T> Promise<T> promise() {
+    return new FutureImpl<>();
+  }
 
   @Override
   public <T> Future<T> future() {
