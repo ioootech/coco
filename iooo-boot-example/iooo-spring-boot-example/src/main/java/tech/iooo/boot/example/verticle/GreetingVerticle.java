@@ -7,14 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import tech.iooo.boot.core.utils.SocketUtils;
 import tech.iooo.boot.example.service.Greeter;
-import tech.iooo.boot.spring.annotation.VerticleService;
 
 /**
  * Created on 2018/8/24 下午2:51
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
-@VerticleService
 public class GreetingVerticle extends AbstractVerticle {
 
   private static final Logger logger = LoggerFactory.getLogger(GreetingVerticle.class);

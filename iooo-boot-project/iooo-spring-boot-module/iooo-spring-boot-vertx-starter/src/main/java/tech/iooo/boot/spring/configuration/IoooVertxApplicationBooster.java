@@ -2,28 +2,32 @@ package tech.iooo.boot.spring.configuration;
 
 import static tech.iooo.boot.spring.configuration.VertxConfigConstants.DEFAULT_DEPLOYMENT_OPTIONS;
 
+import com.google.common.collect.Lists;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import java.util.Objects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.SmartLifecycle;
 import org.springframework.context.annotation.Configuration;
 import tech.iooo.boot.core.spring.component.SpringUtils;
 import tech.iooo.boot.core.utils.ClassUtils;
+import tech.iooo.boot.core.utils.StringUtils;
 import tech.iooo.boot.spring.annotation.VerticleDeploymentOption;
+import tech.iooo.boot.spring.annotation.NamedVerticleDeploymentOption;
 
 /**
  * Created on 2018/8/24 上午11:01
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-spring-boot-vertx-bundle">Ivan97</a>
  */
+@Slf4j
 @Configuration
 public class IoooVertxApplicationBooster implements SmartLifecycle {
 
-  private static final Logger logger = LoggerFactory.getLogger(IoooVertxApplicationBooster.class);
+  private static final String DEFAULT_DEPLOYMENT_OPTION_SUFFIX = "@VerticleDeploymentOption";
+
   @Autowired
   private Vertx vertx;
 
@@ -60,24 +64,41 @@ public class IoooVertxApplicationBooster implements SmartLifecycle {
           }
         }).forEach(verticle -> {
       Class<?> verticleClass = verticle.getClass();
+      NamedVerticleDeploymentOption namedVerticleDeploymentOption = verticle.getClass().getAnnotation(NamedVerticleDeploymentOption.class);
       VerticleDeploymentOption verticleDeploymentOption = verticle.getClass().getAnnotation(VerticleDeploymentOption.class);
       String optionName;
-      if (Objects.nonNull(verticleDeploymentOption)) {
-        optionName = verticleDeploymentOption.value();
-      } else {
-        optionName = DEFAULT_DEPLOYMENT_OPTIONS;
-      }
       DeploymentOptions deploymentOptions;
-      if (ioooVertxProperties.getVerticle().isFailFast()) {
-        deploymentOptions = SpringUtils.context().getBean(optionName, DeploymentOptions.class);
-      } else {
-        if (SpringUtils.context().containsBean(optionName)) {
-          deploymentOptions = SpringUtils.context().getBean(optionName, DeploymentOptions.class);
-        } else {
-          logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
-              optionName, verticleClass.getSimpleName());
-          deploymentOptions = SpringUtils.context().getBean(optionName, DeploymentOptions.class);
+      if (Objects.nonNull(verticleDeploymentOption)) {
+        optionName = verticle.getClass().getSimpleName() + DEFAULT_DEPLOYMENT_OPTION_SUFFIX;
+        deploymentOptions = new DeploymentOptions();
+        deploymentOptions
+            .setExtraClasspath(Lists.newArrayList(verticleDeploymentOption.extraClasspath()))
+            .setHa(verticleDeploymentOption.ha())
+            .setInstances(verticleDeploymentOption.instances())
+            .setMaxWorkerExecuteTime(verticleDeploymentOption.maxWorkerExecuteTime())
+            .setMaxWorkerExecuteTimeUnit(verticleDeploymentOption.maxWorkerExecuteTimeUnit())
+            .setMultiThreaded(verticleDeploymentOption.multiThreaded())
+            .setWorker(verticleDeploymentOption.worker())
+            .setWorkerPoolSize(verticleDeploymentOption.workerPoolSize());
+        if (StringUtils.isNotEmpty(verticleDeploymentOption.isolationGroup())) {
+          deploymentOptions.setIsolationGroup(verticleDeploymentOption.isolationGroup());
         }
+        if (StringUtils.isNotEmpty(verticleDeploymentOption.workerPoolName())) {
+          deploymentOptions.setWorkerPoolName(verticleDeploymentOption.workerPoolName());
+        }
+      } else {
+        if (Objects.nonNull(namedVerticleDeploymentOption)) {
+          optionName = namedVerticleDeploymentOption.value();
+        } else {
+          optionName = DEFAULT_DEPLOYMENT_OPTIONS;
+        }
+        if (!ioooVertxProperties.getVerticle().isFailFast()) {
+          if (!SpringUtils.context().containsBean(optionName)) {
+            logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
+                optionName, verticleClass.getSimpleName());
+          }
+        }
+        deploymentOptions = SpringUtils.context().getBean(optionName, DeploymentOptions.class);
       }
       vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
           deploymentOptions,
