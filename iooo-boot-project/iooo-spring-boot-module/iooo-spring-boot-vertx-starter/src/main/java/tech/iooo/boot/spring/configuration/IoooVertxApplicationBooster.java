@@ -50,8 +50,16 @@ public class IoooVertxApplicationBooster implements SmartLifecycle {
         .forEach((name, verticle) ->
             IoooVerticleServicesHolder.activeVerticleServices().put(verticle.getClass().getName(), "", verticle)
         );
-    IoooVerticleServicesHolder.activeVerticleServices().values().forEach(verticle -> {
-      Class verticleClass = verticle.getClass();
+    IoooVerticleServicesHolder.activeVerticleServices().values()
+        .stream()
+        .filter(verticle -> {
+          if (ioooVertxProperties.getServer().isGatewayEnable()) {
+            return true;
+          } else {
+            return !(verticle instanceof IoooGatewayVerticle);
+          }
+        }).forEach(verticle -> {
+      Class<?> verticleClass = verticle.getClass();
       VerticleDeploymentOption verticleDeploymentOption = verticle.getClass().getAnnotation(VerticleDeploymentOption.class);
       String optionName;
       if (Objects.nonNull(verticleDeploymentOption)) {

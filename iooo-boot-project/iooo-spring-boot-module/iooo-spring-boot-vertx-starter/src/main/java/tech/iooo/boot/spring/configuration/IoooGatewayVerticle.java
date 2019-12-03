@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import tech.iooo.boot.core.utils.ClassUtils;
 import tech.iooo.boot.core.utils.NetUtils;
@@ -23,6 +24,7 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  */
 @Service
 @ConditionalOnClass(Router.class)
+@ConditionalOnProperty(name = "vertx.server.gatewayEnable", havingValue = "true", matchIfMissing = true)
 public class IoooGatewayVerticle extends AbstractVerticle {
 
   private static final Logger log = LoggerFactory.getLogger(IoooGatewayVerticle.class);
