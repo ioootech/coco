@@ -297,7 +297,7 @@ public class PojoUtils {
         }
         return dest;
       } else {
-        Class<?> ctype = (type != null && type.isArray() ? type.getComponentType() : pojo.getClass().getComponentType());
+        Class<?> ctype = type.isArray() ? type.getComponentType() : pojo.getClass().getComponentType();
         int len = Array.getLength(pojo);
         Object dest = Array.newInstance(ctype, len);
         history.put(pojo, dest);
@@ -311,6 +311,7 @@ public class PojoUtils {
     }
 
     if (pojo instanceof Collection<?>) {
+      assert type != null;
       if (type.isArray()) {
         Class<?> ctype = type.getComponentType();
         Collection<Object> src = (Collection<Object>) pojo;
@@ -451,7 +452,7 @@ public class PojoUtils {
                 filed.setAccessible(true);
               }
               filed.set(dest, message);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
           }
         }
@@ -485,7 +486,7 @@ public class PojoUtils {
     } catch (Throwable t) {
       try {
         Constructor<?>[] constructors = cls.getDeclaredConstructors();
-        if (constructors != null && constructors.length == 0) {
+        if (constructors.length == 0) {
           throw new RuntimeException("Illegal constructor: " + cls.getName());
         }
         Constructor<?> constructor = constructors[0];
@@ -501,11 +502,7 @@ public class PojoUtils {
         }
         constructor.setAccessible(true);
         return constructor.newInstance(new Object[constructor.getParameterTypes().length]);
-      } catch (InstantiationException e) {
-        throw new RuntimeException(e.getMessage(), e);
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e.getMessage(), e);
-      } catch (InvocationTargetException e) {
+      } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
         throw new RuntimeException(e.getMessage(), e);
       }
     }

@@ -686,7 +686,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
           Set<Reference<K, V>> toPurge = Collections.emptySet();
           if (reference != null) {
-            toPurge = new HashSet<Reference<K, V>>();
+            toPurge = new HashSet<>();
             while (reference != null) {
               toPurge.add(reference);
               reference = this.referenceManager.pollForPurge();

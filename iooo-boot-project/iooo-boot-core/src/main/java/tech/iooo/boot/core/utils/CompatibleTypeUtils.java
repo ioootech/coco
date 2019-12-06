@@ -77,7 +77,7 @@ public class CompatibleTypeUtils {
       } else if (type == Byte.class || type == byte.class) {
         return new Byte(string);
       } else if (type == Boolean.class || type == boolean.class) {
-        return new Boolean(string);
+        return Boolean.valueOf(string);
       } else if (type == Date.class || type == java.sql.Date.class || type == java.sql.Timestamp.class || type == java.sql.Time.class) {
         try {
           Date date = new SimpleDateFormat(DATE_FORMAT).parse((String) value);
@@ -103,14 +103,10 @@ public class CompatibleTypeUtils {
         // Process string to char array for generic invoke
         // See
         // - https://github.com/apache/incubator-dubbo/issues/2003
-        if (string == null) {
-          return null;
-        } else {
-          int len = string.length();
-          char[] chars = new char[len];
-          string.getChars(0, len, chars, 0);
-          return chars;
-        }
+        int len = string.length();
+        char[] chars = new char[len];
+        string.getChars(0, len, chars, 0);
+        return chars;
       }
     } else if (value instanceof Number) {
       Number number = (Number) value;
@@ -148,7 +144,7 @@ public class CompatibleTypeUtils {
           Collection result = (Collection) type.newInstance();
           result.addAll(collection);
           return result;
-        } catch (Throwable e) {
+        } catch (Throwable ignored) {
         }
       } else if (type == List.class) {
         return new ArrayList<Object>(collection);

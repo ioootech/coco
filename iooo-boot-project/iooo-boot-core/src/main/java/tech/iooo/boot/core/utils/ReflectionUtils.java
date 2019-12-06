@@ -160,16 +160,14 @@ public abstract class ReflectionUtils {
   /**
    * Cache for {@link Class#getDeclaredMethods()} plus equivalent default methods from Java 8 based interfaces, allowing for fast iteration.
    */
-  private static final Map<Class<?>, Method[]> declaredMethodsCache =
-      new ConcurrentReferenceHashMap<Class<?>, Method[]>(256);
+  private static final Map<Class<?>, Method[]> DECLARED_METHODS_CACHE = new ConcurrentReferenceHashMap<>(256);
   /**
    * Cache for {@link Class#getDeclaredFields()}, allowing for fast iteration.
    */
-  private static final Map<Class<?>, Field[]> declaredFieldsCache =
-      new ConcurrentReferenceHashMap<Class<?>, Field[]>(256);
-  private static final ConcurrentMap<String, Class<?>> DESC_CLASS_CACHE = new ConcurrentHashMap<String, Class<?>>();
-  private static final ConcurrentMap<String, Class<?>> NAME_CLASS_CACHE = new ConcurrentHashMap<String, Class<?>>();
-  private static final ConcurrentMap<String, Method> Signature_METHODS_CACHE = new ConcurrentHashMap<String, Method>();
+  private static final Map<Class<?>, Field[]> DECLARED_FIELDS_CACHE = new ConcurrentReferenceHashMap<>(256);
+  private static final ConcurrentMap<String, Class<?>> DESC_CLASS_CACHE = new ConcurrentHashMap<>();
+  private static final ConcurrentMap<String, Class<?>> NAME_CLASS_CACHE = new ConcurrentHashMap<>();
+  private static final ConcurrentMap<String, Method> Signature_METHODS_CACHE = new ConcurrentHashMap<>();
 
   /**
    * Attempt to find a {@link Field field} on the supplied {@link Class} with the supplied {@code namePrefix}. Searches all superclasses up to {@link Object}.
@@ -689,7 +687,7 @@ public abstract class ReflectionUtils {
    */
   private static Method[] getDeclaredMethods(Class<?> clazz) {
     Assert.notNull(clazz, "Class must not be null");
-    Method[] result = declaredMethodsCache.get(clazz);
+    Method[] result = DECLARED_METHODS_CACHE.get(clazz);
     if (result == null) {
       Method[] declaredMethods = clazz.getDeclaredMethods();
       List<Method> defaultMethods = findConcreteMethodsOnInterfaces(clazz);
@@ -704,7 +702,7 @@ public abstract class ReflectionUtils {
       } else {
         result = declaredMethods;
       }
-      declaredMethodsCache.put(clazz, (result.length == 0 ? NO_METHODS : result));
+      DECLARED_METHODS_CACHE.put(clazz, (result.length == 0 ? NO_METHODS : result));
     }
     return result;
   }
@@ -788,10 +786,10 @@ public abstract class ReflectionUtils {
    */
   private static Field[] getDeclaredFields(Class<?> clazz) {
     Assert.notNull(clazz, "Class must not be null");
-    Field[] result = declaredFieldsCache.get(clazz);
+    Field[] result = DECLARED_FIELDS_CACHE.get(clazz);
     if (result == null) {
       result = clazz.getDeclaredFields();
-      declaredFieldsCache.put(clazz, (result.length == 0 ? NO_FIELDS : result));
+      DECLARED_FIELDS_CACHE.put(clazz, (result.length == 0 ? NO_FIELDS : result));
     }
     return result;
   }
@@ -823,8 +821,8 @@ public abstract class ReflectionUtils {
    * @since 4.2.4
    */
   public static void clearCache() {
-    declaredMethodsCache.clear();
-    declaredFieldsCache.clear();
+    DECLARED_METHODS_CACHE.clear();
+    DECLARED_FIELDS_CACHE.clear();
   }
 
   public static boolean isPrimitives(Class<?> cls) {
@@ -1094,8 +1092,8 @@ public abstract class ReflectionUtils {
   public static String getDesc(final Method m) {
     StringBuilder ret = new StringBuilder(m.getName()).append('(');
     Class<?>[] parameterTypes = m.getParameterTypes();
-    for (int i = 0; i < parameterTypes.length; i++) {
-      ret.append(getDesc(parameterTypes[i]));
+    for (Class<?> parameterType : parameterTypes) {
+      ret.append(getDesc(parameterType));
     }
     ret.append(')').append(getDesc(m.getReturnType()));
     return ret.toString();
@@ -1110,8 +1108,8 @@ public abstract class ReflectionUtils {
   public static String getDesc(final Constructor<?> c) {
     StringBuilder ret = new StringBuilder("(");
     Class<?>[] parameterTypes = c.getParameterTypes();
-    for (int i = 0; i < parameterTypes.length; i++) {
-      ret.append(getDesc(parameterTypes[i]));
+    for (Class<?> parameterType : parameterTypes) {
+      ret.append(getDesc(parameterType));
     }
     ret.append(')').append('V');
     return ret.toString();
@@ -1183,8 +1181,8 @@ public abstract class ReflectionUtils {
   public static String getDesc(final CtMethod m) throws NotFoundException {
     StringBuilder ret = new StringBuilder(m.getName()).append('(');
     CtClass[] parameterTypes = m.getParameterTypes();
-    for (int i = 0; i < parameterTypes.length; i++) {
-      ret.append(getDesc(parameterTypes[i]));
+    for (CtClass parameterType : parameterTypes) {
+      ret.append(getDesc(parameterType));
     }
     ret.append(')').append(getDesc(m.getReturnType()));
     return ret.toString();
@@ -1199,8 +1197,8 @@ public abstract class ReflectionUtils {
   public static String getDesc(final CtConstructor c) throws NotFoundException {
     StringBuilder ret = new StringBuilder("(");
     CtClass[] parameterTypes = c.getParameterTypes();
-    for (int i = 0; i < parameterTypes.length; i++) {
-      ret.append(getDesc(parameterTypes[i]));
+    for (CtClass parameterType : parameterTypes) {
+      ret.append(getDesc(parameterType));
     }
     ret.append(')').append('V');
     return ret.toString();
@@ -1239,26 +1237,37 @@ public abstract class ReflectionUtils {
     while (c-- > 0) {
       sb.append("[");
     }
-    if ("void".equals(name)) {
-      sb.append(JVM_VOID);
-    } else if ("boolean".equals(name)) {
-      sb.append(JVM_BOOLEAN);
-    } else if ("byte".equals(name)) {
-      sb.append(JVM_BYTE);
-    } else if ("char".equals(name)) {
-      sb.append(JVM_CHAR);
-    } else if ("double".equals(name)) {
-      sb.append(JVM_DOUBLE);
-    } else if ("float".equals(name)) {
-      sb.append(JVM_FLOAT);
-    } else if ("int".equals(name)) {
-      sb.append(JVM_INT);
-    } else if ("long".equals(name)) {
-      sb.append(JVM_LONG);
-    } else if ("short".equals(name)) {
-      sb.append(JVM_SHORT);
-    } else {
-      sb.append('L').append(name.replace('.', '/')).append(';');
+    switch (name) {
+      case "void":
+        sb.append(JVM_VOID);
+        break;
+      case "boolean":
+        sb.append(JVM_BOOLEAN);
+        break;
+      case "byte":
+        sb.append(JVM_BYTE);
+        break;
+      case "char":
+        sb.append(JVM_CHAR);
+        break;
+      case "double":
+        sb.append(JVM_DOUBLE);
+        break;
+      case "float":
+        sb.append(JVM_FLOAT);
+        break;
+      case "int":
+        sb.append(JVM_INT);
+        break;
+      case "long":
+        sb.append(JVM_LONG);
+        break;
+      case "short":
+        sb.append(JVM_SHORT);
+        break;
+      default:
+        sb.append('L').append(name.replace('.', '/')).append(';');
+        break;
     }
     return sb.toString();
   }
@@ -1367,47 +1376,60 @@ public abstract class ReflectionUtils {
         sb.append("[");
       }
 
-      if ("void".equals(name)) {
-        sb.append(JVM_VOID);
-      } else if ("boolean".equals(name)) {
-        sb.append(JVM_BOOLEAN);
-      } else if ("byte".equals(name)) {
-        sb.append(JVM_BYTE);
-      } else if ("char".equals(name)) {
-        sb.append(JVM_CHAR);
-      } else if ("double".equals(name)) {
-        sb.append(JVM_DOUBLE);
-      } else if ("float".equals(name)) {
-        sb.append(JVM_FLOAT);
-      } else if ("int".equals(name)) {
-        sb.append(JVM_INT);
-      } else if ("long".equals(name)) {
-        sb.append(JVM_LONG);
-      } else if ("short".equals(name)) {
-        sb.append(JVM_SHORT);
-      } else {
-        sb.append('L').append(name).append(';'); // "java.lang.Object" ==> "Ljava.lang.Object;"
+      switch (name) {
+        case "void":
+          sb.append(JVM_VOID);
+          break;
+        case "boolean":
+          sb.append(JVM_BOOLEAN);
+          break;
+        case "byte":
+          sb.append(JVM_BYTE);
+          break;
+        case "char":
+          sb.append(JVM_CHAR);
+          break;
+        case "double":
+          sb.append(JVM_DOUBLE);
+          break;
+        case "float":
+          sb.append(JVM_FLOAT);
+          break;
+        case "int":
+          sb.append(JVM_INT);
+          break;
+        case "long":
+          sb.append(JVM_LONG);
+          break;
+        case "short":
+          sb.append(JVM_SHORT);
+          break;
+        default:
+          sb.append('L').append(name).append(';'); // "java.lang.Object" ==> "Ljava.lang.Object;"
+
+          break;
       }
       name = sb.toString();
     } else {
-      if ("void".equals(name)) {
-        return void.class;
-      } else if ("boolean".equals(name)) {
-        return boolean.class;
-      } else if ("byte".equals(name)) {
-        return byte.class;
-      } else if ("char".equals(name)) {
-        return char.class;
-      } else if ("double".equals(name)) {
-        return double.class;
-      } else if ("float".equals(name)) {
-        return float.class;
-      } else if ("int".equals(name)) {
-        return int.class;
-      } else if ("long".equals(name)) {
-        return long.class;
-      } else if ("short".equals(name)) {
-        return short.class;
+      switch (name) {
+        case "void":
+          return void.class;
+        case "boolean":
+          return boolean.class;
+        case "byte":
+          return byte.class;
+        case "char":
+          return char.class;
+        case "double":
+          return double.class;
+        case "float":
+          return float.class;
+        case "int":
+          return int.class;
+        case "long":
+          return long.class;
+        case "short":
+          return short.class;
       }
     }
 
@@ -1565,7 +1587,7 @@ public abstract class ReflectionUtils {
   public static Constructor<?> findConstructor(Class<?> clazz, Class<?> paramType) throws NoSuchMethodException {
     Constructor<?> targetConstructor;
     try {
-      targetConstructor = clazz.getConstructor(new Class<?>[]{paramType});
+      targetConstructor = clazz.getConstructor(paramType);
     } catch (NoSuchMethodException e) {
       targetConstructor = null;
       Constructor<?>[] constructors = clazz.getConstructors();
@@ -1664,7 +1686,7 @@ public abstract class ReflectionUtils {
                   field.setAccessible(true);
                 }
                 field.set(value, property);
-              } catch (Throwable e) {
+              } catch (Throwable ignored) {
               }
             }
           }

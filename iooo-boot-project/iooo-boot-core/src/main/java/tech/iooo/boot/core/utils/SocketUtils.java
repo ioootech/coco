@@ -50,7 +50,7 @@ public class SocketUtils {
   public static final int PORT_RANGE_MAX = 65535;
 
 
-  private static final Random random = new Random(System.currentTimeMillis());
+  private static final Random RANDOM = new Random(System.currentTimeMillis());
 
 
   /**
@@ -187,6 +187,9 @@ public class SocketUtils {
 
   private enum SocketType {
 
+    /**
+     * SocketType
+     */
     TCP {
       @Override
       protected boolean isPortAvailable(int port) {
@@ -228,7 +231,7 @@ public class SocketUtils {
      */
     private int findRandomPort(int minPort, int maxPort) {
       int portRange = maxPort - minPort;
-      return minPort + random.nextInt(portRange + 1);
+      return minPort + RANDOM.nextInt(portRange + 1);
     }
 
     /**

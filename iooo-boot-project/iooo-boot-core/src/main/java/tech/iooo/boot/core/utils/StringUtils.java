@@ -36,6 +36,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.util.TreeMap;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
@@ -51,8 +52,7 @@ import tech.iooo.boot.core.io.UnsafeStringWriter;
  * for a more comprehensive suite of {@code String} utilities.
  *
  * <p>This class delivers some simple functionality that should really be
- * provided by the core Java {@link String} and {@link StringBuilder} classes. It also provides easy-to-use methods to convert between delimited strings, such as CSV strings, and
- * collections and arrays.
+ * provided by the core Java {@link String} and {@link StringBuilder} classes. It also provides easy-to-use methods to convert between delimited strings, such as CSV strings, and collections and arrays.
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -439,7 +439,7 @@ public abstract class StringUtils {
     int pos = 0;  // our position in the old string
     int patLen = oldPattern.length();
     while (index >= 0) {
-      sb.append(inString.substring(pos, index));
+      sb.append(inString, pos, index);
       sb.append(newPattern);
       pos = index + patLen;
       index = inString.indexOf(oldPattern, pos);
@@ -684,7 +684,7 @@ public abstract class StringUtils {
     }
 
     String[] pathArray = delimitedListToStringArray(pathToUse, FOLDER_SEPARATOR);
-    List<String> pathElements = new LinkedList<String>();
+    List<String> pathElements = new LinkedList<>();
     int tops = 0;
 
     for (int i = pathArray.length - 1; i >= 0; i--) {
@@ -728,8 +728,7 @@ public abstract class StringUtils {
    * Parse the given {@code localeString} value into a {@link Locale}.
    * <p>This is the inverse operation of {@link Locale#toString Locale's toString}.
    *
-   * @param localeString the locale {@code String}, following {@code Locale's} {@code toString()} format ("en", "en_UK", etc); also accepts spaces as separators, as an alternative
-   * to underscores
+   * @param localeString the locale {@code String}, following {@code Locale's} {@code toString()} format ("en", "en_UK", etc); also accepts spaces as separators, as an alternative to underscores
    * @return a corresponding {@code Locale} instance, or {@code null} if none
    * @throws IllegalArgumentException in case of an invalid locale specification
    */
@@ -759,8 +758,7 @@ public abstract class StringUtils {
     for (int i = 0; i < localePart.length(); i++) {
       char ch = localePart.charAt(i);
       if (ch != ' ' && ch != '_' && ch != '#' && !Character.isLetterOrDigit(ch)) {
-        throw new IllegalArgumentException(
-            "Locale part \"" + localePart + "\" contains invalid characters");
+        throw new IllegalArgumentException("Locale part \"" + localePart + "\" contains invalid characters");
       }
     }
   }
@@ -778,8 +776,7 @@ public abstract class StringUtils {
   /**
    * Parse the given {@code timeZoneString} value into a {@link TimeZone}.
    *
-   * @param timeZoneString the time zone {@code String}, following {@link TimeZone#getTimeZone(String)} but throwing {@link IllegalArgumentException} in case of an invalid time
-   * zone specification
+   * @param timeZoneString the time zone {@code String}, following {@link TimeZone#getTimeZone(String)} but throwing {@link IllegalArgumentException} in case of an invalid time zone specification
    * @return a corresponding {@link TimeZone} instance
    * @throws IllegalArgumentException in case of an invalid time zone specification
    */
@@ -853,8 +850,7 @@ public abstract class StringUtils {
       return array1;
     }
 
-    List<String> result = new ArrayList<String>();
-    result.addAll(Arrays.asList(array1));
+    List<String> result = new ArrayList<>(Arrays.asList(array1));
     for (String str : array2) {
       if (!result.contains(str)) {
         result.add(str);
@@ -890,7 +886,7 @@ public abstract class StringUtils {
       return null;
     }
 
-    return collection.toArray(new String[collection.size()]);
+    return collection.toArray(new String[0]);
   }
 
   /**
@@ -905,7 +901,7 @@ public abstract class StringUtils {
     }
 
     List<String> list = Collections.list(enumeration);
-    return list.toArray(new String[list.size()]);
+    return list.toArray(new String[0]);
   }
 
   /**
@@ -939,10 +935,8 @@ public abstract class StringUtils {
       return array;
     }
 
-    Set<String> set = new LinkedHashSet<String>();
-    for (String element : array) {
-      set.add(element);
-    }
+    Set<String> set = new LinkedHashSet<>();
+    Collections.addAll(set, array);
     return toStringArray(set);
   }
 
@@ -951,8 +945,7 @@ public abstract class StringUtils {
    *
    * @param toSplit the string to split
    * @param delimiter to split the string up with
-   * @return a two element array with index 0 being before the delimiter, and index 1 being after the delimiter (neither element includes the delimiter); or {@code null} if the
-   * delimiter wasn't found in the given input {@code String}
+   * @return a two element array with index 0 being before the delimiter, and index 1 being after the delimiter (neither element includes the delimiter); or {@code null} if the delimiter wasn't found in the given input {@code String}
    */
   public static String[] split(String toSplit, String delimiter) {
     if (!hasLength(toSplit) || !hasLength(delimiter)) {
@@ -969,8 +962,7 @@ public abstract class StringUtils {
   }
 
   /**
-   * Take an array of strings and split each element based on the given delimiter. A {@code Properties} instance is then generated, with the left of the delimiter providing the
-   * key, and the right of the delimiter providing the value.
+   * Take an array of strings and split each element based on the given delimiter. A {@code Properties} instance is then generated, with the left of the delimiter providing the key, and the right of the delimiter providing the value.
    * <p>Will trim both the key and value before adding them to the
    * {@code Properties} instance.
    *
@@ -983,15 +975,13 @@ public abstract class StringUtils {
   }
 
   /**
-   * Take an array of strings and split each element based on the given delimiter. A {@code Properties} instance is then generated, with the left of the delimiter providing the
-   * key, and the right of the delimiter providing the value.
+   * Take an array of strings and split each element based on the given delimiter. A {@code Properties} instance is then generated, with the left of the delimiter providing the key, and the right of the delimiter providing the value.
    * <p>Will trim both the key and value before adding them to the
    * {@code Properties} instance.
    *
    * @param array the array to process
    * @param delimiter to split each element using (typically the equals symbol)
-   * @param charsToDelete one or more characters to remove from each element prior to attempting the split operation (typically the quotation mark symbol), or {@code null} if no
-   * removal should occur
+   * @param charsToDelete one or more characters to remove from each element prior to attempting the split operation (typically the quotation mark symbol), or {@code null} if no removal should occur
    * @return a {@code Properties} instance representing the array contents, or {@code null} if the array to process was {@code null} or empty
    */
   public static Properties splitArrayElementsIntoProperties(
@@ -1019,8 +1009,7 @@ public abstract class StringUtils {
    * Tokenize the given {@code String} into a {@code String} array via a {@link StringTokenizer}.
    * <p>Trims tokens and omits empty tokens.
    * <p>The given {@code delimiters} string can consist of any number of
-   * delimiter characters. Each of those characters can be used to separate tokens. A delimiter is always a single character; for multi-character delimiters, consider using {@link
-   * #delimitedListToStringArray}.
+   * delimiter characters. Each of those characters can be used to separate tokens. A delimiter is always a single character; for multi-character delimiters, consider using {@link #delimitedListToStringArray}.
    *
    * @param str the {@code String} to tokenize
    * @param delimiters the delimiter characters, assembled as a {@code String} (each of the characters is individually considered as a delimiter)
@@ -1036,14 +1025,12 @@ public abstract class StringUtils {
   /**
    * Tokenize the given {@code String} into a {@code String} array via a {@link StringTokenizer}.
    * <p>The given {@code delimiters} string can consist of any number of
-   * delimiter characters. Each of those characters can be used to separate tokens. A delimiter is always a single character; for multi-character delimiters, consider using {@link
-   * #delimitedListToStringArray}.
+   * delimiter characters. Each of those characters can be used to separate tokens. A delimiter is always a single character; for multi-character delimiters, consider using {@link #delimitedListToStringArray}.
    *
    * @param str the {@code String} to tokenize
    * @param delimiters the delimiter characters, assembled as a {@code String} (each of the characters is individually considered as a delimiter)
    * @param trimTokens trim the tokens via {@link String#trim()}
-   * @param ignoreEmptyTokens omit empty tokens from the result array (only applies to tokens that are empty after trimming; StringTokenizer will not consider subsequent delimiters
-   * as token in the first place).
+   * @param ignoreEmptyTokens omit empty tokens from the result array (only applies to tokens that are empty after trimming; StringTokenizer will not consider subsequent delimiters as token in the first place).
    * @return an array of the tokens
    * @see StringTokenizer
    * @see String#trim()
@@ -1057,7 +1044,7 @@ public abstract class StringUtils {
     }
 
     StringTokenizer st = new StringTokenizer(str, delimiters);
-    List<String> tokens = new ArrayList<String>();
+    List<String> tokens = new ArrayList<>();
     while (st.hasMoreTokens()) {
       String token = st.nextToken();
       if (trimTokens) {
@@ -1103,7 +1090,7 @@ public abstract class StringUtils {
       return new String[]{str};
     }
 
-    List<String> result = new ArrayList<String>();
+    List<String> result = new ArrayList<>();
     if ("".equals(delimiter)) {
       for (int i = 0; i < str.length(); i++) {
         result.add(deleteAny(str.substring(i, i + 1), charsToDelete));
@@ -1143,11 +1130,9 @@ public abstract class StringUtils {
    * @see #removeDuplicateStrings(String[])
    */
   public static Set<String> commaDelimitedListToSet(String str) {
-    Set<String> set = new LinkedHashSet<String>();
+    Set<String> set = new LinkedHashSet<>();
     String[] tokens = commaDelimitedListToStringArray(str);
-    for (String token : tokens) {
-      set.add(token);
-    }
+    Collections.addAll(set, tokens);
     return set;
   }
 
@@ -1500,11 +1485,11 @@ public abstract class StringUtils {
     }
     final int replLength = searchString.length();
     int increase = replacement.length() - replLength;
-    increase = increase < 0 ? 0 : increase;
-    increase *= max < 0 ? 16 : max > 64 ? 64 : max;
+    increase = Math.max(increase, 0);
+    increase *= max < 0 ? 16 : Math.min(max, 64);
     final StringBuilder buf = new StringBuilder(text.length() + increase);
     while (end != INDEX_NOT_FOUND) {
-      buf.append(text.substring(start, end)).append(replacement);
+      buf.append(text, start, end).append(replacement);
       start = end + replLength;
       if (--max == 0) {
         break;
@@ -1516,10 +1501,7 @@ public abstract class StringUtils {
   }
 
   public static boolean isBlank(String str) {
-    if (str == null || str.trim().length() == 0) {
-      return true;
-    }
-    return false;
+    return str == null || str.trim().length() == 0;
   }
 
   public static boolean isNotBlank(String str) {
@@ -1533,10 +1515,7 @@ public abstract class StringUtils {
    * @return is empty.
    */
   public static boolean isEmpty(String str) {
-    if (str == null || str.length() == 0) {
-      return true;
-    }
-    return false;
+    return str == null || str.length() == 0;
   }
 
   /**
@@ -1624,7 +1603,7 @@ public abstract class StringUtils {
     }
     int sz = str.length();
     for (int i = 0; i < sz; i++) {
-      if (Character.isDigit(str.charAt(i)) == false) {
+      if (!Character.isDigit(str.charAt(i))) {
         return false;
       }
     }
@@ -1656,12 +1635,9 @@ public abstract class StringUtils {
   public static String toString(String msg, Throwable e) {
     UnsafeStringWriter w = new UnsafeStringWriter();
     w.write(msg + "\n");
-    PrintWriter p = new PrintWriter(w);
-    try {
+    try (PrintWriter p = new PrintWriter(w)) {
       e.printStackTrace(p);
       return w.toString();
-    } finally {
-      p.close();
     }
   }
 
@@ -1714,7 +1690,7 @@ public abstract class StringUtils {
       c = str.charAt(i);
       if (c == ch) {
         if (list == null) {
-          list = new ArrayList<String>();
+          list = new ArrayList<>();
         }
         list.add(str.substring(ix, i));
         ix = i + 1;
@@ -1723,7 +1699,7 @@ public abstract class StringUtils {
     if (ix > 0) {
       list.add(str.substring(ix));
     }
-    return list == null ? EMPTY_STRING_ARRAY : (String[]) list.toArray(EMPTY_STRING_ARRAY);
+    return list == null ? EMPTY_STRING_ARRAY : list.toArray(EMPTY_STRING_ARRAY);
   }
 
   /**
@@ -1812,10 +1788,10 @@ public abstract class StringUtils {
    */
   private static Map<String, String> parseKeyValuePair(String str, String itemSeparator) {
     String[] tmp = str.split(itemSeparator);
-    Map<String, String> map = new HashMap<String, String>(tmp.length);
-    for (int i = 0; i < tmp.length; i++) {
-      Matcher matcher = KVP_PATTERN.matcher(tmp[i]);
-      if (matcher.matches() == false) {
+    Map<String, String> map = new HashMap<>(tmp.length);
+    for (String s : tmp) {
+      Matcher matcher = KVP_PATTERN.matcher(s);
+      if (!matcher.matches()) {
         continue;
       }
       map.put(matcher.group(1), matcher.group(2));
@@ -1858,7 +1834,7 @@ public abstract class StringUtils {
   public static String toQueryString(Map<String, String> ps) {
     StringBuilder buf = new StringBuilder();
     if (ps != null && ps.size() > 0) {
-      for (Map.Entry<String, String> entry : new TreeMap<String, String>(ps).entrySet()) {
+      for (Map.Entry<String, String> entry : new TreeMap<>(ps).entrySet()) {
         String key = entry.getKey();
         String value = entry.getValue();
         if (key != null && key.length() > 0
@@ -1886,7 +1862,7 @@ public abstract class StringUtils {
         if (buf == null) {
           buf = new StringBuilder();
           if (i > 0) {
-            buf.append(camelName.substring(0, i));
+            buf.append(camelName, 0, i);
           }
         }
         if (i > 0) {
@@ -1918,5 +1894,13 @@ public abstract class StringUtils {
       }
     }
     return buf.toString();
+  }
+
+  public static void notEmptyAndThen(String str, Consumer<String> consumer) {
+    FunctionUtils.checkAndThen(str, StringUtils::isNotEmpty, consumer);
+  }
+
+  public static void notBlankAndThen(String str, Consumer<String> consumer) {
+    FunctionUtils.checkAndThen(str, StringUtils::isNotBlank, consumer);
   }
 }

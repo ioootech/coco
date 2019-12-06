@@ -23,8 +23,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tech.iooo.boot.core.URL;
-import tech.iooo.boot.core.constants.Constants;
 
 public class ExecutorUtil {
 
@@ -36,9 +34,7 @@ public class ExecutorUtil {
 
   public static boolean isTerminated(Executor executor) {
     if (executor instanceof ExecutorService) {
-      if (((ExecutorService) executor).isTerminated()) {
-        return true;
-      }
+      return ((ExecutorService) executor).isTerminated();
     }
     return false;
   }
@@ -114,17 +110,5 @@ public class ExecutorUtil {
         }
       });
     }
-  }
-
-  /**
-   * append thread namePrefix with url address
-   *
-   * @return new url with updated thread namePrefix
-   */
-  public static URL setThreadName(URL url, String defaultName) {
-    String name = url.getParameter(Constants.THREAD_NAME_KEY, defaultName);
-    name = name + "-" + url.getAddress();
-    url = url.addParameter(Constants.THREAD_NAME_KEY, name);
-    return url;
   }
 }

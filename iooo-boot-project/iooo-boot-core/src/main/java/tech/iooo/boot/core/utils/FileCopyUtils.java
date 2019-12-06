@@ -114,11 +114,11 @@ public abstract class FileCopyUtils {
     } finally {
       try {
         in.close();
-      } catch (IOException ex) {
+      } catch (IOException ignored) {
       }
       try {
         out.close();
-      } catch (IOException ex) {
+      } catch (IOException ignored) {
       }
     }
   }
@@ -139,7 +139,7 @@ public abstract class FileCopyUtils {
     } finally {
       try {
         out.close();
-      } catch (IOException ex) {
+      } catch (IOException ignored) {
       }
     }
   }
@@ -190,11 +190,11 @@ public abstract class FileCopyUtils {
     } finally {
       try {
         in.close();
-      } catch (IOException ex) {
+      } catch (IOException ignored) {
       }
       try {
         out.close();
-      } catch (IOException ex) {
+      } catch (IOException ignored) {
       }
     }
   }
@@ -215,7 +215,7 @@ public abstract class FileCopyUtils {
     } finally {
       try {
         out.close();
-      } catch (IOException ex) {
+      } catch (IOException ignored) {
       }
     }
   }

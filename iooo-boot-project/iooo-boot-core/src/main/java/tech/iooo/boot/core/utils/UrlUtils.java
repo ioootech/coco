@@ -164,11 +164,7 @@ public class UrlUtils {
           if (version != null && version.length() > 0) {
             name = name + ":" + version;
           }
-          Map<String, String> newUrls = newRegister.get(name);
-          if (newUrls == null) {
-            newUrls = new HashMap<String, String>();
-            newRegister.put(name, newUrls);
-          }
+          Map<String, String> newUrls = newRegister.computeIfAbsent(name, k -> new HashMap<>());
           newUrls.put(serviceUrl, StringUtils.toQueryString(params));
         }
       } else {
@@ -179,7 +175,7 @@ public class UrlUtils {
   }
 
   public static Map<String, String> convertSubscribe(Map<String, String> subscribe) {
-    Map<String, String> newSubscribe = new HashMap<String, String>();
+    Map<String, String> newSubscribe = new HashMap<>();
     for (Map.Entry<String, String> entry : subscribe.entrySet()) {
       String serviceName = entry.getKey();
       String serviceQuery = entry.getValue();
@@ -205,7 +201,7 @@ public class UrlUtils {
   }
 
   public static Map<String, Map<String, String>> revertRegister(Map<String, Map<String, String>> register) {
-    Map<String, Map<String, String>> newRegister = new HashMap<String, Map<String, String>>();
+    Map<String, Map<String, String>> newRegister = new HashMap<>();
     for (Map.Entry<String, Map<String, String>> entry : register.entrySet()) {
       String serviceName = entry.getKey();
       Map<String, String> serviceUrls = entry.getValue();
@@ -225,11 +221,7 @@ public class UrlUtils {
             params.put("version", name.substring(i + 1));
             name = name.substring(0, i);
           }
-          Map<String, String> newUrls = newRegister.get(name);
-          if (newUrls == null) {
-            newUrls = new HashMap<String, String>();
-            newRegister.put(name, newUrls);
-          }
+          Map<String, String> newUrls = newRegister.computeIfAbsent(name, k -> new HashMap<>());
           newUrls.put(serviceUrl, StringUtils.toQueryString(params));
         }
       } else {
@@ -240,7 +232,7 @@ public class UrlUtils {
   }
 
   public static Map<String, String> revertSubscribe(Map<String, String> subscribe) {
-    Map<String, String> newSubscribe = new HashMap<String, String>();
+    Map<String, String> newSubscribe = new HashMap<>();
     for (Map.Entry<String, String> entry : subscribe.entrySet()) {
       String serviceName = entry.getKey();
       String serviceQuery = entry.getValue();
@@ -267,7 +259,7 @@ public class UrlUtils {
 
   public static Map<String, Map<String, String>> revertNotify(Map<String, Map<String, String>> notify) {
     if (notify != null && notify.size() > 0) {
-      Map<String, Map<String, String>> newNotify = new HashMap<String, Map<String, String>>();
+      Map<String, Map<String, String>> newNotify = new HashMap<>();
       for (Map.Entry<String, Map<String, String>> entry : notify.entrySet()) {
         String serviceName = entry.getKey();
         Map<String, String> serviceUrls = entry.getValue();
@@ -288,11 +280,7 @@ public class UrlUtils {
               if (version != null && version.length() > 0) {
                 name = name + ":" + version;
               }
-              Map<String, String> newUrls = newNotify.get(name);
-              if (newUrls == null) {
-                newUrls = new HashMap<String, String>();
-                newNotify.put(name, newUrls);
-              }
+              Map<String, String> newUrls = newNotify.computeIfAbsent(name, k -> new HashMap<>());
               newUrls.put(url, StringUtils.toQueryString(params));
             }
           }
@@ -308,7 +296,7 @@ public class UrlUtils {
   //compatible for dubbo-2.0.0
   public static List<String> revertForbid(List<String> forbid, Set<URL> subscribed) {
     if (forbid != null && !forbid.isEmpty()) {
-      List<String> newForbid = new ArrayList<String>();
+      List<String> newForbid = new ArrayList<>();
       for (String serviceName : forbid) {
         if (!serviceName.contains(":") && !serviceName.contains("/")) {
           for (URL url : subscribed) {

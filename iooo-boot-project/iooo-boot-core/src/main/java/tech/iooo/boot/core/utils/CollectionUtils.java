@@ -586,11 +586,7 @@ public abstract class CollectionUtils {
 
     @Override
     public void add(K key, V value) {
-      List<V> values = this.map.get(key);
-      if (values == null) {
-        values = new LinkedList<V>();
-        this.map.put(key, values);
-      }
+      List<V> values = this.map.computeIfAbsent(key, k -> new LinkedList<V>());
       values.add(value);
     }
 

@@ -1,6 +1,5 @@
 package tech.iooo.boot.core.utils;
 
-import java.util.Objects;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
@@ -23,9 +22,6 @@ public class SharedData<T> {
   }
 
   public static <T> SharedData<T> init(@Nonnull T item) {
-    if (Objects.isNull(item)) {
-      return null;
-    }
     return new SharedData<>(item);
   }
 

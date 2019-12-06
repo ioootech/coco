@@ -57,20 +57,11 @@ public class NetUtils {
   }
 
   public static int getAvailablePort() {
-    ServerSocket ss = null;
-    try {
-      ss = new ServerSocket();
+    try (ServerSocket ss = new ServerSocket()) {
       ss.bind(null);
       return ss.getLocalPort();
     } catch (IOException e) {
       return getRandomPort();
-    } finally {
-      if (ss != null) {
-        try {
-          ss.close();
-        } catch (IOException e) {
-        }
-      }
     }
   }
 
@@ -79,20 +70,11 @@ public class NetUtils {
       return getAvailablePort();
     }
     for (int i = port; i < MAX_PORT; i++) {
-      ServerSocket ss = null;
-      try {
-        ss = new ServerSocket(i);
+      try (ServerSocket ss = new ServerSocket(i)) {
         return i;
       } catch (IOException e) {
         logger.warn("port {} is occupied", i);
         // continue
-      } finally {
-        if (ss != null) {
-          try {
-            ss.close();
-          } catch (IOException ignore) {
-          }
-        }
       }
     }
     return port;
@@ -109,7 +91,7 @@ public class NetUtils {
   public static boolean isLocalHost(String host) {
     return host != null
         && (LOCAL_IP_PATTERN.matcher(host).matches()
-        || host.equalsIgnoreCase("localhost"));
+        || "localhost".equalsIgnoreCase(host));
   }
 
   public static boolean isAnyHost(String host) {
@@ -119,8 +101,8 @@ public class NetUtils {
   public static boolean isInvalidLocalHost(String host) {
     return host == null
         || host.length() == 0
-        || host.equalsIgnoreCase("localhost")
-        || host.equals("0.0.0.0")
+        || "localhost".equalsIgnoreCase(host)
+        || "0.0.0.0".equals(host)
         || (LOCAL_IP_PATTERN.matcher(host).matches());
   }
 
@@ -179,7 +161,9 @@ public class NetUtils {
         return InetAddress.getByName(addr.substring(0, i) + '%' + address.getScopeId());
       } catch (UnknownHostException e) {
         // ignore
-        logger.debug("Unknown IPV6 address: ", e);
+        if (logger.isDebugEnabled()) {
+          logger.debug("Unknown IPV6 address: ", e);
+        }
       }
     }
     return address;
