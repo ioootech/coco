@@ -710,6 +710,16 @@
         <version>${projectreactor.version}</version>
       </dependency>
       <dependency>
+        <groupId>io.projectreactor.addons</groupId>
+        <artifactId>reactor-extra</artifactId>
+        <version>${projectreactor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.projectreactor.addons</groupId>
+        <artifactId>reactor-adapter</artifactId>
+        <version>${projectreactor.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.reactivestreams</groupId>
         <artifactId>reactive-streams</artifactId>
         <version>${reactive-streams.version}</version>
