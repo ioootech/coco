@@ -48,8 +48,8 @@
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
     <!-- spring boot versions -->
-    <spring.boot.version>2.2.1.RELEASE</spring.boot.version>
-    <spring.version>5.2.1.RELEASE</spring.version>
+    <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+    <spring.version>5.2.2.RELEASE</spring.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.13</commons-codec.version>
     <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
@@ -65,23 +65,23 @@
     <apache.dubbo.version>2.7.4.1</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>2.7.4.1</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
-    <motan.version>1.1.6</motan.version>
+    <motan.version>1.1.7</motan.version>
     <aspectjweaver.version>1.9.4</aspectjweaver.version>
     <hsqldb.version>2.5.0</hsqldb.version>
     <HikariCP.version>3.4.1</HikariCP.version>
     <dagger.version>2.25.2</dagger.version>
-    <protobuf.version>3.11.0</protobuf.version>
+    <protobuf.version>3.11.1</protobuf.version>
     <grpc.version>1.25.0</grpc.version>
-    <redisson.version>3.11.5</redisson.version>
+    <redisson.version>3.11.6</redisson.version>
     <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
-    <easyexcel.version>2.1.3</easyexcel.version>
+    <easyexcel.version>2.1.4</easyexcel.version>
     <gson.version>2.8.6</gson.version>
     <java-jwt.version>3.8.3</java-jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
-    <hutool.version>5.0.6</hutool.version>
+    <hutool.version>5.0.7</hutool.version>
     <dozer.version>6.5.0</dozer.version>
     <guice.version>4.2.2</guice.version>
-    <governator.version>1.17.8</governator.version>
+    <governator.version>1.17.10</governator.version>
     <httpclient.version>4.5.10</httpclient.version>
     <httpcore.version>4.4.12</httpcore.version>
     <jackson.version>2.10.1</jackson.version>
@@ -102,14 +102,14 @@
     <disruptor.version>3.4.2</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.3</logback.version>
-    <logstash-logback-encoder.version>6.2</logstash-logback-encoder.version>
+    <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
     <lombok.version>1.18.10</lombok.version>
     <hazelcast.version>3.12.4</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
-    <mybatis-plus-boot-starter-v3.version>3.2.0</mybatis-plus-boot-starter-v3.version>
+    <mybatis-plus-boot-starter-v3.version>3.3.0</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
-    <mybatis-plus-v3.version>3.2.0</mybatis-plus-v3.version>
+    <mybatis-plus-v3.version>3.3.0</mybatis-plus-v3.version>
     <netty.version>4.1.43.Final</netty.version>
     <netty-tcnative.version>2.0.27.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
@@ -127,7 +127,7 @@
     <grpc-spring-boot-starter.version>2.6.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.8.4</vertx.version>
     <guava.version>28.1-jre</guava.version>
-    <bytebuddy.version>1.10.3</bytebuddy.version>
+    <bytebuddy.version>1.10.4</bytebuddy.version>
     <commons-configuration2.version>2.6</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <asm.version>7.2</asm.version>
@@ -164,15 +164,15 @@
     <newrelic.version>5.8.0</newrelic.version>
     <rxjava.version>2.2.15</rxjava.version>
     <snakeyaml.version>1.25</snakeyaml.version>
-    <assertj-core.version>3.13.4</assertj-core.version>
-    <mockito-core.version>3.0.0</mockito-core.version>
+    <assertj-core.version>3.14.0</assertj-core.version>
+    <mockito-core.version>3.2.0</mockito-core.version>
     <commons-collections4.version>4.4</commons-collections4.version>
-    <hamcrest-library.version>2.1</hamcrest-library.version>
+    <hamcrest-library.version>2.2</hamcrest-library.version>
     <reflections.version>0.9.11</reflections.version>
     <java-verbal-expressions.version>1.6</java-verbal-expressions.version>
     <transmittable-thread-local.version>2.11.0</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
-    <eclipse-collections.version>10.0.0</eclipse-collections.version>
+    <eclipse-collections.version>10.1.0</eclipse-collections.version>
     <re2j.version>1.3</re2j.version>
     <maven.version>3.6.1</maven.version>
     <maven-plugin-tools.version>3.6.0</maven-plugin-tools.version>
