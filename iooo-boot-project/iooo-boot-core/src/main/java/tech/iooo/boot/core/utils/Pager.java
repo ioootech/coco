@@ -1,5 +1,6 @@
 package tech.iooo.boot.core.utils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,6 +23,10 @@ public class Pager<T> {
 
   private int navigatePages = 8; //导航页码数
   private int[] navigatePageNumbers;  //所有导航页号
+
+  public Pager() {
+    new Pager<T>(Collections.emptyList());
+  }
 
   public Pager(List<T> content) {
     init(content.size(), pageNumber, pageSize);
