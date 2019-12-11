@@ -23,6 +23,10 @@ public class Pager<T> {
   private int navigatePages = 8; //导航页码数
   private int[] navigatePageNumbers;  //所有导航页号
 
+  public Pager(List<T> content) {
+    init(content.size(), pageNumber, pageSize);
+  }
+
   public Pager(int total, int pageNumber) {
     init(total, pageNumber, pageSize);
   }
