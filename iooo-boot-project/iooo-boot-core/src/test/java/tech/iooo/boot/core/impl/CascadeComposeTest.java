@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Optional;
 import java.util.function.Function;
 import org.junit.jupiter.api.Test;
+import tech.iooo.boot.core.function.CascadeCompose;
 
 /**
  * Created on 2019-03-28 22:31

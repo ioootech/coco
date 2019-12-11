@@ -1,4 +1,4 @@
-package tech.iooo.boot.core.impl;
+package tech.iooo.boot.core.function;
 
 import java.util.function.Function;
 
@@ -9,6 +9,7 @@ import java.util.function.Function;
  *
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
+@FunctionalInterface
 public interface CascadeCompose<T> extends Function<Function<T, T>, Function<Function<T, T>, Function<T, T>>> {
 
 }
