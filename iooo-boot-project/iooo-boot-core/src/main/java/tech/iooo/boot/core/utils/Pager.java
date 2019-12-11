@@ -25,24 +25,40 @@ public class Pager<T> {
   private int navigatePages = 8; //导航页码数
   private int[] navigatePageNumbers = new int[]{};  //所有导航页号
 
-  public Pager() {
+  public static <T> Pager<T> init() {
+    return new Pager<>();
+  }
+
+  public static <T> Pager<T> init(List<T> content) {
+    return new Pager<>(content);
+  }
+
+  public static <T> Pager<T> init(int total, int pageNumber) {
+    return new Pager<>(total, pageNumber);
+  }
+
+  public static <T> Pager<T> init(int total, int pageNumber, int pageSize) {
+    return new Pager<>(total, pageNumber, pageSize);
+  }
+
+  private Pager() {
     new Pager<T>(Collections.emptyList());
   }
 
-  public Pager(List<T> content) {
+  private Pager(List<T> content) {
     setContent(content);
-    init(content.size(), pageNumber, pageSize);
+    doInit(content.size(), pageNumber, pageSize);
   }
 
-  public Pager(int total, int pageNumber) {
-    init(total, pageNumber, pageSize);
+  private Pager(int total, int pageNumber) {
+    doInit(total, pageNumber, pageSize);
   }
 
-  public Pager(int total, int pageNumber, int pageSize) {
-    init(total, pageNumber, pageSize);
+  private Pager(int total, int pageNumber, int pageSize) {
+    doInit(total, pageNumber, pageSize);
   }
 
-  private void init(int total, int pageNumber, int pageSize) {
+  private void doInit(int total, int pageNumber, int pageSize) {
     //设置基本参数
     this.total = total;
     this.pageSize = pageSize;
