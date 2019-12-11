@@ -1,4 +1,4 @@
-package tech.iooo.boot.core.utils;
+package tech.iooo.boot.core.function;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
