@@ -2,6 +2,7 @@ package tech.iooo.boot.core.utils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created on 2018/6/5 上午10:40
@@ -22,7 +23,7 @@ public class Pager<T> {
   private boolean hasNextPage = false;       //是否有下一页
 
   private int navigatePages = 8; //导航页码数
-  private int[] navigatePageNumbers;  //所有导航页号
+  private int[] navigatePageNumbers = new int[]{};  //所有导航页号
 
   public Pager() {
     new Pager<T>(Collections.emptyList());
@@ -225,7 +226,7 @@ public class Pager<T> {
     for (int i = 1; i < len; i++) {
       stringBuilder.append(" ").append(navigatePageNumbers[i]);
     }
-    stringBuilder.append(",list.size=").append(list.size());
+    stringBuilder.append(",list.size=").append(Optional.ofNullable(list).orElse(Collections.emptyList()).size());
     stringBuilder.append("]");
     return stringBuilder.toString();
   }
