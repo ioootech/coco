@@ -30,6 +30,7 @@ public class Pager<T> {
   }
 
   public Pager(List<T> content) {
+    setContent(content);
     init(content.size(), pageNumber, pageSize);
   }
 
