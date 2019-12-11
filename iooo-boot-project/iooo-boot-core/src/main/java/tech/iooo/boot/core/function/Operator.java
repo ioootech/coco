@@ -34,7 +34,7 @@ public interface Operator<T> {
    * @param after after
    * @return Operator
    */
-  default Operator<T> andThen(Function<T, T> after) {
+  default Operator<T> andThenWithFunction(Function<T, T> after) {
     Objects.requireNonNull(after);
     return t -> after.apply(operate(t));
   }
