@@ -1,7 +1,7 @@
 package tech.iooo.boot.core.function;
 
 import java.util.Objects;
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * @author 龙也
@@ -34,7 +34,7 @@ public interface Operator<T> {
    * @param after after
    * @return Operator
    */
-  default Operator<T> andThenWithFunction(Function<T, T> after) {
+  default Operator<T> andThenWithFunction(UnaryOperator<T> after) {
     Objects.requireNonNull(after);
     return t -> after.apply(operate(t));
   }
