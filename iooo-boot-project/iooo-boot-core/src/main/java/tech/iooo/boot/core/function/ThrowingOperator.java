@@ -59,7 +59,7 @@ public interface ThrowingOperator<T, E extends Exception> extends InnerThrowingU
     return t -> after.operate(operate(t));
   }
 
-  default <R> ThrowingOperator<T, E> peek(Consumer<? super T> action) {
+  default ThrowingOperator<T, E> peek(Consumer<? super T> action) {
     Objects.requireNonNull(action);
     return t -> {
       action.accept(t);
