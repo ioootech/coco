@@ -1,14 +1,18 @@
 package tech.iooo.boot.core.function;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.UnaryOperator;
+import tech.iooo.boot.core.exception.WrappedException;
 
 /**
  * @author 龙也
  * @date 2019/12/11 2:49 下午
  */
 public interface Operator<T> extends UnaryOperator<T> {
-
 
   /**
    * Applies this operator to the given argument.
@@ -18,6 +22,13 @@ public interface Operator<T> extends UnaryOperator<T> {
    */
   T operate(T t);
 
+  static <T> Function<T, Optional<T>> lifted(final Operator<T> f) {
+    return requireNonNull(f).lift();
+  }
+
+  static <T> Operator<T> unchecked(final Operator<T> f) {
+    return requireNonNull(f).uncheck();
+  }
 
   /**
    * Applies this operator to the given argument.
@@ -44,7 +55,6 @@ public interface Operator<T> extends UnaryOperator<T> {
     return t -> operate(before.operate(t));
   }
 
-
   /**
    * Returns a composed operator that first applies this operator to its input, and then applies the {@code after} operator to the result. If evaluation of either operator throws an exception, it is relayed to the caller of the composed
    * operator.
@@ -68,5 +78,25 @@ public interface Operator<T> extends UnaryOperator<T> {
    */
   static <T> Operator<T> identity() {
     return t -> t;
+  }
+
+  default Function<T, Optional<T>> lift() {
+    return t -> {
+      try {
+        return Optional.ofNullable(operate(t));
+      } catch (final Exception e) {
+        return Optional.empty();
+      }
+    };
+  }
+
+  default Operator<T> uncheck() {
+    return t -> {
+      try {
+        return operate(t);
+      } catch (final Exception e) {
+        throw new WrappedException(e);
+      }
+    };
   }
 }
