@@ -7,7 +7,7 @@ import java.util.function.UnaryOperator;
  * @author 龙也
  * @date 2019/12/11 2:49 下午
  */
-public interface Operator<T> {
+public interface Operator<T> extends UnaryOperator<T> {
 
   /**
    * 操作对象
@@ -18,14 +18,14 @@ public interface Operator<T> {
   T operate(T t);
 
   /**
-   * 后续操作
+   * 操作对象
    *
-   * @param after after
-   * @return Operator
+   * @param t input
+   * @return output
    */
-  default Operator<T> andThen(Operator<T> after) {
-    Objects.requireNonNull(after);
-    return t -> after.operate(operate(t));
+  @Override
+  default T apply(T t) {
+    return operate(t);
   }
 
   /**
@@ -34,8 +34,8 @@ public interface Operator<T> {
    * @param after after
    * @return Operator
    */
-  default Operator<T> andThenWithFunction(UnaryOperator<T> after) {
+  default Operator<T> andThen(Operator<T> after) {
     Objects.requireNonNull(after);
-    return t -> after.apply(operate(t));
+    return t -> after.operate(operate(t));
   }
 }
