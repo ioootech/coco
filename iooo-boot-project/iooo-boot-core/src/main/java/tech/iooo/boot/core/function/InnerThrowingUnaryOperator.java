@@ -12,9 +12,9 @@ import tech.iooo.boot.core.exception.WrappedException;
  * @date 2019/12/12 8:05 下午
  */
 @FunctionalInterface
-interface ThrowingUnaryOperator<T, E extends Exception> extends ThrowingFunction<T, T, E> {
+interface InnerThrowingUnaryOperator<T, E extends Exception> extends InnerThrowingFunction<T, T, E> {
 
-  static <T> UnaryOperator<T> unchecked(ThrowingUnaryOperator<T, ?> operator) {
+  static <T> UnaryOperator<T> unchecked(InnerThrowingUnaryOperator<T, ?> operator) {
     return requireNonNull(operator).uncheck();
   }
 
@@ -23,7 +23,7 @@ interface ThrowingUnaryOperator<T, E extends Exception> extends ThrowingFunction
    *
    * @return UnaryOperator instance that rethrows the checked exception using the Sneaky Throws pattern
    */
-  static <T> UnaryOperator<T> sneaky(ThrowingUnaryOperator<T, ?> operator) {
+  static <T> UnaryOperator<T> sneaky(InnerThrowingUnaryOperator<T, ?> operator) {
     Objects.requireNonNull(operator);
     return t -> {
       try {

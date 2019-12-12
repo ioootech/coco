@@ -2,6 +2,7 @@ package tech.iooo.boot.core.function;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
@@ -12,7 +13,7 @@ import tech.iooo.boot.core.exception.WrappedException;
  * @author 龙也
  * @date 2019/12/12 6:07 下午
  */
-public interface ThrowingOperator<T, E extends Exception> extends ThrowingUnaryOperator<T, E> {
+public interface ThrowingOperator<T, E extends Exception> extends InnerThrowingUnaryOperator<T, E> {
 
   /**
    * Applies this operator to the given argument.
@@ -55,6 +56,14 @@ public interface ThrowingOperator<T, E extends Exception> extends ThrowingUnaryO
   default ThrowingOperator<T, E> andThen(final ThrowingOperator<T, ? extends E> after) {
     requireNonNull(after);
     return t -> after.operate(operate(t));
+  }
+
+  default <R> ThrowingOperator<T, E> peek(Function<T, R> function) {
+    Objects.requireNonNull(function);
+    return t -> {
+      function.apply(t);
+      return operate(t);
+    };
   }
 
   @Override

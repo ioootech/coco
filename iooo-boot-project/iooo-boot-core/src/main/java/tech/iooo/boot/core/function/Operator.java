@@ -69,6 +69,14 @@ public interface Operator<T> extends UnaryOperator<T> {
     return t -> after.operate(operate(t));
   }
 
+  default <R> Operator<T> peek(Function<T, R> function) {
+    Objects.requireNonNull(function);
+    return t -> {
+      function.apply(t);
+      return operate(t);
+    };
+  }
+
 
   /**
    * Returns an operator that always returns its input argument.
