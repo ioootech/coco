@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 import tech.iooo.boot.core.exception.WrappedException;
@@ -69,10 +70,10 @@ public interface Operator<T> extends UnaryOperator<T> {
     return t -> after.operate(operate(t));
   }
 
-  default <R> Operator<T> peek(Function<T, R> function) {
-    Objects.requireNonNull(function);
+  default Operator<T> peek(Consumer<? super T> action) {
+    Objects.requireNonNull(action);
     return t -> {
-      function.apply(t);
+      action.accept(t);
       return operate(t);
     };
   }

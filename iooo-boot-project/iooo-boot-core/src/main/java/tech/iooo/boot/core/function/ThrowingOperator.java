@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 import tech.iooo.boot.core.exception.SneakyThrowUtil;
@@ -58,10 +59,10 @@ public interface ThrowingOperator<T, E extends Exception> extends InnerThrowingU
     return t -> after.operate(operate(t));
   }
 
-  default <R> ThrowingOperator<T, E> peek(Function<T, R> function) {
-    Objects.requireNonNull(function);
+  default <R> ThrowingOperator<T, E> peek(Consumer<? super T> action) {
+    Objects.requireNonNull(action);
     return t -> {
-      function.apply(t);
+      action.accept(t);
       return operate(t);
     };
   }
