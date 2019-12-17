@@ -43,7 +43,7 @@
   <properties>
     <java.version>1.8</java.version>
     <kotlin.version>1.3.61</kotlin.version>
-    <kotlinx-coroutines.version>1.3.2</kotlinx-coroutines.version>
+    <kotlinx-coroutines.version>1.3.3</kotlinx-coroutines.version>
     <maven.min.version>3.0.5</maven.min.version>
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
@@ -60,17 +60,17 @@
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-net.version>3.6</commons-net.version>
     <curator.version>4.2.0</curator.version>
-    <c3p0.version>0.9.5.4</c3p0.version>
+    <c3p0.version>0.9.5.5</c3p0.version>
     <dubbo.version>2.6.7</dubbo.version>
     <apache.dubbo.version>2.7.4.1</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>2.7.4.1</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
     <motan.version>1.1.7</motan.version>
-    <aspectjweaver.version>1.9.4</aspectjweaver.version>
+    <aspectjweaver.version>1.9.5</aspectjweaver.version>
     <hsqldb.version>2.5.0</hsqldb.version>
     <HikariCP.version>3.4.1</HikariCP.version>
-    <dagger.version>2.25.2</dagger.version>
-    <protobuf.version>3.11.1</protobuf.version>
+    <dagger.version>2.25.3</dagger.version>
+    <protobuf.version>3.11.2</protobuf.version>
     <grpc.version>1.25.0</grpc.version>
     <redisson.version>3.11.6</redisson.version>
     <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
@@ -85,9 +85,10 @@
     <httpclient.version>4.5.10</httpclient.version>
     <httpcore.version>4.4.12</httpcore.version>
     <jackson.version>2.10.1</jackson.version>
-    <rocketmq-client.version>4.5.2</rocketmq-client.version>
+    <rocketmq-client.version>4.6.0</rocketmq-client.version>
+    <json-path.version>2.4.0</json-path.version>
     <jedis.version>2.10.2</jedis.version>
-    <jedis-v3.version>3.1.0</jedis-v3.version>
+    <jedis-v3.version>3.2.0</jedis-v3.version>
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <jersey.version>2.29.1</jersey.version>
     <jetty.version>9.4.20.v20190813</jetty.version>
@@ -97,21 +98,21 @@
     <lettuce.version>5.2.1.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
-    <log4j2.version>2.12.1</log4j2.version>
+    <log4j2.version>2.13.0</log4j2.version>
     <jmh.version>1.22</jmh.version>
     <disruptor.version>3.4.2</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.3</logback.version>
     <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
     <lombok.version>1.18.10</lombok.version>
-    <hazelcast.version>3.12.4</hazelcast.version>
+    <hazelcast.version>3.12.5</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.1.1</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
     <mybatis-plus-boot-starter-v3.version>3.3.0</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.3.0</mybatis-plus-v3.version>
     <netty.version>4.1.43.Final</netty.version>
-    <netty-tcnative.version>2.0.27.Final</netty-tcnative.version>
+    <netty-tcnative.version>2.0.28.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
     <tink.version>1.2.2</tink.version>
@@ -119,7 +120,7 @@
     <quartz.version>2.3.2</quartz.version>
     <groovy-all.version>2.5.8</groovy-all.version>
     <slf4j.version>1.7.29</slf4j.version>
-    <tomcat.version>9.0.29</tomcat.version>
+    <tomcat.version>9.0.30</tomcat.version>
     <undertow.version>2.0.28.Final</undertow.version>
     <icu4j.version>65.1</icu4j.version>
     <mysql.version>8.0.18</mysql.version>
@@ -127,14 +128,14 @@
     <grpc-spring-boot-starter.version>2.6.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.8.4</vertx.version>
     <guava.version>28.1-jre</guava.version>
-    <bytebuddy.version>1.10.4</bytebuddy.version>
+    <bytebuddy.version>1.10.5</bytebuddy.version>
     <commons-configuration2.version>2.6</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <asm.version>7.2</asm.version>
     <org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
     <poi.version>4.1.1</poi.version>
     <completable-futures.version>0.3.2</completable-futures.version>
-    <parallel-collectors.version>2.0.0</parallel-collectors.version>
+    <parallel-collectors.version>2.1.0</parallel-collectors.version>
     <throwing-function.version>1.5.0</throwing-function.version>
     <jctools.version>2.1.2</jctools.version>
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
@@ -161,8 +162,8 @@
     <protostuff.version>1.6.2</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
-    <newrelic.version>5.8.0</newrelic.version>
-    <rxjava.version>2.2.15</rxjava.version>
+    <newrelic.version>5.9.0</newrelic.version>
+    <rxjava.version>2.2.16</rxjava.version>
     <snakeyaml.version>1.25</snakeyaml.version>
     <assertj-core.version>3.14.0</assertj-core.version>
     <mockito-core.version>3.2.0</mockito-core.version>
@@ -170,7 +171,7 @@
     <hamcrest-library.version>2.2</hamcrest-library.version>
     <reflections.version>0.9.11</reflections.version>
     <java-verbal-expressions.version>1.6</java-verbal-expressions.version>
-    <transmittable-thread-local.version>2.11.0</transmittable-thread-local.version>
+    <transmittable-thread-local.version>2.11.2</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>10.1.0</eclipse-collections.version>
     <re2j.version>1.3</re2j.version>
@@ -179,7 +180,7 @@
     <!-- Plugin versions -->
     <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-    <flyway.version>6.1.0</flyway.version>
+    <flyway.version>6.1.2</flyway.version>
     <git-commit-id-plugin.version>3.0.1</git-commit-id-plugin.version>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven-assembly-plugin.version>3.1.1</maven-assembly-plugin.version>
@@ -213,7 +214,7 @@
     <protoc-gen-grpc-java.version>1.24.0</protoc-gen-grpc-java.version>
     <vertx-protoc-gen-grpc-java.version>1.20.0</vertx-protoc-gen-grpc-java.version>
     <wagon-ssh.version>3.3.4</wagon-ssh.version>
-    <wagon.version>3.3.2</wagon.version>
+    <wagon.version>3.3.4</wagon.version>
     <jgit-buildnumber-maven-plugin.version>2.2.0</jgit-buildnumber-maven-plugin.version>
     <maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
     <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
@@ -458,6 +459,11 @@
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper-spring-boot-starter</artifactId>
         <version>${pagehelper.boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <version>${json-path.version}</version>
       </dependency>
       <dependency>
         <groupId>com.esotericsoftware</groupId>

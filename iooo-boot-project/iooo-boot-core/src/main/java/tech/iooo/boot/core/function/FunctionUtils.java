@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
  */
 public class FunctionUtils {
 
-  public static <T> void checkAndThen(T item, @Nonnull Predicate<T> predicate, Consumer<T> consumer) {
+  public static <T> void checkThenConsume(T item, @Nonnull Predicate<T> predicate, Consumer<T> consumer) {
     if (predicate.test(item)) {
       consumer.accept(item);
     }

@@ -1897,11 +1897,11 @@ public abstract class StringUtils {
     return buf.toString();
   }
 
-  public static void notEmptyAndThen(String str, Consumer<String> consumer) {
-    FunctionUtils.checkAndThen(str, StringUtils::isNotEmpty, consumer);
+  public static void notEmptyThenConsume(String str, Consumer<String> consumer) {
+    FunctionUtils.checkThenConsume(str, StringUtils::isNotEmpty, consumer);
   }
 
-  public static void notBlankAndThen(String str, Consumer<String> consumer) {
-    FunctionUtils.checkAndThen(str, StringUtils::isNotBlank, consumer);
+  public static void notBlankThenConsume(String str, Consumer<String> consumer) {
+    FunctionUtils.checkThenConsume(str, StringUtils::isNotBlank, consumer);
   }
 }
