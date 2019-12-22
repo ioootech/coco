@@ -24,7 +24,7 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  */
 @Service
 @ConditionalOnClass(Router.class)
-@ConditionalOnProperty(name = "vertx.server.gatewayEnable", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "vertx.server.gatewayEnable", havingValue = "true")
 public class IoooGatewayVerticle extends AbstractVerticle {
 
   private static final Logger log = LoggerFactory.getLogger(IoooGatewayVerticle.class);
