@@ -55,7 +55,7 @@
     <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
     <commons-lang3.version>3.9</commons-lang3.version>
     <commons-pool.version>1.6</commons-pool.version>
-    <commons-pool2.version>2.7.0</commons-pool2.version>
+    <commons-pool2.version>2.8.0</commons-pool2.version>
     <commons-io.version>2.6</commons-io.version>
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-net.version>3.6</commons-net.version>
@@ -71,14 +71,14 @@
     <HikariCP.version>3.4.1</HikariCP.version>
     <dagger.version>2.25.3</dagger.version>
     <protobuf.version>3.11.2</protobuf.version>
-    <grpc.version>1.25.0</grpc.version>
+    <grpc.version>1.26.0</grpc.version>
     <redisson.version>3.11.6</redisson.version>
     <hibernate-validator.version>6.1.0.Final</hibernate-validator.version>
     <easyexcel.version>2.1.4</easyexcel.version>
     <gson.version>2.8.6</gson.version>
     <java-jwt.version>3.8.3</java-jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
-    <hutool.version>5.0.7</hutool.version>
+    <hutool.version>5.1.0</hutool.version>
     <dozer.version>6.5.0</dozer.version>
     <guice.version>4.2.2</guice.version>
     <governator.version>1.17.10</governator.version>
@@ -91,7 +91,7 @@
     <jedis-v3.version>3.2.0</jedis-v3.version>
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <jersey.version>2.29.1</jersey.version>
-    <jetty.version>9.4.20.v20190813</jetty.version>
+    <jetty.version>9.4.25.v20191220</jetty.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.5.2</junit-jupiter.version>
     <projectreactor.version>3.3.1.RELEASE</projectreactor.version>
@@ -111,7 +111,7 @@
     <mybatis-plus-boot-starter-v3.version>3.3.0</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.3.0</mybatis-plus-v3.version>
-    <netty.version>4.1.43.Final</netty.version>
+    <netty.version>4.1.44.Final</netty.version>
     <netty-tcnative.version>2.0.28.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
@@ -119,7 +119,7 @@
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.2</quartz.version>
     <groovy-all.version>2.5.8</groovy-all.version>
-    <slf4j.version>1.7.29</slf4j.version>
+    <slf4j.version>1.7.30</slf4j.version>
     <tomcat.version>9.0.30</tomcat.version>
     <undertow.version>2.0.28.Final</undertow.version>
     <icu4j.version>65.1</icu4j.version>
@@ -128,7 +128,7 @@
     <grpc-spring-boot-starter.version>2.6.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.8.4</vertx.version>
     <guava.version>28.1-jre</guava.version>
-    <bytebuddy.version>1.10.5</bytebuddy.version>
+    <bytebuddy.version>1.10.6</bytebuddy.version>
     <commons-configuration2.version>2.6</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <asm.version>7.2</asm.version>
@@ -143,7 +143,7 @@
     <reactive-streams.version>1.0.3</reactive-streams.version>
     <javassist.version>3.26.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
-    <sentinel.version>1.7.0</sentinel.version>
+    <sentinel.version>1.7.1</sentinel.version>
     <jna.version>5.5.0</jna.version>
     <xstream.version>1.4.11.1</xstream.version>
     <xerces.version>2.12.0</xerces.version>
@@ -1394,11 +1394,6 @@
         <groupId>org.eclipse.jetty.memcached</groupId>
         <artifactId>jetty-memcached-sessions</artifactId>
         <version>${jetty.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty.orbit</groupId>
-        <artifactId>javax.servlet.jsp</artifactId>
-        <version>${jetty-jsp.version}</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty.osgi</groupId>
