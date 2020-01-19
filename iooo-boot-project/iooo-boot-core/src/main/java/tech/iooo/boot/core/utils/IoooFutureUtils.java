@@ -3,6 +3,7 @@ package tech.iooo.boot.core.utils;
 import java.util.concurrent.CompletableFuture;
 import lombok.experimental.UtilityClass;
 import tech.iooo.boot.core.Future;
+import tech.iooo.boot.core.Promise;
 
 /**
  * @author 龙也
@@ -15,5 +16,9 @@ public class IoooFutureUtils {
     CompletableHandler<T> completableHandler = CompletableHandler.init();
     future.setHandler(completableHandler);
     return completableHandler.completableFuture();
+  }
+
+  public <T> CompletableFuture<T> toCompletableFuture(Promise<T> promise) {
+    return toCompletableFuture(promise.future());
   }
 }
