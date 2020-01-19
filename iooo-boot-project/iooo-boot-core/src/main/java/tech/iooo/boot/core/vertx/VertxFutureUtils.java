@@ -1,6 +1,7 @@
 package tech.iooo.boot.core.vertx;
 
 import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import java.util.concurrent.CompletableFuture;
 import lombok.experimental.UtilityClass;
 
@@ -11,9 +12,13 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class VertxFutureUtils {
 
-    public <T> CompletableFuture<T> toCompletableFuture(Future<T> future) {
-        CompletableHandler<T> completableHandler = CompletableHandler.init();
-        future.setHandler(completableHandler);
-        return completableHandler.completableFuture();
-    }
+  public <T> CompletableFuture<T> toCompletableFuture(Future<T> future) {
+    CompletableHandler<T> completableHandler = CompletableHandler.init();
+    future.setHandler(completableHandler);
+    return completableHandler.completableFuture();
+  }
+
+  public <T> CompletableFuture<T> toCompletableFuture(Promise<T> promise) {
+    return toCompletableFuture(promise.future());
+  }
 }
