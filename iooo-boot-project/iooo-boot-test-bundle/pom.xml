@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>iooo-boot-test-bundle</artifactId>
-  
+
   <name>iooo-boot :: iooo-boot-test-bundle</name>
   <description>iooo-boot-test-bundle</description>
 
@@ -27,16 +27,6 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
