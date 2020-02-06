@@ -9,8 +9,7 @@ import io.vertx.ext.web.Router;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ApplicationContext;
@@ -27,11 +26,11 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  * @author 龙也
  * @date 2019-08-15 20:59
  */
+@Slf4j
 @Configuration
 @ConditionalOnClass(Router.class)
 public class IoooGatewayConfiguration implements ApplicationContextAware {
 
-  private static final Logger log = LoggerFactory.getLogger(IoooGatewayConfiguration.class);
   private ApplicationContext applicationContext;
 
   @Bean(name = "ioooControllerTable")
@@ -52,12 +51,12 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
     });
 
     multimap.keySet().forEach(path -> {
-      if (multimap.get(path).size() > 1) {
+      if (multimap.get(path).size() > 0) {
         String list = Joiner.on(",").join(multimap.get(path).stream()
             .map(handler -> ClassUtils.getUserClass(handler).getName())
             .collect(Collectors.toList()));
         String errMsg = String.format("there are duplicate handlers with the same path [%s].Check these handlers [%s]", path, list);
-        log.error("{}", errMsg);
+        logger.error("{}", errMsg);
         throw new IllegalArgumentException(errMsg);
       }
     });
