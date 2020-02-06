@@ -423,6 +423,7 @@
         <groupId>org.codehaus.groovy</groupId>
         <artifactId>groovy-all</artifactId>
         <version>${groovy-all.version}</version>
+        <scope>import</scope>
         <type>pom</type>
       </dependency>
       <dependency>
@@ -684,6 +685,13 @@
         <groupId>io.netty</groupId>
         <artifactId>netty-all</artifactId>
         <version>${netty.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-bom</artifactId>
+        <version>${netty.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
       </dependency>
       <dependency>
         <groupId>io.netty</groupId>
