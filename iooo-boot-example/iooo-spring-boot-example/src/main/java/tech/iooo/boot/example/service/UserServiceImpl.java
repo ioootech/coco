@@ -24,7 +24,7 @@ public class UserServiceImpl implements IUserService {
 
   //10秒刷新一次
   @Override
-  @Cache(timeInterval = 10)
+  @Cache(timeInterval = 50)
   public User getUser() {
     if (logger.isInfoEnabled()) {
       logger.info("Time Out");

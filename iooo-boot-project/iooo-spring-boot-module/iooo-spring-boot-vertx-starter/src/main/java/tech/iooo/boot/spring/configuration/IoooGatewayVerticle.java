@@ -7,8 +7,7 @@ import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -22,12 +21,11 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  * @author 龙也
  * @date 2019-08-15 20:48
  */
+@Slf4j
 @Service
 @ConditionalOnClass(Router.class)
-@ConditionalOnProperty(name = "vertx.server.gatewayEnable", havingValue = "true")
+@ConditionalOnProperty(prefix = "vertx.gateway", name = "enable", havingValue = "true")
 public class IoooGatewayVerticle extends AbstractVerticle {
-
-  private static final Logger log = LoggerFactory.getLogger(IoooGatewayVerticle.class);
 
   @Autowired
   private IoooVertxProperties ioooVertxProperties;
@@ -38,7 +36,7 @@ public class IoooGatewayVerticle extends AbstractVerticle {
   @Override
   public void start(Promise<Void> startPromise) throws Exception {
     if (table.isEmpty()) {
-      log.warn("there is no RoutingContextHandler in this application");
+      logger.warn("there is no RoutingContextHandler in this application");
       startPromise.complete();
     } else {
       HttpServer server = vertx.createHttpServer(new HttpServerOptions().setLogActivity(true));
@@ -47,14 +45,14 @@ public class IoooGatewayVerticle extends AbstractVerticle {
         table.row(path).forEach((method, controller) -> {
           String configPath = path.startsWith("/") ? path : "/" + path;
           String controllerName = ClassUtils.getUserClass(controller).getSimpleName();
-          log.info("method::[{}] path::[{}] controller::[{}]", method, configPath, controllerName);
+          logger.info("method::[{}] path::[{}] controller::[{}]", method, configPath, controllerName);
           router.route(method, configPath).handler(controller);
         });
       }
-      int port = NetUtils.getAvailablePort(ioooVertxProperties.getServer().getPort());
+      int port = NetUtils.getAvailablePort(ioooVertxProperties.getGateway().getPort());
       server.requestHandler(router).listen(port, res -> {
         if (res.succeeded()) {
-          log.info("vertx gateway listening on port {}", port);
+          logger.info("vertx gateway listening on port {}", port);
           startPromise.complete();
         } else {
           startPromise.fail(res.cause());

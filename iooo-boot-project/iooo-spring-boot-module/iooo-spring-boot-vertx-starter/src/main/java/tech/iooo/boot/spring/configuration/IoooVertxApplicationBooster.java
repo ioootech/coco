@@ -57,7 +57,7 @@ public class IoooVertxApplicationBooster implements SmartLifecycle {
     IoooVerticleServicesHolder.activeVerticleServices().values()
         .stream()
         .filter(verticle -> {
-          if (ioooVertxProperties.getServer().isGatewayEnable()) {
+          if (ioooVertxProperties.getGateway().isEnable()) {
             return true;
           } else {
             return !(verticle instanceof IoooGatewayVerticle);

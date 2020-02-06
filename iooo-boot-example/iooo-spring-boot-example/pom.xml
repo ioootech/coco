@@ -10,7 +10,7 @@
     <version>1.1.8-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
-	
+
   <artifactId>iooo-spring-boot-example</artifactId>
   <packaging>jar</packaging>
 
@@ -32,6 +32,10 @@
     <dependency>
       <groupId>tech.iooo.boot</groupId>
       <artifactId>iooo-spring-boot-vertx-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-web</artifactId>
     </dependency>
     <dependency>
       <groupId>tech.iooo.boot</groupId>

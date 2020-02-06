@@ -23,7 +23,7 @@ public class CacheCommandLineRunner implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    vertx.setPeriodic(1000, handler -> {
+    vertx.setPeriodic(10000, handler -> {
       if (logger.isInfoEnabled()) {
         logger.info("{}", userService.getUser());
       }

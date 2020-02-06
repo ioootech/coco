@@ -11,12 +11,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author <a href="mailto:yangkizhang@gmail.com?subject=iooo-boot">Ivan97</a>
  */
 @Data
-@ConfigurationProperties(prefix = "vertx")
+@ConfigurationProperties(prefix = "vertx", ignoreInvalidFields = true)
 public class IoooVertxProperties {
 
   private IoooVertxProperties.Verticle verticle = new IoooVertxProperties.Verticle();
   private DefaultDeploymentOption defaultDeploymentOption = new IoooVertxProperties.DefaultDeploymentOption();
-  private Server server = new IoooVertxProperties.Server();
+  private Gateway gateway = new IoooVertxProperties.Gateway();
 
   @Data
   public static class Verticle {
@@ -46,9 +46,9 @@ public class IoooVertxProperties {
   }
 
   @Data
-  public static class Server {
+  public static class Gateway {
 
+    private boolean enable = false;
     private Integer port = 9090;
-    private boolean gatewayEnable = false;
   }
 }
