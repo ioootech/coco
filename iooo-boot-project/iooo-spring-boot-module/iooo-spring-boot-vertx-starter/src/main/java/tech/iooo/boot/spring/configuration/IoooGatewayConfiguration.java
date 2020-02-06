@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import tech.iooo.boot.core.utils.Assert;
 import tech.iooo.boot.core.utils.ClassUtils;
-import tech.iooo.boot.core.utils.CollectionUtils;
 import tech.iooo.boot.spring.annotation.RequestMapping;
 import tech.iooo.boot.spring.common.RoutingContextHandler;
 
@@ -52,7 +51,7 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
     });
 
     multimap.keySet().forEach(path -> {
-      if (CollectionUtils.isNotEmpty(multimap.get(path))) {
+      if (multimap.get(path).size() > 1) {
         String list = Joiner.on(",").join(multimap.get(path).stream()
             .map(handler -> ClassUtils.getUserClass(handler).getName())
             .collect(Collectors.toList()));
