@@ -17,6 +17,7 @@
 
 package tech.iooo.boot.core.threadpool.support.eager;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import tech.iooo.boot.core.threadlocal.NamedInternalThreadFactory;
@@ -33,18 +34,22 @@ public class EagerThreadPool implements ThreadPool {
 
   private static final String EAGER_THREAD_NAME_PREFIX = "i-exec-eager";
 
+  private EagerThreadPoolExecutor executor;
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
-    // init queue and executor
-    TaskQueue<Runnable> taskQueue = new TaskQueue<>(config.getQueues() <= 0 ? 1 : config.getQueues());
-    EagerThreadPoolExecutor executor = new EagerThreadPoolExecutor(config.getCores(),
-        Integer.MAX_VALUE,
-        config.getAlive(),
-        TimeUnit.MILLISECONDS,
-        taskQueue,
-        new NamedInternalThreadFactory(EAGER_THREAD_NAME_PREFIX, config.isDaemon()),
-        new AbortPolicyWithReport());
-    taskQueue.setExecutor(executor);
+    if (Objects.isNull(executor)) {
+      // init queue and executor
+      TaskQueue<Runnable> taskQueue = new TaskQueue<>(config.getQueues() <= 0 ? 1 : config.getQueues());
+      executor = new EagerThreadPoolExecutor(config.getCores(),
+          Integer.MAX_VALUE,
+          config.getAlive(),
+          TimeUnit.MILLISECONDS,
+          taskQueue,
+          new NamedInternalThreadFactory(EAGER_THREAD_NAME_PREFIX, config.isDaemon()),
+          new AbortPolicyWithReport());
+      taskQueue.setExecutor(executor);
+    }
     return executor;
   }
 

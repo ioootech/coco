@@ -16,6 +16,7 @@
  */
 package tech.iooo.boot.core.threadpool.support.cached;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
@@ -36,13 +37,19 @@ public class CachedThreadPool implements ThreadPool {
 
   private static final String CACHED_THREAD_NAME_PREFIX = "i-exec-cached";
 
+  private ExecutorService executorService;
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
-    return new ThreadPoolExecutor(config.getCores(), Integer.MAX_VALUE, config.getAlive(), TimeUnit.MILLISECONDS,
-        config.getQueues() == 0 ? new SynchronousQueue<>() :
-            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
-                : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(CACHED_THREAD_NAME_PREFIX, config.isDaemon()), new AbortPolicyWithReport());
+    if (Objects.isNull(executorService)) {
+      executorService = new ThreadPoolExecutor(config.getCores(), Integer.MAX_VALUE, config.getAlive(), TimeUnit.MILLISECONDS,
+          config.getQueues() == 0 ? new SynchronousQueue<>() :
+              (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                  : new LinkedBlockingQueue<>(config.getQueues())),
+          new NamedInternalThreadFactory(CACHED_THREAD_NAME_PREFIX, config.isDaemon()), new AbortPolicyWithReport());
+
+    }
+    return executorService;
   }
 
   public ExecutorService executorService() {

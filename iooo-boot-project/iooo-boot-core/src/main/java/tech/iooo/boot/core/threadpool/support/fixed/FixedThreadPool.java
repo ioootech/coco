@@ -16,6 +16,7 @@
  */
 package tech.iooo.boot.core.threadpool.support.fixed;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
@@ -37,16 +38,21 @@ public class FixedThreadPool implements ThreadPool {
   private static final String FIXED_THREAD_NAME_PREFIX = "i-exec-fixed";
   private static final String SINGLE_THREAD_NAME_PREFIX = "i-exec-single";
 
+  private ExecutorService executorService;
+
   @Override
   public ExecutorService executorService(ThreadPoolConfig config) {
-    return new ThreadPoolExecutor(config.getCores(), config.getCores(), 0L, TimeUnit.MILLISECONDS,
-        config.getQueues() == 0 ? new SynchronousQueue<>() :
-            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
-                : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(
-            config.getCores() == 1 ? SINGLE_THREAD_NAME_PREFIX : FIXED_THREAD_NAME_PREFIX,
-            config.isDaemon()),
-        new AbortPolicyWithReport());
+    if (Objects.isNull(executorService)) {
+      executorService = new ThreadPoolExecutor(config.getCores(), config.getCores(), 0L, TimeUnit.MILLISECONDS,
+          config.getQueues() == 0 ? new SynchronousQueue<>() :
+              (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                  : new LinkedBlockingQueue<>(config.getQueues())),
+          new NamedInternalThreadFactory(
+              config.getCores() == 1 ? SINGLE_THREAD_NAME_PREFIX : FIXED_THREAD_NAME_PREFIX,
+              config.isDaemon()),
+          new AbortPolicyWithReport());
+    }
+    return executorService;
   }
 
   public ExecutorService executorService() {

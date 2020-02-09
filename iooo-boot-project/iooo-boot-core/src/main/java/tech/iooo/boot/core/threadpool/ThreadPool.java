@@ -16,6 +16,7 @@
  */
 package tech.iooo.boot.core.threadpool;
 
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
@@ -41,9 +42,12 @@ public interface ThreadPool {
    * @return scheduled thread pool
    */
   static ScheduledExecutorService scheduledExecutorService(ThreadPoolConfig config) {
-    return new ScheduledThreadPoolExecutor(config.getCores(),
-        new BasicThreadFactory.Builder().namingPattern("i-exec-scheduled")
-            .daemon(config.isDaemon()).build());
+    if (Objects.isNull(Bucket.scheduledExecutorService)) {
+      Bucket.scheduledExecutorService = new ScheduledThreadPoolExecutor(config.getCores(),
+          new BasicThreadFactory.Builder().namingPattern("i-exec-scheduled")
+              .daemon(config.isDaemon()).build());
+    }
+    return Bucket.scheduledExecutorService;
   }
 
   /**
@@ -53,11 +57,20 @@ public interface ThreadPool {
    * @return thread pool
    */
   default ExecutorService executorService(ThreadPoolConfig config) {
-    return new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
-        config.getQueues() == 0 ? new SynchronousQueue<>() :
-            (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
-                : new LinkedBlockingQueue<>(config.getQueues())),
-        new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
+    if (Objects.isNull(Bucket.executorService)) {
+      Bucket.executorService = new ThreadPoolExecutor(config.getCores(), config.getThreads(), config.getAlive(), TimeUnit.MILLISECONDS,
+          config.getQueues() == 0 ? new SynchronousQueue<>() :
+              (config.getQueues() < 0 ? new LinkedBlockingQueue<>()
+                  : new LinkedBlockingQueue<>(config.getQueues())),
+          new NamedInternalThreadFactory(config.getNamePrefix(), config.isDaemon()), new AbortPolicyWithReport());
+
+    }
+    return Bucket.executorService;
   }
 
+  enum Bucket {
+    ;
+    public static ExecutorService executorService;
+    public static ScheduledExecutorService scheduledExecutorService;
+  }
 }
