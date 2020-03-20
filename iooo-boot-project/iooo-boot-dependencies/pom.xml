@@ -91,7 +91,8 @@
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <junit.version>4.13</junit.version>
     <junit-jupiter.version>5.6.0</junit-jupiter.version>
-    <projectreactor.version>3.3.3.RELEASE</projectreactor.version>
+    <reactor.version>3.3.3.RELEASE</reactor.version>
+    <reactor-addon.version>3.3.2.RELEASE</reactor-addon.version>
     <lettuce.version>5.2.2.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
@@ -713,22 +714,22 @@
       <dependency>
         <groupId>io.projectreactor</groupId>
         <artifactId>reactor-core</artifactId>
-        <version>${projectreactor.version}</version>
+        <version>${reactor.version}</version>
       </dependency>
       <dependency>
         <groupId>io.projectreactor</groupId>
         <artifactId>reactor-test</artifactId>
-        <version>${projectreactor.version}</version>
+        <version>${reactor.version}</version>
       </dependency>
       <dependency>
         <groupId>io.projectreactor.addons</groupId>
         <artifactId>reactor-extra</artifactId>
-        <version>${projectreactor.version}</version>
+        <version>${reactor-addon.version}</version>
       </dependency>
       <dependency>
         <groupId>io.projectreactor.addons</groupId>
         <artifactId>reactor-adapter</artifactId>
-        <version>${projectreactor.version}</version>
+        <version>${reactor-addon.version}</version>
       </dependency>
       <dependency>
         <groupId>org.reactivestreams</groupId>
