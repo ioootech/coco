@@ -29,6 +29,7 @@
   <modules>
     <module>iooo-boot-project</module>
     <module>iooo-boot-example</module>
+    <module>iooo-boot-project/iooo-boot-json-module</module>
   </modules>
 
   <properties>
