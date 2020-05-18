@@ -13,7 +13,7 @@
 
   <artifactId>iooo-boot-json-module</artifactId>
 
-  <name>tech.iooo.boot :: iooo-boot-json-module</name>
+  <name>iooo-boot :: iooo-boot-json-module</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
