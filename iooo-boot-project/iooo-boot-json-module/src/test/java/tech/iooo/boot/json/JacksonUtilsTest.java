@@ -3,8 +3,10 @@ package tech.iooo.boot.json;
 
 import com.google.common.collect.Maps;
 import com.google.common.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
+import tech.iooo.boot.core.constants.SuppressTypeConstants;
 import tech.iooo.boot.json.domain.Person;
 
 /**
@@ -14,6 +16,7 @@ import tech.iooo.boot.json.domain.Person;
 class JacksonUtilsTest {
 
   @Test
+  @SuppressWarnings(SuppressTypeConstants.UNSTABLE_API_USAGE)
   public void test() {
     Person person = new Person();
     person.setName("ivan");
@@ -31,9 +34,9 @@ class JacksonUtilsTest {
     Map<Integer, Person> personMap = Maps.newHashMap();
     personMap.put(1, person);
     System.out.println(JacksonUtils.toJson(personMap));
-    TypeToken<Map<Integer, Person>> typeToken = new TypeToken<Map<Integer, Person>>() {
-    };
-    Map<Integer, Person> map = JacksonUtils.fromJson("{\"1\":{\"name\":\"ivan\",\"age\":28,\"data\":{\"foo\":\"bar\"}}}", typeToken.getType());
+    Type type = new TypeToken<Map<Integer, Person>>() {
+    }.getType();
+    Map<Integer, Person> map = JacksonUtils.fromJson("{\"1\":{\"name\":\"ivan\",\"age\":28,\"data\":{\"foo\":\"bar\"}}}", type);
     System.out.println(map);
     System.out.println(map.get(1));
   }
