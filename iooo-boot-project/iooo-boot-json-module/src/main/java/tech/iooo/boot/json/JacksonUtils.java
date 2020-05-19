@@ -16,36 +16,36 @@ public class JacksonUtils {
   private JacksonUtils() {
   }
 
-  public static final JacksonUtils instance = SingletonHolder.instance;
+  public static final JacksonUtils INSTANCE = SingletonHolder.INSTANCE;
 
   private static class SingletonHolder {
 
-    public static JacksonUtils instance = new JacksonUtils();
+    public static JacksonUtils INSTANCE = new JacksonUtils();
   }
 
   @Delegate
-  private final ObjectMapper objectMapper = new ObjectMapper();
+  private final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
   public void init(JacksonConfig config) {
     if (Objects.nonNull(config)) {
-      Optional.ofNullable(config.getSerializationConfig()).ifPresent(instance.objectMapper::setConfig);
-      Optional.ofNullable(config.getDeserializationConfig()).ifPresent(instance.objectMapper::setConfig);
-      Optional.ofNullable(config.getDateFormat()).ifPresent(objectMapper::setDateFormat);
+      Optional.ofNullable(config.getSerializationConfig()).ifPresent(INSTANCE.OBJECT_MAPPER::setConfig);
+      Optional.ofNullable(config.getDeserializationConfig()).ifPresent(INSTANCE.OBJECT_MAPPER::setConfig);
+      Optional.ofNullable(config.getDateFormat()).ifPresent(OBJECT_MAPPER::setDateFormat);
     }
   }
 
   @SneakyThrows
   public static <T> String toJson(T t) {
-    return instance.objectMapper.writeValueAsString(t);
+    return INSTANCE.OBJECT_MAPPER.writeValueAsString(t);
   }
 
   @SneakyThrows
   public static <T> T fromJson(String json, Class<T> tClass) {
-    return instance.objectMapper.readValue(json, tClass);
+    return INSTANCE.OBJECT_MAPPER.readValue(json, tClass);
   }
 
   @SneakyThrows
   public static <T> T fromJson(String json, Type type) {
-    return instance.objectMapper.readValue(json, instance.objectMapper.getTypeFactory().constructType(type));
+    return INSTANCE.OBJECT_MAPPER.readValue(json, INSTANCE.OBJECT_MAPPER.getTypeFactory().constructType(type));
   }
 }
