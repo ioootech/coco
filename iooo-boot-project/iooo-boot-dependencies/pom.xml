@@ -48,18 +48,18 @@
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
     <!-- spring boot versions -->
-    <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
-    <spring.version>5.2.6.RELEASE</spring.version>
+    <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+    <spring.version>5.2.7.RELEASE</spring.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.14</commons-codec.version>
     <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
     <commons-lang3.version>3.10</commons-lang3.version>
     <commons-pool.version>1.6</commons-pool.version>
     <commons-pool2.version>2.8.0</commons-pool2.version>
-    <commons-io.version>2.6</commons-io.version>
+    <commons-io.version>2.7</commons-io.version>
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-net.version>3.6</commons-net.version>
-    <curator.version>4.3.0</curator.version>
+    <curator.version>5.0.0</curator.version>
     <dubbo.version>2.6.8</dubbo.version>
     <apache.dubbo.version>2.7.6</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>2.7.6</apache.dubbo-spring-boot-starter>
@@ -68,8 +68,8 @@
     <aspectjweaver.version>1.9.5</aspectjweaver.version>
     <hsqldb.version>2.5.0</hsqldb.version>
     <HikariCP.version>3.4.5</HikariCP.version>
-    <dagger.version>2.27</dagger.version>
-    <protobuf.version>3.12.1</protobuf.version>
+    <dagger.version>2.28</dagger.version>
+    <protobuf.version>3.12.2</protobuf.version>
     <grpc.version>1.29.0</grpc.version>
     <redisson.version>3.13.0</redisson.version>
     <hibernate-validator.version>6.1.2.Final</hibernate-validator.version>
@@ -77,7 +77,7 @@
     <gson.version>2.8.6</gson.version>
     <java-jwt.version>3.10.3</java-jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
-    <hutool.version>5.3.5</hutool.version>
+    <hutool.version>5.3.8</hutool.version>
     <dozer.version>6.5.0</dozer.version>
     <guice.version>4.2.3</guice.version>
     <governator.version>1.17.10</governator.version>
@@ -91,9 +91,9 @@
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <junit.version>4.13</junit.version>
     <junit-jupiter.version>5.6.1</junit-jupiter.version>
-    <reactor.version>3.3.4.RELEASE</reactor.version>
+    <reactor.version>3.3.5.RELEASE</reactor.version>
     <reactor-addon.version>3.3.3.RELEASE</reactor-addon.version>
-    <lettuce.version>5.2.2.RELEASE</lettuce.version>
+    <lettuce.version>5.3.1.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
     <log4j2.version>2.13.3</log4j2.version>
@@ -101,14 +101,14 @@
     <disruptor.version>3.4.2</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.3</logback.version>
-    <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
+    <logstash-logback-encoder.version>6.4</logstash-logback-encoder.version>
     <lombok.version>1.18.12</lombok.version>
     <hazelcast.version>4.0.1</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
-    <mybatis-plus-boot-starter-v3.version>3.3.1</mybatis-plus-boot-starter-v3.version>
+    <mybatis-plus-boot-starter-v3.version>3.3.2</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
-    <mybatis-plus-v3.version>3.3.1</mybatis-plus-v3.version>
+    <mybatis-plus-v3.version>3.3.2</mybatis-plus-v3.version>
     <netty.version>4.1.50.Final</netty.version>
     <netty-tcnative.version>2.0.30.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
@@ -126,7 +126,7 @@
     <grpc-spring-boot-starter.version>2.7.0.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>3.9.1</vertx.version>
     <guava.version>29.0-jre</guava.version>
-    <bytebuddy.version>1.10.10</bytebuddy.version>
+    <bytebuddy.version>1.10.11</bytebuddy.version>
     <commons-configuration2.version>2.7</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <asm.version>8.0.1</asm.version>
@@ -146,8 +146,8 @@
     <xstream.version>1.4.12-java7</xstream.version>
     <xerces.version>2.12.0</xerces.version>
     <bcprov.version>1.65</bcprov.version>
-    <mybatis.version>3.5.4</mybatis.version>
-    <mybatis-spring.version>2.0.4</mybatis-spring.version>
+    <mybatis.version>3.5.5</mybatis.version>
+    <mybatis-spring.version>2.0.5</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
     <pagehelper.version>5.1.11</pagehelper.version>
     <pagehelper.boot.version>1.2.13</pagehelper.boot.version>
@@ -172,7 +172,7 @@
     <transmittable-thread-local.version>2.11.4</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>10.2.0</eclipse-collections.version>
-    <re2j.version>1.3</re2j.version>
+    <re2j.version>1.4</re2j.version>
     <maven.version>3.6.3</maven.version>
     <maven-plugin-tools.version>3.6.0</maven-plugin-tools.version>
     <!-- Plugin versions -->
