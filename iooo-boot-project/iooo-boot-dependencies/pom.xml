@@ -146,7 +146,7 @@
     <xstream.version>1.4.12-java7</xstream.version>
     <xerces.version>2.12.0</xerces.version>
     <bcprov.version>1.65</bcprov.version>
-    <mybatis.version>3.5.4</mybatis.version>
+    <mybatis.version>3.5.5</mybatis.version>
     <mybatis-spring.version>2.0.4</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
     <pagehelper.version>5.1.11</pagehelper.version>
