@@ -86,8 +86,7 @@
     <jackson.version>2.11.0</jackson.version>
     <rocketmq-client.version>4.7.0</rocketmq-client.version>
     <json-path.version>2.4.0</json-path.version>
-    <jedis.version>2.10.2</jedis.version>
-    <jedis-v3.version>3.2.0</jedis-v3.version>
+    <jedis.version>3.3.0</jedis.version>
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <junit.version>4.13</junit.version>
     <junit-jupiter.version>5.6.1</junit-jupiter.version>
@@ -104,7 +103,7 @@
     <logstash-logback-encoder.version>6.4</logstash-logback-encoder.version>
     <lombok.version>1.18.12</lombok.version>
     <hazelcast.version>4.0.1</hazelcast.version>
-    <mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
+    <mybatis-spring-boot-starter.version>2.1.3</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
     <mybatis-plus-boot-starter-v3.version>3.3.2</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
@@ -119,7 +118,7 @@
     <groovy-all.version>3.0.2</groovy-all.version>
     <slf4j.version>1.7.30</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
-    <undertow.version>2.1.1.Final</undertow.version>
+    <undertow.version>2.1.3.Final</undertow.version>
     <icu4j.version>67.1</icu4j.version>
     <mysql.version>8.0.20</mysql.version>
     <h2.version>1.4.200</h2.version>
@@ -156,7 +155,7 @@
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
     <sharding.version>3.1.0</sharding.version>
-    <kryo.version>5.0.0-RC5</kryo.version>
+    <kryo.version>5.0.0-RC6</kryo.version>
     <protostuff.version>1.7.2</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
@@ -187,11 +186,11 @@
     <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
     <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
     <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
-    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
     <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
     <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
     <maven-invoker-plugin.version>3.2.0</maven-invoker-plugin.version>
-    <maven-help-plugin.version>3.1.1</maven-help-plugin.version>
+    <maven-help-plugin.version>3.2.0</maven-help-plugin.version>
     <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
@@ -220,7 +219,7 @@
     <docker-maven-plugin.version>1.2.1</docker-maven-plugin.version>
     <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-    <takari-lifecycle-plugin.version>1.13.9</takari-lifecycle-plugin.version>
+    <takari-lifecycle-plugin.version>1.13.10</takari-lifecycle-plugin.version>
     <license-maven-plugin.version>3.0</license-maven-plugin.version>
     <maven-scm-plugin.version>1.11.2</maven-scm-plugin.version>
     <tech.iooo.licenseHeader>https://coco.iooo.tech/support/license-header.txt
