@@ -61,7 +61,7 @@
     <commons-net.version>3.6</commons-net.version>
     <curator.version>5.0.0</curator.version>
     <dubbo.version>2.6.8</dubbo.version>
-    <apache.dubbo.version>2.7.6</apache.dubbo.version>
+    <apache.dubbo.version>2.7.7</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>2.7.7</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
     <motan.version>1.1.8</motan.version>
