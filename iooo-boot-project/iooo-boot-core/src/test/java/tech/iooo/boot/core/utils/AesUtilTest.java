@@ -1,9 +1,7 @@
 package tech.iooo.boot.core.utils;
 
 import static tech.iooo.boot.core.utils.AesUtil.decrypt;
-import static tech.iooo.boot.core.utils.AesUtil.decryptHex;
 import static tech.iooo.boot.core.utils.AesUtil.encrypt;
-import static tech.iooo.boot.core.utils.AesUtil.encryptHex;
 
 import java.nio.charset.StandardCharsets;
 import lombok.SneakyThrows;
@@ -45,35 +43,6 @@ class AesUtilTest {
     decrypt = decrypt(encrypt, key, getIv(), AESType.AES_256, EncodeType.AES_OFB_PKCS5Padding);
     log(encrypt, decrypt);
   }
-
-  @Test
-  @SneakyThrows
-  void test2() {
-    String encrypt;
-    String decrypt;
-    System.out.println("【1】AES不指定模式和填充，默认为 ECB/PKCS5Padding，输入可以不是16字节，也不需要填充向量\n");
-    // 需要加密的内容
-    String content = "在线助手";
-    // 生成密钥需要的密码值
-    String key = "www.it399.com111";
-    System.out.println("content： " + content + "\nkey： " + key);
-    //默认方式  每次加密都不一样，但是秘钥是一样的，所以解密还是一样的
-    // 内容加密后的值
-    encrypt = encryptHex(content, key, null, AESType.AES_128, EncodeType.AES_DEFAULT);
-    // 被加密的内容解密后的值
-    decrypt = decryptHex(encrypt, key, null, AESType.AES_128, EncodeType.AES_DEFAULT);
-    log(encrypt, decrypt);
-    System.out.println("【2】AES_CBC_NoPadding模式，输入必须是16*n字节，需要填充向量\n");
-    // 内容加密后的值
-    //待加密内容不足16*n位 报错javax.crypto.IllegalBlockSizeException: Input length not multiple of 16 bytes
-    //需要填充向量，不然报错java.security.InvalidKeyException: Parameters missing
-    //得到加密后的内容先base64编码再解码再传给解码，不然直接转回乱码
-    content = "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈";
-    encrypt = encryptHex(content, key, null, AESType.AES_256, EncodeType.AES_CBC_NoPadding);
-    decrypt = decryptHex(encrypt, key, null, AESType.AES_256, EncodeType.AES_CBC_NoPadding);
-    log(encrypt, decrypt);
-  }
-
 
   @Test
   @SneakyThrows
