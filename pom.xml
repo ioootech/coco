@@ -35,5 +35,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <main.basedir>${basedir}</main.basedir>
   </properties>
-
+  <repositories>
+    <repository>
+      <id>sonatype-nexus</id>
+      <name>sonatype-nexus</name>
+      <url>https://oss.sonatype.org/content/groups/staging</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>
