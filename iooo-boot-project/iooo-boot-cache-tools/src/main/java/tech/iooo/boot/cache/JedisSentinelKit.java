@@ -16,8 +16,8 @@ import java.util.Set;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 import redis.clients.jedis.Tuple;
-import redis.clients.util.Pool;
-import redis.clients.util.SafeEncoder;
+import redis.clients.jedis.util.Pool;
+import redis.clients.jedis.util.SafeEncoder;
 import tech.iooo.boot.cache.utils.KryoRedisSerializer;
 import tech.iooo.boot.core.constants.SuppressTypeConstants;
 import tech.iooo.boot.core.logging.Logger;
@@ -55,13 +55,6 @@ public class JedisSentinelKit {
       result = jedisAction.action(jedis);
     } catch (Exception e) {
       logger.error("[JedisAction.action(Jedis)]", e);
-      if (null != jedis) {
-        pool.returnBrokenResource(jedis);
-      }
-    } finally {
-      if (null != jedis) {
-        pool.returnResource(jedis);
-      }
     }
     return result;
   }
