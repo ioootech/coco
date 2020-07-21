@@ -13,7 +13,7 @@
     <repository>
       <id>sonatype-nexus</id>
       <name>sonatype-nexus</name>
-      <url>https://oss.sonatype.org/content/groups/staging</url>
+      <url>https://oss.sonatype.org/content/groups/staging/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
