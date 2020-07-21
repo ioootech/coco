@@ -37,13 +37,10 @@
   </properties>
   <repositories>
     <repository>
-      <id>sonatype-nexus</id>
-      <name>sonatype-nexus</name>
-      <url>https://repo.maven.apache.org/maven2</url>
+      <id>central</id>
+      <name>Default Repository</name>
       <layout>default</layout>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
+      <url>https://repo1.maven.org/maven2</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
