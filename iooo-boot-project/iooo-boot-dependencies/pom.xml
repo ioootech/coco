@@ -48,7 +48,7 @@
     <!-- Iooo versions -->
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
     <!-- spring boot versions -->
-    <spring.boot.version>2.3.1.RELEASE</spring.boot.version>
+    <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
     <spring.version>5.2.8.RELEASE</spring.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.14</commons-codec.version>
@@ -60,7 +60,7 @@
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-net.version>3.6</commons-net.version>
     <curator.version>5.1.0</curator.version>
-    <dubbo.version>2.6.8</dubbo.version>
+    <dubbo.version>2.6.9</dubbo.version>
     <apache.dubbo.version>2.7.7</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>2.7.7</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
@@ -115,7 +115,7 @@
     <tink.version>1.4.0</tink.version>
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.2</quartz.version>
-    <groovy-all.version>3.0.4</groovy-all.version>
+    <groovy-all.version>3.0.5</groovy-all.version>
     <slf4j.version>1.7.30</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
     <undertow.version>2.1.3.Final</undertow.version>
@@ -148,9 +148,9 @@
     <mybatis.version>3.5.5</mybatis.version>
     <mybatis-spring.version>2.0.5</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
-    <pagehelper.version>5.1.11</pagehelper.version>
-    <pagehelper.boot.version>1.2.13</pagehelper.boot.version>
-    <fastjson.version>1.2.72</fastjson.version>
+    <pagehelper.version>5.2.0</pagehelper.version>
+    <pagehelper.boot.version>1.3.0</pagehelper.boot.version>
+    <fastjson.version>1.2.73</fastjson.version>
     <okhttp.version>4.8.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
