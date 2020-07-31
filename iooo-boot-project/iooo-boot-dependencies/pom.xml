@@ -69,7 +69,7 @@
     <hsqldb.version>2.5.1</hsqldb.version>
     <HikariCP.version>3.4.5</HikariCP.version>
     <dagger.version>2.28.3</dagger.version>
-    <protobuf.version>3.12.2</protobuf.version>
+    <protobuf.version>3.12.4</protobuf.version>
     <grpc.version>1.31.0</grpc.version>
     <redisson.version>3.13.2</redisson.version>
     <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
