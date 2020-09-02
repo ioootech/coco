@@ -51,7 +51,7 @@
     <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
     <spring.version>5.2.8.RELEASE</spring.version>
     <!-- Dependency versions -->
-    <commons-codec.version>1.14</commons-codec.version>
+    <commons-codec.version>1.15</commons-codec.version>
     <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
     <commons-lang3.version>3.11</commons-lang3.version>
     <commons-pool.version>1.6</commons-pool.version>
