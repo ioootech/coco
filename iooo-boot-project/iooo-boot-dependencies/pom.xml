@@ -96,7 +96,7 @@
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
     <log4j2.version>2.13.3</log4j2.version>
-    <jmh.version>1.25.1</jmh.version>
+    <jmh.version>1.25.2</jmh.version>
     <disruptor.version>3.4.2</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.3</logback.version>
