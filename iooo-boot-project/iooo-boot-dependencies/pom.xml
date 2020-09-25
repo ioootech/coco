@@ -52,7 +52,7 @@
     <spring.version>5.2.9.RELEASE</spring.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.15</commons-codec.version>
-    <commons-dbcp2.version>2.7.0</commons-dbcp2.version>
+    <commons-dbcp2.version>2.8.0</commons-dbcp2.version>
     <commons-lang3.version>3.11</commons-lang3.version>
     <commons-pool.version>1.6</commons-pool.version>
     <commons-pool2.version>2.8.1</commons-pool2.version>
