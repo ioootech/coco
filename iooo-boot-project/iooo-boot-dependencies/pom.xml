@@ -150,7 +150,7 @@
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
     <pagehelper.version>5.2.0</pagehelper.version>
     <pagehelper.boot.version>1.3.0</pagehelper.boot.version>
-    <fastjson.version>1.2.73</fastjson.version>
+    <fastjson.version>1.2.74</fastjson.version>
     <okhttp.version>4.9.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
