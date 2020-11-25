@@ -142,7 +142,7 @@
     <cglib.version>3.3.0</cglib.version>
     <sentinel.version>1.8.0</sentinel.version>
     <jna.version>5.6.0</jna.version>
-    <xstream.version>1.4.13-java7</xstream.version>
+    <xstream.version>1.4.14-jdk7</xstream.version>
     <xerces.version>2.12.0</xerces.version>
     <bcprov.version>1.66</bcprov.version>
     <mybatis.version>3.5.6</mybatis.version>
