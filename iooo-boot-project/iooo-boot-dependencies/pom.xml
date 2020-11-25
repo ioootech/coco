@@ -103,7 +103,7 @@
     <logstash-logback-encoder.version>6.4</logstash-logback-encoder.version>
     <lombok.version>1.18.16</lombok.version>
     <hazelcast.version>4.1</hazelcast.version>
-    <mybatis-spring-boot-starter.version>2.1.3</mybatis-spring-boot-starter.version>
+    <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
     <mybatis-plus-boot-starter-v3.version>3.4.1</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
