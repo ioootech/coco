@@ -115,7 +115,7 @@
     <tink.version>1.5.0</tink.version>
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.2</quartz.version>
-    <groovy-all.version>3.0.6</groovy-all.version>
+    <groovy-all.version>3.0.7</groovy-all.version>
     <slf4j.version>1.7.30</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
     <undertow.version>2.2.2.Final</undertow.version>
