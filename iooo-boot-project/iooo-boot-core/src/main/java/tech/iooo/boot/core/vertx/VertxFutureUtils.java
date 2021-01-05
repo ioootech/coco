@@ -14,7 +14,7 @@ public class VertxFutureUtils {
 
   public <T> CompletableFuture<T> toCompletableFuture(Future<T> future) {
     CompletableHandler<T> completableHandler = CompletableHandler.init();
-    future.setHandler(completableHandler);
+    future.onComplete(completableHandler);
     return completableHandler.completableFuture();
   }
 

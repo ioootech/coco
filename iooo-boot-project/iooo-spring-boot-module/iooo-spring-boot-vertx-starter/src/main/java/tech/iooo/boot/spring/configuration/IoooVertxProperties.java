@@ -38,8 +38,6 @@ public class IoooVertxProperties {
     private String isolationGroup;
     private Long maxWorkerExecuteTime;
     private TimeUnit maxWorkerExecuteTimeUnit;
-    @Deprecated
-    private Boolean multiThreaded;
     private Boolean worker;
     private String workerPoolName;
     private Integer workerPoolSize;
@@ -48,7 +46,6 @@ public class IoooVertxProperties {
   @Data
   public static class Gateway {
 
-    private boolean enable = false;
     private Integer port = 9090;
   }
 }

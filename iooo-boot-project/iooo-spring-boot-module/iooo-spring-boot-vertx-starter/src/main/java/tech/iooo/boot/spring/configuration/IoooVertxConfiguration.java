@@ -66,7 +66,6 @@ public class IoooVertxConfiguration {
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getIsolationGroup()).ifPresent(deploymentOptions::setIsolationGroup);
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getMaxWorkerExecuteTime()).ifPresent(deploymentOptions::setMaxWorkerExecuteTime);
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getMaxWorkerExecuteTimeUnit()).ifPresent(deploymentOptions::setMaxWorkerExecuteTimeUnit);
-    Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getMultiThreaded()).ifPresent(deploymentOptions::setMultiThreaded);
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorker()).ifPresent(deploymentOptions::setWorker);
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorkerPoolName()).ifPresent(deploymentOptions::setWorkerPoolName);
     Optional.ofNullable(ioooVertxProperties.getDefaultDeploymentOption().getWorkerPoolSize()).ifPresent(deploymentOptions::setWorkerPoolSize);

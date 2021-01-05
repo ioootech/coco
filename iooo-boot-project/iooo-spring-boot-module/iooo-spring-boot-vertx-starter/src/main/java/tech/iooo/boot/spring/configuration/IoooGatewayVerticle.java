@@ -10,8 +10,7 @@ import io.vertx.ext.web.Router;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.stereotype.Service;
 import tech.iooo.boot.core.utils.ClassUtils;
 import tech.iooo.boot.core.utils.NetUtils;
@@ -23,8 +22,7 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  */
 @Slf4j
 @Service
-@ConditionalOnClass(Router.class)
-@ConditionalOnProperty(prefix = "vertx.gateway", name = "enable", havingValue = "true")
+@ConditionalOnBean(IoooGatewayConfiguration.class)
 public class IoooGatewayVerticle extends AbstractVerticle {
 
   @Autowired

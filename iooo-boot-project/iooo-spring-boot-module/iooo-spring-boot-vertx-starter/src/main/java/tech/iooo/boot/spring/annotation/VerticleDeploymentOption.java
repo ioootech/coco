@@ -28,9 +28,6 @@ public @interface VerticleDeploymentOption {
 
   TimeUnit maxWorkerExecuteTimeUnit() default TimeUnit.NANOSECONDS;
 
-  @Deprecated
-  boolean multiThreaded() default false;
-
   boolean worker() default false;
 
   String workerPoolName() default "";

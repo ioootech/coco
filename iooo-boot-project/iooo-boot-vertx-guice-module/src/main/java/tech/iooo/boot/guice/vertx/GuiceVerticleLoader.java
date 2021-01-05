@@ -9,7 +9,7 @@ import com.google.inject.Key;
 import com.google.inject.Module;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
-import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.impl.verticle.CompilingClassLoader;
@@ -71,7 +71,7 @@ public class GuiceVerticleLoader extends AbstractVerticle {
    * @param startedResult When you are happy your verticle is started set the result
    */
   @Override
-  public void start(Future<Void> startedResult) throws Exception {
+  public void start(Promise<Void> startedResult) throws Exception {
     // Start the real verticle
     realVerticle.start(startedResult);
   }
@@ -80,7 +80,7 @@ public class GuiceVerticleLoader extends AbstractVerticle {
    * Vert.x calls the stop method when the verticle is undeployed. Put any cleanup code for your verticle in here
    */
   @Override
-  public void stop(Future<Void> stopFuture) throws Exception {
+  public void stop(Promise<Void> stopFuture) throws Exception {
     // Stop the real verticle
     if (realVerticle != null) {
       realVerticle.stop(stopFuture);
@@ -126,7 +126,7 @@ public class GuiceVerticleLoader extends AbstractVerticle {
     for (int i = 0; i < bootstrapNames.size(); i++) {
       String bootstrapName = bootstrapNames.getString(i);
       try {
-        Class bootstrapClass = classLoader.loadClass(bootstrapName);
+        Class<?> bootstrapClass = classLoader.loadClass(bootstrapName);
         Object obj = bootstrapClass.newInstance();
 
         if (obj instanceof Module) {

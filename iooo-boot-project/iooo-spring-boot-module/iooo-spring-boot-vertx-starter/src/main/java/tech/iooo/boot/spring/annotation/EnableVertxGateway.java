@@ -5,17 +5,17 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import org.springframework.context.annotation.Import;
+import tech.iooo.boot.spring.configuration.VertxGatewaySelector;
 
 /**
  * @author 龙也
- * @date 2019-08-15 20:45
+ * @date 2020/5/19 10:08 上午
  */
-@Documented
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
 @Target(ElementType.TYPE)
-public @interface RequestMapping {
+@Import(VertxGatewaySelector.class)
+public @interface EnableVertxGateway {
 
-  String path() default "/";
-
-  String method() default "GET";
 }

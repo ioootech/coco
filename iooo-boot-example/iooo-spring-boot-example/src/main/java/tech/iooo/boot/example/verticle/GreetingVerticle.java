@@ -1,7 +1,7 @@
 package tech.iooo.boot.example.verticle;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +19,10 @@ public class GreetingVerticle extends AbstractVerticle {
   @Autowired
   private Greeter greeter;
 
-  private int port = SocketUtils.findAvailableTcpPort();
+  private final int port = SocketUtils.findAvailableTcpPort();
 
   @Override
-  public void start(Future<Void> startFuture) throws Exception {
+  public void start(Promise<Void> startPromise) throws Exception {
     vertx.createHttpServer().requestHandler(request -> {
       String name = request.getParam("name");
       logger.info("Got request for namePrefix: " + name);
@@ -35,9 +35,9 @@ public class GreetingVerticle extends AbstractVerticle {
     }).listen(port, ar -> {
       if (ar.succeeded()) {
         logger.info("listening on port {}", port);
-        startFuture.complete();
+        startPromise.complete();
       } else {
-        startFuture.fail(ar.cause());
+        startPromise.fail(ar.cause());
       }
     });
   }

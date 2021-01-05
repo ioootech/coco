@@ -5,17 +5,14 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import io.vertx.core.http.HttpMethod;
-import io.vertx.ext.web.Router;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
 import tech.iooo.boot.core.utils.Assert;
 import tech.iooo.boot.core.utils.ClassUtils;
@@ -27,8 +24,6 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  * @date 2019-08-15 20:59
  */
 @Slf4j
-@Configuration
-@ConditionalOnClass(Router.class)
 public class IoooGatewayConfiguration implements ApplicationContextAware {
 
   private ApplicationContext applicationContext;
@@ -68,7 +63,7 @@ public class IoooGatewayConfiguration implements ApplicationContextAware {
         String configPath = requestMapping.path().trim();
         Assert.doesNotContain(configPath, " ", "path参数不应该包含空格");
         String path = configPath.startsWith("/") ? configPath : "/" + configPath;
-        table.put(path, requestMapping.method(), controller);
+        table.put(path, HttpMethod.valueOf(requestMapping.method()), controller);
       } else {
         table.put(controller.path(), controller.httpMethod(), controller);
       }

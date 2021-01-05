@@ -1,7 +1,10 @@
 package tech.iooo.boot.spring.configuration;
 
+import io.vertx.core.Promise;
 import io.vertx.core.Verticle;
+import io.vertx.core.Vertx;
 import io.vertx.core.spi.VerticleFactory;
+import java.util.concurrent.Callable;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,9 +20,16 @@ public class IoooVerticleFactory implements VerticleFactory {
     return VertxConfigConstants.IOOO_VERTICLE_PREFIX;
   }
 
+  /**
+   * Create a verticle instance. If this method is likely to be slow (e.g. Ruby or JS verticles which might have to start up a language engine) then make sure it is run on a worker thread by {@link Vertx#executeBlocking}.
+   *
+   * @param verticleName The verticle name
+   * @param classLoader The class loader
+   * @param promise the promise to complete with the result
+   */
   @Override
-  public Verticle createVerticle(String verticleName, ClassLoader classLoader) throws Exception {
+  public void createVerticle(String verticleName, ClassLoader classLoader, Promise<Callable<Verticle>> promise) {
     String clazz = VerticleFactory.removePrefix(verticleName);
-    return IoooVerticleServicesHolder.activeVerticleServices().rowMap().get(clazz).values().iterator().next();
+    promise.complete(() -> IoooVerticleServicesHolder.activeVerticleServices().rowMap().get(clazz).values().iterator().next());
   }
 }

@@ -55,66 +55,58 @@ public class IoooVertxApplicationBooster implements SmartLifecycle {
             IoooVerticleServicesHolder.activeVerticleServices().put(verticle.getClass().getName(), "", verticle)
         );
     IoooVerticleServicesHolder.activeVerticleServices().values()
-        .stream()
-        .filter(verticle -> {
-          if (ioooVertxProperties.getGateway().isEnable()) {
-            return true;
-          } else {
-            return !(verticle instanceof IoooGatewayVerticle);
-          }
-        }).forEach(verticle -> {
-      Class<?> verticleClass = verticle.getClass();
-      NamedVerticleDeploymentOption namedVerticleDeploymentOption = verticle.getClass().getAnnotation(NamedVerticleDeploymentOption.class);
-      VerticleDeploymentOption verticleDeploymentOption = verticle.getClass().getAnnotation(VerticleDeploymentOption.class);
-      String optionName;
-      DeploymentOptions deploymentOptions;
-      if (Objects.nonNull(verticleDeploymentOption)) {
-        optionName = verticle.getClass().getSimpleName() + DEFAULT_DEPLOYMENT_OPTION_SUFFIX;
-        deploymentOptions = new DeploymentOptions();
-        deploymentOptions
-            .setExtraClasspath(Lists.newArrayList(verticleDeploymentOption.extraClasspath()))
-            .setHa(verticleDeploymentOption.ha())
-            .setInstances(verticleDeploymentOption.instances())
-            .setMaxWorkerExecuteTime(verticleDeploymentOption.maxWorkerExecuteTime())
-            .setMaxWorkerExecuteTimeUnit(verticleDeploymentOption.maxWorkerExecuteTimeUnit())
-            .setMultiThreaded(verticleDeploymentOption.multiThreaded())
-            .setWorker(verticleDeploymentOption.worker())
-            .setWorkerPoolSize(verticleDeploymentOption.workerPoolSize());
-        if (StringUtils.isNotEmpty(verticleDeploymentOption.isolationGroup())) {
-          deploymentOptions.setIsolationGroup(verticleDeploymentOption.isolationGroup());
-        }
-        if (StringUtils.isNotEmpty(verticleDeploymentOption.workerPoolName())) {
-          deploymentOptions.setWorkerPoolName(verticleDeploymentOption.workerPoolName());
-        }
-      } else {
-        if (Objects.nonNull(namedVerticleDeploymentOption)) {
-          optionName = namedVerticleDeploymentOption.value();
-        } else {
-          optionName = DEFAULT_DEPLOYMENT_OPTIONS;
-        }
-        if (!ioooVertxProperties.getVerticle().isFailFast()) {
-          if (!SpringUtils.context().containsBean(optionName)) {
-            logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
-                optionName, verticleClass.getSimpleName());
-          }
-        }
-        deploymentOptions = SpringUtils.context().getBean(optionName, DeploymentOptions.class);
-      }
-      vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
-          deploymentOptions,
-          res -> {
-            if (res.succeeded()) {
-              if (logger.isInfoEnabled()) {
-                String className = ClassUtils.getUserClass(verticleClass).getSimpleName();
-                logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", className, optionName, res.result());
-              }
-              IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");
-              IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).put(res.result(), verticle);
-            } else {
-              logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
+        .forEach(verticle -> {
+          Class<?> verticleClass = verticle.getClass();
+          NamedVerticleDeploymentOption namedVerticleDeploymentOption = verticle.getClass().getAnnotation(NamedVerticleDeploymentOption.class);
+          VerticleDeploymentOption verticleDeploymentOption = verticle.getClass().getAnnotation(VerticleDeploymentOption.class);
+          String optionName;
+          DeploymentOptions deploymentOptions;
+          if (Objects.nonNull(verticleDeploymentOption)) {
+            optionName = verticle.getClass().getSimpleName() + DEFAULT_DEPLOYMENT_OPTION_SUFFIX;
+            deploymentOptions = new DeploymentOptions();
+            deploymentOptions
+                .setExtraClasspath(Lists.newArrayList(verticleDeploymentOption.extraClasspath()))
+                .setHa(verticleDeploymentOption.ha())
+                .setInstances(verticleDeploymentOption.instances())
+                .setMaxWorkerExecuteTime(verticleDeploymentOption.maxWorkerExecuteTime())
+                .setMaxWorkerExecuteTimeUnit(verticleDeploymentOption.maxWorkerExecuteTimeUnit())
+                .setWorker(verticleDeploymentOption.worker())
+                .setWorkerPoolSize(verticleDeploymentOption.workerPoolSize());
+            if (StringUtils.isNotEmpty(verticleDeploymentOption.isolationGroup())) {
+              deploymentOptions.setIsolationGroup(verticleDeploymentOption.isolationGroup());
             }
-          });
-    });
+            if (StringUtils.isNotEmpty(verticleDeploymentOption.workerPoolName())) {
+              deploymentOptions.setWorkerPoolName(verticleDeploymentOption.workerPoolName());
+            }
+          } else {
+            if (Objects.nonNull(namedVerticleDeploymentOption)) {
+              optionName = namedVerticleDeploymentOption.value();
+            } else {
+              optionName = DEFAULT_DEPLOYMENT_OPTIONS;
+            }
+            if (!ioooVertxProperties.getVerticle().isFailFast()) {
+              if (!SpringUtils.context().containsBean(optionName)) {
+                logger.warn("failed to get deploymentOption [{}] during the deployment of verticle [{}],use default deployment options instead.",
+                    optionName, verticleClass.getSimpleName());
+              }
+            }
+            deploymentOptions = SpringUtils.context().getBean(optionName, DeploymentOptions.class);
+          }
+          vertx.deployVerticle(VertxConfigConstants.IOOO_VERTICLE_PREFIX + ":" + verticleClass.getName(),
+              deploymentOptions,
+              res -> {
+                if (res.succeeded()) {
+                  if (logger.isInfoEnabled()) {
+                    String className = ClassUtils.getUserClass(verticleClass).getSimpleName();
+                    logger.info("deployed verticle [{}] with deploymentOption [{}],id [{}].", className, optionName, res.result());
+                  }
+                  IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).remove("");
+                  IoooVerticleServicesHolder.activeVerticleServices().row(verticleClass.getName()).put(res.result(), verticle);
+                } else {
+                  logger.error("error with deploy verticle " + verticleClass.getName(), res.cause());
+                }
+              });
+        });
     this.running = true;
   }
 

@@ -3,6 +3,7 @@ package tech.iooo.boot.core.vertx;
 import io.vertx.core.AsyncResult;
 import io.vertx.core.Context;
 import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import io.vertx.core.Vertx;
 import io.vertx.core.WorkerExecutor;
 import java.util.Objects;
@@ -20,8 +21,8 @@ import java.util.function.Supplier;
  *
  * An implementation of {@link CompletableFuture} for Vert.x. It differs in the way to handle async calls:
  * <p>
- * * {@link VertxCompletableFuture} are attached to a Vert.x {@link Context} * All operator methods returns {@link VertxCompletableFuture} * <em*async</em> method not passing an
- * {@link Executor} are executed on the attached {@link Context} * All non async method are executed on the current Thread (so not necessary on the attached {@link Context}
+ * * {@link VertxCompletableFuture} are attached to a Vert.x {@link Context} * All operator methods returns {@link VertxCompletableFuture} * <em*async</em> method not passing an {@link Executor} are executed on the attached {@link Context}
+ * * All non async method are executed on the current Thread (so not necessary on the attached {@link Context}
  * <p>
  * The class also offer bridges methods with Vert.x {@link Future}, and regular {@link CompletableFuture}.
  *
@@ -60,8 +61,8 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Creates a new {@link VertxCompletableFuture} from the given context and given {@link CompletableFuture}. The created {@link VertxCompletableFuture} is completed successfully
-   * or not when the given completable future completes successfully or not.
+   * Creates a new {@link VertxCompletableFuture} from the given context and given {@link CompletableFuture}. The created {@link VertxCompletableFuture} is completed successfully or not when the given completable future completes
+   * successfully or not.
    *
    * @param context the context
    * @param future the completable future
@@ -88,8 +89,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   // ============= Factory methods (from) =============
 
   /**
-   * Creates a new {@link VertxCompletableFuture} from the given {@link Vertx} instance and given {@link CompletableFuture}. The returned future uses the current Vert.x context, or
-   * creates a new one.
+   * Creates a new {@link VertxCompletableFuture} from the given {@link Vertx} instance and given {@link CompletableFuture}. The returned future uses the current Vert.x context, or creates a new one.
    * <p>
    * The created {@link VertxCompletableFuture} is completed successfully or not when the given completable future completes successfully or not.
    *
@@ -103,8 +103,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Creates a new {@link VertxCompletableFuture} from the given {@link Context} instance and given {@link Future}. The returned future uses the current Vert.x context, or creates
-   * a new one.
+   * Creates a new {@link VertxCompletableFuture} from the given {@link Context} instance and given {@link Future}. The returned future uses the current Vert.x context, or creates a new one.
    * <p>
    * The created {@link VertxCompletableFuture} is completed successfully or not when the given future completes successfully or not.
    *
@@ -120,8 +119,8 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   /**
    * Creates a {@link VertxCompletableFuture} from the given {@link Context} and {@link CompletableFuture}.
    * <p>
-   * The created {@link VertxCompletableFuture} is completed successfully or not when the given future completes successfully or not. The completion is called on the given {@link
-   * Context}, immediately if it is already executing on the right context, asynchronously if not.
+   * The created {@link VertxCompletableFuture} is completed successfully or not when the given future completes successfully or not. The completion is called on the given {@link Context}, immediately if it is already executing on the right
+   * context, asynchronously if not.
    *
    * @param context the context
    * @param future the future
@@ -141,12 +140,10 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Creates a new {@link VertxCompletableFuture} from the given {@link Context} instance and given {@link Future}. The returned future uses the current Vert.x context, or creates
-   * a new one.
+   * Creates a new {@link VertxCompletableFuture} from the given {@link Context} instance and given {@link Future}. The returned future uses the current Vert.x context, or creates a new one.
    * <p>
-   * The created {@link VertxCompletableFuture} is completed successfully or not when the given future completes successfully or not. The created {@link VertxCompletableFuture} is
-   * completed successfully or not when the given future completes successfully or not. The completion is called on the given {@link Context}, immediately if it is already
-   * executing on the right context, asynchronously if not.
+   * The created {@link VertxCompletableFuture} is completed successfully or not when the given future completes successfully or not. The created {@link VertxCompletableFuture} is completed successfully or not when the given future
+   * completes successfully or not. The completion is called on the given {@link Context}, immediately if it is already executing on the right context, asynchronously if not.
    *
    * @param context the context
    * @param future the Vert.x future
@@ -155,7 +152,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    */
   public static <T> VertxCompletableFuture<T> from(Context context, Future<T> future) {
     VertxCompletableFuture<T> res = new VertxCompletableFuture<>(Objects.requireNonNull(context));
-    Objects.requireNonNull(future).setHandler(ar -> {
+    Objects.requireNonNull(future).onComplete(ar -> {
       if (context == Vertx.currentContext()) {
         res.completeFromAsyncResult(ar);
       } else {
@@ -166,8 +163,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Returns a new CompletableFuture that is asynchronously completed by a task running in the current Vert.x {@link Context} with the value obtained by calling the given
-   * Supplier.
+   * Returns a new CompletableFuture that is asynchronously completed by a task running in the current Vert.x {@link Context} with the value obtained by calling the given Supplier.
    * <p>
    * This method is different from {@link CompletableFuture#supplyAsync(Supplier)} as it does not use a fork join executor, but use the Vert.x context.
    *
@@ -194,8 +190,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Returns a new CompletableFuture that is asynchronously completed by a task running in the current Vert.x {@link Context} with the value obtained by calling the given
-   * Supplier.
+   * Returns a new CompletableFuture that is asynchronously completed by a task running in the current Vert.x {@link Context} with the value obtained by calling the given Supplier.
    * <p>
    * This method is different from {@link CompletableFuture#supplyAsync(Supplier)} as it does not use a fork join executor, but use the Vert.x context.
    *
@@ -275,8 +270,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    * This method is different from {@link CompletableFuture#runAsync(Runnable)} as it does not use a fork join executor, but the worker thread pool.
    *
    * @param vertx the Vert.x instance
-   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is
-   * completed exceptionally.
+   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is completed exceptionally.
    * @return the new CompletableFuture
    */
   public static VertxCompletableFuture<Void> runBlockingAsync(Vertx vertx, Runnable runnable) {
@@ -289,8 +283,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    * This method is different from {@link CompletableFuture#runAsync(Runnable)} as it does not use a fork join executor, but the worker thread pool.
    *
    * @param context the Vert.x context
-   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is
-   * completed exceptionally.
+   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is completed exceptionally.
    * @return the new CompletableFuture
    */
   public static VertxCompletableFuture<Void> runBlockingAsync(Context context, Runnable runnable) {
@@ -324,8 +317,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    *
    * @param vertx the Vert.x instance
    * @param worker the WorkerExecution on which the runnable is to be executed
-   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is
-   * completed exceptionally.
+   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is completed exceptionally.
    * @return the new CompletableFuture
    */
   public static VertxCompletableFuture<Void> runBlockingAsyncOn(Vertx vertx, WorkerExecutor worker, Runnable runnable) {
@@ -339,8 +331,7 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    *
    * @param context the Vert.x context
    * @param worker the WorkerExecution on which the runnable is to be executed
-   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is
-   * completed exceptionally.
+   * @param runnable the action, when its execution completes, it completes the returned CompletableFuture. If the execution throws an exception, the returned CompletableFuture is completed exceptionally.
    * @return the new CompletableFuture
    */
   public static VertxCompletableFuture<Void> runBlockingAsyncOn(Context context, WorkerExecutor worker, Runnable runnable) {
@@ -443,25 +434,36 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    * @param <T> the type of the result
    * @return the Vert.x future completed or failed when the given {@link CompletableFuture} completes or fails.
    */
+  @Deprecated
   public static <T> Future<T> toFuture(CompletableFuture<T> future) {
-    Future<T> fut = Future.future();
+    return toPromise(future).future();
+  }
+
+  /**
+   * Creates a Vert.x {@link Future} from the given {@link CompletableFuture} (that can be a {@link VertxCompletableFuture}).
+   *
+   * @param future the future
+   * @param <T> the type of the result
+   * @return the Vert.x promise completed or failed when the given {@link CompletableFuture} completes or fails.
+   */
+  public static <T> Promise<T> toPromise(CompletableFuture<T> future) {
+    Promise<T> promise = Promise.promise();
     Objects.requireNonNull(future).whenComplete((res, err) -> {
       if (err != null) {
-        fut.fail(err);
+        promise.fail(err);
       } else {
-        fut.complete(res);
+        promise.complete(res);
       }
     });
-    return fut;
+    return promise;
   }
 
   // ============= Parallel composition methods =============
 
   /**
-   * Returns a new CompletableFuture that is completed when all of the given CompletableFutures complete.  If any of the given CompletableFutures complete exceptionally, then the
-   * returned CompletableFuture also does so, with a CompletionException holding this exception as its cause.  Otherwise, the results, if any, of the given CompletableFutures are
-   * not reflected in the returned CompletableFuture, but may be obtained by inspecting them individually. If no CompletableFutures are provided, returns a CompletableFuture
-   * completed with the value {@code null}.
+   * Returns a new CompletableFuture that is completed when all of the given CompletableFutures complete.  If any of the given CompletableFutures complete exceptionally, then the returned CompletableFuture also does so, with a
+   * CompletionException holding this exception as its cause.  Otherwise, the results, if any, of the given CompletableFutures are not reflected in the returned CompletableFuture, but may be obtained by inspecting them individually. If no
+   * CompletableFutures are provided, returns a CompletableFuture completed with the value {@code null}.
    * <p>
    * <p>Among the applications of this method is to await completion
    * of a set of independent CompletableFutures before continuing a program, as in: {@code CompletableFuture.allOf(c1, c2, c3).join();}.
@@ -479,10 +481,9 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Returns a new CompletableFuture that is completed when all of the given CompletableFutures complete.  If any of the given CompletableFutures complete exceptionally, then the
-   * returned CompletableFuture also does so, with a CompletionException holding this exception as its cause.  Otherwise, the results, if any, of the given CompletableFutures are
-   * not reflected in the returned CompletableFuture, but may be obtained by inspecting them individually. If no CompletableFutures are provided, returns a CompletableFuture
-   * completed with the value {@code null}.
+   * Returns a new CompletableFuture that is completed when all of the given CompletableFutures complete.  If any of the given CompletableFutures complete exceptionally, then the returned CompletableFuture also does so, with a
+   * CompletionException holding this exception as its cause.  Otherwise, the results, if any, of the given CompletableFutures are not reflected in the returned CompletableFuture, but may be obtained by inspecting them individually. If no
+   * CompletableFutures are provided, returns a CompletableFuture completed with the value {@code null}.
    * <p>
    * <p>Among the applications of this method is to await completion
    * of a set of independent CompletableFutures before continuing a program, as in: {@code CompletableFuture.allOf(c1, c2, c3).join();}.
@@ -500,9 +501,8 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Returns a new CompletableFuture that is completed when any of the given CompletableFutures complete, with the same result. Otherwise, if it completed exceptionally, the
-   * returned CompletableFuture also does so, with a CompletionException holding this exception as its cause.  If no CompletableFutures are provided, returns an incomplete
-   * CompletableFuture.
+   * Returns a new CompletableFuture that is completed when any of the given CompletableFutures complete, with the same result. Otherwise, if it completed exceptionally, the returned CompletableFuture also does so, with a
+   * CompletionException holding this exception as its cause.  If no CompletableFutures are provided, returns an incomplete CompletableFuture.
    * <p>
    * Unlike the original {@link CompletableFuture#allOf(CompletableFuture[])} this method invokes the dependent stages into the Vert.x context.
    *
@@ -517,9 +517,8 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
   }
 
   /**
-   * Returns a new CompletableFuture that is completed when any of the given CompletableFutures complete, with the same result. Otherwise, if it completed exceptionally, the
-   * returned CompletableFuture also does so, with a CompletionException holding this exception as its cause.  If no CompletableFutures are provided, returns an incomplete
-   * CompletableFuture.
+   * Returns a new CompletableFuture that is completed when any of the given CompletableFutures complete, with the same result. Otherwise, if it completed exceptionally, the returned CompletableFuture also does so, with a
+   * CompletionException holding this exception as its cause.  If no CompletableFutures are provided, returns an incomplete CompletableFuture.
    * <p>
    * Unlike the original {@link CompletableFuture#allOf(CompletableFuture[])} this method invokes the dependent stages into the Vert.x context.
    *
@@ -780,8 +779,18 @@ public class VertxCompletableFuture<T> extends CompletableFuture<T> implements C
    *
    * @return the {@link Future}.
    */
+  @Deprecated
   public Future<T> toFuture() {
     return VertxCompletableFuture.toFuture(this);
+  }
+
+  /**
+   * Creates a new {@link Promise} object completed / failed when the current {@link VertxCompletableFuture} is completed successfully or not.
+   *
+   * @return the {@link Promise}.
+   */
+  public Promise<T> toPromise() {
+    return VertxCompletableFuture.toPromise(this);
   }
 
   private void complete(T result, Throwable error) {

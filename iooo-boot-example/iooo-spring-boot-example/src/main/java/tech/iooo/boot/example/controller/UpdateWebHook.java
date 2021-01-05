@@ -1,6 +1,5 @@
 package tech.iooo.boot.example.controller;
 
-import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
@@ -15,7 +14,7 @@ import tech.iooo.boot.spring.common.RoutingContextHandler;
  */
 @Slf4j
 @Service
-@RequestMapping(path = "updateWebHook", method = HttpMethod.POST)
+@RequestMapping(path = "updateWebHook", method = "POST")
 public class UpdateWebHook implements RoutingContextHandler {
 
   private static final String SUCCESS_RESULT = "True";

@@ -1,7 +1,7 @@
 package tech.iooo.boot.spring.common;
 
 import io.vertx.ext.web.RoutingContext;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author 龙也
@@ -9,7 +9,7 @@ import org.junit.Test;
  */
 public class RoutingContextHandlerTest {
 
-  private class TestController implements RoutingContextHandler {
+  private static class TestController implements RoutingContextHandler {
 
     @Override
     public void handle(RoutingContext context) {
