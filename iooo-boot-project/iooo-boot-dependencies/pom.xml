@@ -100,7 +100,7 @@
     <disruptor.version>3.4.2</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.3</logback.version>
-    <logstash-logback-encoder.version>6.5</logstash-logback-encoder.version>
+    <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
     <lombok.version>1.18.16</lombok.version>
     <hazelcast.version>4.1.1</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
