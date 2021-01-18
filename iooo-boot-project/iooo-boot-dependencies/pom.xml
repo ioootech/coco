@@ -80,7 +80,7 @@
     <hutool.version>5.5.7</hutool.version>
     <dozer.version>6.5.0</dozer.version>
     <guice.version>4.2.3</guice.version>
-    <governator.version>1.17.10</governator.version>
+    <governator.version>1.17.11</governator.version>
     <httpclient.version>4.5.13</httpclient.version>
     <httpcore.version>4.4.14</httpcore.version>
     <jackson.version>2.12.1</jackson.version>
