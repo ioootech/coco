@@ -120,7 +120,7 @@
     <tomcat.version>9.0.31</tomcat.version>
     <undertow.version>2.2.3.Final</undertow.version>
     <icu4j.version>68.2</icu4j.version>
-    <mysql.version>8.0.22</mysql.version>
+    <mysql.version>8.0.23</mysql.version>
     <h2.version>1.4.200</h2.version>
     <grpc-spring-boot-starter.version>2.10.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>4.0.0</vertx.version>
