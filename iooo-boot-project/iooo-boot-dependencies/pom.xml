@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.4.21-2</kotlin.version>
+    <kotlin.version>1.4.30</kotlin.version>
     <kotlinx-coroutines.version>1.4.2-native-mt</kotlinx-coroutines.version>
     <maven.min.version>3.0.5</maven.min.version>
     <!-- Iooo versions -->
@@ -64,7 +64,7 @@
     <apache.dubbo.version>2.7.8</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>2.7.8</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
-    <motan.version>1.1.8</motan.version>
+    <motan.version>1.1.9</motan.version>
     <aspectjweaver.version>1.9.6</aspectjweaver.version>
     <hsqldb.version>2.5.1</hsqldb.version>
     <HikariCP.version>4.0.1</HikariCP.version>
@@ -89,7 +89,7 @@
     <jedis.version>3.5.1</jedis.version>
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <junit.version>4.13.1</junit.version>
-    <junit-jupiter.version>5.7.0</junit-jupiter.version>
+    <junit-jupiter.version>5.7.1</junit-jupiter.version>
     <reactor.version>3.4.2</reactor.version>
     <reactor-addon.version>3.4.2</reactor-addon.version>
     <lettuce.version>6.0.2.RELEASE</lettuce.version>
@@ -118,14 +118,14 @@
     <groovy-all.version>3.0.7</groovy-all.version>
     <slf4j.version>1.7.30</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
-    <undertow.version>2.2.3.Final</undertow.version>
+    <undertow.version>2.2.4.Final</undertow.version>
     <icu4j.version>68.2</icu4j.version>
     <mysql.version>8.0.23</mysql.version>
     <h2.version>1.4.200</h2.version>
     <grpc-spring-boot-starter.version>2.10.1.RELEASE</grpc-spring-boot-starter.version>
-    <vertx.version>4.0.0</vertx.version>
+    <vertx.version>4.0.1</vertx.version>
     <guava.version>30.1-jre</guava.version>
-    <bytebuddy.version>1.10.19</bytebuddy.version>
+    <bytebuddy.version>1.10.20</bytebuddy.version>
     <commons-configuration2.version>2.7</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <asm.version>9.0</asm.version>
@@ -140,7 +140,7 @@
     <reactive-streams.version>1.0.3</reactive-streams.version>
     <javassist.version>3.27.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
-    <sentinel.version>1.8.0</sentinel.version>
+    <sentinel.version>1.8.1</sentinel.version>
     <jna.version>5.6.0</jna.version>
     <xstream.version>1.4.15</xstream.version>
     <xerces.version>2.12.1</xerces.version>
@@ -159,7 +159,7 @@
     <protostuff.version>1.7.2</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
-    <newrelic.version>6.4.0</newrelic.version>
+    <newrelic.version>6.4.1</newrelic.version>
     <rxjava.version>2.2.20</rxjava.version>
     <snakeyaml.version>1.27</snakeyaml.version>
     <assertj-core.version>3.15.0</assertj-core.version>
