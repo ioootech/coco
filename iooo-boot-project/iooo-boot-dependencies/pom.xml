@@ -124,7 +124,7 @@
     <h2.version>1.4.200</h2.version>
     <grpc-spring-boot-starter.version>2.10.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>4.0.0</vertx.version>
-    <guava.version>29.0-jre</guava.version>
+    <guava.version>30.1-jre</guava.version>
     <bytebuddy.version>1.10.19</bytebuddy.version>
     <commons-configuration2.version>2.7</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
