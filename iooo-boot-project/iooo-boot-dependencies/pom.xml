@@ -68,7 +68,7 @@
     <aspectjweaver.version>1.9.6</aspectjweaver.version>
     <hsqldb.version>2.5.1</hsqldb.version>
     <HikariCP.version>4.0.2</HikariCP.version>
-    <dagger.version>2.32</dagger.version>
+    <dagger.version>2.33</dagger.version>
     <protobuf.version>3.15.0</protobuf.version>
     <grpc.version>1.35.0</grpc.version>
     <redisson.version>3.15.0</redisson.version>
