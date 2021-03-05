@@ -134,7 +134,7 @@
     <completable-futures.version>0.3.4</completable-futures.version>
     <parallel-collectors.version>2.5.0</parallel-collectors.version>
     <throwing-function.version>1.5.1</throwing-function.version>
-    <jctools.version>3.2.0</jctools.version>
+    <jctools.version>3.3.0</jctools.version>
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.3</reactive-streams.version>
