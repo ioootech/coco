@@ -167,7 +167,7 @@
     <commons-collections4.version>4.4</commons-collections4.version>
     <hamcrest-library.version>2.2</hamcrest-library.version>
     <reflections.version>0.9.12</reflections.version>
-    <java-verbal-expressions.version>1.6</java-verbal-expressions.version>
+    <java-verbal-expressions.version>1.8</java-verbal-expressions.version>
     <transmittable-thread-local.version>2.12.1</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>10.4.0</eclipse-collections.version>
