@@ -70,7 +70,7 @@
     <HikariCP.version>4.0.3</HikariCP.version>
     <dagger.version>2.33</dagger.version>
     <protobuf.version>3.15.6</protobuf.version>
-    <grpc.version>1.36.0</grpc.version>
+    <grpc.version>1.36.1</grpc.version>
     <redisson.version>3.15.2</redisson.version>
     <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
     <easyexcel.version>2.2.8</easyexcel.version>
