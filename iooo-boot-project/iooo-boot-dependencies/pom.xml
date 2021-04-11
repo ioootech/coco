@@ -78,7 +78,7 @@
     <java-jwt.version>3.14.0</java-jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
     <hutool.version>5.6.2</hutool.version>
-    <dozer.version>6.5.0</dozer.version>
+    <dozer.version>6.5.2</dozer.version>
     <guice.version>4.2.3</guice.version>
     <governator.version>1.17.11</governator.version>
     <httpclient.version>4.5.13</httpclient.version>
