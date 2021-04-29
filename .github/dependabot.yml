@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  target-branch: develop
+  ignore:
+  - dependency-name: io.netty:netty-bom
+    versions:
+    - 4.1.62.Final
+  - dependency-name: io.netty:netty-all
+    versions:
+    - 4.1.62.Final
