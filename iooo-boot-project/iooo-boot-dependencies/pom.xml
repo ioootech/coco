@@ -90,7 +90,7 @@
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
-    <reactor.version>3.4.5</reactor.version>
+    <reactor.version>3.4.6</reactor.version>
     <reactor-addon.version>3.4.3</reactor-addon.version>
     <lettuce.version>6.1.1.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
