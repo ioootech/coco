@@ -138,7 +138,7 @@
     <vertx-fastdfs-client.version>1.0.2.RELEASE</vertx-fastdfs-client.version>
     <vertx-guice.version>2.3.1</vertx-guice.version>
     <reactive-streams.version>1.0.3</reactive-streams.version>
-    <javassist.version>3.27.0-GA</javassist.version>
+    <javassist.version>3.28.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
     <sentinel.version>1.8.1</sentinel.version>
     <jna.version>5.8.0</jna.version>
