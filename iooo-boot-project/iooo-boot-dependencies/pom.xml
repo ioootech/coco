@@ -67,7 +67,7 @@
     <motan.version>1.1.9</motan.version>
     <aspectjweaver.version>1.9.7</aspectjweaver.version>
     <hsqldb.version>2.6.0</hsqldb.version>
-    <HikariCP.version>4.0.3</HikariCP.version>
+    <HikariCP.version>5.0.0</HikariCP.version>
     <dagger.version>2.37</dagger.version>
     <protobuf.version>3.17.3</protobuf.version>
     <grpc.version>1.39.0</grpc.version>
