@@ -86,7 +86,7 @@
     <jackson.version>2.12.4</jackson.version>
     <rocketmq-client.version>4.9.0</rocketmq-client.version>
     <json-path.version>2.6.0</json-path.version>
-    <jedis.version>3.6.1</jedis.version>
+    <jedis.version>3.6.2</jedis.version>
     <jolokia-core.version>1.6.2</jolokia-core.version>
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.7.2</junit-jupiter.version>
