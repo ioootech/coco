@@ -116,7 +116,7 @@
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.3.2</quartz.version>
     <groovy-all.version>3.0.8</groovy-all.version>
-    <slf4j.version>1.7.31</slf4j.version>
+    <slf4j.version>1.7.32</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
     <undertow.version>2.2.9.Final</undertow.version>
     <icu4j.version>69.1</icu4j.version>
