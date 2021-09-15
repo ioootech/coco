@@ -60,7 +60,7 @@
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-net.version>3.8.0</commons-net.version>
     <curator.version>5.2.0</curator.version>
-    <dubbo.version>2.6.10.1</dubbo.version>
+    <dubbo.version>2.6.11</dubbo.version>
     <apache.dubbo.version>3.0.2.1</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>3.0.2.1</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1</dubbo-spring-boot-starter.version>
@@ -108,7 +108,7 @@
     <mybatis-plus-boot-starter-v3.version>3.4.3.3</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.4.3.2</mybatis-plus-v3.version>
-    <netty.version>4.1.67.Final</netty.version>
+    <netty.version>4.1.68.Final</netty.version>
     <netty-tcnative.version>2.0.41.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
