@@ -89,7 +89,7 @@
     <jedis.version>3.7.0</jedis.version>
     <jolokia-core.version>1.7.0</jolokia-core.version>
     <junit.version>4.13.2</junit.version>
-    <junit-jupiter.version>5.7.2</junit-jupiter.version>
+    <junit-jupiter.version>5.8.0</junit-jupiter.version>
     <reactor.version>3.4.10</reactor.version>
     <reactor-addon.version>3.4.5</reactor-addon.version>
     <lettuce.version>6.1.4.RELEASE</lettuce.version>
