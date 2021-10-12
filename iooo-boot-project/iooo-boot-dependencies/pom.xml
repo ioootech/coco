@@ -101,7 +101,7 @@
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
     <logback.version>1.2.6</logback.version>
     <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
-    <lombok.version>1.18.20</lombok.version>
+    <lombok.version>1.18.22</lombok.version>
     <hazelcast.version>4.2.2</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.2.0</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
