@@ -141,7 +141,7 @@
     <javassist.version>3.28.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
     <sentinel.version>1.8.2</sentinel.version>
-    <jna.version>5.9.0</jna.version>
+    <jna.version>5.10.0</jna.version>
     <xstream.version>1.4.18</xstream.version>
     <xerces.version>2.12.1</xerces.version>
     <bcprov.version>1.69</bcprov.version>
