@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.6.0</kotlin.version>
+    <kotlin.version>1.6.20-nk-1</kotlin.version>
     <kotlinx-coroutines.version>1.5.2-native-mt</kotlinx-coroutines.version>
     <maven.min.version>3.0.5</maven.min.version>
     <!-- Iooo versions -->
