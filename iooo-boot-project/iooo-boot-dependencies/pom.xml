@@ -170,7 +170,7 @@
     <java-verbal-expressions.version>1.8</java-verbal-expressions.version>
     <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
-    <eclipse-collections.version>10.4.0</eclipse-collections.version>
+    <eclipse-collections.version>11.0.0</eclipse-collections.version>
     <re2j.version>1.6</re2j.version>
     <maven.version>3.8.4</maven.version>
     <maven-plugin-tools.version>3.6.1</maven-plugin-tools.version>
