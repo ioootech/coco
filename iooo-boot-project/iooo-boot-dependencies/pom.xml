@@ -214,7 +214,7 @@
     <wagon.version>3.3.4</wagon.version>
     <jgit-buildnumber-maven-plugin.version>2.5.0</jgit-buildnumber-maven-plugin.version>
     <maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
-    <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
+    <buildnumber-maven-plugin.version>3.0.0</buildnumber-maven-plugin.version>
     <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
     <docker-maven-plugin.version>1.2.2</docker-maven-plugin.version>
     <kotlin.compiler.jvmTarget>${java.version}</kotlin.compiler.jvmTarget>
