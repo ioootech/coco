@@ -77,7 +77,7 @@
     <gson.version>2.8.9</gson.version>
     <java-jwt.version>3.18.2</java-jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
-    <hutool.version>5.7.16</hutool.version>
+    <hutool.version>5.7.17</hutool.version>
     <dozer.version>6.5.2</dozer.version>
     <guice.version>4.2.3</guice.version>
     <governator.version>1.17.12</governator.version>
@@ -86,7 +86,7 @@
     <jackson.version>2.13.0</jackson.version>
     <rocketmq-client.version>4.9.1</rocketmq-client.version>
     <json-path.version>2.6.0</json-path.version>
-    <jedis.version>3.7.0</jedis.version>
+    <jedis.version>3.7.1</jedis.version>
     <jolokia-core.version>1.7.1</jolokia-core.version>
     <junit.version>4.13.2</junit.version>
     <junit-jupiter.version>5.8.2</junit-jupiter.version>
@@ -95,7 +95,7 @@
     <lettuce.version>6.1.5.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
-    <log4j2.version>2.14.1</log4j2.version>
+    <log4j2.version>2.15.0</log4j2.version>
     <jmh.version>1.33</jmh.version>
     <disruptor.version>3.4.4</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
