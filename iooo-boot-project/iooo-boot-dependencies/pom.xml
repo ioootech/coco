@@ -70,7 +70,7 @@
     <HikariCP.version>5.0.0</HikariCP.version>
     <dagger.version>2.40.5</dagger.version>
     <protobuf.version>3.19.1</protobuf.version>
-    <grpc.version>1.42.1</grpc.version>
+    <grpc.version>1.43.1</grpc.version>
     <redisson.version>3.16.6</redisson.version>
     <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
     <easyexcel.version>3.0.5</easyexcel.version>
@@ -108,7 +108,7 @@
     <mybatis-plus-boot-starter-v3.version>3.4.3.4</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.4.3.4</mybatis-plus-v3.version>
-    <netty.version>4.1.71.Final</netty.version>
+    <netty.version>4.1.72.Final</netty.version>
     <netty-tcnative.version>2.0.46.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
