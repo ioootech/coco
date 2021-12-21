@@ -83,7 +83,7 @@
     <governator.version>1.17.12</governator.version>
     <httpclient.version>4.5.13</httpclient.version>
     <httpcore.version>4.4.15</httpcore.version>
-    <jackson.version>2.13.0</jackson.version>
+    <jackson.version>2.13.1</jackson.version>
     <rocketmq-client.version>4.9.1</rocketmq-client.version>
     <json-path.version>2.6.0</json-path.version>
     <jedis.version>3.7.0</jedis.version>
@@ -108,7 +108,7 @@
     <mybatis-plus-boot-starter-v3.version>3.4.3.4</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.4.3.4</mybatis-plus-v3.version>
-    <netty.version>4.1.71.Final</netty.version>
+    <netty.version>4.1.72.Final</netty.version>
     <netty-tcnative.version>2.0.46.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
