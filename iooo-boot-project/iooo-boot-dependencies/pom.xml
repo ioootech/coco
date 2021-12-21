@@ -42,7 +42,7 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <kotlin.version>1.6.0</kotlin.version>
+    <kotlin.version>1.6.10</kotlin.version>
     <kotlinx-coroutines.version>1.5.2-native-mt</kotlinx-coroutines.version>
     <maven.min.version>3.0.5</maven.min.version>
     <!-- Iooo versions -->
@@ -82,7 +82,7 @@
     <guice.version>4.2.3</guice.version>
     <governator.version>1.17.12</governator.version>
     <httpclient.version>4.5.13</httpclient.version>
-    <httpcore.version>4.4.14</httpcore.version>
+    <httpcore.version>4.4.15</httpcore.version>
     <jackson.version>2.13.0</jackson.version>
     <rocketmq-client.version>4.9.1</rocketmq-client.version>
     <json-path.version>2.6.0</json-path.version>
@@ -99,16 +99,16 @@
     <jmh.version>1.33</jmh.version>
     <disruptor.version>3.4.4</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
-    <logback.version>1.2.7</logback.version>
+    <logback.version>1.2.8</logback.version>
     <logstash-logback-encoder.version>7.0.1</logstash-logback-encoder.version>
     <lombok.version>1.18.22</lombok.version>
     <hazelcast.version>4.2.2</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.2.0</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
-    <mybatis-plus-boot-starter-v3.version>3.4.3.3</mybatis-plus-boot-starter-v3.version>
+    <mybatis-plus-boot-starter-v3.version>3.4.3.4</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
-    <mybatis-plus-v3.version>3.4.3.2</mybatis-plus-v3.version>
-    <netty.version>4.1.71.Final</netty.version>
+    <mybatis-plus-v3.version>3.4.3.4</mybatis-plus-v3.version>
+    <netty.version>4.1.72.Final</netty.version>
     <netty-tcnative.version>2.0.46.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
@@ -145,7 +145,7 @@
     <xstream.version>1.4.18</xstream.version>
     <xerces.version>2.12.1</xerces.version>
     <bcprov.version>1.70</bcprov.version>
-    <mybatis.version>3.5.7</mybatis.version>
+    <mybatis.version>3.5.8</mybatis.version>
     <mybatis-spring.version>2.0.6</mybatis-spring.version>
     <mapper-spring-boot-starter.version>2.1.5</mapper-spring-boot-starter.version>
     <pagehelper.version>5.3.0</pagehelper.version>
@@ -159,7 +159,7 @@
     <protostuff.version>1.7.4</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
-    <newrelic.version>7.4.0</newrelic.version>
+    <newrelic.version>7.4.1</newrelic.version>
     <rxjava.version>2.2.21</rxjava.version>
     <snakeyaml.version>1.29</snakeyaml.version>
     <assertj-core.version>3.15.0</assertj-core.version>
@@ -177,7 +177,7 @@
     <!-- Plugin versions -->
     <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
     <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-    <flyway.version>8.2.0</flyway.version>
+    <flyway.version>8.2.1</flyway.version>
     <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
     <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
