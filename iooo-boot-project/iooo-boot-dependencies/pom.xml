@@ -108,7 +108,7 @@
     <mybatis-plus-boot-starter-v3.version>3.4.3.4</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.4.3.4</mybatis-plus-v3.version>
-    <netty.version>4.1.71.Final</netty.version>
+    <netty.version>4.1.72.Final</netty.version>
     <netty-tcnative.version>2.0.46.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
@@ -168,7 +168,7 @@
     <hamcrest-library.version>2.2</hamcrest-library.version>
     <reflections.version>0.10.2</reflections.version>
     <java-verbal-expressions.version>1.8</java-verbal-expressions.version>
-    <transmittable-thread-local.version>2.12.2</transmittable-thread-local.version>
+    <transmittable-thread-local.version>2.12.3</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>11.0.0</eclipse-collections.version>
     <re2j.version>1.6</re2j.version>
