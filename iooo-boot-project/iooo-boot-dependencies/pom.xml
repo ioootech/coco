@@ -121,7 +121,7 @@
     <undertow.version>2.2.14.Final</undertow.version>
     <icu4j.version>70.1</icu4j.version>
     <mysql.version>8.0.27</mysql.version>
-    <h2.version>2.0.202</h2.version>
+    <h2.version>2.0.204</h2.version>
     <grpc-spring-boot-starter.version>2.13.0.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>4.2.2</vertx.version>
     <guava.version>31.0.1-jre</guava.version>
@@ -161,7 +161,7 @@
     <commons-modeler.version>2.0.1</commons-modeler.version>
     <newrelic.version>7.4.3</newrelic.version>
     <rxjava.version>2.2.21</rxjava.version>
-    <snakeyaml.version>1.29</snakeyaml.version>
+    <snakeyaml.version>1.30</snakeyaml.version>
     <assertj-core.version>3.15.0</assertj-core.version>
     <mockito-core.version>3.2.0</mockito-core.version>
     <commons-collections4.version>4.4</commons-collections4.version>
