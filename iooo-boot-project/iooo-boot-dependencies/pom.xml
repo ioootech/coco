@@ -210,7 +210,7 @@
     <quasar-maven-plugin.version>0.7.9</quasar-maven-plugin.version>
     <protoc-gen-grpc-java.version>1.24.0</protoc-gen-grpc-java.version>
     <vertx-protoc-gen-grpc-java.version>1.20.0</vertx-protoc-gen-grpc-java.version>
-    <wagon-ssh.version>3.5.0</wagon-ssh.version>
+    <wagon-ssh.version>3.5.1</wagon-ssh.version>
     <wagon.version>3.3.4</wagon.version>
     <jgit-buildnumber-maven-plugin.version>2.5.0</jgit-buildnumber-maven-plugin.version>
     <maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
