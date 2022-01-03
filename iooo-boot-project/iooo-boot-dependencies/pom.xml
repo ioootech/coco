@@ -221,7 +221,7 @@
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
     <takari-lifecycle-plugin.version>2.0.7</takari-lifecycle-plugin.version>
     <license-maven-plugin.version>4.1</license-maven-plugin.version>
-    <maven-scm-plugin.version>1.12.0</maven-scm-plugin.version>
+    <maven-scm-plugin.version>1.12.2</maven-scm-plugin.version>
     <tech.iooo.licenseHeader>https://coco.iooo.tech/support/license-header.txt
     </tech.iooo.licenseHeader>
     <arguments/>
