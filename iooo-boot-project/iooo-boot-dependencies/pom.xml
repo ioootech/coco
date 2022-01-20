@@ -121,7 +121,7 @@
     <undertow.version>2.2.14.Final</undertow.version>
     <icu4j.version>70.1</icu4j.version>
     <mysql.version>8.0.28</mysql.version>
-    <h2.version>2.0.206</h2.version>
+    <h2.version>2.1.210</h2.version>
     <grpc-spring-boot-starter.version>2.13.1.RELEASE</grpc-spring-boot-starter.version>
     <vertx.version>4.2.3</vertx.version>
     <guava.version>31.0.1-jre</guava.version>
