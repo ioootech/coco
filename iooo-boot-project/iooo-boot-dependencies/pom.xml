@@ -156,7 +156,7 @@
     <aether.version>1.1.0</aether.version>
     <sharding.version>3.1.0</sharding.version>
     <kryo.version>5.3.0</kryo.version>
-    <protostuff.version>1.7.4</protostuff.version>
+    <protostuff.version>1.8.0</protostuff.version>
     <jmxtools.version>1.2.1</jmxtools.version>
     <commons-modeler.version>2.0.1</commons-modeler.version>
     <newrelic.version>7.5.0</newrelic.version>
