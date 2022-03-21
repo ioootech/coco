@@ -123,7 +123,7 @@
     <mysql.version>8.0.28</mysql.version>
     <h2.version>2.1.210</h2.version>
     <grpc-spring-boot-starter.version>2.13.1.RELEASE</grpc-spring-boot-starter.version>
-    <vertx.version>4.2.5</vertx.version>
+    <vertx.version>4.2.6</vertx.version>
     <guava.version>31.1-jre</guava.version>
     <bytebuddy.version>1.12.8</bytebuddy.version>
     <commons-configuration2.version>2.7</commons-configuration2.version>
