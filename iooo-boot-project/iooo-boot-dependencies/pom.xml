@@ -128,7 +128,7 @@
     <bytebuddy.version>1.12.8</bytebuddy.version>
     <commons-configuration2.version>2.7</commons-configuration2.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
-    <asm.version>9.2</asm.version>
+    <asm.version>9.3</asm.version>
     <org.objectweb.asm.version>5.0.1.v201404251740</org.objectweb.asm.version>
     <poi.version>4.1.2</poi.version>
     <completable-futures.version>0.3.5</completable-futures.version>
