@@ -119,7 +119,7 @@
     <slf4j.version>1.7.36</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
     <undertow.version>2.2.17.Final</undertow.version>
-    <icu4j.version>70.1</icu4j.version>
+    <icu4j.version>71.1</icu4j.version>
     <mysql.version>8.0.28</mysql.version>
     <h2.version>2.1.210</h2.version>
     <grpc-spring-boot-starter.version>2.13.1.RELEASE</grpc-spring-boot-starter.version>
