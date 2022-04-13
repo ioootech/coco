@@ -140,7 +140,7 @@
     <reactive-streams.version>1.0.3</reactive-streams.version>
     <javassist.version>3.28.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
-    <sentinel.version>1.8.3</sentinel.version>
+    <sentinel.version>1.8.4</sentinel.version>
     <jna.version>5.11.0</jna.version>
     <xstream.version>1.4.19</xstream.version>
     <xerces.version>2.12.2</xerces.version>
