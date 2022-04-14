@@ -99,7 +99,7 @@
     <jmh.version>1.35</jmh.version>
     <disruptor.version>3.4.4</disruptor.version>
     <jcabi-ssh.version>1.6.1</jcabi-ssh.version>
-    <logback.version>1.2.10</logback.version>
+    <logback.version>1.2.11</logback.version>
     <logstash-logback-encoder.version>7.1.1</logstash-logback-encoder.version>
     <lombok.version>1.18.22</lombok.version>
     <hazelcast.version>4.2.4</hazelcast.version>
