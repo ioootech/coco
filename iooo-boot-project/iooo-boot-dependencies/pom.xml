@@ -49,7 +49,7 @@
     <iooo-boot.version>1.1.8-SNAPSHOT</iooo-boot.version>
     <!-- spring boot versions -->
     <spring.boot.version>2.6.7</spring.boot.version>
-    <spring.version>5.3.19</spring.version>
+    <spring.version>5.3.20</spring.version>
     <!-- Dependency versions -->
     <commons-codec.version>1.15</commons-codec.version>
     <commons-dbcp2.version>2.9.0</commons-dbcp2.version>
@@ -77,7 +77,7 @@
     <gson.version>2.9.0</gson.version>
     <java-jwt.version>3.19.2</java-jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
-    <hutool.version>5.7.22</hutool.version>
+    <hutool.version>5.8.1</hutool.version>
     <dozer.version>6.5.2</dozer.version>
     <guice.version>4.2.3</guice.version>
     <governator.version>1.17.12</governator.version>
@@ -150,7 +150,7 @@
     <mapper-spring-boot-starter.version>4.2.1</mapper-spring-boot-starter.version>
     <pagehelper.version>5.3.0</pagehelper.version>
     <pagehelper.boot.version>1.4.2</pagehelper.boot.version>
-    <fastjson.version>2.0.2</fastjson.version>
+    <fastjson.version>2.0.4</fastjson.version>
     <okhttp.version>4.9.3</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
