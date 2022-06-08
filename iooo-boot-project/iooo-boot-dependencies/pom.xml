@@ -150,7 +150,7 @@
     <mapper-spring-boot-starter.version>4.2.1</mapper-spring-boot-starter.version>
     <pagehelper.version>5.3.0</pagehelper.version>
     <pagehelper.boot.version>1.4.2</pagehelper.boot.version>
-    <fastjson.version>2.0.5</fastjson.version>
+    <fastjson.version>2.0.6</fastjson.version>
     <okhttp.version>4.9.3</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
@@ -203,7 +203,7 @@
     <versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
     <flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
-    <vertx-maven-plugin.version>1.0.27</vertx-maven-plugin.version>
+    <vertx-maven-plugin.version>1.0.28</vertx-maven-plugin.version>
     <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
     <os-maven-plugin.version>1.6.2</os-maven-plugin.version>
     <protoc.version>3.11.0</protoc.version>
