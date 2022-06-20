@@ -118,7 +118,7 @@
     <groovy-all.version>3.0.11</groovy-all.version>
     <slf4j.version>1.7.36</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
-    <undertow.version>2.2.17.Final</undertow.version>
+    <undertow.version>2.2.18.Final</undertow.version>
     <icu4j.version>71.1</icu4j.version>
     <mysql.version>8.0.29</mysql.version>
     <h2.version>2.1.212</h2.version>
@@ -168,7 +168,7 @@
     <hamcrest-library.version>2.2</hamcrest-library.version>
     <reflections.version>0.10.2</reflections.version>
     <java-verbal-expressions.version>1.8</java-verbal-expressions.version>
-    <transmittable-thread-local.version>2.12.6</transmittable-thread-local.version>
+    <transmittable-thread-local.version>2.13.0</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>11.0.0</eclipse-collections.version>
     <re2j.version>1.6</re2j.version>
