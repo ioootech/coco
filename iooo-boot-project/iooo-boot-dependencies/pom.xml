@@ -141,7 +141,7 @@
     <javassist.version>3.29.0-GA</javassist.version>
     <cglib.version>3.3.0</cglib.version>
     <sentinel.version>1.8.4</sentinel.version>
-    <jna.version>5.12.0</jna.version>
+    <jna.version>5.12.1</jna.version>
     <xstream.version>1.4.19</xstream.version>
     <xerces.version>2.12.2</xerces.version>
     <bcprov.version>1.70</bcprov.version>
@@ -150,7 +150,7 @@
     <mapper-spring-boot-starter.version>4.2.1</mapper-spring-boot-starter.version>
     <pagehelper.version>5.3.1</pagehelper.version>
     <pagehelper.boot.version>1.4.3</pagehelper.boot.version>
-    <fastjson.version>2.0.7</fastjson.version>
+    <fastjson.version>2.0.8</fastjson.version>
     <okhttp.version>4.10.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
