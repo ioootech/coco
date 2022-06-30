@@ -150,7 +150,7 @@
     <mapper-spring-boot-starter.version>4.2.1</mapper-spring-boot-starter.version>
     <pagehelper.version>5.3.1</pagehelper.version>
     <pagehelper.boot.version>1.4.3</pagehelper.boot.version>
-    <fastjson.version>2.0.7</fastjson.version>
+    <fastjson.version>2.0.8</fastjson.version>
     <okhttp.version>4.10.0</okhttp.version>
     <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
     <aether.version>1.1.0</aether.version>
@@ -171,7 +171,7 @@
     <transmittable-thread-local.version>2.12.6</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>11.0.0</eclipse-collections.version>
-    <re2j.version>1.6</re2j.version>
+    <re2j.version>1.7</re2j.version>
     <maven.version>3.8.6</maven.version>
     <maven-plugin-tools.version>3.6.4</maven-plugin-tools.version>
     <!-- Plugin versions -->
