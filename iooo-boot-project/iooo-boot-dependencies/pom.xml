@@ -171,7 +171,7 @@
     <transmittable-thread-local.version>2.12.6</transmittable-thread-local.version>
     <javatuples.version>1.2</javatuples.version>
     <eclipse-collections.version>11.0.0</eclipse-collections.version>
-    <re2j.version>1.6</re2j.version>
+    <re2j.version>1.7</re2j.version>
     <maven.version>3.8.6</maven.version>
     <maven-plugin-tools.version>3.6.4</maven-plugin-tools.version>
     <!-- Plugin versions -->
