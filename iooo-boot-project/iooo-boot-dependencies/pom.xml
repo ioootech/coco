@@ -98,7 +98,7 @@
     <log4j2.version>2.18.0</log4j2.version>
     <jmh.version>1.35</jmh.version>
     <disruptor.version>3.4.4</disruptor.version>
-    <jcabi-ssh.version>1.7.0</jcabi-ssh.version>
+    <jcabi-ssh.version>1.8.0</jcabi-ssh.version>
     <logback.version>1.2.11</logback.version>
     <logstash-logback-encoder.version>7.2</logstash-logback-encoder.version>
     <lombok.version>1.18.24</lombok.version>
