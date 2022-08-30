@@ -71,7 +71,7 @@
     <dagger.version>2.43.2</dagger.version>
     <protobuf.version>3.21.5</protobuf.version>
     <grpc.version>1.49.0</grpc.version>
-    <redisson.version>3.17.5</redisson.version>
+    <redisson.version>3.17.6</redisson.version>
     <hibernate-validator.version>7.0.5.Final</hibernate-validator.version>
     <easyexcel.version>3.1.1</easyexcel.version>
     <gson.version>2.9.1</gson.version>
