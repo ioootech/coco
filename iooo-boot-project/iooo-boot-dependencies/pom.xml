@@ -118,7 +118,7 @@
     <groovy-all.version>3.0.13</groovy-all.version>
     <slf4j.version>1.7.36</slf4j.version>
     <tomcat.version>9.0.31</tomcat.version>
-    <undertow.version>2.2.19.Final</undertow.version>
+    <undertow.version>2.3.0.Final</undertow.version>
     <icu4j.version>71.1</icu4j.version>
     <mysql.version>8.0.30</mysql.version>
     <h2.version>2.1.214</h2.version>
