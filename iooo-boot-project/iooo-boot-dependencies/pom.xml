@@ -82,7 +82,7 @@
     <guice.version>4.2.3</guice.version>
     <governator.version>1.17.12</governator.version>
     <httpclient.version>4.5.13</httpclient.version>
-    <httpcore.version>4.4.15</httpcore.version>
+    <httpcore.version>4.4.16</httpcore.version>
     <jackson.version>2.14.1</jackson.version>
     <rocketmq-client.version>5.0.0-PREVIEW</rocketmq-client.version>
     <json-path.version>2.7.0</json-path.version>
