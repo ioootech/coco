@@ -92,7 +92,7 @@
     <junit-jupiter.version>5.9.2</junit-jupiter.version>
     <reactor.version>3.4.23</reactor.version>
     <reactor-addon.version>3.4.8</reactor-addon.version>
-    <lettuce.version>6.2.2.RELEASE</lettuce.version>
+    <lettuce.version>6.2.3.RELEASE</lettuce.version>
     <commons-logging.version>1.2</commons-logging.version>
     <log4j.version>1.2.17</log4j.version>
     <log4j2.version>2.19.0</log4j2.version>
