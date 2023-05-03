@@ -59,7 +59,7 @@
     <commons-io.version>2.11.0</commons-io.version>
     <commons-fileupload.version>1.5</commons-fileupload.version>
     <commons-net.version>3.9.0</commons-net.version>
-    <curator.version>5.4.0</curator.version>
+    <curator.version>5.5.0</curator.version>
     <dubbo.version>2.6.12</dubbo.version>
     <apache.dubbo.version>3.2.0</apache.dubbo.version>
     <apache.dubbo-spring-boot-starter>3.2.0</apache.dubbo-spring-boot-starter>
