@@ -199,7 +199,7 @@
     <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
     <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-    <maven-plugin-plugin.version>3.8.2</maven-plugin-plugin.version>
+    <maven-plugin-plugin.version>3.9.0</maven-plugin-plugin.version>
     <versions-maven-plugin.version>2.15.0</versions-maven-plugin.version>
     <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
     <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
