@@ -148,7 +148,7 @@
     <mybatis.version>3.5.13</mybatis.version>
     <mybatis-spring.version>2.0.7</mybatis-spring.version>
     <mapper-spring-boot-starter.version>4.2.3</mapper-spring-boot-starter.version>
-    <pagehelper.version>5.3.2</pagehelper.version>
+    <pagehelper.version>5.3.3</pagehelper.version>
     <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
     <fastjson.version>2.0.33</fastjson.version>
     <okhttp.version>4.10.0</okhttp.version>
