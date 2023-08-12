@@ -62,7 +62,7 @@
     <curator.version>5.5.0</curator.version>
     <dubbo.version>2.6.12</dubbo.version>
     <apache.dubbo.version>3.2.4</apache.dubbo.version>
-    <apache.dubbo-spring-boot-starter>3.2.4</apache.dubbo-spring-boot-starter>
+    <apache.dubbo-spring-boot-starter>3.2.5</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1</dubbo-spring-boot-starter.version>
     <motan.version>1.2.1</motan.version>
     <aspectjweaver.version>1.9.19</aspectjweaver.version>
