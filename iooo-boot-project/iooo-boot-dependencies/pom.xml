@@ -112,7 +112,7 @@
     <netty-tcnative.version>2.0.61.Final</netty-tcnative.version>
     <!--quasar 0.7.x for jdk8-->
     <quasar-core.version>0.7.10</quasar-core.version>
-    <tink.version>1.10.0</tink.version>
+    <tink.version>1.11.0</tink.version>
     <velocity.version>1.7</velocity.version>
     <quartz.version>2.4.0-0005-debug-do-not-use</quartz.version>
     <groovy-all.version>3.0.19</groovy-all.version>
