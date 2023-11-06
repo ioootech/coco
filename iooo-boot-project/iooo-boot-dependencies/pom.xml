@@ -105,7 +105,7 @@
     <hazelcast.version>4.2.8</hazelcast.version>
     <mybatis-spring-boot-starter.version>2.2.2</mybatis-spring-boot-starter.version>
     <mybatis-plus-boot-starter-v2.version>2.3.3</mybatis-plus-boot-starter-v2.version>
-    <mybatis-plus-boot-starter-v3.version>3.5.3.2</mybatis-plus-boot-starter-v3.version>
+    <mybatis-plus-boot-starter-v3.version>3.5.4.1</mybatis-plus-boot-starter-v3.version>
     <mybatis-plus-v2.version>2.3.3</mybatis-plus-v2.version>
     <mybatis-plus-v3.version>3.5.3.2</mybatis-plus-v3.version>
     <netty.version>4.1.100.Final</netty.version>
