@@ -65,7 +65,7 @@
     <apache.dubbo-spring-boot-starter>3.2.7</apache.dubbo-spring-boot-starter>
     <dubbo-spring-boot-starter.version>0.2.1</dubbo-spring-boot-starter.version>
     <motan.version>1.2.2</motan.version>
-    <aspectjweaver.version>1.9.20.1</aspectjweaver.version>
+    <aspectjweaver.version>1.9.21</aspectjweaver.version>
     <hsqldb.version>2.7.2</hsqldb.version>
     <HikariCP.version>5.0.1</HikariCP.version>
     <dagger.version>2.48.1</dagger.version>
